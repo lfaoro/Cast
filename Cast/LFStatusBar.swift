@@ -8,7 +8,7 @@
 
 import Cocoa
 
-struct LFStatusBar {
+class LFStatusBar: NSObject {
     
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
@@ -43,6 +43,7 @@ struct LFStatusBar {
                 //Is there any other way to pass in the value of link which is differnt for every menuItem?
                 let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
                 menuItem.representedObject = link
+                menuItem.target = self
                 recentUploadsSubmenu.addItem(menuItem)
             }
         }
