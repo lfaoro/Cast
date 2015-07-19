@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LFStatusBar: NSObject, NSDraggingDestination {
+class LFStatusBar: NSObject {
     
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
@@ -24,9 +24,13 @@ class LFStatusBar: NSObject, NSDraggingDestination {
         statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
 
         // Registering for Drag'n'Drop
-        print(statusBarItem.button?.registeredDraggedTypes)
+        precondition(statusBarItem.button!.registeredDraggedTypes.isEmpty)
+
         //NSColorPboardType,
         statusBarItem.button!.registerForDraggedTypes([NSFilenamesPboardType])
+        
+        
+        
         print(statusBarItem.button!.registeredDraggedTypes)
         
         addMenu()
@@ -97,10 +101,10 @@ class LFStatusBar: NSObject, NSDraggingDestination {
 }
 
 // Conforming to Protocol NSDraggingDestination
-extension LFStatusBar {
-    
+extension LFStatusBar: NSDraggingDestination {
+   
     func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        print("DraggingEntered")
+        print(__FUNCTION__)
         
         let sourceDragMask = sender.draggingSourceOperationMask()
         let pboard = sender.draggingPasteboard()
@@ -115,7 +119,7 @@ extension LFStatusBar {
     }
     
     func performDragOperation(sender: NSDraggingInfo) -> Bool {
-        
+        print(__FUNCTION__)
         
         
         return true
