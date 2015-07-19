@@ -10,34 +10,29 @@ import Cocoa
 
 class LFStatusBar: NSObject {
     
-    let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    var statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
     
     
-    //MARK:-
     func displayStatusBarItem() {
-        
-        statusBarItem.button?.title = "Cast"
-        statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
-        statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-
-        // Registering for Drag'n'Drop
+        //TODO: Registering for Drag'n'Drop
         precondition(statusBarItem.button!.registeredDraggedTypes.isEmpty)
 
-        //NSColorPboardType,
-        statusBarItem.button!.registerForDraggedTypes([NSFilenamesPboardType])
+        if let b = statusBarItem.button {
+            b.title = "Cast"
+            b.image = NSImage(named: "LFStatusBarIcon")
+            b.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
+
+            b.registerForDraggedTypes([NSFilenamesPboardType])
+            precondition(!b.registeredDraggedTypes.isEmpty)
+        }
         
-        
-        
-        print(statusBarItem.button!.registeredDraggedTypes)
-        
-        addMenu()
-        
+        statusBarItem.menu = addMenu()
     }
     
-    func addMenu() {
+    func addMenu() -> NSMenu {
         let menu = NSMenu(title: "Cast Menu")
         
         menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "S")
@@ -66,16 +61,16 @@ class LFStatusBar: NSObject {
         
         menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
         
-        statusBarItem.menu = menu
+        return menu
     }
     
     //MARK:- Selectors
-    func shareClipboardContentAction() {
-        
+    
+    func shareClipboardContentAction(sender: AnyObject) {
+        print(__FUNCTION__)
     }
     
     func recentUploadsAction(sender: AnyObject) {
-        
         let url = NSURL(string: sender.representedObject as! String)
         if let url = url {
             NSWorkspace.sharedWorkspace().openURL(url)
@@ -85,13 +80,13 @@ class LFStatusBar: NSObject {
     }
     
     func clearItemsAction(sender: AnyObject) {
-        
         if recentUploads.count > 0 {
             recentUploads.removeAll()
             addMenu()
         } else {
-            let s = sender as? NSMenuItem
-            s?.enabled = false
+            if let s = sender as? NSMenuItem {
+                s.enabled = false
+            }
         }
         
     }
