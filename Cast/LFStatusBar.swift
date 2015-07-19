@@ -8,12 +8,16 @@
 
 import Cocoa
 
-class LFStatusBar: NSObject, NSDraggingDestination {
+
+//MARK:
+class LFStatusBar: NSObject {
     
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
+    
+    var startAtLoginSwitch: Bool = true
     
     
     //MARK:-
@@ -22,30 +26,29 @@ class LFStatusBar: NSObject, NSDraggingDestination {
         statusBarItem.button?.title = "Cast"
         statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
         statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-
-        // Registering for Drag'n'Drop
-        print(statusBarItem.button?.registeredDraggedTypes)
-        //NSColorPboardType,
-        statusBarItem.button!.registerForDraggedTypes([NSFilenamesPboardType])
-        print(statusBarItem.button!.registeredDraggedTypes)
+        
+        statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
         
         addMenu()
         
     }
     
-    func addMenu() {
+    private func addMenu() {
         let menu = NSMenu(title: "Cast Menu")
         
         menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "S")
+        
         menu.addItem(NSMenuItem.separatorItem())
         
         let recentUploadsItem = NSMenuItem(title: "Recent Uploads", action: "terminate:", keyEquivalent: "")
+        
         let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
         
         if recentUploads.count > 1 {
             for (title,link) in recentUploads {
                 
                 let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
+                
                 // Allows me to use a value from this context in the func called by the selector
                 menuItem.representedObject = link
                 
@@ -60,12 +63,14 @@ class LFStatusBar: NSObject, NSDraggingDestination {
         recentUploadsItem.submenu = recentUploadsSubmenu
         menu.addItem(recentUploadsItem)
         
+        menu.addItemWithTitle("Start at Login", action: "startAtLoginAction:", keyEquivalent: "")!.target = self
+        
         menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
         
         statusBarItem.menu = menu
     }
     
-    //MARK:- Selectors
+    //MARK:- NSMenuItem selectors
     func shareClipboardContentAction() {
         
     }
@@ -80,14 +85,25 @@ class LFStatusBar: NSObject, NSDraggingDestination {
         }
     }
     
-    func clearItemsAction(sender: AnyObject) {
+    func clearItemsAction(sender: NSMenuItem) {
         
         if recentUploads.count > 0 {
             recentUploads.removeAll()
-            addMenu()
+            Swift.print(recentUploads)
+            sender.menu?.removeAllItems()
+            //            sender.hidden = true
+            //            addMenu()
+        }
+        
+    }
+    
+    func startAtLoginAction(sender: NSMenuItem) {
+        
+        
+        if sender.state == 0 {
+            sender.state = 1
         } else {
-            let s = sender as? NSMenuItem
-            s?.enabled = false
+            sender.state = 0
         }
         
     }
@@ -96,50 +112,17 @@ class LFStatusBar: NSObject, NSDraggingDestination {
     
 }
 
-// Conforming to Protocol NSDraggingDestination
-extension LFStatusBar {
+//MARK:- (Pr) NSDraggingDestination implementation
+extension NSStatusBarButton {
     
-    func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        print("DraggingEntered")
+    public override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
+        Swift.print("Called: draggingEntered")
+        return NSDragOperation.Copy
         
-        let sourceDragMask = sender.draggingSourceOperationMask()
-        let pboard = sender.draggingPasteboard()
-        
-        if pboard.availableTypeFromArray([NSFilenamesPboardType]) == NSFilenamesPboardType {
-            if sourceDragMask.rawValue & NSDragOperation.Generic.rawValue != 0 {
-                return NSDragOperation.Generic
-            }
-        }
-        
-        return NSDragOperation.None
     }
     
-    func performDragOperation(sender: NSDraggingInfo) -> Bool {
-        
-        
-        
-        return true
+    public override func draggingExited(sender: NSDraggingInfo?) {
+        Swift.print("Called: draggingExited")
     }
     
-    //    - (BOOL)statusItemView:(BCStatusItemView *)view performDragOperation:(id <NSDraggingInfo>)info
-    //    {
-    //    NSArray *possibleItemClasses = [NSArray arrayWithObjects:NSString.class, NSURL.class, nil];
-    //    NSDictionary *pasteboardOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-    //    forKey:NSPasteboardURLReadingFileURLsOnlyKey];
-    //    NSArray *pasteboardItems = [[info draggingPasteboard] readObjectsForClasses:possibleItemClasses
-    //    options:pasteboardOptions];
-    //
-    //    if ([pasteboardItems count] == 1 && [[pasteboardItems objectAtIndex:0] isKindOfClass:NSString.class])
-    //    {
-    //    [NSAppDelegate.sharingInterface shareCodeString:[pasteboardItems objectAtIndex:0]];
-    //    }
-    //    else if ([pasteboardItems count] > 0)
-    //    {
-    //    [NSAppDelegate.sharingInterface shareCodeFiles:pasteboardItems];
-    //    }
-    //    return YES;
-    //    }
 }
-
-
-
