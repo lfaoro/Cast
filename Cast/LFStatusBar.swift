@@ -8,14 +8,11 @@
 
 import Cocoa
 
-<<<<<<< HEAD
 
 //MARK:
-=======
->>>>>>> origin/master
 class LFStatusBar: NSObject {
     
-    var statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
@@ -23,8 +20,8 @@ class LFStatusBar: NSObject {
     var startAtLoginSwitch: Bool = true
     
     
+    //MARK:-
     func displayStatusBarItem() {
-<<<<<<< HEAD
         
         statusBarItem.button?.title = "Cast"
         statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
@@ -33,28 +30,10 @@ class LFStatusBar: NSObject {
         statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
         
         addMenu()
-=======
-        //TODO: Registering for Drag'n'Drop
-        precondition(statusBarItem.button!.registeredDraggedTypes.isEmpty)
-
-        if let b = statusBarItem.button {
-            b.title = "Cast"
-            b.image = NSImage(named: "LFStatusBarIcon")
-            b.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-
-            b.registerForDraggedTypes([NSFilenamesPboardType])
-            precondition(!b.registeredDraggedTypes.isEmpty)
-        }
->>>>>>> origin/master
         
-        statusBarItem.menu = addMenu()
     }
     
-<<<<<<< HEAD
     private func addMenu() {
-=======
-    func addMenu() -> NSMenu {
->>>>>>> origin/master
         let menu = NSMenu(title: "Cast Menu")
         
         menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "S")
@@ -88,22 +67,16 @@ class LFStatusBar: NSObject {
         
         menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
         
-        return menu
+        statusBarItem.menu = menu
     }
     
-<<<<<<< HEAD
     //MARK:- NSMenuItem selectors
     func shareClipboardContentAction() {
         
-=======
-    //MARK:- Selectors
-    
-    func shareClipboardContentAction(sender: AnyObject) {
-        print(__FUNCTION__)
->>>>>>> origin/master
     }
     
     func recentUploadsAction(sender: AnyObject) {
+        
         let url = NSURL(string: sender.representedObject as! String)
         if let url = url {
             NSWorkspace.sharedWorkspace().openURL(url)
@@ -112,12 +85,8 @@ class LFStatusBar: NSObject {
         }
     }
     
-<<<<<<< HEAD
     func clearItemsAction(sender: NSMenuItem) {
         
-=======
-    func clearItemsAction(sender: AnyObject) {
->>>>>>> origin/master
         if recentUploads.count > 0 {
             recentUploads.removeAll()
             Swift.print(recentUploads)
@@ -134,13 +103,7 @@ class LFStatusBar: NSObject {
         if sender.state == 0 {
             sender.state = 1
         } else {
-<<<<<<< HEAD
             sender.state = 0
-=======
-            if let s = sender as? NSMenuItem {
-                s.enabled = false
-            }
->>>>>>> origin/master
         }
         
     }
@@ -149,42 +112,17 @@ class LFStatusBar: NSObject {
     
 }
 
-<<<<<<< HEAD
 //MARK:- (Pr) NSDraggingDestination implementation
 extension NSStatusBarButton {
     
     public override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
         Swift.print("Called: draggingEntered")
         return NSDragOperation.Copy
-=======
-// Conforming to Protocol NSDraggingDestination
-extension LFStatusBar: NSDraggingDestination {
-   
-    func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        print(__FUNCTION__)
-        
-        let sourceDragMask = sender.draggingSourceOperationMask()
-        let pboard = sender.draggingPasteboard()
-        
-        if pboard.availableTypeFromArray([NSFilenamesPboardType]) == NSFilenamesPboardType {
-            if sourceDragMask.rawValue & NSDragOperation.Generic.rawValue != 0 {
-                return NSDragOperation.Generic
-            }
-        }
->>>>>>> origin/master
         
     }
     
-<<<<<<< HEAD
     public override func draggingExited(sender: NSDraggingInfo?) {
         Swift.print("Called: draggingExited")
-=======
-    func performDragOperation(sender: NSDraggingInfo) -> Bool {
-        print(__FUNCTION__)
-        
-        
-        return true
->>>>>>> origin/master
     }
     
 }
