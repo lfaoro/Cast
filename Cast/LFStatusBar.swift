@@ -8,25 +8,31 @@
 
 import Cocoa
 
-class LFStatusBar: NSObject {
+class LFStatusBar: NSObject, NSDraggingDestination {
     
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
     
+    
+    //MARK:-
     func displayStatusBarItem() {
         
         statusBarItem.button?.title = "Cast"
         statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
         statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-        statusBarItem.button?.highlight(false)
+
+        // Registering for Drag'n'Drop
+        print(statusBarItem.button?.registeredDraggedTypes)
+        //NSColorPboardType,
+        statusBarItem.button!.registerForDraggedTypes([NSFilenamesPboardType])
+        print(statusBarItem.button!.registeredDraggedTypes)
         
         addMenu()
         
     }
     
-    //MARK:-
     func addMenu() {
         let menu = NSMenu(title: "Cast Menu")
         
@@ -39,14 +45,17 @@ class LFStatusBar: NSObject {
         if recentUploads.count > 1 {
             for (title,link) in recentUploads {
                 
-                //HELP: How do I add the `link` argument to the selector `recentUploadsAction:`
-                //Is there any other way to pass in the value of link which is differnt for every menuItem?
                 let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
+                // Allows me to use a value from this context in the func called by the selector
                 menuItem.representedObject = link
+                
                 menuItem.target = self
                 recentUploadsSubmenu.addItem(menuItem)
             }
         }
+        
+        recentUploadsSubmenu.addItem(NSMenuItem.separatorItem())
+        recentUploadsSubmenu.addItemWithTitle("Clear Recents", action: "clearItemsAction:", keyEquivalent: "")?.target = self
         
         recentUploadsItem.submenu = recentUploadsSubmenu
         menu.addItem(recentUploadsItem)
@@ -71,8 +80,65 @@ class LFStatusBar: NSObject {
         }
     }
     
+    func clearItemsAction(sender: AnyObject) {
+        
+        if recentUploads.count > 0 {
+            recentUploads.removeAll()
+            addMenu()
+        } else {
+            let s = sender as? NSMenuItem
+            s?.enabled = false
+        }
+        
+    }
     
     
+    
+}
+
+// Conforming to Protocol NSDraggingDestination
+extension LFStatusBar {
+    
+    func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
+        print("DraggingEntered")
+        
+        let sourceDragMask = sender.draggingSourceOperationMask()
+        let pboard = sender.draggingPasteboard()
+        
+        if pboard.availableTypeFromArray([NSFilenamesPboardType]) == NSFilenamesPboardType {
+            if sourceDragMask.rawValue & NSDragOperation.Generic.rawValue != 0 {
+                return NSDragOperation.Generic
+            }
+        }
+        
+        return NSDragOperation.None
+    }
+    
+    func performDragOperation(sender: NSDraggingInfo) -> Bool {
+        
+        
+        
+        return true
+    }
+    
+    //    - (BOOL)statusItemView:(BCStatusItemView *)view performDragOperation:(id <NSDraggingInfo>)info
+    //    {
+    //    NSArray *possibleItemClasses = [NSArray arrayWithObjects:NSString.class, NSURL.class, nil];
+    //    NSDictionary *pasteboardOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+    //    forKey:NSPasteboardURLReadingFileURLsOnlyKey];
+    //    NSArray *pasteboardItems = [[info draggingPasteboard] readObjectsForClasses:possibleItemClasses
+    //    options:pasteboardOptions];
+    //
+    //    if ([pasteboardItems count] == 1 && [[pasteboardItems objectAtIndex:0] isKindOfClass:NSString.class])
+    //    {
+    //    [NSAppDelegate.sharingInterface shareCodeString:[pasteboardItems objectAtIndex:0]];
+    //    }
+    //    else if ([pasteboardItems count] > 0)
+    //    {
+    //    [NSAppDelegate.sharingInterface shareCodeFiles:pasteboardItems];
+    //    }
+    //    return YES;
+    //    }
 }
 
 

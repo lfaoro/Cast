@@ -312,6 +312,7 @@
 				A13145F11B5AA34E00AA4406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
