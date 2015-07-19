@@ -28,6 +28,7 @@
 		A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LFSharingServices.plist; sourceTree = "<group>"; };
 		A13145F91B5AA70700AA4406 /* LFStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFStatusBar.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		A13145F51B5AA65B00AA4406 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
 				A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */,
