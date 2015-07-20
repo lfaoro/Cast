@@ -36,7 +36,7 @@ class LFStatusBar: NSObject {
     private func addMenu() {
         let menu = NSMenu(title: "Cast Menu")
         
-        menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "S")
+        menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")?.target = self
         
         menu.addItem(NSMenuItem.separatorItem())
         
@@ -44,7 +44,7 @@ class LFStatusBar: NSObject {
         
         let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
         
-        if recentUploads.count > 1 {
+        if recentUploads.count > 0 {
             for (title,link) in recentUploads {
                 
                 let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
@@ -72,6 +72,16 @@ class LFStatusBar: NSObject {
     
     //MARK:- NSMenuItem selectors
     func shareClipboardContentAction() {
+        
+        let pasteBoard = NSPasteboard.generalPasteboard()
+        
+        //pasteBoard.clearContents()
+        
+        print(pasteBoard)
+        
+        let items = pasteBoard.pasteboardItems
+        
+        print(pasteBoard.readObjectsForClasses([NSString.self], options: nil))
         
     }
     
