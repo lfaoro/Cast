@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import InputMethodKit
 
 class ViewController: NSViewController {
 
@@ -14,6 +15,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
+        
     }
 
     override var representedObject: AnyObject? {

@@ -17,7 +17,7 @@ class LFStatusBar: NSObject {
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
     
-    var startAtLoginSwitch: Bool = true
+    let menu = NSMenu(title: "Cast Menu")
     
     
     //MARK:-
@@ -33,10 +33,10 @@ class LFStatusBar: NSObject {
         
     }
     
-    private func addMenu() {
-        let menu = NSMenu(title: "Cast Menu")
+    func addMenu() {
+
         
-        menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")?.target = self
+        menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")
         
         menu.addItem(NSMenuItem.separatorItem())
         
@@ -71,21 +71,14 @@ class LFStatusBar: NSObject {
     }
     
     //MARK:- NSMenuItem selectors
-    func shareClipboardContentAction() {
+    func shareClipboardContentAction(sender: NSMenuItem) {
         
-        let pasteBoard = NSPasteboard.generalPasteboard()
         
-        //pasteBoard.clearContents()
         
-        print(pasteBoard)
-        
-        let items = pasteBoard.pasteboardItems
-        
-        print(pasteBoard.readObjectsForClasses([NSString.self], options: nil))
         
     }
     
-    func recentUploadsAction(sender: AnyObject) {
+    func recentUploadsAction(sender: NSMenuItem) {
         
         let url = NSURL(string: sender.representedObject as! String)
         if let url = url {
@@ -100,16 +93,14 @@ class LFStatusBar: NSObject {
         if recentUploads.count > 0 {
             recentUploads.removeAll()
             Swift.print(recentUploads)
-            sender.menu?.removeAllItems()
-            //            sender.hidden = true
-            //            addMenu()
+//            sender.menu?.removeAllItems()
+            self.menu.update()
         }
         
     }
     
     func startAtLoginAction(sender: NSMenuItem) {
-        
-        
+
         if sender.state == 0 {
             sender.state = 1
         } else {
@@ -133,6 +124,18 @@ extension NSStatusBarButton {
     
     public override func draggingExited(sender: NSDraggingInfo?) {
         Swift.print("Called: draggingExited")
+
+    }
+    
+    public override func draggingEnded(sender: NSDraggingInfo?) {
+        Swift.print("Called: draggingEnded")
+        let pasteBoard = sender?.draggingPasteboard()
+        for item in pasteBoard!.pasteboardItems! {
+            if let item = item.stringForType(NSPasteboardTypeString) {
+                Swift.print("Pasteboard Contents:")
+                Swift.print(item)
+            }
+        }
     }
     
 }
