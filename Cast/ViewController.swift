@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import InputMethodKit
 
 class ViewController: NSViewController {
     
@@ -15,6 +14,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
+        let apiCall = LFAPICalls()
+        apiCall.delegate = self
+        apiCall.shorten("http://xborderconsulting.com/xborder/")
         
     }
     

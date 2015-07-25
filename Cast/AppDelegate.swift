@@ -12,7 +12,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let statusBar = LFStatusBar()
-    let apiCall = LFAPICalls().shorten("http://ciao.com/ciao")
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
