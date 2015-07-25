@@ -8,8 +8,8 @@
 
 import Cocoa
 
+//---------------------------------------------------------------------------
 
-//MARK:
 class LFStatusBar: NSObject {
     
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
@@ -19,8 +19,8 @@ class LFStatusBar: NSObject {
     
     let menu = NSMenu(title: "Cast Menu")
     
+    //---------------------------------------------------------------------------
     
-    //MARK:-
     func displayStatusBarItem() {
         
         statusBarItem.button?.title = "Cast"
@@ -33,8 +33,9 @@ class LFStatusBar: NSObject {
         
     }
     
+    //---------------------------------------------------------------------------
+    
     func addMenu() {
-
         
         menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")
         
@@ -70,6 +71,8 @@ class LFStatusBar: NSObject {
         statusBarItem.menu = menu
     }
     
+    //---------------------------------------------------------------------------
+    
     //MARK:- NSMenuItem selectors
     func shareClipboardContentAction(sender: NSMenuItem) {
         
@@ -93,14 +96,14 @@ class LFStatusBar: NSObject {
         if recentUploads.count > 0 {
             recentUploads.removeAll()
             Swift.print(recentUploads)
-//            sender.menu?.removeAllItems()
+            //            sender.menu?.removeAllItems()
             self.menu.update()
         }
         
     }
     
     func startAtLoginAction(sender: NSMenuItem) {
-
+        
         if sender.state == 0 {
             sender.state = 1
         } else {
@@ -112,7 +115,7 @@ class LFStatusBar: NSObject {
     
     
 }
-
+//---------------------------------------------------------------------------
 //MARK:- (Pr) NSDraggingDestination implementation
 extension NSStatusBarButton {
     
@@ -124,7 +127,7 @@ extension NSStatusBarButton {
     
     public override func draggingExited(sender: NSDraggingInfo?) {
         Swift.print("Called: draggingExited")
-
+        
     }
     
     public override func draggingEnded(sender: NSDraggingInfo?) {

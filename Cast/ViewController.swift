@@ -10,17 +10,17 @@ import Cocoa
 import InputMethodKit
 
 class ViewController: NSViewController {
-
+    
     @IBOutlet var firstView: DraggedView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
         
     }
-
+    
     override var representedObject: AnyObject? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
 }
@@ -33,7 +33,7 @@ class DraggedView: NSView {
         self.registerForDraggedTypes(pasteboardTypes)
     }
     
-
+    
 }
 
 extension DraggedView {
@@ -42,5 +42,12 @@ extension DraggedView {
         
         return NSDragOperation.Copy
         
+    }
+}
+
+extension ViewController: LFAPICallsDelegate {
+    func shortened(URL: NSURL?) {
+        print("shortened called!")
+        print(URL!)
     }
 }
