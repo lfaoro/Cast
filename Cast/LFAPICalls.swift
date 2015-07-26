@@ -38,12 +38,13 @@ class LFAPICalls: NSObject {
                 
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 let result = NSURL(string: (jsonObj["data"]!["url"]!! as? String)!)
-                self.delegate?.shortened(result)
+
+				self.delegate?.shortened(result)
 
 //                dispatch_async(dispatch_get_main_queue(), {
 //                    print("dispatch")
 //                    self.delegate?.shortened(result)
-//                    
+//
 //                })
                 
                 

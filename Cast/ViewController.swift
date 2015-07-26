@@ -11,10 +11,12 @@ import Cocoa
 class ViewController: NSViewController {
     
     @IBOutlet var firstView: DraggedView!
+	let apiCall = LFAPICalls()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
-        let apiCall = LFAPICalls()
+
         apiCall.delegate = self
         apiCall.shorten("http://xborderconsulting.com/xborder/")
         
@@ -27,6 +29,15 @@ class ViewController: NSViewController {
     }
 }
 
+
+extension ViewController: LFAPICallsDelegate {
+	func shortened(URL: NSURL?) {
+		print("shortened called!")
+		print(URL!)
+	}
+}
+
+
 class DraggedView: NSView {
     
     required init?(coder: NSCoder) {
@@ -34,12 +45,7 @@ class DraggedView: NSView {
         
         self.registerForDraggedTypes(pasteboardTypes)
     }
-    
-    
-}
 
-extension DraggedView {
-    
     override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
         
         return NSDragOperation.Copy
@@ -47,9 +53,3 @@ extension DraggedView {
     }
 }
 
-extension ViewController: LFAPICallsDelegate {
-    func shortened(URL: NSURL?) {
-        print("shortened called!")
-        print(URL!)
-    }
-}

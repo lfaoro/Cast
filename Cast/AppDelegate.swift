@@ -21,7 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     override func awakeFromNib() {
         
-        statusBar.displayStatusBarItem()
+		//create the statusbar and its menu and installs it on the systemstatusbar (3)
+		statusBar.displayStatusBarItem()
+
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

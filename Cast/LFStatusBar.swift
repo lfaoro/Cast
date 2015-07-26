@@ -16,9 +16,7 @@ class LFStatusBar: NSObject {
     
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
-    
-    let menu = NSMenu(title: "Cast Menu")
-    
+
     //---------------------------------------------------------------------------
     
     func displayStatusBarItem() {
@@ -29,14 +27,13 @@ class LFStatusBar: NSObject {
         
         statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
         
-        addMenu()
-        
+		statusBarItem.menu = createMenu()
     }
     
     //---------------------------------------------------------------------------
     
-    func addMenu() {
-        
+    func createMenu() -> NSMenu {
+        let menu = NSMenu(title: "Cast Menu")
         menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")
         
         menu.addItem(NSMenuItem.separatorItem())
@@ -68,7 +65,8 @@ class LFStatusBar: NSObject {
         
         menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
         
-        statusBarItem.menu = menu
+
+		return menu
     }
     
     //---------------------------------------------------------------------------
@@ -97,7 +95,7 @@ class LFStatusBar: NSObject {
             recentUploads.removeAll()
             Swift.print(recentUploads)
             //            sender.menu?.removeAllItems()
-            self.menu.update()
+            self.statusBarItem.menu!.update()
         }
         
     }
@@ -113,32 +111,5 @@ class LFStatusBar: NSObject {
     }
     
     
-    
-}
-//---------------------------------------------------------------------------
-//MARK:- (Pr) NSDraggingDestination implementation
-extension NSStatusBarButton {
-    
-    public override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        Swift.print("Called: draggingEntered")
-        return NSDragOperation.Copy
-        
-    }
-    
-    public override func draggingExited(sender: NSDraggingInfo?) {
-        Swift.print("Called: draggingExited")
-        
-    }
-    
-    public override func draggingEnded(sender: NSDraggingInfo?) {
-        Swift.print("Called: draggingEnded")
-        let pasteBoard = sender?.draggingPasteboard()
-        for item in pasteBoard!.pasteboardItems! {
-            if let item = item.stringForType(NSPasteboardTypeString) {
-                Swift.print("Pasteboard Contents:")
-                Swift.print(item)
-            }
-        }
-    }
     
 }
