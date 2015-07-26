@@ -5,9 +5,9 @@ AppDelegate
 @statusBar (awakeFromNib)
 
 
-ViewController <LFAPICallsdelegate>
+ViewController
 @apiCall (viewDidLoad)
-- shortened -> () (for now)
+- shortenAsync -> NSURL (what do I produce)
 
 
 LFStatusBar

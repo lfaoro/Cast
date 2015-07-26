@@ -17,26 +17,17 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
 
-        apiCall.delegate = self
-        apiCall.shorten("http://xborderconsulting.com/xborder/")
-        
-    }
-    
-    override var representedObject: AnyObject? {
-        didSet {
-            // Update the view, if already loaded.
-        }
+		//take a string, 
+		apiCall.shortenAsync("//chris.com", successBlock: {
+			if let url = $0 {
+				print("completion block \(url)")
+			} else {
+				//give some opportunity to respond to failure
+			}
+
+			})
     }
 }
-
-
-extension ViewController: LFAPICallsDelegate {
-	func shortened(URL: NSURL?) {
-		print("shortened called!")
-		print(URL!)
-	}
-}
-
 
 class DraggedView: NSView {
     

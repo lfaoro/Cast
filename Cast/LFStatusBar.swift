@@ -73,10 +73,6 @@ class LFStatusBar: NSObject {
     
     //MARK:- NSMenuItem selectors
     func shareClipboardContentAction(sender: NSMenuItem) {
-        
-        
-        
-        
     }
     
     func recentUploadsAction(sender: NSMenuItem) {
