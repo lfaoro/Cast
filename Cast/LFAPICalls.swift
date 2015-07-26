@@ -18,18 +18,26 @@ class LFAPICalls: NSObject {
 		/// Bit.ly parameters
 		let bitlyOAuth2Token = "64192e52f6c12c89942e88ad142796d7caec90cd"
 		let bitlyAPIurl = "https://api-ssl.bitly.com"
-
 		let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
 		let url: NSURL! = NSURL(string: bitlyAPIshorten)
-		//    let request = NSURLRequest(URL: url!)
-		//        request.HTTPMethod
+
 
 		let task = session.dataTaskWithURL(url) { (data, response, error) -> Void in
-			if let data = data, response = response {
-				print("response: \(response)")
+			if let data = data {
+				/*
+				//todo: avoid try!, replace with do { try ..... } catch instead
 
+				do {
+					let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+
+				} catch(let error) {
+					print("\(error)")
+
+				}
+				*/
+
+				
 				let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-				print(jsonObj)
 				let statusCode = jsonObj["status_code"]! as! Int
 				if statusCode == 200 {
 					if let urlString = jsonObj["data"]!["url"]! as? String {
