@@ -19,3 +19,4 @@ LFStatusBar
 LFAPICalls
 - shorten
 
+test
