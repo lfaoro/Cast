@@ -16,7 +16,6 @@ class LFAPICalls: NSObject {
 	func shortenURL(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
 
 		/// Bit.ly parameters
-		let bitlyOAuth2Token = "64192e52f6c12c89942e88ad142796d7caec90cd"
 		let bitlyAPIurl = "https://api-ssl.bitly.com"
 		let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
 		let url: NSURL! = NSURL(string: bitlyAPIshorten)
