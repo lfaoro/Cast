@@ -14,5 +14,5 @@ xcuserdata
 Resources/Build Configurations/Provisioning Profile.xcconfig
 Resources/Documents/Header Documentation/Results/*
 
-*.xcuserstate
-Secrets.swift
+**/*.xcuserstate
+**/Secrets.swift
