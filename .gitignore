@@ -10,9 +10,11 @@
 .tmp
 Build Results/*
 xcuserdata
-*.xcworkspace
 Resources/Build Configurations/Provisioning Profile.xcconfig
 Resources/Documents/Header Documentation/Results/*
 
+**/*.xcuserdatad
+xcuserstate
+*.xcuserstate
 **/*.xcuserstate
 **/Secrets.swift
