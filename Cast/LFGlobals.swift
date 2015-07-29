@@ -7,6 +7,4 @@
 //
 
 import Cocoa
-
-
 public let pasteboardTypes = [NSFilenamesPboardType]

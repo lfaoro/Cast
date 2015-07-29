@@ -21,6 +21,7 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
         session.dataTaskWithURL(url) { (data, response, error) in
             if let data = data {
+                //FIXME: Catch the eventual Throw
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 let statusCode = jsonObj["status_code"]! as! Int
                 if statusCode == 200 {
@@ -40,6 +41,8 @@ final class LFAPICalls: NSObject {
     }
     //---------------------------------------------------------------------------
     func uploadString(string: String, fileName: String = "Casted.swift", isPublic: Bool = true) {
+        //TODO: Add GitHub login support
+        //TODO: Add GitHub token request and storage
         //let clipboardContent = "//Generated with Cast\r"
         let content = [
             "description":"Generated with Cast (www.castapp.io)",
@@ -62,7 +65,7 @@ final class LFAPICalls: NSObject {
         session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data, _ = response {
                 //print(response)
-                
+                //TODO: Catch the eventual throw
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) -> () in
