@@ -19,7 +19,7 @@ final class LFAPICalls: NSObject {
         let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
         let url: NSURL! = NSURL(string: bitlyAPIshorten)
         //---------------------------------------------------------------------------
-        let task = session.dataTaskWithURL(url) { (data, response, error) in
+        session.dataTaskWithURL(url) { (data, response, error) in
             if let data = data {
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 let statusCode = jsonObj["status_code"]! as! Int
@@ -35,9 +35,8 @@ final class LFAPICalls: NSObject {
             } else {
                 print(error)
             }
-        }
+        }.resume()
         //---------------------------------------------------------------------------
-        task.resume()
     }
     //---------------------------------------------------------------------------
     func uploadString(string: String, fileName: String = "Casted.swift", isPublic: Bool = true) {
@@ -60,7 +59,7 @@ final class LFAPICalls: NSObject {
         request.HTTPMethod = "POST"
         request.HTTPBody = data
         //---------------------------------------------------------------------------
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data, _ = response {
                 //print(response)
                 
@@ -77,9 +76,8 @@ final class LFAPICalls: NSObject {
             } else {
                 print(error)
             }
-        }
+        }.resume()
         //---------------------------------------------------------------------------
-        task.resume()
     }
     //---------------------------------------------------------------------------
 }

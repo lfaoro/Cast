@@ -9,7 +9,10 @@
 import Foundation
 
 //TODO: Implement the Clipboard controller class
-let apiCall = LFAPICalls()
-func processClipboard() {
-    apiCall.uploadString("Casted")
+final class LFClipboard: NSObject {
+    let apiCall = LFAPICalls()
+    //---------------------------------------------------------------------------
+    func process() {
+        apiCall.uploadString("Casted")
+    }
 }
