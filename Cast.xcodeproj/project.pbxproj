@@ -16,6 +16,7 @@
 		A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* LFStatusBar.swift */; };
 		A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* LFAPICalls.swift */; };
 		A13961B41B5BF4C400E9CB98 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Global.swift */; };
+		EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EBE9DF5E1B68E38B00D11407 /* Cartfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		A1325D721B641619004B81CB /* LFAPICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFAPICalls.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBE9DF5E1B68E38B00D11407 /* Cartfile */,
 			);
 			name = Frameworks;
 			path = Cast;
@@ -164,6 +167,7 @@
 			files = (
 				A13145F81B5AA6C700AA4406 /* LFSharingServices.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
+				EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

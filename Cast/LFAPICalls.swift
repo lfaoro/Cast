@@ -44,11 +44,22 @@ class LFAPICalls: NSObject {
     
     func uploadString() {
         let githubAPIurl = "https://api.github.com/"
-        // let githubOAuth2Token = "737d07a58805e2498416b9a7fbf3697c2f4e5423"
-        let githubRequest = githubAPIurl + "users/lfaoro"
+        let githubRequest = githubAPIurl + "gists"
         let url: NSURL! = NSURL(string: githubRequest)
         let request = NSMutableURLRequest(URL: url)
         request.addValue("token 737d07a58805e2498416b9a7fbf3697c2f4e5423", forHTTPHeaderField: "Authorization")
+        request.HTTPMethod = "POST"
+        
+        let content = [
+            "description":"test description",
+            "public":true,
+            "files":
+                ["testFiles.txt":
+                    ["content": "test content of the Gist"
+        ]]]
+        
+        
+        request.HTTPBody = NSData()
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data, response = response {
