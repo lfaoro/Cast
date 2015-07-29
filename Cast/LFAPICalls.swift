@@ -43,8 +43,25 @@ class LFAPICalls: NSObject {
 	}
     
     func uploadString() {
-        let oauth = "https://github.com/login/oauth/authorize?client_id=...&redirect_uri=http://www.example.com/oauth_redirect"
-        let url = NSURL(string: oauth)!
-        NSWorkspace.sharedWorkspace().openURL(url)
+        let githubAPIurl = "https://api.github.com/"
+        // let githubOAuth2Token = "737d07a58805e2498416b9a7fbf3697c2f4e5423"
+        let githubRequest = githubAPIurl + "users/lfaoro"
+        let url: NSURL! = NSURL(string: githubRequest)
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("token 737d07a58805e2498416b9a7fbf3697c2f4e5423", forHTTPHeaderField: "Authorization")
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            if let data = data, response = response {
+                print(response)
+                
+                let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+                print(jsonObj)
+                
+            } else {
+                print(error)
+            }
+        }
+        
+        task.resume()
     }
 }
