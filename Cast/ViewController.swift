@@ -21,18 +21,3 @@ class ViewController: NSViewController {
 
 }
 
-class DraggedView: NSView {
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        self.registerForDraggedTypes(pasteboardTypes)
-    }
-
-    override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        
-        return NSDragOperation.Copy
-        
-    }
-}
-

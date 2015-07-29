@@ -16,7 +16,6 @@
 		A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* LFStatusBar.swift */; };
 		A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* LFAPICalls.swift */; };
 		A13961B41B5BF4C400E9CB98 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Global.swift */; };
-		A150495E1B693DD8009BF6A9 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = A150495D1B693DD8009BF6A9 /* readme.md */; };
 		A15049611B694360009BF6A9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15049601B694360009BF6A9 /* SwiftyJSON.framework */; };
 		A15049631B694FA8009BF6A9 /* LFClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* LFClipboard.swift */; };
 		A1F5AFE11B692D8000C60D63 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F5AFE01B692D8000C60D63 /* Secrets.swift */; };
@@ -212,7 +211,6 @@
 			files = (
 				A15049631B694FA8009BF6A9 /* LFClipboard.swift in Sources */,
 				A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */,
-				A150495E1B693DD8009BF6A9 /* readme.md in Sources */,
 				A1F5AFE11B692D8000C60D63 /* Secrets.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Global.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* ViewController.swift in Sources */,
@@ -328,6 +326,7 @@
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -344,6 +343,7 @@
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

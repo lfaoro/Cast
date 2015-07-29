@@ -12,6 +12,21 @@ import AppKit
 
 //MARK:- (Pr) NSDraggingDestination implementation
 
+class DraggedView: NSView {
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.registerForDraggedTypes(pasteboardTypes)
+    }
+    
+    override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
+        
+        return NSDragOperation.Copy
+        
+    }
+}
+
 extension NSStatusBarButton {
 
 	public override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
@@ -37,3 +52,4 @@ extension NSStatusBarButton {
 	}
 
 }
+

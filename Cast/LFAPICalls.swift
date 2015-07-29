@@ -41,7 +41,7 @@ final class LFAPICalls: NSObject {
     }
     //---------------------------------------------------------------------------
     func uploadString(string: String, fileName: String = "Casted.swift", isPublic: Bool = true) {
-//        let clipboardContent = "//Generated with Cast\r"
+        //let clipboardContent = "//Generated with Cast\r"
         let content = [
             "description":"Generated with Cast (www.castapp.io)",
             "public":true,
@@ -53,17 +53,16 @@ final class LFAPICalls: NSObject {
         let json = JSON(content)
         print(json)
         let data = try! NSJSONSerialization.dataWithJSONObject(json.object, options: [])
-
         let githubAPIurl = "https://api.github.com/gists"
         let url: NSURL! = NSURL(string: githubAPIurl)
         let request = NSMutableURLRequest(URL: url)
-        //        request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
+        //request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
         request.HTTPBody = data
         //---------------------------------------------------------------------------
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            if let data = data, response = response {
-                                print(response)
+            if let data = data, _ = response {
+                //print(response)
                 
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 if let url = jsonObj["html_url"] as? String {
@@ -82,4 +81,5 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
         task.resume()
     }
+    //---------------------------------------------------------------------------
 }

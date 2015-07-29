@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+//TODO: Implement the Clipboard controller class
+let apiCall = LFAPICalls()
+func processClipboard() {
+    apiCall.uploadString("Casted")
+}
