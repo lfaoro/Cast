@@ -9,9 +9,7 @@
 *.pyc
 .tmp
 Build Results/*
-
 Resources/Build Configurations/Provisioning Profile.xcconfig
 Resources/Documents/Header Documentation/Results/*
-
-**/xcuserdata/*
-**/Secrets.swift
+xcuserdata
+Secrets.swift

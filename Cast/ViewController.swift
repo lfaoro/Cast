@@ -11,21 +11,11 @@ import Cocoa
 class ViewController: NSViewController {
     
     @IBOutlet var firstView: DraggedView!
-	let apiCall = LFAPICalls()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewDidLoad Called") //prints ViewDidLoad Called
-        apiCall.uploadString()
-		//take a string, 
-		apiCall.shortenURL("//chris.com", successBlock: {
-			if let url = $0 {
-				print("completion block \(url)")
-			} else {
-				//give some opportunity to respond to failure
-			}
+        print("ViewDidLoad Called")
 
-			})
     }
     
 

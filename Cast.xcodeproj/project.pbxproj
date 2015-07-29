@@ -16,8 +16,10 @@
 		A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* LFStatusBar.swift */; };
 		A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* LFAPICalls.swift */; };
 		A13961B41B5BF4C400E9CB98 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Global.swift */; };
+		A150495E1B693DD8009BF6A9 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = A150495D1B693DD8009BF6A9 /* readme.md */; };
+		A15049611B694360009BF6A9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15049601B694360009BF6A9 /* SwiftyJSON.framework */; };
+		A15049631B694FA8009BF6A9 /* LFClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* LFClipboard.swift */; };
 		A1F5AFE11B692D8000C60D63 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F5AFE01B692D8000C60D63 /* Secrets.swift */; };
-		EB4C87091B690E900071B793 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C87081B690E900071B793 /* SwiftyJSON.swift */; };
 		EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EBE9DF5E1B68E38B00D11407 /* Cartfile */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +27,7 @@
 		83BC9D901B6586DE002F35FA /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
 		A13145E01B5AA34E00AA4406 /* Cast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13145E31B5AA34E00AA4406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A13145E51B5AA34E00AA4406 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A13145E51B5AA34E00AA4406 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Cast/ViewController.swift; sourceTree = "<group>"; };
 		A13145E71B5AA34E00AA4406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A13145EA1B5AA34E00AA4406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A13145EC1B5AA34E00AA4406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,8 +36,10 @@
 		A1325D721B641619004B81CB /* LFAPICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFAPICalls.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		A150495D1B693DD8009BF6A9 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = SOURCE_ROOT; };
+		A15049601B694360009BF6A9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
+		A15049621B694FA8009BF6A9 /* LFClipboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFClipboard.swift; sourceTree = "<group>"; };
 		A1F5AFE01B692D8000C60D63 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		EB4C87081B690E900071B793 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -44,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15049611B694360009BF6A9 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,9 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				A13145E31B5AA34E00AA4406 /* AppDelegate.swift */,
-				A13145E51B5AA34E00AA4406 /* ViewController.swift */,
 				A13961B31B5BF4C400E9CB98 /* Global.swift */,
 				A13145F91B5AA70700AA4406 /* LFStatusBar.swift */,
+				A15049621B694FA8009BF6A9 /* LFClipboard.swift */,
 				A1325D721B641619004B81CB /* LFAPICalls.swift */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
 			);
@@ -85,7 +90,7 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB4C87081B690E900071B793 /* SwiftyJSON.swift */,
+				A15049601B694360009BF6A9 /* SwiftyJSON.framework */,
 				EBE9DF5E1B68E38B00D11407 /* Cartfile */,
 			);
 			name = Frameworks;
@@ -100,6 +105,7 @@
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
 				A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */,
 				A1F5AFE01B692D8000C60D63 /* Secrets.swift */,
+				A150495D1B693DD8009BF6A9 /* readme.md */,
 			);
 			name = Assets;
 			path = Cast;
@@ -108,6 +114,7 @@
 		A13145F61B5AA67700AA4406 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				A13145E51B5AA34E00AA4406 /* ViewController.swift */,
 				A13145E91B5AA34E00AA4406 /* Main.storyboard */,
 			);
 			name = "User Interface";
@@ -123,6 +130,7 @@
 				A13145DC1B5AA34E00AA4406 /* Sources */,
 				A13145DD1B5AA34E00AA4406 /* Frameworks */,
 				A13145DE1B5AA34E00AA4406 /* Resources */,
+				A150495F1B6940D9009BF6A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -180,18 +188,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A150495F1B6940D9009BF6A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A13145DC1B5AA34E00AA4406 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15049631B694FA8009BF6A9 /* LFClipboard.swift in Sources */,
 				A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */,
+				A150495E1B693DD8009BF6A9 /* readme.md in Sources */,
 				A1F5AFE11B692D8000C60D63 /* Secrets.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Global.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* ViewController.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */,
-				EB4C87091B690E900071B793 /* SwiftyJSON.swift in Sources */,
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +322,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
@@ -308,6 +338,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;

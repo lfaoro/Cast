@@ -3,22 +3,16 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 
-
 // Cast: verb. throw (something) forcefully in a specified direction.
 
 import Cocoa
 
-//---------------------------------------------------------------------------
-
-class LFStatusBar: NSObject {
-    
+final class LFStatusBar: NSObject {
+    let apiCall = LFAPICalls()
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-    
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
-
     //---------------------------------------------------------------------------
-    
     func displayStatusBarItem() {
         
         statusBarItem.button?.title = "Cast"
@@ -27,14 +21,12 @@ class LFStatusBar: NSObject {
         
         statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
         
-		statusBarItem.menu = createMenu()
+        statusBarItem.menu = createMenu()
     }
-    
     //---------------------------------------------------------------------------
-    
     func createMenu() -> NSMenu {
         let menu = NSMenu(title: "Cast Menu")
-        menu.addItemWithTitle("Share Clipboard Content", action: "shareClipboardContentAction:", keyEquivalent: "")
+        menu.addItemWithTitle("Share", action: "shareClipboardContentsAction:", keyEquivalent: "S")?.target = self
         
         menu.addItem(NSMenuItem.separatorItem())
         
@@ -65,16 +57,15 @@ class LFStatusBar: NSObject {
         
         menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
         
-
-		return menu
+        
+        return menu
     }
-    
     //---------------------------------------------------------------------------
-    
     //MARK:- NSMenuItem selectors
-    func shareClipboardContentAction(sender: NSMenuItem) {
+    func shareClipboardContentsAction(sender: NSMenuItem) {
+        apiCall.uploadString("Casted")
     }
-    
+    //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
         
         let url = NSURL(string: sender.representedObject as! String)
@@ -84,7 +75,7 @@ class LFStatusBar: NSObject {
             fatalError("No link in recent uploads")
         }
     }
-    
+    //---------------------------------------------------------------------------
     func clearItemsAction(sender: NSMenuItem) {
         
         if recentUploads.count > 0 {
@@ -95,7 +86,7 @@ class LFStatusBar: NSObject {
         }
         
     }
-    
+    //---------------------------------------------------------------------------
     func startAtLoginAction(sender: NSMenuItem) {
         
         if sender.state == 0 {
