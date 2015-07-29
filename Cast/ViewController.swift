@@ -16,9 +16,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called") //prints ViewDidLoad Called
-
+        apiCall.uploadString()
 		//take a string, 
-		apiCall.shortenAsync("//chris.com", successBlock: {
+		apiCall.shortenURL("//chris.com", successBlock: {
 			if let url = $0 {
 				print("completion block \(url)")
 			} else {
@@ -27,6 +27,8 @@ class ViewController: NSViewController {
 
 			})
     }
+    
+
 }
 
 class DraggedView: NSView {

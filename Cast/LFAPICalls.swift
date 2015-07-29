@@ -13,7 +13,7 @@ class LFAPICalls: NSObject {
 
 	let session = NSURLSession.sharedSession()
 
-	func shortenAsync(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
+	func shortenURL(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
 
 		/// Bit.ly parameters
 		let bitlyOAuth2Token = "64192e52f6c12c89942e88ad142796d7caec90cd"
@@ -22,21 +22,8 @@ class LFAPICalls: NSObject {
 		let url: NSURL! = NSURL(string: bitlyAPIshorten)
 
 
-		let task = session.dataTaskWithURL(url) { (data, response, error) -> Void in
+		let task = session.dataTaskWithURL(url) { (data, response, error) in
 			if let data = data {
-				/*
-				//todo: avoid try!, replace with do { try ..... } catch instead
-
-				do {
-					let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-
-				} catch(let error) {
-					print("\(error)")
-
-				}
-				*/
-
-				
 				let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
 				let statusCode = jsonObj["status_code"]! as! Int
 				if statusCode == 200 {
@@ -54,4 +41,10 @@ class LFAPICalls: NSObject {
 		}
 		task.resume()
 	}
+    
+    func uploadString() {
+        let oauth = "https://github.com/login/oauth/authorize?client_id=...&redirect_uri=http://www.example.com/oauth_redirect"
+        let url = NSURL(string: oauth)!
+        NSWorkspace.sharedWorkspace().openURL(url)
+    }
 }
