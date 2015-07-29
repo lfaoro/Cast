@@ -47,7 +47,7 @@ class LFAPICalls: NSObject {
         let githubRequest = githubAPIurl + "gists"
         let url: NSURL! = NSURL(string: githubRequest)
         let request = NSMutableURLRequest(URL: url)
-        request.addValue("token 737d07a58805e2498416b9a7fbf3697c2f4e5423", forHTTPHeaderField: "Authorization")
+        request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
         
         let content = [
@@ -58,15 +58,16 @@ class LFAPICalls: NSObject {
                     ["content": "test content of the Gist"
         ]]]
         
-        
-        request.HTTPBody = NSData()
-        
+        let json = JSON(content)
+        let data = try! NSJSONSerialization.dataWithJSONObject(json.object, options: [])
+        request.HTTPBody = data
+
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data, response = response {
-                print(response)
+//                print(response)
                 
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                print(jsonObj)
+                print(jsonObj["html_url"]!)
                 
             } else {
                 print(error)
