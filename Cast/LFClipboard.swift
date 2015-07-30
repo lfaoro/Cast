@@ -10,8 +10,8 @@ import Cocoa
 // Clipboard: an object that holds one or more objects of any type
 
 final class LFClipboard: NSObject {
+    let pasteboard = NSPasteboard.generalPasteboard()
     let apiCall = LFAPICalls()
-    let pasteBoard = NSPasteboard.generalPasteboard()
     let classes: [AnyClass] = [
         NSString.self,
         /*
@@ -23,23 +23,24 @@ final class LFClipboard: NSObject {
         */
     ]
     let options = [
-        NSPasteboardURLReadingFileURLsOnlyKey:NSNumber(bool: true),
+        NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
         NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
     ]
     //---------------------------------------------------------------------------
-    func extractString() -> String {
-        if let pasteboardItems = pasteBoard
+    func extractData() -> String {
+        if let pasteboardItems = pasteboard
             .readObjectsForClasses(classes, options: options)?
             .flatMap({ ($0 as? String) }) {
             if !pasteboardItems.isEmpty {
                 print(pasteboardItems[0])
+                pasteboard.clearContents()
                 return pasteboardItems[0]
             }
         }
-        return "Incompatible data"
+        return "Incompatible data or no data"
     }
     //---------------------------------------------------------------------------
     func process() {
-        apiCall.uploadString(extractString())
+        apiCall.uploadString(extractData())
     }
 }

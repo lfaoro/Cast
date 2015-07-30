@@ -70,8 +70,12 @@ final class LFAPICalls: NSObject {
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) -> () in
                         if let url = url {
+                            let pasteboard = NSPasteboard.generalPasteboard()
+                            pasteboard.clearContents()
+                            pasteboard.writeObjects([url])
+                            pushNotification(String(url))
                             print(url)
-                            NSWorkspace.sharedWorkspace().openURL(url)
+//                            NSWorkspace.sharedWorkspace().openURL(url)
                         }
                     })
                 }
