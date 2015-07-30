@@ -21,7 +21,7 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
         session.dataTaskWithURL(url) { (data, response, error) in
             if let data = data {
-                //FIXME: Catch the eventual Throw
+                //FIXME: Catch the eventual Throw for shortenURL
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 let statusCode = jsonObj["status_code"]! as! Int
                 if statusCode == 200 {
@@ -65,7 +65,7 @@ final class LFAPICalls: NSObject {
         session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data, _ = response {
                 //print(response)
-                //TODO: Catch the eventual throw
+                //FIXME: Catch the eventual throw for uploadString
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) -> () in

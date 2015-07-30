@@ -17,7 +17,7 @@ final class LFStatusBar: NSObject {
         statusBarItem.button?.title = "Cast"
         statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
         statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-        statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
+        statusBarItem.button?.registerForDraggedTypes(pasteboardTypes) //TODO: Implement dragging
         statusBarItem.menu = createMenu()
     }
     //---------------------------------------------------------------------------
