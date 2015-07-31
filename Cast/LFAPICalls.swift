@@ -12,6 +12,7 @@ import SwiftyJSON
 final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
+    let nc = LFNotifications()
     //---------------------------------------------------------------------------
     func shortenURL(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
         /// Bit.ly parameters
@@ -71,7 +72,7 @@ final class LFAPICalls: NSObject {
                             let pasteboard = NSPasteboard.generalPasteboard()
                             pasteboard.clearContents()
                             if pasteboard.writeObjects([url]) {
-                                pushNotification(String(url))
+                               self.nc.pushNotification(String(url))
                                 print(url)
                                 //                            NSWorkspace.sharedWorkspace().openURL(url)
                             } else {
