@@ -42,10 +42,8 @@ final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     func uploadString(string: String, fileName: String = "Casted.swift", isPublic: Bool = true) {
         //TODO: Add GitHub login support
-        //TODO: Add GitHub token request and storage
-        //let clipboardContent = "//Generated with Cast\r"
         let content = [
-            "description":"Generated with Cast (www.castapp.io)",
+            "description":"Generated with Cast (www.castshare.io)",
             "public":true,
             "files":
                 [fileName:

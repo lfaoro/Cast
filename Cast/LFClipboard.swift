@@ -27,6 +27,7 @@ final class LFClipboard: NSObject {
         NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
     ]
     //---------------------------------------------------------------------------
+    //FIXME: Find a better implementation
     func extractData() -> String {
         if let pasteboardItems = pasteboard
             .readObjectsForClasses(classes, options: options)?
