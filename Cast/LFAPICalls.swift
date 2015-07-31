@@ -36,7 +36,7 @@ final class LFAPICalls: NSObject {
             } else {
                 print(error)
             }
-        }.resume()
+            }.resume()
         //---------------------------------------------------------------------------
     }
     //---------------------------------------------------------------------------
@@ -70,10 +70,13 @@ final class LFAPICalls: NSObject {
                         if let url = url {
                             let pasteboard = NSPasteboard.generalPasteboard()
                             pasteboard.clearContents()
-                            pasteboard.writeObjects([url])
-                            pushNotification(String(url))
-                            print(url)
-//                            NSWorkspace.sharedWorkspace().openURL(url)
+                            if pasteboard.writeObjects([url]) {
+                                pushNotification(String(url))
+                                print(url)
+                                //                            NSWorkspace.sharedWorkspace().openURL(url)
+                            } else {
+                                fatalError("Couldn't write to pasteboard")
+                            }
                         }
                     })
                 }
@@ -81,7 +84,7 @@ final class LFAPICalls: NSObject {
             } else {
                 print(error)
             }
-        }.resume()
+            }.resume()
         //---------------------------------------------------------------------------
     }
     //---------------------------------------------------------------------------

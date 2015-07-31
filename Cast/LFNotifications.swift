@@ -7,12 +7,16 @@
 //
 import Cocoa
 
+//---------------------------------------------------------------------------
 func pushNotification(text: String) {
     let nc = NSUserNotificationCenter.defaultUserNotificationCenter()
     let notification = NSUserNotification()
     notification.title = "Casted to gist.GitHub.com"
     notification.subtitle = text
     notification.informativeText = "Automatically copied to your clipboard"
-    notification.actionButtonTitle = "Open"
+    notification.actionButtonTitle = "Open URL"
+    notification.soundName = NSUserNotificationDefaultSoundName
+    
     nc.deliverNotification(notification)
 }
+//---------------------------------------------------------------------------

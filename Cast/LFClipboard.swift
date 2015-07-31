@@ -34,7 +34,6 @@ final class LFClipboard: NSObject {
             .flatMap({ ($0 as? String) }) {
             if !pasteboardItems.isEmpty {
                 print(pasteboardItems[0])
-                pasteboard.clearContents()
                 return pasteboardItems[0]
             }
         }
