@@ -12,13 +12,12 @@ import SwiftyJSON
 final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
-    let pasteboard = LFPasteboard()
     //---------------------------------------------------------------------------
     func share() {
-        self.uploadTextData(pasteboard.extractData(), isPublic: false) {
+        self.uploadTextData(app.pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
-                self.pasteboard.copyToClipboard([$0])
+                app.pasteboard.copyToClipboard([$0])
                 recentUploads[String($0)] = String($0)
                 app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
             }
@@ -46,7 +45,7 @@ final class LFAPICalls: NSObject {
                 }
             } else {
                 print(error?.localizedDescription)
-                self.pasteboard.notification.pushNotification(error: "bit.ly Unreachable", description: error!.localizedDescription)
+                app.userNotification.pushNotification(error: "bit.ly Unreachable", description: error!.localizedDescription)
             }
             }.resume()
         //---------------------------------------------------------------------------
@@ -60,8 +59,7 @@ final class LFAPICalls: NSObject {
             "description": "Generated with Cast (www.castshare.io)",
             "public": true,
             "files":
-                [fileName:
-                    ["content": string]
+                [fileName: ["content": string]
             ]
         ]
         let gitHubBodyJSON = JSON(gitHubBodyDictionary) // transforms Foundation object to JSON
@@ -84,7 +82,7 @@ final class LFAPICalls: NSObject {
                 }
             } else {
                 print(error!.localizedDescription)
-                self.pasteboard.notification.pushNotification(error: "GitHub Unreachable", description: error!.localizedDescription)
+                app.userNotification.pushNotification(error: "GitHub Unreachable", description: error!.localizedDescription)
             }
             }.resume()
         //---------------------------------------------------------------------------

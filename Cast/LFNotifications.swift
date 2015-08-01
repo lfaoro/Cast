@@ -7,11 +7,10 @@
 //
 import Cocoa
 
-final class LFNotifications: NSObject {
+final class LFUserNotifications: NSObject {
     //---------------------------------------------------------------------------
     let unc = NSUserNotificationCenter.defaultUserNotificationCenter()
     var url: String?
-    var timer: NSTimer?
     //---------------------------------------------------------------------------
     override init() {
         super.init()
@@ -42,20 +41,20 @@ final class LFNotifications: NSObject {
     //---------------------------------------------------------------------------
     func notifcationTimer() {
         print(__FUNCTION__)
-        timer = NSTimer.scheduledTimerWithTimeInterval(
+        app.timer = NSTimer.scheduledTimerWithTimeInterval(
             5.0,
             target: self,
             selector: "removeNotifcationAction:",
             userInfo: nil,
             repeats: true)
     }
-    @objc func removeNotifcationAction(timer: NSTimer) {
+    func removeNotifcationAction(timer: NSTimer) {
         print(__FUNCTION__)
         unc.removeAllDeliveredNotifications()
         timer.invalidate()
     }
 }
-typealias UserNotificationCenterDelegate = LFNotifications
+typealias UserNotificationCenterDelegate = LFUserNotifications
 extension UserNotificationCenterDelegate: NSUserNotificationCenterDelegate {
     //---------------------------------------------------------------------------
     func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {

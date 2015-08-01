@@ -12,6 +12,9 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     //---------------------------------------------------------------------------
     let statusBar = LFStatusBar()
+    let pasteboard = LFPasteboard()
+    let userNotification = LFUserNotifications()
+    var timer: NSTimer?
     //---------------------------------------------------------------------------
     func applicationDidFinishLaunching(aNotification: NSNotification) {
     }

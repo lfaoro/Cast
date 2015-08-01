@@ -12,7 +12,6 @@ import Cocoa
 //TODO: Rename Clipboard to Pasteboard
 final class LFPasteboard: NSObject {
     let pasteboard = NSPasteboard.generalPasteboard()
-    let notification = LFNotifications()
     let classes: [AnyClass] = [
         NSString.self,
         /*
@@ -53,10 +52,10 @@ final class LFPasteboard: NSObject {
             print("success")
             for text in extractedStrings {
                 print(text)
-                notification.pushNotification(openURL: text)
+                app.userNotification.pushNotification(openURL: text)
             }
         } else {
-            notification.pushNotification(error: "Can't write to Pasteboard")
+            app.userNotification.pushNotification(error: "Can't write to Pasteboard")
         }
     }
     //---------------------------------------------------------------------------
