@@ -73,8 +73,15 @@ final class LFAPICalls: NSObject {
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) in
                         if let url = url {
+<<<<<<< HEAD
                             print("called")
                             self.pasteboard.copyToClipboard([url])
+=======
+                            self.pasteboard.copyToClipboard([url])
+                            recentUploads[String(url)] = String(url)
+                            appDelegate.statusBar.statusBarItem.menu?.update()
+                            print(recentUploads)
+>>>>>>> parent of 28fb214... gcd on caller
                         }
                     })
                 }
