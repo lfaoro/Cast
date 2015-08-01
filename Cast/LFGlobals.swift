@@ -11,5 +11,4 @@ import Cocoa
 public var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
 public let pasteboardTypes = [NSFilenamesPboardType]
 
-let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-//appDelegate.statusBar.api.pasteboard.notification
+let app = NSApp.delegate as! AppDelegate

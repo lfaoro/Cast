@@ -15,14 +15,12 @@ final class LFAPICalls: NSObject {
     let pasteboard = LFPasteboard()
     //---------------------------------------------------------------------------
     func share() {
-        self.uploadTextData(pasteboard.extractData()) {
+        self.uploadTextData(pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
                 self.pasteboard.copyToClipboard([$0])
                 recentUploads[String($0)] = String($0)
-                let app = NSApp.delegate as! AppDelegate
                 app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
-                print(recentUploads)
             }
         }
     }
@@ -54,10 +52,11 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
     }
     //---------------------------------------------------------------------------
-    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success:(String)->()) {
+    //TODO: Add GitHub login support
+    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
         print(__FUNCTION__)
-        //TODO: Add GitHub login support
-        let content = [
+        let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
+        let gitHubBodyDictionary = [
             "description": "Generated with Cast (www.castshare.io)",
             "public": true,
             "files":
@@ -65,14 +64,15 @@ final class LFAPICalls: NSObject {
                     ["content": string]
             ]
         ]
-        let json = JSON(content)
-        let githubAPIurl = "https://api.github.com/gists"
-        let url = NSURL(string: githubAPIurl)!
-        let request = NSMutableURLRequest(URL: url)
+        let gitHubBodyJSON = JSON(gitHubBodyDictionary) // transforms Foundation object to JSON
+        let request = NSMutableURLRequest(URL: githubAPIurl)
         //request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
-        let data = try! json.rawData()
-        request.HTTPBody = data
+        do {
+            request.HTTPBody = try gitHubBodyJSON.rawData()
+        } catch {
+            fatalError("Unable to convert JSON to NSData")
+        }
         //---------------------------------------------------------------------------
         session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data {
