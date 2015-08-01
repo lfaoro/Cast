@@ -16,32 +16,35 @@ final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     func share() {
         self.uploadTextData(pasteboard.extractData()) {
+            print($0)
             self.shortenURL($0) {
                 self.pasteboard.copyToClipboard([$0])
                 recentUploads[String($0)] = String($0)
-                appDelegate.statusBar.statusBarItem.menu?.update()
+                let app = NSApp.delegate as! AppDelegate
+                app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
                 print(recentUploads)
             }
         }
     }
     //---------------------------------------------------------------------------
-    func shortenURL(URL: NSURL, success:(NSURL)->()) {
-        /// Bit.ly parameters
+    func shortenURL(URL: String, success:(NSURL)->()) {
+        print(__FUNCTION__)
         let bitlyAPIurl = "https://api-ssl.bitly.com"
-        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + String(URL)
-        let url: NSURL! = NSURL(string: bitlyAPIshorten)
+        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
+        let url = NSURL(string: bitlyAPIshorten)!
         //---------------------------------------------------------------------------
         session.dataTaskWithURL(url) { (data, response, error) in
             if let data = data {
-                //FIXME: Catch the eventual Throw for shortenURL
-                let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                let statusCode = jsonObj["status_code"]! as! Int
+                let jsonData = JSON(data: data)
+                let statusCode = jsonData["status_code"].int
                 if statusCode == 200 {
-                    if let urlString = jsonObj["data"]!["url"]! as? String {
+                    if let urlString = jsonData["data"]["url"].string {
                         if let url = NSURL(string: urlString) {
                             success(url)
                         }
                     }
+                } else {
+                    print(jsonData["status_code"].int)
                 }
             } else {
                 print(error?.localizedDescription)
@@ -51,7 +54,8 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
     }
     //---------------------------------------------------------------------------
-    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success:(NSURL)->()) {
+    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success:(String)->()) {
+        print(__FUNCTION__)
         //TODO: Add GitHub login support
         let content = [
             "description": "Generated with Cast (www.castshare.io)",
@@ -62,21 +66,21 @@ final class LFAPICalls: NSObject {
             ]
         ]
         let json = JSON(content)
-        print(json)
-        let data = try! NSJSONSerialization.dataWithJSONObject(json.object, options: [])
         let githubAPIurl = "https://api.github.com/gists"
-        let url: NSURL! = NSURL(string: githubAPIurl)
+        let url = NSURL(string: githubAPIurl)!
         let request = NSMutableURLRequest(URL: url)
         //request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
         request.HTTPMethod = "POST"
+        let data = try! json.rawData()
         request.HTTPBody = data
         //---------------------------------------------------------------------------
         session.dataTaskWithRequest(request) { (data, response, error) in
             if let data = data {
-                //FIXME: Catch the eventual throw for uploadString
-                let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                if let url = jsonObj["html_url"] as? NSURL {
+                let jsonData = JSON(data: data)
+                if let url = jsonData["html_url"].string {
                     success(url)
+                } else {
+                    fatalError("No URL from GitHub")
                 }
             } else {
                 print(error!.localizedDescription)
