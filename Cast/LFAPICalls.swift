@@ -15,13 +15,20 @@ final class LFAPICalls: NSObject {
     let pasteboard = LFPasteboard()
     //---------------------------------------------------------------------------
     func share() {
-        uploadString(pasteboard.extractData())
+        self.uploadTextData(pasteboard.extractData()) {
+            self.shortenURL($0) {
+                self.pasteboard.copyToClipboard([$0])
+                recentUploads[String($0)] = String($0)
+                appDelegate.statusBar.statusBarItem.menu?.update()
+                print(recentUploads)
+            }
+        }
     }
     //---------------------------------------------------------------------------
-    func shortenURL(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
+    func shortenURL(URL: NSURL, success:(NSURL)->()) {
         /// Bit.ly parameters
         let bitlyAPIurl = "https://api-ssl.bitly.com"
-        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
+        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + String(URL)
         let url: NSURL! = NSURL(string: bitlyAPIshorten)
         //---------------------------------------------------------------------------
         session.dataTaskWithURL(url) { (data, response, error) in
@@ -32,11 +39,9 @@ final class LFAPICalls: NSObject {
                 if statusCode == 200 {
                     if let urlString = jsonObj["data"]!["url"]! as? String {
                         if let url = NSURL(string: urlString) {
-                            successBlock(url)
+                            success(url)
                         }
                     }
-                } else {
-                    failureBlock(statusCode)
                 }
             } else {
                 print(error?.localizedDescription)
@@ -46,11 +51,11 @@ final class LFAPICalls: NSObject {
         //---------------------------------------------------------------------------
     }
     //---------------------------------------------------------------------------
-    func uploadString(string: String, fileName: String = "Casted.swift", isPublic: Bool = true) {
+    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success:(NSURL)->()) {
         //TODO: Add GitHub login support
         let content = [
-            "description":"Generated with Cast (www.castshare.io)",
-            "public":true,
+            "description": "Generated with Cast (www.castshare.io)",
+            "public": true,
             "files":
                 [fileName:
                     ["content": string]
@@ -70,15 +75,8 @@ final class LFAPICalls: NSObject {
             if let data = data {
                 //FIXME: Catch the eventual throw for uploadString
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
-                if let url = jsonObj["html_url"] as? String {
-                    self.shortenURL(url, successBlock: { (url) in
-                        if let url = url {
-                            self.pasteboard.copyToClipboard([url])
-                            recentUploads[String(url)] = String(url)
-                            appDelegate.statusBar.statusBarItem.menu?.update()
-                            print(recentUploads)
-                        }
-                    })
+                if let url = jsonObj["html_url"] as? NSURL {
+                    success(url)
                 }
             } else {
                 print(error!.localizedDescription)
