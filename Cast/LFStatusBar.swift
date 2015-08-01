@@ -49,6 +49,7 @@ final class LFStatusBar: NSObject {
     //---------------------------------------------------------------------------
     //MARK:- NSMenuItem selectors
     func shareClipboardContentsAction(sender: NSMenuItem) {
+//--->>>>	
         self.api.share()
     }
     //---------------------------------------------------------------------------

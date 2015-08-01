@@ -6,6 +6,7 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 
+import Foundation
 import Cocoa
 import SwiftyJSON
 
@@ -73,7 +74,12 @@ final class LFAPICalls: NSObject {
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) in
                         if let url = url {
-                            self.pasteboard.copyToClipboard([url])
+//--->>>>
+
+					dispatch_async(dispatch_get_main_queue()) {
+                            self.pasteboard.copyToClipboard([url]) //VOID!!!
+					}
+
                             recentUploads[String(url)] = String(url)
                             appDelegate.statusBar.statusBarItem.menu?.update()
                             print(recentUploads)
