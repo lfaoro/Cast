@@ -51,7 +51,9 @@ final class LFPasteboard: NSObject {
             print("success")
             for text in extractedStrings {
                 print(text)
-                app.userNotification.pushNotification(openURL: text)
+                dispatch_async(dispatch_get_main_queue()) {
+                    app.userNotification.pushNotification(openURL: text)
+                }
             }
         } else {
             app.userNotification.pushNotification(error: "Can't write to Pasteboard")

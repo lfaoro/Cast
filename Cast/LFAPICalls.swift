@@ -12,17 +12,13 @@ import SwiftyJSON
 final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
-    var shortenedURL: NSURL? {
-        didSet {
-            app.pasteboard.copyToClipboard([shortenedURL!])
-        }
-    }
+    var textExcerpt: String?
     //---------------------------------------------------------------------------
     func share() {
         self.uploadTextData(app.pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
-                self.shortenedURL = $0
+                app.pasteboard.copyToClipboard([$0])
                 recentUploads[String($0)] = String($0)
                 app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
             }
@@ -59,6 +55,7 @@ final class LFAPICalls: NSObject {
     //TODO: Add GitHub login support
     func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
         print(__FUNCTION__)
+        
         let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
         let gitHubBodyDictionary = [
             "description": "Generated with Cast (www.castshare.io)",

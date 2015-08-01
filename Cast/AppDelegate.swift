@@ -16,7 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let userNotification = LFUserNotifications()
     //---------------------------------------------------------------------------
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        self.userNotification.startUserNotificationTimer() //IRC: calling from here works
     }
     //---------------------------------------------------------------------------
     override func awakeFromNib() {

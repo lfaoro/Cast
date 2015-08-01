@@ -18,7 +18,7 @@ final class LFUserNotifications: NSObject {
         self.unc.delegate = self
     }
     //---------------------------------------------------------------------------
-    func pushNotification(openURL url: String) -> Void {
+    func pushNotification(openURL url: String) {
         self.url = url
         let notification = NSUserNotification()
         notification.title = "Casted to gist.GitHub.com"
@@ -36,15 +36,15 @@ final class LFUserNotifications: NSObject {
         notification.informativeText = description
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.hasActionButton = false
-        self.startUserNotificationTimer()
         self.unc.deliverNotification(notification)
+        self.startUserNotificationTimer()
     }
     //---------------------------------------------------------------------------
     func startUserNotificationTimer() {
         print(__FUNCTION__)
         self.timer = NSTimer
             .scheduledTimerWithTimeInterval(
-                5.0,
+                10.0,
                 target: self,
                 selector: "removeUserNotifcationsAction:",
                 userInfo: nil,
