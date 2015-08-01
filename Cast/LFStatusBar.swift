@@ -11,7 +11,6 @@ final class LFStatusBar: NSObject {
     let api = LFAPICalls()
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     //HELP: Records that will populate the Menu
-    var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
     //---------------------------------------------------------------------------
     func displayStatusBarItem() {
         statusBarItem.button?.title = "Cast"

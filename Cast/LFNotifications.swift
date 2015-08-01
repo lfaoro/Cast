@@ -7,29 +7,6 @@
 //
 import Cocoa
 
-<<<<<<< HEAD
-
-
-final class LFNotifications: NSObject, NSUserNotificationCenterDelegate {
-    //---------------------------------------------------------------------------
-    let nc = NSUserNotificationCenter.defaultUserNotificationCenter()
-    var url: String?
-    //---------------------------------------------------------------------------
-    func pushNotification(text: String) {
-        self.url = text
-        let notification = NSUserNotification()
-        notification.title = "Casted to gist.GitHub.com"
-        notification.subtitle = text
-        notification.informativeText = "Automatically copied to your clipboard"
-        notification.actionButtonTitle = "Open URL"
-        notification.soundName = NSUserNotificationDefaultSoundName
-        nc.delegate = self
-        nc.deliverNotification(notification)
-    }
-    //---------------------------------------------------------------------------
-}
-extension LFNotifications {
-=======
 final class LFNotifications: NSObject {
     //---------------------------------------------------------------------------
     let unc = NSUserNotificationCenter.defaultUserNotificationCenter()
@@ -80,21 +57,16 @@ final class LFNotifications: NSObject {
 }
 typealias UserNotificationCenterDelegate = LFNotifications
 extension UserNotificationCenterDelegate: NSUserNotificationCenterDelegate {
->>>>>>> parent of 28fb214... gcd on caller
     //---------------------------------------------------------------------------
     func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
         print("notification pressed")
         if let url = url {
             NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
         }
-<<<<<<< HEAD
-    }
-=======
     } // executes an action whenever the notification is pressed
     //---------------------------------------------------------------------------
     func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
         return true
     } // forces the notification to display even when app is active app
->>>>>>> parent of 28fb214... gcd on caller
     //---------------------------------------------------------------------------
 }

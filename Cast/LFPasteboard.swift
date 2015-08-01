@@ -30,6 +30,7 @@ final class LFPasteboard: NSObject {
     //---------------------------------------------------------------------------
     //FIXME: Find a better implementation
     func extractData() -> String {
+        print(__FUNCTION__)
         if let pasteboardItems = pasteboard
             .readObjectsForClasses(classes, options: options)?
             .flatMap({ ($0 as? String) }) {
@@ -52,10 +53,10 @@ final class LFPasteboard: NSObject {
             print("success")
             for text in extractedStrings {
                 print(text)
-                notification.pushNotification(text)
+                notification.pushNotification(openURL: text)
             }
         } else {
-            fatalError("Can't write to pasteboard")
+            notification.pushNotification(error: "Can't write to Pasteboard")
         }
     }
     //---------------------------------------------------------------------------
