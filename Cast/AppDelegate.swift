@@ -14,14 +14,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusBar = LFStatusBar()
     let pasteboard = LFPasteboard()
     let userNotification = LFUserNotifications()
-    var timer: NSTimer?
     //---------------------------------------------------------------------------
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        self.userNotification.startUserNotificationTimer() //IRC: calling from here works
     }
     //---------------------------------------------------------------------------
     override func awakeFromNib() {
 		//create the statusbar and its menu and installs it on the systemstatusbar (3)
-		statusBar.displayStatusBarItem()
+		self.statusBar.displayStatusBarItem()
     }
     //---------------------------------------------------------------------------
     func applicationWillTerminate(aNotification: NSNotification) {

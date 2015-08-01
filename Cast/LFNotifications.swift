@@ -9,15 +9,16 @@ import Cocoa
 
 final class LFUserNotifications: NSObject {
     //---------------------------------------------------------------------------
-    let unc = NSUserNotificationCenter.defaultUserNotificationCenter()
+    var unc = NSUserNotificationCenter.defaultUserNotificationCenter()
     var url: String?
+    var timer: NSTimer!
     //---------------------------------------------------------------------------
     override init() {
         super.init()
-        unc.delegate = self
+        self.unc.delegate = self
     }
     //---------------------------------------------------------------------------
-    func pushNotification(openURL url: String) {
+    func pushNotification(openURL url: String) -> Void {
         self.url = url
         let notification = NSUserNotification()
         notification.title = "Casted to gist.GitHub.com"
@@ -25,8 +26,8 @@ final class LFUserNotifications: NSObject {
         notification.informativeText = "Copied to your clipboard"
         notification.actionButtonTitle = "Open URL"
         notification.soundName = NSUserNotificationDefaultSoundName
-        unc.deliverNotification(notification)
-        notifcationTimer()
+        self.unc.deliverNotification(notification)
+        self.startUserNotificationTimer() //IRC: calling from here doesn't work
     }
     //---------------------------------------------------------------------------
     func pushNotification(error error: String, description: String = "An error occured, please try again.") {
@@ -35,24 +36,27 @@ final class LFUserNotifications: NSObject {
         notification.informativeText = description
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.hasActionButton = false
-        unc.deliverNotification(notification)
-        notifcationTimer()
+        self.startUserNotificationTimer()
+        self.unc.deliverNotification(notification)
     }
     //---------------------------------------------------------------------------
-    func notifcationTimer() {
+    func startUserNotificationTimer() {
         print(__FUNCTION__)
-        app.timer = NSTimer.scheduledTimerWithTimeInterval(
-            5.0,
-            target: self,
-            selector: "removeNotifcationAction:",
-            userInfo: nil,
-            repeats: true)
+        self.timer = NSTimer
+            .scheduledTimerWithTimeInterval(
+                5.0,
+                target: self,
+                selector: "removeUserNotifcationsAction:",
+                userInfo: nil,
+                repeats: true)
     }
-    func removeNotifcationAction(timer: NSTimer) {
+    //---------------------------------------------------------------------------
+    func removeUserNotifcationsAction(timer: NSTimer) {
         print(__FUNCTION__)
-        unc.removeAllDeliveredNotifications()
+        self.unc.removeAllDeliveredNotifications()
         timer.invalidate()
     }
+    //---------------------------------------------------------------------------
 }
 typealias UserNotificationCenterDelegate = LFUserNotifications
 extension UserNotificationCenterDelegate: NSUserNotificationCenterDelegate {

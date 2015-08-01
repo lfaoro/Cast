@@ -12,12 +12,17 @@ import SwiftyJSON
 final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
+    var shortenedURL: NSURL? {
+        didSet {
+            app.pasteboard.copyToClipboard([shortenedURL!])
+        }
+    }
     //---------------------------------------------------------------------------
     func share() {
         self.uploadTextData(app.pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
-                app.pasteboard.copyToClipboard([$0])
+                self.shortenedURL = $0
                 recentUploads[String($0)] = String($0)
                 app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
             }

@@ -7,9 +7,8 @@
 //
 
 import Cocoa
-// Clipboard: an object that holds one or more objects of any type
+// Pasteboard: an object that holds one or more objects of any type
 
-//TODO: Rename Clipboard to Pasteboard
 final class LFPasteboard: NSObject {
     let pasteboard = NSPasteboard.generalPasteboard()
     let classes: [AnyClass] = [
