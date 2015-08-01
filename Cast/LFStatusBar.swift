@@ -8,7 +8,7 @@
 import Cocoa
 
 final class LFStatusBar: NSObject {
-    let clipboard = LFClipboard()
+    let api = LFAPICalls()
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     //HELP: Records that will populate the Menu
     var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
@@ -50,7 +50,7 @@ final class LFStatusBar: NSObject {
     //---------------------------------------------------------------------------
     //MARK:- NSMenuItem selectors
     func shareClipboardContentsAction(sender: NSMenuItem) {
-        self.clipboard.process()
+        self.api.share()
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {

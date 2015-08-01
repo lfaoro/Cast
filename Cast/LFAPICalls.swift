@@ -12,7 +12,11 @@ import SwiftyJSON
 final class LFAPICalls: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
-    let nc = LFNotifications()
+    let pasteboard = LFPasteboard()
+    //---------------------------------------------------------------------------
+    func share() {
+        uploadString(pasteboard.extractData())
+    }
     //---------------------------------------------------------------------------
     func shortenURL(URL: String, successBlock:(NSURL?)->(), failureBlock:(Int)->() = {_ in }) {
         /// Bit.ly parameters
@@ -67,21 +71,13 @@ final class LFAPICalls: NSObject {
                 //FIXME: Catch the eventual throw for uploadString
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 if let url = jsonObj["html_url"] as? String {
-                    self.shortenURL(url, successBlock: { (url) -> () in
+                    self.shortenURL(url, successBlock: { (url) in
                         if let url = url {
-                            let pasteboard = NSPasteboard.generalPasteboard()
-                            pasteboard.clearContents()
-                            if pasteboard.writeObjects([url]) {
-                               self.nc.pushNotification(String(url))
-                                print(url)
-                                //                            NSWorkspace.sharedWorkspace().openURL(url)
-                            } else {
-                                fatalError("Couldn't write to pasteboard")
-                            }
+                            print("called")
+                            self.pasteboard.copyToClipboard([url])
                         }
                     })
                 }
-                
             } else {
                 print(error)
             }

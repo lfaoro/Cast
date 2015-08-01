@@ -9,9 +9,10 @@
 import Cocoa
 // Clipboard: an object that holds one or more objects of any type
 
-final class LFClipboard: NSObject {
+//TODO: Rename Clipboard to Pasteboard
+final class LFPasteboard: NSObject {
     let pasteboard = NSPasteboard.generalPasteboard()
-    let apiCall = LFAPICalls()
+    let notification = LFNotifications()
     let classes: [AnyClass] = [
         NSString.self,
         /*
@@ -32,15 +33,30 @@ final class LFClipboard: NSObject {
         if let pasteboardItems = pasteboard
             .readObjectsForClasses(classes, options: options)?
             .flatMap({ ($0 as? String) }) {
-            if !pasteboardItems.isEmpty {
-                print(pasteboardItems[0])
-                return pasteboardItems[0]
-            }
+                if !pasteboardItems.isEmpty {
+                    print(pasteboardItems[0])
+                    return pasteboardItems[0]
+                }
         }
         return "Incompatible data or no data"
     }
     //---------------------------------------------------------------------------
-    func process() {
-        apiCall.uploadString(extractData())
+    //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly
+    func copyToClipboard(objects: [AnyObject]) {
+        print(__FUNCTION__)
+        let pasteboard = NSPasteboard.generalPasteboard()
+        pasteboard.clearContents()
+        let extractedStrings = objects.flatMap({ String($0) })
+        if extractedStrings.isEmpty { fatalError("no data") }
+        if pasteboard.writeObjects(extractedStrings) {
+            print("success")
+            for text in extractedStrings {
+                print(text)
+                notification.pushNotification(text)
+            }
+        } else {
+            fatalError("Can't write to pasteboard")
+        }
     }
+    //---------------------------------------------------------------------------
 }

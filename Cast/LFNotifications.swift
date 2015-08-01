@@ -10,15 +10,9 @@ import Cocoa
 
 
 final class LFNotifications: NSObject, NSUserNotificationCenterDelegate {
+    //---------------------------------------------------------------------------
     let nc = NSUserNotificationCenter.defaultUserNotificationCenter()
     var url: String?
-    //---------------------------------------------------------------------------
-    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-        print("notification pressed")
-        if let url = url {
-            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
-        }
-    }
     //---------------------------------------------------------------------------
     func pushNotification(text: String) {
         self.url = text
@@ -30,6 +24,16 @@ final class LFNotifications: NSObject, NSUserNotificationCenterDelegate {
         notification.soundName = NSUserNotificationDefaultSoundName
         nc.delegate = self
         nc.deliverNotification(notification)
+    }
+    //---------------------------------------------------------------------------
+}
+extension LFNotifications {
+    //---------------------------------------------------------------------------
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        print("notification pressed")
+        if let url = url {
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
+        }
     }
     //---------------------------------------------------------------------------
 }
