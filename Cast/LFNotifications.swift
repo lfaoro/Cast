@@ -7,77 +7,66 @@
 //
 import Cocoa
 
-@objc class LFNotifications: NSObject {
-	//---------------------------------------------------------------------------
-//	let unc = NSUserNotificationCenter.defaultUserNotificationCenter() //todo:property
-	var unc:NSUserNotificationCenter {
-		return NSUserNotificationCenter.defaultUserNotificationCenter()
-	}
-	var url: String?
-
-	//var timer: NSTimer!
-	//---------------------------------------------------------------------------
-	override init() {
-		super.init()
-		unc.delegate = self
-	}
-
-
-	//---------------------------------------------------------------------------
-	func pushNotification(openURL url: String) {
-		self.url = url
-		let notification = NSUserNotification()
-		notification.title = "Casted to gist.GitHub.com"
-		notification.subtitle = url
-		notification.informativeText = "Copied to your clipboard"
-		notification.actionButtonTitle = "Open URL"
-		notification.soundName = NSUserNotificationDefaultSoundName
-		unc.deliverNotification(notification)
-		notifcationTimer()
-	}
-	//---------------------------------------------------------------------------
-	func pushNotification(error error: String, description: String = "An error occured, please try again.") {
-		let notification = NSUserNotification()
-		notification.title = error
-		notification.informativeText = description
-		notification.soundName = NSUserNotificationDefaultSoundName
-		notification.hasActionButton = false
-		unc.deliverNotification(notification)
-		notifcationTimer()
-	}
-	//---------------------------------------------------------------------------
-	func notifcationTimer() {
-		print(__FUNCTION__)
-		if let app = NSApp.delegate as? AppDelegate {
-			app.timer = NSTimer.scheduledTimerWithTimeInterval(
-				5.0,
-				target: self,
-				selector: "removeNotifcationAction:",
-				userInfo: nil,
-				repeats: true)
-		}
-	}
-
-	func removeNotifcationAction(sender: AnyObject) {
-		print(__FUNCTION__)
-		NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-		if let sender = sender as? NSTimer {
-			//sender.invalidate()
-		}
-	}
+final class LFNotifications: NSObject {
+    //---------------------------------------------------------------------------
+    let unc = NSUserNotificationCenter.defaultUserNotificationCenter()
+    var url: String?
+    var timer: NSTimer?
+    //---------------------------------------------------------------------------
+    override init() {
+        super.init()
+        unc.delegate = self
+    }
+    //---------------------------------------------------------------------------
+    func pushNotification(openURL url: String) {
+        self.url = url
+        let notification = NSUserNotification()
+        notification.title = "Casted to gist.GitHub.com"
+        notification.subtitle = url
+        notification.informativeText = "Copied to your clipboard"
+        notification.actionButtonTitle = "Open URL"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        unc.deliverNotification(notification)
+        notifcationTimer()
+    }
+    //---------------------------------------------------------------------------
+    func pushNotification(error error: String, description: String = "An error occured, please try again.") {
+        let notification = NSUserNotification()
+        notification.title = error
+        notification.informativeText = description
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.hasActionButton = false
+        unc.deliverNotification(notification)
+        notifcationTimer()
+    }
+    //---------------------------------------------------------------------------
+    func notifcationTimer() {
+        print(__FUNCTION__)
+        timer = NSTimer.scheduledTimerWithTimeInterval(
+            5.0,
+            target: self,
+            selector: "removeNotifcationAction:",
+            userInfo: nil,
+            repeats: true)
+    }
+    @objc func removeNotifcationAction(timer: NSTimer) {
+        print(__FUNCTION__)
+        unc.removeAllDeliveredNotifications()
+        timer.invalidate()
+    }
 }
 typealias UserNotificationCenterDelegate = LFNotifications
 extension UserNotificationCenterDelegate: NSUserNotificationCenterDelegate {
-	//---------------------------------------------------------------------------
-	func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-		print("notification pressed")
-		if let url = url {
-			NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
-		}
-	} // executes an action whenever the notification is pressed
-	//---------------------------------------------------------------------------
-	func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
-		return true
-	} // forces the notification to display even when app is active app
-	//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        print("notification pressed")
+        if let url = url {
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
+        }
+    } // executes an action whenever the notification is pressed
+    //---------------------------------------------------------------------------
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    } // forces the notification to display even when app is active app
+    //---------------------------------------------------------------------------
 }

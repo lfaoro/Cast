@@ -28,11 +28,6 @@ final class LFPasteboard: NSObject {
         NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
     ]
     //---------------------------------------------------------------------------
-
-	deinit {
-		print("DEINIT")
-	}
-
     //FIXME: Find a better implementation
     func extractData() -> String {
         print(__FUNCTION__)
@@ -48,7 +43,7 @@ final class LFPasteboard: NSObject {
     }
     //---------------------------------------------------------------------------
     //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly
-    func copyToClipboard(objects: [AnyObject]) -> Void {
+    func copyToClipboard(objects: [AnyObject]) {
         print(__FUNCTION__)
         let pasteboard = NSPasteboard.generalPasteboard()
         pasteboard.clearContents()
