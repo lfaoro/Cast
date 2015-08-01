@@ -39,7 +39,8 @@ final class LFAPICalls: NSObject {
                     failureBlock(statusCode)
                 }
             } else {
-                print(error)
+                print(error?.localizedDescription)
+                self.pasteboard.notification.pushNotification(error: "bit.ly Unreachable", description: error!.localizedDescription)
             }
             }.resume()
         //---------------------------------------------------------------------------
@@ -66,20 +67,22 @@ final class LFAPICalls: NSObject {
         request.HTTPBody = data
         //---------------------------------------------------------------------------
         session.dataTaskWithRequest(request) { (data, response, error) in
-            if let data = data, _ = response {
-                //print(response)
+            if let data = data {
                 //FIXME: Catch the eventual throw for uploadString
                 let jsonObj = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
                 if let url = jsonObj["html_url"] as? String {
                     self.shortenURL(url, successBlock: { (url) in
                         if let url = url {
-                            print("called")
                             self.pasteboard.copyToClipboard([url])
+                            recentUploads[String(url)] = String(url)
+                            appDelegate.statusBar.statusBarItem.menu?.update()
+                            print(recentUploads)
                         }
                     })
                 }
             } else {
-                print(error)
+                print(error!.localizedDescription)
+                self.pasteboard.notification.pushNotification(error: "GitHub Unreachable", description: error!.localizedDescription)
             }
             }.resume()
         //---------------------------------------------------------------------------
