@@ -14,7 +14,9 @@ final class LFStatusBar: NSObject {
     //---------------------------------------------------------------------------
     func displayStatusBarItem() {
         statusBarItem.button?.title = "Cast"
-        statusBarItem.button?.image = NSImage(named: "LFStatusBarIcon")
+        let image = NSImage(named: "LFStatusBarIcon")
+        image?.template = true
+        statusBarItem.button?.image = image
         statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
         statusBarItem.button?.registerForDraggedTypes(pasteboardTypes) //TODO: Implement dragging
         statusBarItem.menu = createMenu()
