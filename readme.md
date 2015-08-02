@@ -42,36 +42,58 @@ supporting more:
 System map
 ----------
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[AppDelegate]
-@ statusBar = LFStatusBar()
-@ api = LFWebAPIs()
-@ pasteboard = LFPasteboard()
-@ userNotification = LFUserNotifications()
-
-[LFStatusBar]
-@ statusBarItem = NSStatusItem
-- displayStatusBarItem -> Void //should this be void!!! // what else should it be???
-- createMenu -> NSMenu
-// selector Actions
-- shareClipboardContentsAction()
-- recentUploadsAction()
-- clearItemsAction()
-- startAtLoginAction()
-
-[LFWebAPIs]
-@ session = NSURLSession
-
-
-ServiceProviderURLs: String
-- asBitlyURL
-
-MyErrors
-* NoNetworkAccess
-* ServiceError  //gist was down, couldn't upload to it
-* UnrecognizedClipboardType
-* ClipboardIsEmpty
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[AppDelegate]  
+\@ statusBar = LFStatusBar()  
+\@ api = LFWebAPIs()  
+\@ pasteboard = LFPasteboard()  
+\@ userNotification = LFUserNotifications()  
+  
+[LFStatusBar]  
+\@ statusBarItem = NSStatusItem  
+- displayStatusBarItem -\> Void //should this be void!!! // what else should it
+be???  
+- createMenu -\> NSMenu  
+// selector Actions  
+- shareClipboardContentsAction()  
+- recentUploadsAction()  
+- clearItemsAction()  
+- startAtLoginAction()  
+  
+[LFWebAPIs]  
+\@ session = NSURLSession()  
+\@ textExcerpt = String?  
+- share()  
+- shortenURL()  
+- uploadTextData()  
+  
+[LFPasteboard]  
+\@pasteboard = NSPasteboard()  
+\@classes = [AnyClass]  
+\@options = [String : NSObject]  
+- extractData()  
+- copyToClipboard()  
+  
+[LFUserNotifications]  
+\@ unc = NSUserNotificationCenter  
+\@ url: String?  
+\@ timer: NSTimer?  
+- init()  
+- pushNotification(openURL)  
+- pushNotification(error)  
+- startUserNotificationTimer  
+x NSUserNotificationCenterDelegate  
+  
+ServiceProviders: String  
+- bit.ly //implemented  
+- gist.github.com //implemented  
+- dpaste.com  
+- imgur.com  
+  
+MyErrors  
+\* NoNetworkAccess  
+\* ServiceError  //gist was down, couldn't upload to it  
+\* UnrecognizedClipboardType  
+\* ClipboardIsEmpty
 
 Some profound words about our custom markup
 -------------------------------------------
@@ -81,6 +103,7 @@ IAmAClass: ThatExtendsAnother
 @ andThisIsAProperty (important context where I’m used)
 - andHereWeHaveAMethod -> ThatReturnsAType
 - secondMethod -> Void //a comment about that
+[AClass]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Todo
