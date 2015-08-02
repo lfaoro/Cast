@@ -14,8 +14,8 @@ final class WebAPIs: NSObject {
     let session = NSURLSession.sharedSession()
     var textExcerpt: String?
     //---------------------------------------------------------------------------
-    func share(pasteboard: PasteboardController) {
-        self.uploadTextData(pasteboard.extractData(), isPublic: false) {
+    func share(pasteboard: PasteboardController) throws -> () {
+        self.uploadTextData(try pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
                 pasteboard.copyToClipboard([$0])

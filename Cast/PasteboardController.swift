@@ -8,6 +8,9 @@
 
 import Cocoa
 // Pasteboard: an object that holds one or more objects of any type
+enum CastErrors: ErrorType {
+    case EmptyPasteboardError
+}
 
 final class PasteboardController: NSObject {
     let pasteboard = NSPasteboard.generalPasteboard()
@@ -21,23 +24,20 @@ final class PasteboardController: NSObject {
         NSPasteboardItem.self
         */
     ]
-    let options = [
-        NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
-        NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
-    ]
     //---------------------------------------------------------------------------
     //FIXME: Find a better implementation
-    func extractData() -> String {
+    func extractData() throws -> String {
+        let options = [
+            NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
+            NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
+        ]
         print(__FUNCTION__)
-        if let pasteboardItems = pasteboard
-            .readObjectsForClasses(classes, options: options)?
-            .flatMap({ ($0 as? String) }) {
-                if !pasteboardItems.isEmpty {
-                    print(pasteboardItems[0])
-                    return pasteboardItems[0]
-                }
+        if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: options)?.flatMap({ ($0 as? String) })
+            where !pasteboardItems.isEmpty {
+                print(pasteboardItems[0])
+                return pasteboardItems[0]
         }
-        return "Incompatible data or no data"
+        throw CastErrors.EmptyPasteboardError
     }
     //---------------------------------------------------------------------------
     //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly

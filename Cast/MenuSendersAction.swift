@@ -13,7 +13,13 @@ final class MenuSendersAction: NSObject {
     var pasteboard: PasteboardController!
     //---------------------------------------------------------------------------
     func shareClipboardContentsAction(sender: NSMenuItem) {
-        app.webAPI.share(pasteboard)
+        do {
+            try app.webAPI.share(pasteboard)
+        } catch CastErrors.EmptyPasteboardError {
+            app.userNotification.pushNotification(error: "The pasteboard is Empty or Unreadable")
+        } catch {
+            app.userNotification.pushNotification(error: "\(error)")
+        }
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
