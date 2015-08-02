@@ -1,0 +1,3 @@
+#!/bin/sh
+find Cast -name "*.swift" -print0 | xargs -0 cat | wc -l
+exit 0
