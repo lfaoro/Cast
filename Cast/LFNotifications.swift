@@ -29,13 +29,8 @@ final class LFUserNotifications: NSObject {
     }
     //---------------------------------------------------------------------------
     func pushNotification(openURL url: String) {
-        self.url = url
-        let notification = NSUserNotification()
-        notification.title = "Casted to gist.GitHub.com"
-        notification.subtitle = url
-        notification.informativeText = "Copied to your clipboard"
-        notification.actionButtonTitle = "Open URL"
-        notification.soundName = NSUserNotificationDefaultSoundName
+//        self.url = url
+        let notification = self.createNotification("Casted to gist.GitHub.com", subtitle: url)
         self.unc.deliverNotification(notification)
         self.startUserNotificationTimer() //IRC: calling from here doesn't work
     }

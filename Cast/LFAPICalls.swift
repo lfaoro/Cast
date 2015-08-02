@@ -55,7 +55,7 @@ final class LFWebAPIs: NSObject {
     //TODO: Add GitHub login support
     func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
         print(__FUNCTION__)
-        self.textExcerpt = extractExcerptFromString(string, lenght: 18)
+        self.textExcerpt = extractExcerptFromString(string, length: 18)
         let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
         let gitHubBodyDictionary = [
             "description": "Generated with Cast (www.castshare.io)",
