@@ -11,7 +11,7 @@ import Cocoa
 public var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
 public let pasteboardTypes = [NSFilenamesPboardType]
 
-let app = NSApp.delegate as! AppDelegate
+
 
 func extractExcerptFromString(string: String, length: Int) -> String {
     if (string.endIndex > advance(string.startIndex,length)) {
