@@ -20,7 +20,7 @@ final class LFWebAPIs: NSObject {
             self.shortenURL($0) {
                 app.pasteboard.copyToClipboard([$0])
                 recentUploads[self.textExcerpt!] = String($0)
-                app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
+                app.updateMenu()
             }
         }
     }

@@ -13,7 +13,7 @@
 		A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A13145E71B5AA34E00AA4406 /* Assets.xcassets */; };
 		A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A13145E91B5AA34E00AA4406 /* Main.storyboard */; };
 		A13145F81B5AA6C700AA4406 /* LFSharingServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */; };
-		A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* LFStatusBar.swift */; };
+		A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */; };
 		A1325D731B641619004B81CB /* LFAPICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* LFAPICalls.swift */; };
 		A13961B41B5BF4C400E9CB98 /* LFGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */; };
 		A15049631B694FA8009BF6A9 /* LFPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* LFPasteboard.swift */; };
@@ -31,7 +31,7 @@
 		A13145EA1B5AA34E00AA4406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A13145EC1B5AA34E00AA4406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LFSharingServices.plist; sourceTree = "<group>"; };
-		A13145F91B5AA70700AA4406 /* LFStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFStatusBar.swift; sourceTree = "<group>"; };
+		A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSendersAction.swift; sourceTree = "<group>"; };
 		A1325D721B641619004B81CB /* LFAPICalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFAPICalls.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFGlobals.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				A13145E31B5AA34E00AA4406 /* AppDelegate.swift */,
-				A13145F91B5AA70700AA4406 /* LFStatusBar.swift */,
+				A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */,
 				A1325D721B641619004B81CB /* LFAPICalls.swift */,
 				A15049621B694FA8009BF6A9 /* LFPasteboard.swift */,
 				A15049671B6979E5009BF6A9 /* LFNotifications.swift */,
@@ -233,7 +233,7 @@
 				A13961B41B5BF4C400E9CB98 /* LFGlobals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* ViewController.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* LFDragging.swift in Sources */,
-				A13145FA1B5AA70700AA4406 /* LFStatusBar.swift in Sources */,
+				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
