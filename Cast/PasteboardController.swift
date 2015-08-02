@@ -9,7 +9,7 @@
 import Cocoa
 // Pasteboard: an object that holds one or more objects of any type
 
-final class LFPasteboard: NSObject {
+final class PasteboardController: NSObject {
     let pasteboard = NSPasteboard.generalPasteboard()
     let classes: [AnyClass] = [
         NSString.self,

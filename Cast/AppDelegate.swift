@@ -13,14 +13,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //---------------------------------------------------------------------------
     var statusBarItem: NSStatusItem!
     var menuSendersAction: MenuSendersAction!
-    let api = LFWebAPIs()
-    let pasteboard = LFPasteboard()
-    let userNotification = LFUserNotifications()
+    var webAPI: WebAPIs!
+    var userNotification: UserNotifications!
     //---------------------------------------------------------------------------
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         statusBarItem = createStatusBar()
         menuSendersAction = MenuSendersAction()
+        menuSendersAction.pasteboard = PasteboardController() 
         configureStatusBarItem(statusBarItem, target: menuSendersAction)
+        webAPI = WebAPIs()
+        userNotification = UserNotifications()
     }
     //---------------------------------------------------------------------------
     func updateMenu() -> () {

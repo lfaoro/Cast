@@ -9,23 +9,23 @@
 import Cocoa
 import SwiftyJSON
 
-final class LFWebAPIs: NSObject {
+final class WebAPIs: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
     var textExcerpt: String?
     //---------------------------------------------------------------------------
-    func share() {
-        self.uploadTextData(app.pasteboard.extractData(), isPublic: false) {
+    func share(pasteboard: PasteboardController) {
+        self.uploadTextData(pasteboard.extractData(), isPublic: false) {
             print($0)
             self.shortenURL($0) {
-                app.pasteboard.copyToClipboard([$0])
+                pasteboard.copyToClipboard([$0])
                 recentUploads[self.textExcerpt!] = String($0)
                 app.updateMenu()
             }
         }
     }
     //---------------------------------------------------------------------------
-    func shortenURL(URL: String, success:(NSURL)->()) {
+    private func shortenURL(URL: String, success:(NSURL)->()) {
         print(__FUNCTION__)
         let bitlyAPIurl = "https://api-ssl.bitly.com"
         let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
@@ -53,7 +53,7 @@ final class LFWebAPIs: NSObject {
     }
     //---------------------------------------------------------------------------
     //TODO: Add GitHub login support
-    func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
+    private func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
         print(__FUNCTION__)
         self.textExcerpt = extractExcerptFromString(string, length: 18)
         let githubAPIurl = NSURL(string: "https://api.github.com/gists")!

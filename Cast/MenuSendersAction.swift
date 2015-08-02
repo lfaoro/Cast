@@ -9,9 +9,11 @@ import Cocoa
 
 
 final class MenuSendersAction: NSObject {
-    //MARK:- NSMenuItem selectors
+    //---------------------------------------------------------------------------
+    var pasteboard: PasteboardController!
+    //---------------------------------------------------------------------------
     func shareClipboardContentsAction(sender: NSMenuItem) {
-        app.api.share()
+        app.webAPI.share(pasteboard)
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
