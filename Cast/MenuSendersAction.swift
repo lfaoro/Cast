@@ -7,7 +7,6 @@
 
 import Cocoa
 
-
 final class MenuSendersAction: NSObject {
     //---------------------------------------------------------------------------
     var pasteboard: PasteboardController!
@@ -47,5 +46,8 @@ final class MenuSendersAction: NSObject {
         }
     }
     //---------------------------------------------------------------------------
+    func openOptionsWindow(sender: NSMenuItem) { //TODO: Implement
+        app.options.displayOptionsWindow()
+    }
 }
  

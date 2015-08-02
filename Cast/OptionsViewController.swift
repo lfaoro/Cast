@@ -8,16 +8,13 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
-    
-    @IBOutlet var firstView: DraggedView!
-
+class OptionsViewController: NSViewController {
+    //---------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad Called")
 
     }
-    
-
+    //---------------------------------------------------------------------------
 }
 

@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var menuSendersAction: MenuSendersAction!
     var webAPI: WebAPIs!
     var userNotification: UserNotifications!
+    var options: Options!
     //---------------------------------------------------------------------------
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         statusBarItem = createStatusBar()
@@ -23,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         configureStatusBarItem(statusBarItem, target: menuSendersAction)
         webAPI = WebAPIs()
         userNotification = UserNotifications()
+        options = Options()
     }
     //---------------------------------------------------------------------------
     func updateMenu() -> () {
@@ -65,7 +67,8 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
     recentUploadsItem.submenu = recentUploadsSubmenu
     //---------------------------------------------------------------------------
     menu.addItem(recentUploadsItem)
-    menu.addItemWithTitle("Start at Login", action: "startAtLoginAction:", keyEquivalent: "")!.target = target
+    menu.addItemWithTitle("Start at Login", action: "startAtLoginAction:", keyEquivalent: "")?.target = target
+    menu.addItemWithTitle("Options", action: "openOptionsWindow:", keyEquivalent: "")?.target = target
     menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
     //---------------------------------------------------------------------------
     return menu
