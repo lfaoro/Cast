@@ -1,5 +1,5 @@
 What is Cast?
--------------
+=============
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 
@@ -16,71 +16,52 @@ Cast can queue up multiple streams of information and share them all at once.
 Cast supports these information types and services and we’re working on
 supporting more:
 
-    -   Text data either copied to your clipboard or contained in a file -
-        shared with:
-        -   gist.github.com
-        -   pastebin.com
+-   Text data either copied to your clipboard or contained in a file -  
+    shared with:
 
-    -   Image data either copied to your clipboard or contained in a file -
-        shared with:
-        -   imgur.com
-        -   flickr.com
+    -   gist.github.com
 
-    -   Folders which will be automatically zipped for you before uploading -
-        shared with:
-        -   icloud
-        -   wetransfer.com
-        -   dropbox.com
+    -   pastebin.com
 
-### System map
+-   Image data either copied to your clipboard or contained in a file -  
+    shared with:
+
+    -   imgur.com
+
+    -   flickr.com
+
+-   Folders which will be automatically zipped for you before uploading -  
+    shared with:
+
+    -   icloud
+
+    -   wetransfer.com
+
+    -   dropbox.com
+
+System map
+----------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AppDelegate
-@ statusBar (awakeFromNib)
+[AppDelegate]
+@ statusBar = LFStatusBar()
+@ api = LFWebAPIs()
+@ pasteboard = LFPasteboard()
+@ userNotification = LFUserNotifications()
 
-ViewController
-@ clipboardType: ClipboardThing
-@ configuration: ConfigureServiceForClipboardType
-@ apiCall (viewDidLoad)
-@ Queue
-- shortenAsync -> NSURL //what do I produce?
-
-TraditionalAsyncThing:ViewController
-- process1
-
-ReactiveCocoaThing:ViewController
-- reactiveCocoaCall -> SignalProducer<NSURL,MyErrors>
-- process2
-
-LFStatusBar
-@ statusBarItem
-@ recentUploads
-- displayStatusBarItem -> Void //should this be void!!!
+[LFStatusBar]
+@ statusBarItem = NSStatusItem
+- displayStatusBarItem -> Void //should this be void!!! // what else should it be???
 - createMenu -> NSMenu
+// selector Actions
+- shareClipboardContentsAction()
+- recentUploadsAction()
+- clearItemsAction()
+- startAtLoginAction()
 
-LFAPICalls
+[LFWebAPIs]
+@ session = NSURLSession
 
-TraditionalAsyncExtension: LFAPICalls
-- shortenUrl // shortens URLs
-    +.configuration.serviceFor(ClipboardType)
-- uploadText(String) // uploads text to gisthub,pastebin,swiftshare,
-
-ClipboardContent
-- clipboardType(Input): ClipboardType
-
-ConfigureServiceForClipboardType //{Select appropriate service for clipboard-type}
-- serviceFor(ClipboardType)
-    +.clipboardType.clipboardType(...)
-
-Queue
-- add(ClipboardContent) //add stuff to the queue, and when you're done 
-- performOnAll(some-service) -> [NSURL] //call this from the menu
-
-SignalProducerExtension: LFAPICalls
-- shortenProducer(NSURL) -> SignalProducer<NSURL,MyErrors>
-- uploadText(String) -> SignalProducer<NSURL,MyError> //like a machine, that produces NSURL from a String (which is text)
-   +get text from clipboard
-   +sends post request to ConfigureServiceForClipboardType with contents -> NSURL | shortenProducer
 
 ServiceProviderURLs: String
 - asBitlyURL
@@ -92,7 +73,8 @@ MyErrors
 * ClipboardIsEmpty
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### Some profound words about our custom markup
+Some profound words about our custom markup
+-------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 IAmAClass: ThatExtendsAnother
@@ -101,16 +83,8 @@ IAmAClass: ThatExtendsAnother
 - secondMethod -> Void //a comment about that
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### Todo
+Todo
+----
 
-1.  Implement the gisthub-type for plain text.
-
-2.  How to extract text from the clipboard
-
-3.  How to clear the clipboard
-
-4.  Implement the gist api we need.
-
-#### Future
-
-1.  Implement the paste-bin api
+Please check the list of open issues on GitHub: [Open
+issues](<https://github.com/lfaoro/Cast/issues>)

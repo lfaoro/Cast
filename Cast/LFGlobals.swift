@@ -12,3 +12,11 @@ public var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","
 public let pasteboardTypes = [NSFilenamesPboardType]
 
 let app = NSApp.delegate as! AppDelegate
+
+func extractExcerptFromString(string: String, lenght: Int) -> String {
+    if (string.endIndex > advance(string.startIndex,lenght)) {
+        return string.substringWithRange(string.startIndex...advance(string.startIndex,lenght))
+    } else {
+        return string
+    }
+}

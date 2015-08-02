@@ -8,7 +8,7 @@
 import Cocoa
 
 final class LFStatusBar: NSObject {
-    let api = LFAPICalls()
+
     let statusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     //HELP: Records that will populate the Menu
     //---------------------------------------------------------------------------
@@ -29,7 +29,7 @@ final class LFStatusBar: NSObject {
         //---------------------------------------------------------------------------
         let recentUploadsItem = NSMenuItem(title: "Recent Uploads", action: "terminate:", keyEquivalent: "")
         let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
-        if recentUploads.count > 0 {
+        if !recentUploads.isEmpty {
             for (title,link) in recentUploads {
                 let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
                 // Allows me to use a value from this context in the func called by the selector
@@ -51,7 +51,7 @@ final class LFStatusBar: NSObject {
     //---------------------------------------------------------------------------
     //MARK:- NSMenuItem selectors
     func shareClipboardContentsAction(sender: NSMenuItem) {
-        self.api.share()
+        app.api.share()
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {

@@ -11,7 +11,7 @@ final class LFUserNotifications: NSObject {
     //---------------------------------------------------------------------------
     var unc = NSUserNotificationCenter.defaultUserNotificationCenter()
     var url: String?
-    var timer: NSTimer!
+    var timer: NSTimer?
     //---------------------------------------------------------------------------
     override init() {
         super.init()
@@ -48,7 +48,7 @@ final class LFUserNotifications: NSObject {
                 target: self,
                 selector: "removeUserNotifcationsAction:",
                 userInfo: nil,
-                repeats: true)
+                repeats: false)
     }
     //---------------------------------------------------------------------------
     func removeUserNotifcationsAction(timer: NSTimer) {

@@ -9,7 +9,7 @@
 import Cocoa
 import SwiftyJSON
 
-final class LFAPICalls: NSObject {
+final class LFWebAPIs: NSObject {
     //---------------------------------------------------------------------------
     let session = NSURLSession.sharedSession()
     var textExcerpt: String?
@@ -19,7 +19,7 @@ final class LFAPICalls: NSObject {
             print($0)
             self.shortenURL($0) {
                 app.pasteboard.copyToClipboard([$0])
-                recentUploads[String($0)] = String($0)
+                recentUploads[self.textExcerpt!] = String($0)
                 app.statusBar.statusBarItem.menu = app.statusBar.createMenu()
             }
         }
@@ -55,7 +55,7 @@ final class LFAPICalls: NSObject {
     //TODO: Add GitHub login support
     func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
         print(__FUNCTION__)
-        
+        self.textExcerpt = extractExcerptFromString(string, lenght: 18)
         let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
         let gitHubBodyDictionary = [
             "description": "Generated with Cast (www.castshare.io)",

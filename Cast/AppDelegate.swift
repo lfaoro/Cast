@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     //---------------------------------------------------------------------------
     let statusBar = LFStatusBar()
+    let api = LFWebAPIs()
     let pasteboard = LFPasteboard()
     let userNotification = LFUserNotifications()
     //---------------------------------------------------------------------------
