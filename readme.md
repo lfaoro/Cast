@@ -1,5 +1,5 @@
-What is Cast?
-=============
+Cast
+====
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 

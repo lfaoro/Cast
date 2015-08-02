@@ -18,6 +18,16 @@ final class LFUserNotifications: NSObject {
         self.unc.delegate = self
     }
     //---------------------------------------------------------------------------
+    func createNotification(title: String, subtitle: String) -> NSUserNotification {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.subtitle = subtitle
+        notification.informativeText = "Copied to your clipboard"
+        notification.actionButtonTitle = "Open URL"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        return notification
+    }
+    //---------------------------------------------------------------------------
     func pushNotification(openURL url: String) {
         self.url = url
         let notification = NSUserNotification()
