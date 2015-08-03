@@ -1,4 +1,3 @@
 language: Objective-C
-osx_image: beta-xcode7.0
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
