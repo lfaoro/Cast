@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "SDPStatusBarAlternateIcon.png",
+      "filename" : "16x16.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
+      "filename" : "32x32.png",
       "scale" : "2x"
     }
   ],

@@ -51,7 +51,7 @@ func createStatusBar() -> NSStatusItem {
 //---------------------------------------------------------------------------
 func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersAction) -> () {
   statusBarItem.button?.title = "Cast"
-  let image = NSImage(named: "LFStatusBarIcon")
+  let image = NSImage(named: "StatusBarIcon")
   image?.template = true
   statusBarItem.button?.image = image
   statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
