@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var options: Options!
   //---------------------------------------------------------------------------
   func applicationWillFinishLaunching(notification: NSNotification) {
-    Log.enable()
+    Log.enable(.Verbose, synchronousMode: false)
   }
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     Log.info?.message("The application has finished launching.")
@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //MARK:- Globals
 //---------------------------------------------------------------------------
 func createStatusBar() -> NSStatusItem {
-  Log.info?.trace()
+  Log.verbose?.trace()
   return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 }
 //---------------------------------------------------------------------------
