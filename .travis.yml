@@ -1,3 +1,12 @@
-language: Objective-C
+language: objective-c
+ 
+branches:
+ only:
+ - master
+ 
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
+osx_image: beta-xcode7
+
+script:
+- xcodebuild clean build Cast -project Cast.xcodeproj -scheme Cast
