@@ -1,0 +1,3 @@
+framework module CleanroomASL {
+    header "CleanroomASL-Swift.h"
+}

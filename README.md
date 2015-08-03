@@ -1,4 +1,5 @@
-# Cast
+Cast
+=
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 
@@ -17,21 +18,22 @@ supporting more:
 
 - Text data either copied to your clipboard or contained in a file -  
 shared with:
-  - gist.github.com
-  - pastebin.com
+- gist.github.com
+- pastebin.com
 
 - Image data either copied to your clipboard or contained in a file -  
 shared with:
-  - imgur.com
-  - flickr.com
+- imgur.com
+- flickr.com
 
 - Folders which will be automatically zipped for you before uploading -  
 shared with:
-  - icloud
-  - wetransfer.com
-  - dropbox.com
+- icloud
+- wetransfer.com
+- dropbox.com
 
-### System map
+System map
+-
 ~~~
 [AppDelegate]
 @ statusBar = LFStatusBar()
@@ -52,9 +54,9 @@ MyErrors
 * PasteboardIsEmpty
 
 Todo
-----
+-
 Please check the list of open issues on GitHub: [Open issues](<https://github.com/lfaoro/Cast/issues>)
-License
--------
-Cast is released under the [MIT License](<LICENSE.md>)
 
+License
+-
+Cast is released under the [MIT License](<LICENSE.md>)

@@ -1,0 +1,3 @@
+framework module CleanroomLogger {
+    header "CleanroomLogger-Swift.h"
+}

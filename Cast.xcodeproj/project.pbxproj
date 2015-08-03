@@ -16,6 +16,9 @@
 		A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */; };
 		A1325D731B641619004B81CB /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* WebAPIs.swift */; };
 		A13961B41B5BF4C400E9CB98 /* LFGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */; };
+		A14C8BBA1B6F221700EDBBAA /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C8BB81B6F221700EDBBAA /* CleanroomLogger.framework */; };
+		A14C8BBB1B6F221700EDBBAA /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C8BB91B6F221700EDBBAA /* CleanroomASL.framework */; };
+		A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */; };
 		A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* PasteboardController.swift */; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
@@ -36,8 +39,10 @@
 		A1325D721B641619004B81CB /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFGlobals.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		A14C8BB81B6F221700EDBBAA /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = SOURCE_ROOT; };
+		A14C8BB91B6F221700EDBBAA /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = Carthage/Build/Mac/CleanroomASL.framework; sourceTree = SOURCE_ROOT; };
+		A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		A15049601B694360009BF6A9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
 		A15049621B694FA8009BF6A9 /* PasteboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardController.swift; sourceTree = "<group>"; };
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
@@ -50,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14C8BBA1B6F221700EDBBAA /* CleanroomLogger.framework in Frameworks */,
+				A14C8BBB1B6F221700EDBBAA /* CleanroomASL.framework in Frameworks */,
+				A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +100,10 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */,
+				A14C8BB81B6F221700EDBBAA /* CleanroomLogger.framework */,
+				A14C8BB91B6F221700EDBBAA /* CleanroomASL.framework */,
 				EBE9DF5E1B68E38B00D11407 /* Cartfile */,
-				A15049601B694360009BF6A9 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			path = Cast;
@@ -200,6 +210,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/CleanroomLogger.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/CleanroomASL.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -351,7 +363,7 @@
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -372,7 +384,7 @@
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
