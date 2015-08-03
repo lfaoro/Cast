@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     Log.enable(.Verbose, synchronousMode: false)
   }
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    Log.info?.message("The application has finished launching.")
+    Log.info?.trace()
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
     menuSendersAction.pasteboard = PasteboardController()
