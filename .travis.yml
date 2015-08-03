@@ -9,4 +9,4 @@ xcode_scheme: Cast
 osx_image: beta-xcode7
 
 script:
-- xcodebuild clean build Cast -project Cast.xcodeproj -scheme Cast
+- xcodebuild clean build -project Cast.xcodeproj -scheme Cast
