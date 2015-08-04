@@ -8,9 +8,9 @@
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 
-Cast is an agent that lives in your systemâ€™s 
+Cast is an agent that lives in your system's
 [Status Menu](https://support.apple.com/en-mt/HT201956).
-Its purpose is to help you share any type of information quickly and easily with a dragâ€™nâ€™drop
+Its purpose is to help you share any type of information quickly and easily with a drag'n'drop
 operation or a keyboard shortcut.
 
 Cast will seamlessly figure out the type of information you wish to share and
@@ -33,11 +33,7 @@ extending the system's Pasteboard functinality
 - [ ] Uploads folders
 - [ ] Automatically ZIPs folders
 
-## Requirements
-- Mac OS X 10.9+
-- Xcode 7
-
-### Supported Services 
+## Supported Services 
 *Cast supports the following sharing services and weâ€™re working on
 supporting more*
 
@@ -56,9 +52,16 @@ supporting more*
 - [ ] wetransfer.com
 - [ ] dropbox.com
 
-## Todo
-Please check the list of open issues on GitHub: 
-[Open issues](<https://github.com/lfaoro/Cast/issues>)
+## Requirements
+- Mac OS X 10.9+
+- Xcode 7
+
+## Communication
+- If you **need help**, [send me a tweet](<https://twitter.com/leonarth>)
+- If you'd like to **ask a general question**, [send me a tweet](<https://twitter.com/leonarth>)
+- If you **found a bug**, [open an issue](<https://github.com/lfaoro/Cast/issues>)
+- If you **have a feature request**, [open an issue](<https://github.com/lfaoro/Cast/issues>)
+- If you **want to contribute**, check the [system map](https://github.com/lfaoro/Cast/blob/master/SystemMap.md)
 
 ## License
 Cast is released under the 
