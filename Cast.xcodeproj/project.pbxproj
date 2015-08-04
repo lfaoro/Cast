@@ -12,7 +12,7 @@
 		A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */; };
 		A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A13145E71B5AA34E00AA4406 /* Assets.xcassets */; };
 		A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A13145E91B5AA34E00AA4406 /* Main.storyboard */; };
-		A13145F81B5AA6C700AA4406 /* LFSharingServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */; };
+		A13145F81B5AA6C700AA4406 /* SharingServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* SharingServices.plist */; };
 		A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */; };
 		A1325D731B641619004B81CB /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* WebAPIs.swift */; };
 		A13961B41B5BF4C400E9CB98 /* LFGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */; };
@@ -34,7 +34,7 @@
 		A13145E71B5AA34E00AA4406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A13145EA1B5AA34E00AA4406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A13145EC1B5AA34E00AA4406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LFSharingServices.plist; sourceTree = "<group>"; };
+		A13145F71B5AA6C700AA4406 /* SharingServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SharingServices.plist; sourceTree = "<group>"; };
 		A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSendersAction.swift; sourceTree = "<group>"; };
 		A1325D721B641619004B81CB /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFGlobals.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
-				A13145F71B5AA6C700AA4406 /* LFSharingServices.plist */,
+				A13145F71B5AA6C700AA4406 /* SharingServices.plist */,
 				A150495D1B693DD8009BF6A9 /* README.md */,
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
 				A13961B31B5BF4C400E9CB98 /* LFGlobals.swift */,
@@ -193,7 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A13145F81B5AA6C700AA4406 /* LFSharingServices.plist in Resources */,
+				A13145F81B5AA6C700AA4406 /* SharingServices.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
 				EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,

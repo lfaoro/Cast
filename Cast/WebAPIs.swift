@@ -55,6 +55,7 @@ final class WebAPIs: NSObject {
   private func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
     print(__FUNCTION__)
     self.textExcerpt = extractExcerptFromString(string, length: 18)
+    let a = NSBundle.mainBundle()
     let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
     let gitHubBodyDictionary = [
       "description": "Generated with Cast (www.castshare.io)",

@@ -1,7 +1,9 @@
-# Cast 
+# Cast | share anything, the easy way
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![GitHub release](https://img.shields.io/badge/release-BETA-red.svg)](https://github.com/lfaoro/Cast/releases)
+[![GitHub platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.9%2B-lightgrey.svg)](https://www.apple.com/osx/)
+[![GitHub twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 Cast is an agent that lives in your system’s 
