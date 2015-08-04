@@ -63,6 +63,11 @@ supporting more*
 - If you **have a feature request**, [open an issue](<https://github.com/lfaoro/Cast/issues>)
 - If you **want to contribute**, check the [system map](https://github.com/lfaoro/Cast/blob/master/SystemMap.md)
 
+## Credits
+> Cast is owned and maintained by [Leonardo Faoro](http://cv.lfaoro.com) and his mentor and friend [Chris Patrick Schreiner](https://www.linkedin.com/in/chrispschreiner).
+
+## Security Disclosure
+If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to security@lfaoro.com. Please do not post it to a public issue tracker.
+
 ## License
-Cast is released under the 
-[MIT License](<LICENSE.md>)
+Cast is released under the [MIT License](<LICENSE.md>)
