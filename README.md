@@ -66,6 +66,8 @@ supporting more*
 ## Credits
 > Cast is owned and maintained by [Leonardo Faoro](http://cv.lfaoro.com) and his mentor and friend [Chris Patrick Schreiner](https://www.linkedin.com/in/chrispschreiner).
 
+> We all stand on the shoulders of giants across many open source communities. We’d like to thank the communities and projects that established our inspiration.
+
 ## Security Disclosure
 If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to security@lfaoro.com. Please do not post it to a public issue tracker.
 
