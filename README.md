@@ -1,14 +1,16 @@
-# Cast | share anything, the easy way
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
-[![GitHub release](https://img.shields.io/badge/release-BETA-red.svg)](https://github.com/lfaoro/Cast/releases)
-[![GitHub platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.9%2B-lightgrey.svg)](https://www.apple.com/osx/)
-[![GitHub twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
+# ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share anything, the easy way
+
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
+[![release](https://img.shields.io/badge/release-BETA-red.svg)](https://github.com/lfaoro/Cast/releases)
+[![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.9%2B-lightgrey.svg)](https://www.apple.com/osx/)
+[![twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
-Cast is an agent that lives in your system’s 
+
+Cast is an agent that lives in your systemâ€™s 
 [Status Menu](https://support.apple.com/en-mt/HT201956).
-Its purpose is to help you share any type of information quickly and easily with a drag’n’drop
+Its purpose is to help you share any type of information quickly and easily with a dragâ€™nâ€™drop
 operation or a keyboard shortcut.
 
 Cast will seamlessly figure out the type of information you wish to share and
@@ -18,34 +20,41 @@ service you wish to use through Cast > Options window.
 Cast can queue up multiple streams of information and share them all at once 
 extending the system's Pasteboard functinality 
 
+## Features
+- [x] Uploads data automatically
+- [x] Creates shortened download link
+- [x] Download link readily available in clipboard
+- [ ] Up to 20 Recent upload links
+- [ ] Pasteboard queueing
+- [ ] Multiple uploads in one operation
+- [ ] iCloud Sync
+- [x] Uploads raw text
+- [ ] Uploads images
+- [ ] Uploads folders
+- [ ] Automatically ZIPs folders
+
+## Requirements
+- Mac OS X 10.9+
+- Xcode 7
+
 ### Supported Services 
-*Cast supports the following information types and services and we’re working on
+*Cast supports the following sharing services and weâ€™re working on
 supporting more*
 
 **Text data** either copied to your clipboard or contained in a file
-- gist.github.com
-- pastebin.com
+- [x] gist.github.com
+- [ ] pastebin.com
+- [ ] dpaste.com
+- [ ] swiftstub.com
 
 **Image data** either copied to your clipboard or contained in a file  
-- imgur.com
-- flickr.com
+- [ ] imgur.com
+- [ ] flickr.com
 
 **Folders** which will be automatically zipped for you before uploading 
-- icloud
-- wetransfer.com
-- dropbox.com
-
-### ServiceProviders
-- bit.ly //implemented  
-- gist.github.com //implemented  
-- dpaste.com  
-- imgur.com
-
-### MyErrors  
-* NoNetworkAccess  
-* ServiceError  
-* UnrecognizedPasteboardType  
-* PasteboardIsEmpty
+- [ ] icloud
+- [ ] wetransfer.com
+- [ ] dropbox.com
 
 ## Todo
 Please check the list of open issues on GitHub: 
