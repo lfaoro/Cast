@@ -1,6 +1,8 @@
-# Cast [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
-*// Cast: verb. throw (something) forcefully in a specified direction.*
+# Cast 
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
+
+*// Cast: verb. throw (something) forcefully in a specified direction.*
 Cast is an agent that lives in your system’s 
 [Status Menu](https://support.apple.com/en-mt/HT201956).
 Its purpose is to help you share any type of information quickly and easily with a drag’n’drop
