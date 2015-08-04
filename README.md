@@ -1,5 +1,4 @@
-Cast
-=
+# Cast [GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 
 *// Cast: verb. throw (something) forcefully in a specified direction.*
 
