@@ -47,6 +47,7 @@
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		EB87C1D21B7246BD00B988B0 /* SystemMap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SystemMap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -112,6 +113,7 @@
 		A13145F51B5AA65B00AA4406 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				EB87C1D21B7246BD00B988B0 /* SystemMap.md */,
 				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
