@@ -1,16 +1,19 @@
-[*Global*]
--createStatusBar
+~~~
+[Globals]
+createStatusBar
 -configureStatusBarItem
 -createMenu
+
 [AppDelegate]
 @statusBarItem: NSStatusItem!
- var menuSendersAction: MenuSendersAction!
- var webAPI: WebAPIs!
- var userNotification: UserNotifications!
- var options: Options!
+@menuSendersAction: MenuSendersAction!
+@webAPI: WebAPIs!
+@userNotification: UserNotifications!
+@options: Options!
 -applicationWillFinishLaunching
 -applicationDidFinishLaunching
 -updateMenu
+
 [MenuSendersAction]
 @pasteboard
 -shareClipboardContentsAction
@@ -18,17 +21,20 @@
 -clearItemsAction
 -startAtLoginAction
 -openOptionsWindow
+
 [WebAPI]
 @session
 @textExcerpt
 -share
 -shortenURL
 -uploadTextData
+
 [PasteboardController]
 @pasteboard
 @classes[:]
 -extractData
 -copyToClipboard
+
 [UserNotifications]
 @notificationCenter
 @didActivateNotificationURL
@@ -39,6 +45,7 @@
 -pushNotification(error)
 -startUserNotificationTimer
 -removeUserNotifcationsAction
+
 [@NSUserNotificationCenterDelegate]
 -didActivateNotification
 -shouldPresentNotification
