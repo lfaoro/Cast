@@ -1,7 +1,6 @@
 language: objective-c
 before_install:
  - brew update
- - brew install xctool
  - brew install carthage
 branches:
  only:
