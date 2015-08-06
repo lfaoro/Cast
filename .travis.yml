@@ -1,12 +1,15 @@
 language: objective-c
- 
+before_install:
+ - brew update
+ - brew install xctool
+ - brew install carthage
 branches:
  only:
  - master
- 
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
 osx_image: beta-xcode7
 
 script:
-- xcodebuild clean build -project Cast.xcodeproj -scheme Cast
+- carthage bootstrap
+- xctool -project Cast.xcodeproj -scheme Cast
