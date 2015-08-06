@@ -10,13 +10,27 @@ import Cocoa
 enum CastErrors: ErrorType {
   case EmptyPasteboardError
 }
-
+public enum PasteboardData {
+  case Text(String)
+  case Image(NSImage)
+  case Reference(NSURL)
+  case Number(NSNumber)
+  case Error(String)
+  
+  public init?(anyData: AnyObject) {
+    switch anyData {
+    case let stringData as String: self = PasteboardData.Text(stringData)
+    case let imageData as NSImage: self = PasteboardData.Image(imageData)
+    default: return nil
+    }
+  }
+}
 final class PasteboardController: NSObject {
   let pasteboard = NSPasteboard.generalPasteboard()
   let classes: [AnyClass] = [
     NSString.self,
-    /*
     NSImage.self,
+    /*
     NSURL.self,
     NSAttributedString.self,
     NSSound.self,
@@ -25,16 +39,18 @@ final class PasteboardController: NSObject {
   ]
   //---------------------------------------------------------------------------
   //FIXME: Find a better implementation
-  func extractData() throws -> String {
+  func extractData() throws -> PasteboardData {
     let options = [
       NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
       NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
     ]
     print(__FUNCTION__)
-    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: options)?.flatMap({ ($0 as? String) })
+    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?.flatMap({ ($0 as? String) })
       where !pasteboardItems.isEmpty {
         print(pasteboardItems[0])
-        return pasteboardItems[0]
+        if let data = PasteboardData(anyData: pasteboardItems[0]) {
+          return data
+        }
     }
     throw CastErrors.EmptyPasteboardError
   }

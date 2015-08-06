@@ -72,7 +72,7 @@ extension UserNotifications: NSUserNotificationCenterDelegate {
     if let url = didActivateNotificationURL {
       NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
     } else {
-      fatalError("No URL")
+      center.removeAllDeliveredNotifications()
     }
   } // executes an action whenever the notification is pressed
   //---------------------------------------------------------------------------

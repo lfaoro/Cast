@@ -14,7 +14,7 @@ final class WebAPIs: NSObject {
   var textExcerpt: String?
   //---------------------------------------------------------------------------
   func share(pasteboard: PasteboardController) throws -> () {
-    startUploadData(try pasteboard.extractData(), isPublic: false) {
+    startUpload(try pasteboard.extractData(), isPublic: false) {
       print($0)
       self.startShorten($0) {
         pasteboard.copyToClipboard([$0])
@@ -30,7 +30,8 @@ final class WebAPIs: NSObject {
   - parameter URL: the URI to shorten as a String object
   - parameter success: Closure of the async call to the shorten URI service
   - returns: a URL from the success Block
-  - TODO: Testing todo
+  - TODO: add more shortening services
+  - TODO: retrieve service from options
   */
   func startShorten(URL: String, success:(NSURL) -> ()) {
     print(__FUNCTION__)
@@ -57,26 +58,47 @@ final class WebAPIs: NSObject {
     //---------------------------------------------------------------------------
   }
   //---------------------------------------------------------------------------
-  //TODO: Add GitHub login support
-  func startUploadData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
-    print(__FUNCTION__)
-    self.textExcerpt = extractExcerptFromString(string, length: 18)
-    let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
-    let gitHubBodyDictionary = [
-      "description": "Generated with Cast (www.castshare.io)",
-      "public": true,
-      "files":
-        [fileName: ["content": string]
+  /**
+  Takes a URL as a String and processes it asynchronously using a URL shortening
+  service.
+  - parameter URL: the URI to shorten as a String object
+  - parameter success: Closure of the async call to the shorten URI service
+  - returns: a URL from the success Block
+  - TODO: add more data upload services
+  - TODO: retrieve correct service from options (maybe calling a function)
+  - TODO: support for AnyObject
+  */
+  func startUpload(data: PasteboardData, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> ()) {
+    //---------------------------------------------------------------------------
+    var jsonBody: JSON!
+    var request: NSMutableURLRequest!
+    //---------------------------------------------------------------------------
+    switch data {
+      //---------------------------------------------------------------------------
+    case .Text(let data):
+      self.textExcerpt = extractExcerptFromString(data , length: 18)
+      let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
+      let gitHubBodyDictionary = [
+        "description": "Generated with Cast (www.castshare.io)",
+        "public": isPublic,
+        "files":
+          [fileName: ["content": data]
+        ]
       ]
-    ]
-    let gitHubBodyJSON = JSON(gitHubBodyDictionary) // transforms Foundation object to JSON
-    let request = NSMutableURLRequest(URL: githubAPIurl)
-    //request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
-    request.HTTPMethod = "POST"
-    do {
-      request.HTTPBody = try gitHubBodyJSON.rawData()
-    } catch {
-      fatalError("Unable to convert JSON to NSData")
+      jsonBody = JSON(gitHubBodyDictionary) // transforms Foundation object to JSON
+      request = NSMutableURLRequest(URL: githubAPIurl)
+      //request.addValue(githubOAuthToken, forHTTPHeaderField: "Authorization")
+      request.HTTPMethod = "POST"
+      do {
+        request.HTTPBody = try jsonBody.rawData()
+      } catch {
+        fatalError("Unable to convert JSON to NSData")
+      }
+      //---------------------------------------------------------------------------
+    case .Image(_):
+      app.userNotification.pushNotification(error: "It's an image!")
+      //---------------------------------------------------------------------------
+    default: app.userNotification.pushNotification(error: "Service Unreachable", description: "Your pasteboard contains invalid data.")
     }
     //---------------------------------------------------------------------------
     session.dataTaskWithRequest(request) { (data, response, error) in
@@ -85,11 +107,11 @@ final class WebAPIs: NSObject {
         if let url = jsonData["html_url"].string {
           success(url)
         } else {
-          fatalError("No URL from GitHub")
+          fatalError("No URL")
         }
       } else {
         print(error!.localizedDescription)
-        app.userNotification.pushNotification(error: "GitHub Unreachable", description: error!.localizedDescription)
+        app.userNotification.pushNotification(error: "Service Unreachable", description: error!.localizedDescription)
       }
       }.resume()
     //---------------------------------------------------------------------------

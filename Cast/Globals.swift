@@ -13,11 +13,10 @@ public let pasteboardTypes = [NSFilenamesPboardType]
 
 
 
-func extractExcerptFromString(string: String, length: Int) -> String {
+public func extractExcerptFromString(string: String, length: Int) -> String {
     if (string.endIndex > advance(string.startIndex,length)) {
         return string.substringWithRange(string.startIndex...advance(string.startIndex,length))
     } else {
         return string
     }
 }
-
