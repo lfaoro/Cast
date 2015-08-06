@@ -20,3 +20,4 @@ func extractExcerptFromString(string: String, length: Int) -> String {
         return string
     }
 }
+

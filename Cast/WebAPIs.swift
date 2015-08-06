@@ -14,9 +14,9 @@ final class WebAPIs: NSObject {
   var textExcerpt: String?
   //---------------------------------------------------------------------------
   func share(pasteboard: PasteboardController) throws -> () {
-    uploadTextData(try pasteboard.extractData(), isPublic: false) {
+    startUploadData(try pasteboard.extractData(), isPublic: false) {
       print($0)
-      self.shortenURL($0) {
+      self.startShorten($0) {
         pasteboard.copyToClipboard([$0])
         recentUploads[self.textExcerpt!] = String($0)
         app.updateMenu()
@@ -24,7 +24,15 @@ final class WebAPIs: NSObject {
     }
   }
   //---------------------------------------------------------------------------
-  private func shortenURL(URL: String, success:(NSURL)->()) {
+  /**
+  Takes a URL as a String and processes it asynchronously using a URL shortening
+  service.
+  - parameter URL: the URI to shorten as a String object
+  - parameter success: Closure of the async call to the shorten URI service
+  - returns: a URL from the success Block
+  - TODO: Testing todo
+  */
+  func startShorten(URL: String, success:(NSURL) -> ()) {
     print(__FUNCTION__)
     let bitlyAPIurl = "https://api-ssl.bitly.com"
     let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL
@@ -36,9 +44,7 @@ final class WebAPIs: NSObject {
         let statusCode = jsonData["status_code"].int
         if statusCode == 200 {
           if let urlString = jsonData["data"]["url"].string {
-            if let url = NSURL(string: urlString) {
-              success(url)
-            }
+            success(NSURL(string: urlString)!)
           }
         } else {
           print(jsonData["status_code"].int)
@@ -52,10 +58,9 @@ final class WebAPIs: NSObject {
   }
   //---------------------------------------------------------------------------
   //TODO: Add GitHub login support
-  private func uploadTextData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
+  func startUploadData(string: String, fileName: String = "Casted.swift", isPublic: Bool = true, success: (String) -> () ) {
     print(__FUNCTION__)
     self.textExcerpt = extractExcerptFromString(string, length: 18)
-    let a = NSBundle.mainBundle()
     let githubAPIurl = NSURL(string: "https://api.github.com/gists")!
     let gitHubBodyDictionary = [
       "description": "Generated with Cast (www.castshare.io)",

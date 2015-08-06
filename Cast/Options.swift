@@ -17,5 +17,9 @@ final class Options: NSObject {
     optionsWC = NSStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       .instantiateControllerWithIdentifier("optionsWC") as? NSWindowController
     optionsWC?.window?.makeKeyAndOrderFront(NSApp)
+    
+    let sharingServicesPath = NSBundle.mainBundle().pathForResource("SharingServices", ofType: "plist")!
+    let sharingServices = NSDictionary(contentsOfFile: "sharingServicesPath")
+    print(sharingServices)
   }
 }
