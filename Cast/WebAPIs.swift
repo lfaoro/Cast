@@ -97,6 +97,7 @@ final class WebAPIs: NSObject {
       //---------------------------------------------------------------------------
     case .Image(_):
       app.userNotification.pushNotification(error: "It's an image!")
+      return
       //---------------------------------------------------------------------------
     default: app.userNotification.pushNotification(error: "Service Unreachable", description: "Your pasteboard contains invalid data.")
     }

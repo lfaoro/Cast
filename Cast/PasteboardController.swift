@@ -6,10 +6,11 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 import Cocoa
-// Pasteboard: an object that holds one or more objects of any type
+
 enum CastErrors: ErrorType {
   case EmptyPasteboardError
 }
+//---------------------------------------------------------------------------
 public enum PasteboardData {
   case Text(String)
   case Image(NSImage)
@@ -25,6 +26,8 @@ public enum PasteboardData {
     }
   }
 }
+//---------------------------------------------------------------------------
+/// Pasteboard: an object that holds one or more objects of any type
 final class PasteboardController: NSObject {
   let pasteboard = NSPasteboard.generalPasteboard()
   let classes: [AnyClass] = [
@@ -37,20 +40,18 @@ final class PasteboardController: NSObject {
     NSPasteboardItem.self
     */
   ]
+  let options = [
+    NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
+    NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
+  ]
   //---------------------------------------------------------------------------
   //FIXME: Find a better implementation
   func extractData() throws -> PasteboardData {
-    let options = [
-      NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
-      NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
-    ]
     print(__FUNCTION__)
-    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?.flatMap({ ($0 as? String) })
+    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?.flatMap({ PasteboardData(anyData: $0) })
       where !pasteboardItems.isEmpty {
         print(pasteboardItems[0])
-        if let data = PasteboardData(anyData: pasteboardItems[0]) {
-          return data
-        }
+        return pasteboardItems[0]
     }
     throw CastErrors.EmptyPasteboardError
   }
@@ -58,7 +59,6 @@ final class PasteboardController: NSObject {
   //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly
   func copyToClipboard(objects: [AnyObject]) {
     print(__FUNCTION__)
-    let pasteboard = NSPasteboard.generalPasteboard()
     pasteboard.clearContents()
     let extractedStrings = objects.flatMap({ String($0) })
     if extractedStrings.isEmpty { fatalError("no data") }
