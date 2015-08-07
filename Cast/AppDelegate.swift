@@ -7,7 +7,6 @@
 //
 // Cast: verb. throw (something) forcefully in a specified direction.
 import Cocoa
-import CleanroomLogger
 
 //---------------------------------------------------------------------------
 let app = NSApp.delegate as! AppDelegate
@@ -23,10 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var options: Options!
   //---------------------------------------------------------------------------
   func applicationWillFinishLaunching(notification: NSNotification) {
-    Log.enable(.Verbose, synchronousMode: false)
   }
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    Log.info?.trace()
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
     menuSendersAction.pasteboard = PasteboardController()
@@ -45,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //MARK:- Globals
 //---------------------------------------------------------------------------
 func createStatusBar() -> NSStatusItem {
-  Log.verbose?.trace()
   return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 }
 //---------------------------------------------------------------------------
