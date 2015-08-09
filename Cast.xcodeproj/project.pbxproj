@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC9D901B6586DE002F35FA /* Dragging.swift */; };
+		A11025BE1B75794F00720866 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
+		A11025C01B75796300720866 /* ImgurService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BF1B75796300720866 /* ImgurService.swift */; };
 		A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E31B5AA34E00AA4406 /* AppDelegate.swift */; };
 		A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */; };
 		A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A13145E71B5AA34E00AA4406 /* Assets.xcassets */; };
 		A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A13145E91B5AA34E00AA4406 /* Main.storyboard */; };
-		A13145F81B5AA6C700AA4406 /* SharingServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* SharingServices.plist */; };
+		A13145F81B5AA6C700AA4406 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* Services.plist */; };
 		A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */; };
 		A1325D731B641619004B81CB /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* WebAPIs.swift */; };
 		A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Globals.swift */; };
@@ -26,13 +28,15 @@
 
 /* Begin PBXFileReference section */
 		83BC9D901B6586DE002F35FA /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
+		A11025BD1B75794F00720866 /* GistService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistService.swift; sourceTree = "<group>"; };
+		A11025BF1B75796300720866 /* ImgurService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurService.swift; sourceTree = "<group>"; };
 		A13145E01B5AA34E00AA4406 /* Cast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13145E31B5AA34E00AA4406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = Cast/OptionsViewController.swift; sourceTree = "<group>"; };
 		A13145E71B5AA34E00AA4406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A13145EA1B5AA34E00AA4406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A13145EC1B5AA34E00AA4406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A13145F71B5AA6C700AA4406 /* SharingServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SharingServices.plist; sourceTree = "<group>"; };
+		A13145F71B5AA6C700AA4406 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSendersAction.swift; sourceTree = "<group>"; };
 		A1325D721B641619004B81CB /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -42,6 +46,7 @@
 		A15049621B694FA8009BF6A9 /* PasteboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardController.swift; sourceTree = "<group>"; };
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYSTEMmap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
@@ -59,6 +64,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A11025BC1B75792F00720866 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A11025BD1B75794F00720866 /* GistService.swift */,
+				A11025BF1B75796300720866 /* ImgurService.swift */,
+				A13145F71B5AA6C700AA4406 /* Services.plist */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		A13145D71B5AA34E00AA4406 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +103,7 @@
 				A15049671B6979E5009BF6A9 /* UserNotifications.swift */,
 				A1D8DA8B1B6E7AE0001284F3 /* Options.swift */,
 				A13961B31B5BF4C400E9CB98 /* Globals.swift */,
+				A11025BC1B75792F00720866 /* Services */,
 			);
 			path = Cast;
 			sourceTree = "<group>";
@@ -109,10 +125,10 @@
 				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
-				A13145F71B5AA6C700AA4406 /* SharingServices.plist */,
 				A150495D1B693DD8009BF6A9 /* README.md */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
+				A18818731B76802D00FC6E7E /* GistService.playground */,
 			);
 			name = Assets;
 			path = Cast;
@@ -187,7 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A13145F81B5AA6C700AA4406 /* SharingServices.plist in Resources */,
+				A13145F81B5AA6C700AA4406 /* Services.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
 				EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,
@@ -235,10 +251,12 @@
 			files = (
 				A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
+				A11025C01B75796300720866 /* ImgurService.swift in Sources */,
 				A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */,
 				A1325D731B641619004B81CB /* WebAPIs.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */,
+				A11025BE1B75794F00720866 /* GistService.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
 				A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */,
