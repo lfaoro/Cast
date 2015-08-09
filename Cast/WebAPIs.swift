@@ -24,7 +24,6 @@ final class WebAPIs: NSObject {
     }
   }
   func shareGist(pastedboard: PasteboardController) {
-    let gistService = GistService(apiURL: NSURL(string: "http://api.gisthub.com/gists")!)
     
   }
   //---------------------------------------------------------------------------

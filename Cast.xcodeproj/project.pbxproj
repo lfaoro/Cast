@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC9D901B6586DE002F35FA /* Dragging.swift */; };
-		A11025BE1B75794F00720866 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
 		A11025C01B75796300720866 /* ImgurService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BF1B75796300720866 /* ImgurService.swift */; };
 		A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E31B5AA34E00AA4406 /* AppDelegate.swift */; };
 		A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */; };
@@ -24,8 +23,10 @@
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
-		A19D4F871B77957F00BEB08B /* CastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4F861B77957F00BEB08B /* CastTests.swift */; };
-		A19D4F911B77997D00BEB08B /* GistServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4F901B77997D00BEB08B /* GistServiceSpec.swift */; };
+		A15784B31B77D299003C94A0 /* GistServiceSpec2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */; };
+		A17512171B78156500D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
+		A17512181B78156800D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
+		A17512191B7815E200D7EF69 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19D4F881B77957F00BEB08B /* Info.plist */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		A15049621B694FA8009BF6A9 /* PasteboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardController.swift; sourceTree = "<group>"; };
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceSpec2.swift; sourceTree = "<group>"; };
+		A17512151B77D81600D7EF69 /* GistServiceWithSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceWithSemaphore.swift; sourceTree = "<group>"; };
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +103,7 @@
 				A11025BD1B75794F00720866 /* GistService.swift */,
 				A11025BF1B75796300720866 /* ImgurService.swift */,
 				A13145F71B5AA6C700AA4406 /* Services.plist */,
+				A17512151B77D81600D7EF69 /* GistServiceWithSemaphore.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A19D4F901B77997D00BEB08B /* GistServiceSpec.swift */,
+				A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */,
 				A19D4F861B77957F00BEB08B /* CastTests.swift */,
 				A19D4F881B77957F00BEB08B /* Info.plist */,
 			);
@@ -282,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A17512191B7815E200D7EF69 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +340,7 @@
 				A1325D731B641619004B81CB /* WebAPIs.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */,
-				A11025BE1B75794F00720866 /* GistService.swift in Sources */,
+				A17512171B78156500D7EF69 /* GistService.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
 				A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */,
@@ -345,8 +351,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A19D4F871B77957F00BEB08B /* CastTests.swift in Sources */,
-				A19D4F911B77997D00BEB08B /* GistServiceSpec.swift in Sources */,
+				A17512181B78156800D7EF69 /* GistService.swift in Sources */,
+				A15784B31B77D299003C94A0 /* GistServiceSpec2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

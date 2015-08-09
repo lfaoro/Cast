@@ -8,27 +8,29 @@
 
 import Cocoa
 import SwiftyJSON
-import XCPlayground
 
-XCPSetExecutionShouldContinueIndefinitely(true)
 /**
-- TODO: Refactor the Async operations with PromiseKit
+- TODO: Refactor the Async operations with GCD
 */
-final class GistService {
+public final class GistService {
   //---------------------------------------------------------------------------
+  var session: NSURLSession
   var userDefaults: NSUserDefaults
   var gistAPIURL: NSURL!
-  var gistID: String? = nil
-//    get {
-//      return userDefaults.objectForKey("gistID") as? String
-//    }
-//    set (id) {
-//      return userDefaults.setObject(id!, forKey: "gistID")
-//    }
+  var gistID: String?
+  var semaphore: dispatch_semaphore_t
+  //    get {
+  //      return userDefaults.objectForKey("gistID") as? String
+  //    }
+  //    set (id) {
+  //      return userDefaults.setObject(id!, forKey: "gistID")
+  //    }
   //---------------------------------------------------------------------------
   init(apiURL: NSURL) {
     self.userDefaults = NSUserDefaults.standardUserDefaults()
     self.gistAPIURL = apiURL
+    self.session = NSURLSession.sharedSession()
+    self.semaphore = dispatch_semaphore_create(0)
   }
   //---------------------------------------------------------------------------
   func updateGist(data: String, success: (URL: NSURL) -> Void) -> Void {
@@ -36,18 +38,21 @@ final class GistService {
       print("Updating the Current Gist")
       success(URL: NSURL())
     } else {
-      createGist(data, success: { (URL2) -> Void in
-        success(URL: URL2)
-      })
+      print(createGist(data))
     }
   }
   //---------------------------------------------------------------------------
-  func createGist(data: String, success: (URL: NSURL) -> Void) -> Void {
+  func createGist(data: String) -> NSURL {
     // call API and create a gist
+    var gistLinkURL: NSURL?
     postRequest(data, isUpdate: false, URL: gistAPIURL) { (URL1, gistID) -> Void in
       self.gistID = gistID
-      success(URL: URL1)
+      gistLinkURL = URL1
+      print(gistLinkURL)
+      dispatch_semaphore_signal(self.semaphore)
     }
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+    return gistLinkURL!
   }
   //---------------------------------------------------------------------------
   func resetGist() -> Void {
@@ -65,7 +70,6 @@ final class GistService {
         "public": isPublic,
         "files": [fileName: ["content": content]]]
       //---------------------------------------------------------------------------
-      let session = NSURLSession.sharedSession()
       let request = NSMutableURLRequest(URL: URL)
       //---------------------------------------------------------------------------
       request.HTTPMethod = "POST"
@@ -85,18 +89,3 @@ final class GistService {
         }.resume()
   }
 }
-
-let gistServ = GistService(apiURL: NSURL(string: "https://api.github.com/gists")!)
-
-gistServ.updateGist("testdata") { (URL3) -> Void in
-  print("what? \(URL3)")
-}
-
-
-
-
-
-
-
-
-
