@@ -8,11 +8,9 @@
 
 import Cocoa
 import SwiftyJSON
+import XCPlayground
 
-let servicesPath = NSBundle.mainBundle().pathForResource("Services", ofType: "plist")!
-let webServices = JSON(NSDictionary(contentsOfFile: servicesPath)!)
-let gistAPIURL = webServices["Gist"]["URL"].URL!
-
+XCPSetExecutionShouldContinueIndefinitely(true)
 /**
 - TODO:
 */
@@ -69,8 +67,7 @@ public final class GistService {
   
   
   func resetGist() -> Void {
-//    userDefaults.removeObjectForKey("gistID")
-    self.gistID = nil
+    userDefaults.removeObjectForKey("gistID")
     //NOTE: Would like to return bool upon key removal completion
     //the API is not designed this way unfortunately...
   }
@@ -115,3 +112,15 @@ public final class GistService {
       return (userGistURL, userGistID)
   }
 }
+
+let gistServ = GistService()
+gistServ.updateGist("testString")
+
+
+
+
+
+
+
+
+

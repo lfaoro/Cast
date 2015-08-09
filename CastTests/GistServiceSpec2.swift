@@ -10,16 +10,28 @@ class GistServiceTests: QuickSpec {
     fdescribe("uploadGist") {
       
       context("Upload was successful") {
+        
         var gistService: GistService!
-        var gistProperties: (NSURL,String)?
+        var gistURL: NSURL?
+        
         beforeEach {
           gistService = GistService()
         }
         
-        it("URL not NIL") {
-          gistProperties = gistService.updateGist("testData")
-          expect(gistProperties).toNot(beNil())
-          //          expect(1) == 0
+        
+        it(".updateGist()") {
+          gistURL = gistService.updateGist("testData")
+          
+          expect(gistURL).toNot(beNil())
+          
+          expect(gistService.gistID).toNot(beNil())
+        }
+        
+        
+        it(".reset()") {
+          gistService.resetGist()
+          
+          expect(gistService.gistID).to(beNil())
         }
       }
       
