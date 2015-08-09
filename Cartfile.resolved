@@ -1,3 +1,5 @@
+github "Quick/Nimble" "v1.0.0"
 github "mxcl/OMGHTTPURLRQ" "3.0.0"
+github "Quick/Quick" "v0.5.1"
 github "SwiftyJSON/SwiftyJSON" "45ca854ce75948858f65e31fbc58cbf214669250"
 github "mxcl/PromiseKit" "39495e0212792d3cc158b3bca92ddcc417679f55"

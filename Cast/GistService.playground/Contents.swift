@@ -1,41 +1,53 @@
-//: Playground - noun: a place where people can play
+//
+//  GistService.swift
+//  Cast
+//
+//  Created by Leonardo on 08/08/2015.
+//  Copyright © 2015 Leonardo Faoro. All rights reserved.
+//
 
 import Cocoa
 import SwiftyJSON
 import XCPlayground
 
-XCPSetExecutionShouldContinueIndefinitely()
-
-protocol GistServiceDelegate {
-  var userGistURL: NSURL {get set}
-  var userGistID: String {get set}
-  func getGistData(userGistURL: NSURL, userGistID: String) -> (userGistURL: NSURL, userGistID: String)
-}
-
+XCPSetExecutionShouldContinueIndefinitely(true)
+/**
+- TODO: Refactor the Async operations with PromiseKit
+*/
 final class GistService {
   //---------------------------------------------------------------------------
-  var delegate: GistServiceDelegate?
   var userDefaults: NSUserDefaults
-  var gistAPI: NSURL
+  var gistAPIURL: NSURL!
   var gistID: String? = nil
+//    get {
+//      return userDefaults.objectForKey("gistID") as? String
+//    }
+//    set (id) {
+//      return userDefaults.setObject(id!, forKey: "gistID")
+//    }
   //---------------------------------------------------------------------------
   init(apiURL: NSURL) {
     self.userDefaults = NSUserDefaults.standardUserDefaults()
-    self.gistAPI = apiURL
+    self.gistAPIURL = apiURL
   }
   //---------------------------------------------------------------------------
-  func updateGist(data: String) -> Void {
+  func updateGist(data: String, success: (URL: NSURL) -> Void) -> Void {
     if let gistID = gistID {
       print("Updating the Current Gist")
+      success(URL: NSURL())
     } else {
-      createGist(data)
+      createGist(data, success: { (URL2) -> Void in
+        success(URL: URL2)
+      })
     }
   }
   //---------------------------------------------------------------------------
-  func createGist(data: String) -> Void {
-    print(__FUNCTION__)
-    var gistURL: NSURL?
-    
+  func createGist(data: String, success: (URL: NSURL) -> Void) -> Void {
+    // call API and create a gist
+    postRequest(data, isUpdate: false, URL: gistAPIURL) { (URL1, gistID) -> Void in
+      self.gistID = gistID
+      success(URL: URL1)
+    }
   }
   //---------------------------------------------------------------------------
   func resetGist() -> Void {
@@ -45,7 +57,8 @@ final class GistService {
   }
   //---------------------------------------------------------------------------
   func postRequest(content: String, isUpdate: Bool, URL: NSURL,
-    isPublic: Bool = false, fileName: String = "Casted.swift") { //Default values
+    isPublic: Bool = false, fileName: String = "Casted.swift",
+    success: (URL: NSURL, gistID: String) -> Void) -> Void {
       //---------------------------------------------------------------------------
       let gitHubHTTPBody = [
         "description": "Generated with Cast (cast.lfaoro.com)",
@@ -59,12 +72,10 @@ final class GistService {
       request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
       session.dataTaskWithRequest(request) { (data, response, error) in
         if let data = data {
+          print("we got data")
           let jsonData = JSON(data: data)
           if let url = jsonData["url"].URL, id = jsonData["id"].string {
-            print("we got data")
-            self.delegate?.userGistURL = url
-            self.delegate?.userGistID = id
-            self.delegate?.getGistData(url, userGistID: id)
+            success(URL: url, gistID: id)
           } else {
             fatalError("No URL")
           }
@@ -75,8 +86,17 @@ final class GistService {
   }
 }
 
-let gistService = GistService(apiURL: NSURL(string: "https://api.github.com/gists")!)
-gistService.updateGist("Yalla")
+let gistServ = GistService(apiURL: NSURL(string: "https://api.github.com/gists")!)
 
-"ok"
+gistServ.updateGist("testdata") { (URL3) -> Void in
+  print("what? \(URL3)")
+}
+
+
+
+
+
+
+
+
 

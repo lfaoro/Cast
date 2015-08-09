@@ -23,6 +23,8 @@
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A18818761B774D7600FC6E7E /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18818751B774D7600FC6E7E /* PromiseKit.framework */; };
+		A19D4F7E1B778CA800BEB08B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F7C1B778CA800BEB08B /* Quick.framework */; };
+		A19D4F7F1B778CA800BEB08B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F7D1B778CA800BEB08B /* Nimble.framework */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
 		EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EBE9DF5E1B68E38B00D11407 /* Cartfile */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
 		A18818751B774D7600FC6E7E /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
+		A19D4F7C1B778CA800BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
+		A19D4F7D1B778CA800BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYSTEMmap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
@@ -62,6 +66,8 @@
 			files = (
 				A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */,
 				A18818761B774D7600FC6E7E /* PromiseKit.framework in Frameworks */,
+				A19D4F7E1B778CA800BEB08B /* Quick.framework in Frameworks */,
+				A19D4F7F1B778CA800BEB08B /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,8 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A19D4F7C1B778CA800BEB08B /* Quick.framework */,
+				A19D4F7D1B778CA800BEB08B /* Nimble.framework */,
 				A18818751B774D7600FC6E7E /* PromiseKit.framework */,
 				A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */,
 				EBE9DF5E1B68E38B00D11407 /* Cartfile */,
@@ -227,6 +235,8 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/PromiseKit.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Nimble.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -306,6 +316,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -350,6 +361,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -373,6 +385,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Leonardo Faoro (LR3U6L9685)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -394,6 +407,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Leonardo Faoro (LR3U6L9685)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",

@@ -23,6 +23,10 @@ final class WebAPIs: NSObject {
       }
     }
   }
+  func shareGist(pastedboard: PasteboardController) {
+    let gistService = GistService(apiURL: NSURL(string: "http://api.gisthub.com/gists")!)
+    
+  }
   //---------------------------------------------------------------------------
   /**
   Takes a URL as a String and processes it asynchronously using a URL shortening
