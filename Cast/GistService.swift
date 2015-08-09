@@ -8,7 +8,6 @@
 
 import Cocoa
 import SwiftyJSON
-import PromiseKit
 
 let servicesPath = NSBundle.mainBundle().pathForResource("Services", ofType: "plist")!
 let webServices = JSON(NSDictionary(contentsOfFile: servicesPath)!)

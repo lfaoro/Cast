@@ -1,4 +1,1 @@
 github "SwiftyJSON/SwiftyJSON" "xcode7"
-github "mxcl/PromiseKit" "swift-2.0-beta5"
-github "Quick/Quick"
-github "Quick/Nimble"

@@ -22,12 +22,22 @@
 		A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* PasteboardController.swift */; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
-		A18818761B774D7600FC6E7E /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18818751B774D7600FC6E7E /* PromiseKit.framework */; };
-		A19D4F7E1B778CA800BEB08B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F7C1B778CA800BEB08B /* Quick.framework */; };
-		A19D4F7F1B778CA800BEB08B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F7D1B778CA800BEB08B /* Nimble.framework */; };
+		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
+		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
+		A19D4F871B77957F00BEB08B /* CastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4F861B77957F00BEB08B /* CastTests.swift */; };
+		A19D4F911B77997D00BEB08B /* GistServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4F901B77997D00BEB08B /* GistServiceSpec.swift */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
-		EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = EBE9DF5E1B68E38B00D11407 /* Cartfile */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A19D4F891B77957F00BEB08B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A13145D81B5AA34E00AA4406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A13145DF1B5AA34E00AA4406;
+			remoteInfo = Cast;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		83BC9D901B6586DE002F35FA /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
@@ -51,9 +61,13 @@
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
-		A18818751B774D7600FC6E7E /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
-		A19D4F7C1B778CA800BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
-		A19D4F7D1B778CA800BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
+		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A19D4F861B77957F00BEB08B /* CastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTests.swift; sourceTree = "<group>"; };
+		A19D4F881B77957F00BEB08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A19D4F901B77997D00BEB08B /* GistServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceSpec.swift; sourceTree = "<group>"; };
+		A19D4F941B779BAD00BEB08B /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
+		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
+		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYSTEMmap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
@@ -65,9 +79,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */,
-				A18818761B774D7600FC6E7E /* PromiseKit.framework in Frameworks */,
-				A19D4F7E1B778CA800BEB08B /* Quick.framework in Frameworks */,
-				A19D4F7F1B778CA800BEB08B /* Nimble.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4F811B77957F00BEB08B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */,
+				A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +111,7 @@
 				A13145F61B5AA67700AA4406 /* User Interface */,
 				A13145F51B5AA65B00AA4406 /* Assets */,
 				A13145F41B5AA60100AA4406 /* Frameworks */,
+				A19D4F851B77957F00BEB08B /* CastTests */,
 				A13145E11B5AA34E00AA4406 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A13145E01B5AA34E00AA4406 /* Cast.app */,
+				A19D4F841B77957F00BEB08B /* CastTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,11 +143,11 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A19D4F7C1B778CA800BEB08B /* Quick.framework */,
-				A19D4F7D1B778CA800BEB08B /* Nimble.framework */,
-				A18818751B774D7600FC6E7E /* PromiseKit.framework */,
+				A19D4F951B779E9400BEB08B /* Quick.framework */,
+				A19D4F961B779E9400BEB08B /* Nimble.framework */,
 				A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */,
 				EBE9DF5E1B68E38B00D11407 /* Cartfile */,
+				A19D4F941B779BAD00BEB08B /* Cartfile.private */,
 			);
 			name = Frameworks;
 			path = Cast;
@@ -157,6 +179,16 @@
 			name = "User Interface";
 			sourceTree = "<group>";
 		};
+		A19D4F851B77957F00BEB08B /* CastTests */ = {
+			isa = PBXGroup;
+			children = (
+				A19D4F901B77997D00BEB08B /* GistServiceSpec.swift */,
+				A19D4F861B77957F00BEB08B /* CastTests.swift */,
+				A19D4F881B77957F00BEB08B /* Info.plist */,
+			);
+			path = CastTests;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,6 +211,24 @@
 			productReference = A13145E01B5AA34E00AA4406 /* Cast.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A19D4F831B77957F00BEB08B /* CastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A19D4F8B1B77957F00BEB08B /* Build configuration list for PBXNativeTarget "CastTests" */;
+			buildPhases = (
+				A19D4F801B77957F00BEB08B /* Sources */,
+				A19D4F811B77957F00BEB08B /* Frameworks */,
+				A19D4F821B77957F00BEB08B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A19D4F8A1B77957F00BEB08B /* PBXTargetDependency */,
+			);
+			name = CastTests;
+			productName = CastTests;
+			productReference = A19D4F841B77957F00BEB08B /* CastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,6 +241,10 @@
 					A13145DF1B5AA34E00AA4406 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = H9XB8B9RVW;
+					};
+					A19D4F831B77957F00BEB08B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A13145DF1B5AA34E00AA4406;
 					};
 				};
 			};
@@ -208,6 +262,7 @@
 			projectRoot = "";
 			targets = (
 				A13145DF1B5AA34E00AA4406 /* Cast */,
+				A19D4F831B77957F00BEB08B /* CastTests */,
 			);
 		};
 /* End PBXProject section */
@@ -219,8 +274,14 @@
 			files = (
 				A13145F81B5AA6C700AA4406 /* Services.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
-				EBE9DF5F1B68E38B00D11407 /* Cartfile in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4F821B77957F00BEB08B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +295,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/PromiseKit.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Quick.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Nimble.framework",
 			);
@@ -266,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 				A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
 				A11025C01B75796300720866 /* ImgurService.swift in Sources */,
@@ -277,11 +338,27 @@
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
 				A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */,
-				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4F801B77957F00BEB08B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19D4F871B77957F00BEB08B /* CastTests.swift in Sources */,
+				A19D4F911B77997D00BEB08B /* GistServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A19D4F8A1B77957F00BEB08B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A13145DF1B5AA34E00AA4406 /* Cast */;
+			targetProxy = A19D4F891B77957F00BEB08B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A13145E91B5AA34E00AA4406 /* Main.storyboard */ = {
@@ -387,9 +464,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Cast",
+					"$(SRCROOT)/Carthage/Build/Mac/",
+					/System/Library/Frameworks,
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -409,9 +485,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Cast",
+					"$(SRCROOT)/Carthage/Build/Mac/",
+					/System/Library/Frameworks,
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -419,6 +494,40 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		A19D4F8C1B77957F00BEB08B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = CastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.CastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cast.app/Contents/MacOS/Cast";
+			};
+			name = Debug;
+		};
+		A19D4F8D1B77957F00BEB08B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = CastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.CastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cast.app/Contents/MacOS/Cast";
 			};
 			name = Release;
 		};
@@ -439,6 +548,15 @@
 			buildConfigurations = (
 				A13145F01B5AA34E00AA4406 /* Debug */,
 				A13145F11B5AA34E00AA4406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A19D4F8B1B77957F00BEB08B /* Build configuration list for PBXNativeTarget "CastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19D4F8C1B77957F00BEB08B /* Debug */,
+				A19D4F8D1B77957F00BEB08B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
