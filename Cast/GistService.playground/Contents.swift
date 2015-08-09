@@ -6,37 +6,36 @@ import XCPlayground
 
 XCPSetExecutionShouldContinueIndefinitely()
 
+protocol GistServiceDelegate {
+  var userGistURL: NSURL {get set}
+  var userGistID: String {get set}
+  func getGistData(userGistURL: NSURL, userGistID: String) -> (userGistURL: NSURL, userGistID: String)
+}
+
 final class GistService {
   //---------------------------------------------------------------------------
+  var delegate: GistServiceDelegate?
   var userDefaults: NSUserDefaults
   var gistAPI: NSURL
   var gistID: String? = nil
-  var gistURL: NSURL?
   //---------------------------------------------------------------------------
   init(apiURL: NSURL) {
     self.userDefaults = NSUserDefaults.standardUserDefaults()
     self.gistAPI = apiURL
   }
   //---------------------------------------------------------------------------
-  func updateGist(data: String) -> NSURL? {
+  func updateGist(data: String) -> Void {
     if let gistID = gistID {
       print("Updating the Current Gist")
     } else {
-      return createGist(data)
+      createGist(data)
     }
-    return nil
   }
   //---------------------------------------------------------------------------
-  func createGist(data: String) -> NSURL? {
+  func createGist(data: String) -> Void {
     print(__FUNCTION__)
     var gistURL: NSURL?
-    postRequest(data, isUpdate: false, URL: gistAPI) {
-      print($1)
-      self.gistID = $1
-      self.gistURL = $0
-      print(self.gistURL)
-    }
-    return self.gistURL
+    
   }
   //---------------------------------------------------------------------------
   func resetGist() -> Void {
@@ -46,8 +45,7 @@ final class GistService {
   }
   //---------------------------------------------------------------------------
   func postRequest(content: String, isUpdate: Bool, URL: NSURL,
-    isPublic: Bool = false, fileName: String = "Casted.swift",
-    success: (URL: NSURL, gistID: String) -> Void) -> Void {
+    isPublic: Bool = false, fileName: String = "Casted.swift") { //Default values
       //---------------------------------------------------------------------------
       let gitHubHTTPBody = [
         "description": "Generated with Cast (cast.lfaoro.com)",
@@ -64,7 +62,9 @@ final class GistService {
           let jsonData = JSON(data: data)
           if let url = jsonData["url"].URL, id = jsonData["id"].string {
             print("we got data")
-            success(URL: url, gistID: id)
+            self.delegate?.userGistURL = url
+            self.delegate?.userGistID = id
+            self.delegate?.getGistData(url, userGistID: id)
           } else {
             fatalError("No URL")
           }

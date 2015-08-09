@@ -1,2 +1,2 @@
 github "SwiftyJSON/SwiftyJSON" "xcode7"
-github "emaloney/CleanroomLogger"
+github "mxcl/PromiseKit" "swift-2.0-beta5"

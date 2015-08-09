@@ -1,3 +1,3 @@
-github "emaloney/CleanroomASL" "1.2.3"
+github "mxcl/OMGHTTPURLRQ" "3.0.0"
 github "SwiftyJSON/SwiftyJSON" "45ca854ce75948858f65e31fbc58cbf214669250"
-github "emaloney/CleanroomLogger" "1.4.3"
+github "mxcl/PromiseKit" "39495e0212792d3cc158b3bca92ddcc417679f55"
