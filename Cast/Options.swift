@@ -6,20 +6,19 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 import Cocoa
-import CleanroomLogger
+import SwiftyJSON
 
 final class Options: NSObject {
   //---------------------------------------------------------------------------
   var optionsWC: NSWindowController?
   //---------------------------------------------------------------------------
   func displayOptionsWindow() -> () {
-    Log.info?.trace()
     optionsWC = NSStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       .instantiateControllerWithIdentifier("optionsWC") as? NSWindowController
     optionsWC?.window?.makeKeyAndOrderFront(NSApp)
     
-    let sharingServicesPath = NSBundle.mainBundle().pathForResource("SharingServices", ofType: "plist")!
-    let sharingServices = NSDictionary(contentsOfFile: "sharingServicesPath")
-    print(sharingServices)
+    let servicesPlist = NSBundle.mainBundle().pathForResource("Services", ofType: "plist")!
+    let services = JSON(NSDictionary(contentsOfFile: servicesPlist)!)
+    print(services["Gist"]["URL"].string!)
   }
 }

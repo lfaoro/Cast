@@ -1,4 +1,3 @@
-
 # ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share anything, the easy way
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
@@ -25,13 +24,15 @@ extending the system's Pasteboard functinality
 - [x] Creates shortened download link
 - [x] Download link readily available in clipboard
 - [ ] Up to 20 Recent upload links
-- [ ] Pasteboard queueing
 - [ ] Multiple uploads in one operation
 - [ ] iCloud Sync
 - [x] Uploads raw text
 - [ ] Uploads images
 - [ ] Uploads folders
 - [ ] Automatically ZIPs folders
+- [ ] Pasteboard queueing Mode
+- [ ] Incremental Pasteboard Mode
+- [ ] Gist refining Mode
 
 ## Supported Services 
 *Cast supports the following sharing services and weâ€™re working on
@@ -61,7 +62,7 @@ supporting more*
 - If you'd like to **ask a general question**, [send me a tweet](<https://twitter.com/leonarth>)
 - If you **found a bug**, [open an issue](<https://github.com/lfaoro/Cast/issues>)
 - If you **have a feature request**, [open an issue](<https://github.com/lfaoro/Cast/issues>)
-- If you **want to contribute**, check the [system map](https://github.com/lfaoro/Cast/blob/master/SystemMap.md)
+- If you'd **like to contribute**, check the [system map](https://github.com/lfaoro/Cast/blob/master/SystemMap.md) and look for TODO: statements in the source files.
 
 ## Credits
 > Cast is owned and maintained by [Leonardo Faoro](http://cv.lfaoro.com) and his mentor and friend [Chris Patrick Schreiner](https://www.linkedin.com/in/chrispschreiner).

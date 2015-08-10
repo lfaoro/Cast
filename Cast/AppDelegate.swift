@@ -6,8 +6,12 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 // Cast: verb. throw (something) forcefully in a specified direction.
+/*
+  This app has been developed using 2 principles I've learnt from Chris Patrick Schreiner (@sushito)
+  - DRY = Don't Repeat Yourself
+  - YAGNI = You Ain't Gonna Need It
+*/
 import Cocoa
-import CleanroomLogger
 
 //---------------------------------------------------------------------------
 let app = NSApp.delegate as! AppDelegate
@@ -23,10 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var options: Options!
   //---------------------------------------------------------------------------
   func applicationWillFinishLaunching(notification: NSNotification) {
-    Log.enable(.Verbose, synchronousMode: false)
   }
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
-    Log.info?.trace()
+  func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
     menuSendersAction.pasteboard = PasteboardController()
@@ -45,7 +47,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //MARK:- Globals
 //---------------------------------------------------------------------------
 func createStatusBar() -> NSStatusItem {
-  Log.verbose?.trace()
   return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 }
 //---------------------------------------------------------------------------

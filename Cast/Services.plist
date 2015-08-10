@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Bitly</key>
+	<dict>
+		<key>Class</key>
+		<string>BitlyService</string>
+		<key>URL</key>
+		<string>https://api-ssl.bitly.com</string>
+	</dict>
+	<key>Gist</key>
+	<dict>
+		<key>Class</key>
+		<string>GistService</string>
+		<key>URL</key>
+		<string>https://api.github.com/gists</string>
+	</dict>
+	<key>NoPaste</key>
+	<dict>
+		<key>ClassName</key>
+		<string>SDPNoPasteInterface</string>
+		<key>Properties</key>
+		<dict>
+			<key>Always Private Uploads</key>
+			<integer>1</integer>
+			<key>Post URL</key>
+			<string>http://nopaste.linux-dev.org/</string>
+			<key>Expires</key>
+			<string>never</string>
+			<key>Name</key>
+			<string>Anonymous</string>
+			<key>Language</key>
+			<string>Plain</string>
+			<key>Response URL Regex</key>
+			<string>http://nopaste.linux-dev.org/\?[0-9]+</string>
+		</dict>
+	</dict>
+	<key>TinyPaste</key>
+	<dict>
+		<key>ClassName</key>
+		<string>SDPTinyPasteInterface</string>
+		<key>Properties</key>
+		<dict>
+			<key>Get URL</key>
+			<string>http://tny.cz/%@</string>
+			<key>Post URL</key>
+			<string>http://tny.cz/api/create.json</string>
+		</dict>
+	</dict>
+	<key>PasteBin</key>
+	<dict>
+		<key>ClassName</key>
+		<string>SDPPasteBinInterface</string>
+		<key>Properties</key>
+		<dict>
+			<key>API Key</key>
+			<string>974d937b02f02b07f998da53b26265dc</string>
+			<key>Post URL</key>
+			<string>http://pastebin.com/api/api_post.php</string>
+			<key>Authentication URL</key>
+			<string>http://pastebin.com/api/api_login.php</string>
+		</dict>
+	</dict>
+	<key>SourceDrop</key>
+	<dict>
+		<key>ClassName</key>
+		<string>SDPSourceDropInterface</string>
+		<key>Properties</key>
+		<dict>
+			<key>Always Private Uploads</key>
+			<integer>1</integer>
+			<key>Post URL</key>
+			<string>http://sourcedrop.net/paste</string>
+			<key>Content Size Limit</key>
+			<real>5242880</real>
+		</dict>
+	</dict>
+</dict>
+</plist>

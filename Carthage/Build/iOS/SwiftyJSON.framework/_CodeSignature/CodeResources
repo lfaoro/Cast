@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/SwiftyJSON-Swift.h</key>
 		<data>
-		cqWskMqqnPD59ltQBW8k83WLjFE=
+		QPGukKlY7QgUKNPHXNps2m3ixBg=
 		</data>
 		<key>Headers/SwiftyJSON.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qVcKXkw8TEVzGpOHkZV60xZ3O3s=
+		5aauiL1K6KUFURMmM5SZbHRImns=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm.swiftdoc</key>
 		<data>
-		VAxsUE52Ib40uHArfEWfOKOosD4=
+		rSgPvKMu9ARDCVdpeW5ZJoWJo8A=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Y29hnkGA49ozQY9ldBL8yft7TAI=
+		76iPRltrEw35BYcumTnHspPBAms=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		8FRinhKjgI1B96ONLMe596MViVc=
+		nhOQ6OmtGgd2XXCa+pCj4mJGoCY=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		ZUxKGFpxuZp8EY+mMwzhbU/QQWI=
+		Zgfm+x426CH5tam8vJK1BszjtdQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/SwiftyJSON-Swift.h</key>
 		<data>
-		cqWskMqqnPD59ltQBW8k83WLjFE=
+		QPGukKlY7QgUKNPHXNps2m3ixBg=
 		</data>
 		<key>Headers/SwiftyJSON.h</key>
 		<data>
@@ -49,19 +49,19 @@
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm.swiftdoc</key>
 		<data>
-		VAxsUE52Ib40uHArfEWfOKOosD4=
+		rSgPvKMu9ARDCVdpeW5ZJoWJo8A=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Y29hnkGA49ozQY9ldBL8yft7TAI=
+		76iPRltrEw35BYcumTnHspPBAms=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		8FRinhKjgI1B96ONLMe596MViVc=
+		nhOQ6OmtGgd2XXCa+pCj4mJGoCY=
 		</data>
 		<key>Modules/SwiftyJSON.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		ZUxKGFpxuZp8EY+mMwzhbU/QQWI=
+		Zgfm+x426CH5tam8vJK1BszjtdQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

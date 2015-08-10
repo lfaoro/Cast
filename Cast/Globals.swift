@@ -11,8 +11,6 @@ import Cocoa
 public var recentUploads: [String:String] = ["TestTitle1":"https://apple.com/","TestTitle2":"https://github.com"]
 public let pasteboardTypes = [NSFilenamesPboardType]
 
-
-
 public func extractExcerptFromString(string: String, length: Int) -> String {
     if (string.endIndex > advance(string.startIndex,length)) {
         return string.substringWithRange(string.startIndex...advance(string.startIndex,length))

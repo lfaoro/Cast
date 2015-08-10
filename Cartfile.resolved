@@ -1,3 +1,3 @@
-github "emaloney/CleanroomASL" "1.2.3"
+github "Quick/Nimble" "decf8c6be4139cbbadbb15c6505628ec168662f4"
+github "Quick/Quick" "4f7480ff9560e3791096e1a58ce09b6c0a8c926c"
 github "SwiftyJSON/SwiftyJSON" "45ca854ce75948858f65e31fbc58cbf214669250"
-github "emaloney/CleanroomLogger" "1.4.3"

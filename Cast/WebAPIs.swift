@@ -23,6 +23,9 @@ final class WebAPIs: NSObject {
       }
     }
   }
+  func shareGist(pastedboard: PasteboardController) {
+    
+  }
   //---------------------------------------------------------------------------
   /**
   Takes a URL as a String and processes it asynchronously using a URL shortening
@@ -97,6 +100,7 @@ final class WebAPIs: NSObject {
       //---------------------------------------------------------------------------
     case .Image(_):
       app.userNotification.pushNotification(error: "It's an image!")
+      return
       //---------------------------------------------------------------------------
     default: app.userNotification.pushNotification(error: "Service Unreachable", description: "Your pasteboard contains invalid data.")
     }
