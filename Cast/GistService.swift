@@ -96,7 +96,6 @@ public final class GistService {
       
       session.dataTaskWithRequest(request) { (data, response, error) in
         if let data = data {
-          print("we got data")
           let jsonData = JSON(data: data)
           if let url = jsonData["url"].URL, id = jsonData["id"].string {
             userGistURL = url

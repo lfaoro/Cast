@@ -7,9 +7,9 @@ class GistServiceTests: QuickSpec {
   
   override func spec() {
     
-    fdescribe("uploadGist") {
+    fdescribe("GistService wrapper") {
       
-      context("Upload was successful") {
+      context("Functions") {
         
         var gistService: GistService!
         var gistURL: NSURL?
@@ -32,6 +32,17 @@ class GistServiceTests: QuickSpec {
           gistService.resetGist()
           
           expect(gistService.gistID).to(beNil())
+        }
+        
+        fit(".postRequest()") {
+          
+          let returnValues =
+          gistService.postRequest("Test Data", isUpdate: false, URL: gistService.gistAPIURL)
+          
+          expect(returnValues.URL).to(beAnInstanceOf(NSURL.self))
+          
+//          expect(gistService.session).to(beAnInstanceOf(NSURLSession.self))
+          
         }
       }
       
