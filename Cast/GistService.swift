@@ -13,8 +13,14 @@ let servicesPath = NSBundle.mainBundle().pathForResource("Services", ofType: "pl
 let webServices = JSON(NSDictionary(contentsOfFile: servicesPath)!)
 let gistAPIURL = webServices["Gist"]["URL"].URL!
 
+enum ConnectionError: ErrorType {
+  case Bad(String)
+  case Worse(String)
+  case Terrible(String)
+}
+
 /**
-- TODO:
+- TODO: Implement update API
 */
 public final class GistService {
   
@@ -23,6 +29,7 @@ public final class GistService {
   let userDefaults: NSUserDefaults
   var gistAPIURL: NSURL
   let semaphore: dispatch_semaphore_t
+  var throwError: ConnectionError? // Eridius suggestion
   var gistID: String?
   //    get {
   //      return userDefaults.objectForKey("gistID") as? String
@@ -50,18 +57,17 @@ public final class GistService {
   }
   
   
-  func updateGist(data: String) -> NSURL {
-    guard let gistID = gistID else { return createGist(data) }
+  func updateGist(data: String) throws -> NSURL {
+    guard let gistID = gistID else { return try createGist(data) }
     print("Updating the Current Gist: \(gistID)")
-    //let (userGistURL, userGistID) = postRequest(data, isUpdate: true, URL: gistAPIURL)
-    //return userGistURL
-    return NSURL()
+    let (userGistURL, _) = try postRequest(data, isUpdate: true, URL: gistAPIURL)
+    return userGistURL
   }
   
   
-  func createGist(data: String) -> NSURL {
+  func createGist(data: String) throws -> NSURL {
     
-    let (userGistURL, userGistID) = postRequest(data, isUpdate: false, URL: gistAPIURL)
+    let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
     self.gistID = userGistID
     
     return userGistURL
@@ -69,7 +75,7 @@ public final class GistService {
   
   
   func resetGist() -> Void {
-//    userDefaults.removeObjectForKey("gistID")
+    //    userDefaults.removeObjectForKey("gistID")
     self.gistID = nil
     //NOTE: Would like to return bool upon key removal completion
     //the API is not designed this way unfortunately...
@@ -77,40 +83,56 @@ public final class GistService {
   
   
   func postRequest(content: String, isUpdate: Bool, URL: NSURL,
-    isPublic: Bool = false, fileName: String = "Casted.swift") ->
+    isPublic: Bool = false, fileName: String = "Casted.swift") throws ->
     (URL: NSURL, gistID: String) {
       
       var userGistURL: NSURL!
       var userGistID: String!
-      
       let gitHubHTTPBody = [
         "description": "Generated with Cast (cast.lfaoro.com)",
         "public": isPublic,
         "files": [fileName: ["content": content]]]
       
-      let request = NSMutableURLRequest(URL: URL)
+      let request: NSMutableURLRequest
       
-      request.HTTPMethod = "POST"
-      request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
-      
+      if isUpdate {
+        let updateURL = NSURL(string: URL.path! + gistID!)!
+        request = NSMutableURLRequest(URL: updateURL)
+        request.HTTPMethod = "PATCH"
+      } else {
+        request = NSMutableURLRequest(URL: URL)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
+      }
       
       session.dataTaskWithRequest(request) { (data, response, error) in
+        
         if let data = data {
           let jsonData = JSON(data: data)
+          
           if let url = jsonData["url"].URL, id = jsonData["id"].string {
             userGistURL = url
             userGistID = id
             dispatch_semaphore_signal(self.semaphore)
           } else {
-            fatalError("No URL")
+            self.throwError = ConnectionError.Bad("URL or ID Invalid")
+            dispatch_semaphore_signal(self.semaphore)
           }
+          
+          
         } else {
-          print(error!.localizedDescription)
+          print(error)
+          self.throwError = ConnectionError.Bad(error!.localizedDescription)
+          dispatch_semaphore_signal(self.semaphore)
         }
         }.resume()
       
-      
       dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+      
+      if let error = throwError {
+        throw error
+      }
+      
       return (userGistURL, userGistID)
   }
 }

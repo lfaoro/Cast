@@ -61,7 +61,6 @@
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceSpec2.swift; sourceTree = "<group>"; };
-		A17512151B77D81600D7EF69 /* GistServiceWithSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceWithSemaphore.swift; sourceTree = "<group>"; };
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +102,6 @@
 				A11025BD1B75794F00720866 /* GistService.swift */,
 				A11025BF1B75796300720866 /* ImgurService.swift */,
 				A13145F71B5AA6C700AA4406 /* Services.plist */,
-				A17512151B77D81600D7EF69 /* GistServiceWithSemaphore.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
