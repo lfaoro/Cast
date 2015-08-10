@@ -35,16 +35,16 @@ extending the system's Pasteboard functinality
 - [ ] Gist refining Mode
 
 ## Supported Services 
-*Cast supports the following sharing services and weâ€™re working on
+*Cast supports the following sharing services and we're working on
 supporting more*
 
-**Text data** either copied to your clipboard or contained in a file
+**Text data** inside your clipboard
 - [x] gist.github.com
 - [ ] pastebin.com
 - [ ] dpaste.com
 - [ ] swiftstub.com
 
-**Image data** either copied to your clipboard or contained in a file  
+**Image data** inside your clipboard
 - [ ] imgur.com
 - [ ] flickr.com
 
@@ -52,6 +52,9 @@ supporting more*
 - [ ] icloud
 - [ ] wetransfer.com
 - [ ] dropbox.com
+
+**URL Shorteners**
+- [x] bit.ly
 
 ## Requirements
 - Mac OS X 10.9+
