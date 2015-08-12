@@ -39,7 +39,7 @@ public final class GistService {
   //      return userDefaults.setObject(id!, forKey: "gistID")
   //    }
   
-  
+  //MARK:- Initialisation
   init() {
     self.userDefaults = NSUserDefaults.standardUserDefaults()
     self.gistAPIURL = NSURL(string: "https://api.github.com/gists")!
@@ -58,22 +58,13 @@ public final class GistService {
     self.session = session
   }
   
-  
+  //MARK:- Public API
   func updateGist(data: String) throws -> NSURL {
     guard let gistID = gistID else { return try createGist(data) }
     print("Updating the Current Gist: \(gistID)")
     let (userGistURL, _) = try postRequest(data, isUpdate: true, URL: gistAPIURL)
     return userGistURL
   }
-  
-  func createGist(data: String) throws -> NSURL {
-    
-    let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
-    self.gistID = userGistID
-    
-    return userGistURL
-  }
-  
   func resetGist() -> Void {
     //    userDefaults.removeObjectForKey("gistID")
     self.gistID = nil
@@ -81,6 +72,15 @@ public final class GistService {
     //the API is not designed this way unfortunately...
   }
   
+  
+  //MARK:- Helper functions
+  func createGist(data: String) throws -> NSURL {
+    
+    let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
+    self.gistID = userGistID
+    
+    return userGistURL
+  }
   
   func postRequest(content: String, isUpdate: Bool, URL: NSURL,
     isPublic: Bool = false, fileName: String = "Casted.swift") throws ->
@@ -162,6 +162,15 @@ extension GistService {
     NSWorkspace.sharedWorkspace().openURL(githubComponents.URL!)
   }
   
+  func exchangeCodeForAccessToken(code: String) -> String {
+  
+
+    
+    return ""
+  
+  }
+  
+  
   func registerEventHandlerForURL(handler object: AnyObject) -> NSAppleEventManager {
     let eventManager: NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
     eventManager.setEventHandler(object,
@@ -173,9 +182,12 @@ extension GistService {
   
   func handleURLEvent(event: NSAppleEventDescriptor) {
     if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue {
-      if let token = NSURLComponents(string: callback)?.queryItems?[0].value {
-        //now store this puppy inside the keychain
+      if let code = NSURLComponents(string: callback)?.queryItems?[0].value {
+        let token = exchangeCodeForAccessToken(code)
+        //store access token inside the keychain
       }
     }
   }
+  
+  
 }

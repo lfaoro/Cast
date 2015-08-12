@@ -99,16 +99,3 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
   return menu
 }
 
-
-
-
-
-extension AppDelegate {
-  func handleURLEvent(event: NSAppleEventDescriptor) {
-    if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue {
-      if let token = NSURLComponents(string: callback)?.queryItems?[0].value {
-        //now store this puppy inside the keychain
-      }
-    }
-  }
-}
