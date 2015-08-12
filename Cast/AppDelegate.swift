@@ -7,11 +7,12 @@
 //
 // Cast: verb. throw (something) forcefully in a specified direction.
 /*
-  This app has been developed using 2 principles I've learnt from Chris Patrick Schreiner (@sushito)
-  - DRY = Don't Repeat Yourself
-  - YAGNI = You Ain't Gonna Need It
+This app has been developed using 2 principles I've learnt from Chris Patrick Schreiner (@sushito)
+- DRY = Don't Repeat Yourself
+- YAGNI = You Ain't Gonna Need It
 */
 import Cocoa
+import SwiftyJSON
 
 //---------------------------------------------------------------------------
 let app = NSApp.delegate as! AppDelegate
@@ -19,16 +20,21 @@ let app = NSApp.delegate as! AppDelegate
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-  //---------------------------------------------------------------------------
+
+  
   var statusBarItem: NSStatusItem!
   var menuSendersAction: MenuSendersAction!
   var webAPI: WebAPIs!
   var userNotification: UserNotifications!
   var options: Options!
-  //---------------------------------------------------------------------------
+
+  
   func applicationWillFinishLaunching(notification: NSNotification) {
+    //MARK: Registering App for URL events (used for OAuth callback)
   }
+  
   func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
+    
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
     menuSendersAction.pasteboard = PasteboardController()
@@ -36,12 +42,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     webAPI = WebAPIs()
     userNotification = UserNotifications()
     options = Cast.Options()
+    
   }
-  //---------------------------------------------------------------------------
+
+  
   func updateMenu() -> () {
+    
     statusBarItem.menu?.update()
+    
   }
-  //---------------------------------------------------------------------------
+
+
 }
 
 //MARK:- Globals
@@ -87,4 +98,17 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
   //---------------------------------------------------------------------------
   return menu
 }
-//---------------------------------------------------------------------------
+
+
+
+
+
+extension AppDelegate {
+  func handleURLEvent(event: NSAppleEventDescriptor) {
+    if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue {
+      if let token = NSURLComponents(string: callback)?.queryItems?[0].value {
+        //now store this puppy inside the keychain
+      }
+    }
+  }
+}

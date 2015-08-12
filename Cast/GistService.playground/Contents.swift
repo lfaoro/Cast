@@ -21,7 +21,7 @@ enum AsyncErrors: ErrorType {
 /**
 - TODO: Implement update API
 */
-public final class GistService {
+public final class GistService: NSObject, NSURLSessionTaskDelegate {
   
   
   var session: NSURLSession
@@ -103,6 +103,10 @@ public final class GistService {
         print(error!)
       }
     }.resume()
+  }
+  
+ public func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void) {
+    print("redirect")
   }
   
   func postRequest(content: String, isUpdate: Bool, URL: String,

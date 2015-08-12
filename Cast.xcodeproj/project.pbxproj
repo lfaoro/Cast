@@ -63,6 +63,7 @@
 		A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceSpec2.swift; sourceTree = "<group>"; };
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
+		A19B8A931B7A532E00FAB638 /* GistServiceChris.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistServiceChris.playground; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D4F861B77957F00BEB08B /* CastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTests.swift; sourceTree = "<group>"; };
 		A19D4F881B77957F00BEB08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
 				A18818731B76802D00FC6E7E /* GistService.playground */,
 				A18818741B773D2B00FC6E7E /* Tests.playground */,
+				A19B8A931B7A532E00FAB638 /* GistServiceChris.playground */,
 			);
 			name = Assets;
 			path = Cast;

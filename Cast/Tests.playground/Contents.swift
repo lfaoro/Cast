@@ -7,32 +7,7 @@ XCPSetExecutionShouldContinueIndefinitely(true)
 
 var str = "Hello, playground"
 
-
-func requestOAuth(success: (oauthToken: String) -> Void) {
-  let githubHTTPBody = [
-    "client_id": "ef09cfdbba0dfd807592",
-    "redirect_uri": "cast://",
-    "scope": "gist",
-    "state": "\(NSUUID().UUIDString)"
-  ]
-  
-  let request = NSMutableURLRequest(URL: NSURL(string: "https://github.com/login/oauth/authorize")!)
-  request.HTTPMethod = "GET"
-  request.HTTPBody = try! JSON(githubHTTPBody).rawData()
-  request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
-  
-  
-  let session = NSURLSession.sharedSession()
-  session.dataTaskWithRequest(request) { (data, response, error) in
-    if let response = response {
-      print(response)
-      success(oauthToken: "test")
-    } else {
-      print(error!)
-    }
-    }.resume()
-}
-
-requestOAuth { (oauthToken) -> Void in
-  "success"
-}
+let callback = "cast://oauth?code=d1a3f88b22ce1ae2e23e&state=7601EE62-FAD0-4F07-8290-2A5DD99F131A"
+let items = NSURLComponents(string: callback)!.queryItems!
+items[0].value
+items.map{$0}

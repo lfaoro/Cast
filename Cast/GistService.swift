@@ -30,6 +30,7 @@ public final class GistService {
   var gistAPIURL: NSURL
   let semaphore: dispatch_semaphore_t
   var throwError: ConnectionError? // Eridius suggestion
+  var eventManager: NSAppleEventManager!
   var gistID: String?
   //    get {
   //      return userDefaults.objectForKey("gistID") as? String
@@ -44,6 +45,7 @@ public final class GistService {
     self.gistAPIURL = NSURL(string: "https://api.github.com/gists")!
     self.session = NSURLSession.sharedSession()
     self.semaphore = dispatch_semaphore_create(0)
+    self.eventManager = registerEventHandlerForURL(handler: self)
   }
   
   convenience init(apiURL: String) {
@@ -64,7 +66,6 @@ public final class GistService {
     return userGistURL
   }
   
-  
   func createGist(data: String) throws -> NSURL {
     
     let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
@@ -72,7 +73,6 @@ public final class GistService {
     
     return userGistURL
   }
-  
   
   func resetGist() -> Void {
     //    userDefaults.removeObjectForKey("gistID")
@@ -134,5 +134,48 @@ public final class GistService {
       }
       
       return (userGistURL, userGistID)
+  }
+  
+  
+  
+}
+
+
+//MARK:- OAuth2
+extension GistService {
+  
+  func githubOAuthRequest() {
+    
+    let oauthQuery = [
+      NSURLQueryItem(name: "client_id", value: "ef09cfdbba0dfd807592"),
+      NSURLQueryItem(name: "redirect_uri", value: "cast://oauth"),
+      NSURLQueryItem(name: "scope", value: "gist"),
+      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
+    ]
+    
+    let githubComponents = NSURLComponents()
+    githubComponents.scheme = "https"
+    githubComponents.host = "github.com"
+    githubComponents.path = "/login/oauth/authorize/"
+    githubComponents.queryItems = oauthQuery
+    
+    NSWorkspace.sharedWorkspace().openURL(githubComponents.URL!)
+  }
+  
+  func registerEventHandlerForURL(handler object: AnyObject) -> NSAppleEventManager {
+    let eventManager: NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
+    eventManager.setEventHandler(object,
+      andSelector: "handleURLEvent:",
+      forEventClass: AEEventClass(kInternetEventClass),
+      andEventID: AEEventClass(kAEGetURL))
+    return eventManager
+  }
+  
+  func handleURLEvent(event: NSAppleEventDescriptor) {
+    if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue {
+      if let token = NSURLComponents(string: callback)?.queryItems?[0].value {
+        //now store this puppy inside the keychain
+      }
+    }
   }
 }
