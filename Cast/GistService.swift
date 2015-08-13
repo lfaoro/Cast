@@ -9,6 +9,7 @@
 import Cocoa
 import SwiftyJSON
 
+// Not sure if to structure data in a plist or not, evaluating...
 let servicesPath = NSBundle.mainBundle().pathForResource("Services", ofType: "plist")!
 let webServices = JSON(NSDictionary(contentsOfFile: servicesPath)!)
 let gistAPIURL = webServices["Gist"]["URL"].URL!
@@ -20,16 +21,19 @@ enum ConnectionError: ErrorType {
 }
 
 /**
-- TODO: Implement update API
+- NOTE: I know this should be Async, I wrote an Async version of the API
+that used success: failure: return blocks but then I thought...
+My App has no UI! It's a Status Agent and I don't like Void functions :P
+- TODO: Add OAuth2 towards GitHub
+- TODO: Investigate more about semaphores
 */
-public final class GistService {
+public final class GistService: NSObject {
   
   
   //MARK:- Properties
-  var session: NSURLSession
-  let userDefaults: NSUserDefaults
+  var eventManager: NSAppleEventManager!
+  var userDefaults: NSUserDefaults
   var gistAPIURL: NSURL
-  let semaphore: dispatch_semaphore_t
   var throwError: ConnectionError? // Eridius suggestion
   var gistID: String?
   //    get {
@@ -41,22 +45,16 @@ public final class GistService {
   
   
   //MARK:- Initialisation
-  init() {
-    self.userDefaults = NSUserDefaults.standardUserDefaults()
-    self.gistAPIURL = NSURL(string: "https://api.github.com/gists")!
-    self.session = NSURLSession.sharedSession()
-    self.semaphore = dispatch_semaphore_create(0)
-    self.eventManager = registerEventHandlerForURL(handler: self)
+  override init() {
+    userDefaults = NSUserDefaults.standardUserDefaults()
+    gistAPIURL = NSURL(string: "https://api.github.com/gists")!
+    super.init()
+    eventManager = registerEventHandlerForURL(handler: self)
   }
   
   convenience init(apiURL: String) {
     self.init()
     self.gistAPIURL = NSURL(string: apiURL)!
-  }
-  
-  convenience init(session: NSURLSession) {
-    self.init()
-    self.session = session
   }
   
   
@@ -108,29 +106,37 @@ public final class GistService {
         request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
       }
       
+      let semaphore = dispatch_semaphore_create(0)
+      let session = NSURLSession.sharedSession()
       session.dataTaskWithRequest(request) { (data, response, error) in
         
         if let data = data {
+          
           let jsonData = JSON(data: data)
           
           if let url = jsonData["url"].URL, id = jsonData["id"].string {
+            
             userGistURL = url
             userGistID = id
-            dispatch_semaphore_signal(self.semaphore)
+            
           } else {
+            
             self.throwError = ConnectionError.Bad("URL or ID Invalid")
-            dispatch_semaphore_signal(self.semaphore)
+            
           }
           
-          
         } else {
+          
           print(error)
           self.throwError = ConnectionError.Bad(error!.localizedDescription)
-          dispatch_semaphore_signal(self.semaphore)
+          
         }
+        
+        dispatch_semaphore_signal(semaphore)
+        
         }.resume()
       
-      dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+      dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
       
       if let error = throwError {
         throw error
@@ -147,16 +153,13 @@ public final class GistService {
 extension GistService {
   
   
-  lazy var eventManager: NSAppleEventManager?
-  
-  
-  func githubOAuthRequest() -> Void {
+  func oauthRequest() -> Void {
     
     let oauthQuery = [
       NSURLQueryItem(name: "client_id", value: "ef09cfdbba0dfd807592"),
       NSURLQueryItem(name: "redirect_uri", value: "cast://oauth"),
-      NSURLQueryItem(name: "scope", value: "gist"),
-      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
+      NSURLQueryItem(name: "scope", value: "gist")
+      //      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
     ]
     
     let oauthComponents = NSURLComponents()
@@ -185,22 +188,31 @@ extension GistService {
   }
   
   func handleURLEvent(event: NSAppleEventDescriptor) -> Void {
-    if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue {
+    
+    if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue { // thank you mikeash!
+      
       if let code = NSURLComponents(string: callback)?.queryItems?[0].value {
-        let token = exchangeCodeForAccessToken(code)
-        //store access token inside the keychain
+        
+        if let token = exchangeCodeForAccessToken(code) {
+          
+          print(token)
+          
+        }
       }
     }
   }
   
-  func exchangeCodeForAccessToken(code: String) -> String {
+  
+  func exchangeCodeForAccessToken(code: String) -> String? {
+    
+    var token: String?
     
     let oauthQuery = [
       NSURLQueryItem(name: "client_id", value: "ef09cfdbba0dfd807592"),
+      NSURLQueryItem(name: "client_secret", value: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7"),
+      NSURLQueryItem(name: "code", value: code),
       NSURLQueryItem(name: "redirect_uri", value: "cast://oauth"),
-      NSURLQueryItem(name: "scope", value: "gist"),
-      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
-      NSURLQueryItem(name: "code", value: code)
+      //      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
     ]
     
     let oauthComponents = NSURLComponents()
@@ -209,16 +221,31 @@ extension GistService {
     oauthComponents.path = "/login/oauth/access_token"
     oauthComponents.queryItems = oauthQuery
     
-    session.dataTaskWithURL(oauthComponents.URL!) { (data, response, error) -> Void in
-      if let data = data, response = response {
-        print(response)
-        print(JSON(data).stringValue)
-      } else {
-        print(error!.localizedDescription)
-      }
-    }
+    let request = NSMutableURLRequest(URL: oauthComponents.URL!)
+    request.HTTPMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
     
-    return ""
+    let semaphore = dispatch_semaphore_create(0)
+    let session = NSURLSession.sharedSession()
+    session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+      
+      if let data = data {
+        
+        token = JSON(data: data)["access_token"].string
+        
+      } else {
+        
+        self.throwError = ConnectionError.Bad(error!.localizedDescription)
+        
+      }
+      
+      dispatch_semaphore_signal(semaphore)
+      
+      }.resume()
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+    
+    return token
     
   }
   

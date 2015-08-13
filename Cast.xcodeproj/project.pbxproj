@@ -26,7 +26,6 @@
 		A15784B31B77D299003C94A0 /* GistServiceSpec2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */; };
 		A17512171B78156500D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
 		A17512181B78156800D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
-		A17512191B7815E200D7EF69 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19D4F881B77957F00BEB08B /* Info.plist */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
 /* End PBXBuildFile section */
 
@@ -287,7 +286,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17512191B7815E200D7EF69 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
