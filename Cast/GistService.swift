@@ -25,6 +25,7 @@ enum ConnectionError: ErrorType {
 public final class GistService {
   
   
+  //MARK:- Properties
   var session: NSURLSession
   let userDefaults: NSUserDefaults
   var gistAPIURL: NSURL
@@ -38,6 +39,7 @@ public final class GistService {
   //    set (id) {
   //      return userDefaults.setObject(id!, forKey: "gistID")
   //    }
+  
   
   //MARK:- Initialisation
   init() {
@@ -58,6 +60,7 @@ public final class GistService {
     self.session = session
   }
   
+  
   //MARK:- Public API
   func updateGist(data: String) throws -> NSURL {
     guard let gistID = gistID else { return try createGist(data) }
@@ -65,6 +68,7 @@ public final class GistService {
     let (userGistURL, _) = try postRequest(data, isUpdate: true, URL: gistAPIURL)
     return userGistURL
   }
+  
   func resetGist() -> Void {
     //    userDefaults.removeObjectForKey("gistID")
     self.gistID = nil
@@ -137,7 +141,6 @@ public final class GistService {
   }
   
   
-  
 }
 
 
@@ -164,8 +167,6 @@ extension GistService {
   
   func exchangeCodeForAccessToken(code: String) -> String {
   
-
-    
     return ""
   
   }
