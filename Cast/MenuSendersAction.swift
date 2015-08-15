@@ -9,6 +9,9 @@ final class MenuSendersAction: NSObject {
   var pasteboard: PasteboardController!
   //---------------------------------------------------------------------------
   func shareClipboardContentsAction(sender: NSMenuItem) {
+    
+    app.gistService.setGist(content: String)
+    
     do {
       try app.webAPI.share(pasteboard)
     } catch CastErrors.EmptyPasteboardError {

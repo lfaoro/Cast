@@ -71,6 +71,7 @@ public final class GistService: NSObject {
     func resetGist() -> Void {
         //    userDefaults.removeObjectForKey("gistID")
         self.gistID = nil
+        print("Successfully deleted Gist ID")
         //NOTE: Would like to return bool upon key removal completion
         //the API is not designed this way unfortunately...
     }
@@ -92,7 +93,8 @@ public final class GistService: NSObject {
     
     
     func postRequest(content content: String, isUpdate: Bool, URL: NSURL,
-        isPublic: Bool = false, fileName: String = "Casted.swift") -> SignalProducer<(URL: NSURL, gistID: String), ConnectionError> {
+        isPublic: Bool = false, fileName: String = "Casted.swift")
+        -> SignalProducer<(URL: NSURL, gistID: String), ConnectionError> {
             
             return SignalProducer {sink, disp in
                 

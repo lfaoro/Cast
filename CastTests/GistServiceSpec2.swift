@@ -4,50 +4,45 @@ import Quick
 import Nimble
 
 class GistServiceTests: QuickSpec {
-  
-  override func spec() {
     
-    fdescribe("GistService wrapper") {
-      
-      context("Functions") {
+    override func spec() {
         
-        var gistService: GistService!
-        var gistURL: NSURL?
-        
-        beforeEach {
-          gistService = GistService()
+        describe("GistService class") {
+            
+            context("Testing Public API") {
+                
+                var gistService: GistService!
+                var gistURL: NSURL?
+                var gistID: String?
+                
+                beforeEach {
+                    gistService = GistService()
+                }
+                
+                
+                it(".setGist()") {
+                    gistService.setGist(content: "test data")
+                        .on(next: {
+                            gistURL = $0.0
+                            gistID = $0.1
+                        })
+                        .start()
+                    
+                    expect(gistURL).toEventuallyNot(beNil())
+                    expect(gistID).toEventuallyNot(beNil())
+                }
+                
+                
+                it(".reset()") {
+                    
+                    expect(gistService.resetGist()).to(beTrue())
+                    
+                    expect(gistService.gistID).to(beNil())
+                }
+            }
+            
+            context("Upload was unsuccessful") {
+            }
         }
-        
-        
-        it(".updateGist()") {
-          gistURL = gistService.updateGist("testData")
-          
-          expect(gistURL).toNot(beNil())
-          
-          expect(gistService.gistID).toNot(beNil())
-        }
-        
-        
-        it(".reset()") {
-          gistService.resetGist()
-          
-          expect(gistService.gistID).to(beNil())
-        }
-        
-        fit(".postRequest()") {
-          
-          let returnValues =
-          gistService.postRequest("Test Data", isUpdate: false, URL: gistService.gistAPIURL)
-          
-          expect(returnValues.URL).to(beAnInstanceOf(NSURL.self))
-          
-//          expect(gistService.session).to(beAnInstanceOf(NSURLSession.self))
-          
-        }
-      }
-      
-      context("Upload was unsuccessful") {
-      }
     }
-  }
 }

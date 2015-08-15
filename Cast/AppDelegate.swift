@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var webAPI: WebAPIs!
   var userNotification: UserNotifications!
   var options: Options!
-  var gistHub: GistService!
+  var gistService: GistService!
 
   
   func applicationWillFinishLaunching(notification: NSNotification) {
@@ -42,9 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     webAPI = WebAPIs()
     userNotification = UserNotifications()
     options = Cast.Options()
-    gistHub = GistService()
-    gistHub.oauthRequest()
-    
+    gistService = GistService()
   }
 
   

@@ -47,8 +47,9 @@ for n in 0...100 {
 //pipeline is a parameter
 
 
-func postRequest(content content: String, isUpdate: Bool, URL: NSURL,
-    isPublic: Bool = false, fileName: String = "Casted.swift") -> SignalProducer<(URL: NSURL, gistID: String), ConnectionError> {
+func setGist(content content: String, isUpdate: Bool, URL: NSURL,
+    isPublic: Bool = false, fileName: String = "Casted.swift")
+    -> SignalProducer<(URL: NSURL, gistID: String), ConnectionError> {
         
         return SignalProducer {sink, disp in
         
@@ -88,7 +89,7 @@ func postRequest(content content: String, isUpdate: Bool, URL: NSURL,
         }
 }
 
-postRequest(content: "ciao", isUpdate: false, URL: NSURL(string: "https://api.github.com/gists")!)
+setGist(content: "ciao", isUpdate: false, URL: NSURL(string: "https://api.github.com/gists")!)
     .on(next: print)
     .on(error: { print($0) })
     .on(completed: { print("completed") })

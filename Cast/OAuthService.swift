@@ -28,7 +28,7 @@ class OAuthService: NSObject {
         oauthComponents.queryItems = oauthQuery
         
         // Register for callback from GitHub
-        eventManager = registerEventHandlerForURL(handler: self)
+//        eventManager = registerEventHandlerForURL(handler: self)
         
         NSWorkspace.sharedWorkspace().openURL(oauthComponents.URL!)
     }
