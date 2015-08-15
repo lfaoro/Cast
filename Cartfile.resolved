@@ -1,3 +1,5 @@
-github "Quick/Nimble" "decf8c6be4139cbbadbb15c6505628ec168662f4"
+github "Quick/Nimble" "d551d29df93ed36bd03b1fc51e522da77801e0f2"
 github "Quick/Quick" "4f7480ff9560e3791096e1a58ce09b6c0a8c926c"
+github "antitypical/Result" "932ac1aabf6d881ead74c4e6911d1271e95d2859"
 github "SwiftyJSON/SwiftyJSON" "45ca854ce75948858f65e31fbc58cbf214669250"
+github "ReactiveCocoa/ReactiveCocoa" "5cb359c2ac17625ae9f4ce3ac955cc100d666fa6"

@@ -28,6 +28,8 @@
 		A17512171B78156500D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
 		A17512181B78156800D7EF69 /* GistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BD1B75794F00720866 /* GistService.swift */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
+		A1FD5DE61B7D69E40090C1EB /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1FD5DE41B7D69E40090C1EB /* ReactiveCocoa.framework */; };
+		A1FD5DE71B7D69E40090C1EB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1FD5DE51B7D69E40090C1EB /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
 		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		A1FD5DE41B7D69E40090C1EB /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/Mac/ReactiveCocoa.framework; sourceTree = SOURCE_ROOT; };
+		A1FD5DE51B7D69E40090C1EB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = SOURCE_ROOT; };
 		EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYSTEMmap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -82,7 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1FD5DE71B7D69E40090C1EB /* Result.framework in Frameworks */,
 				A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */,
+				A1FD5DE61B7D69E40090C1EB /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +154,8 @@
 		A13145F41B5AA60100AA4406 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1FD5DE41B7D69E40090C1EB /* ReactiveCocoa.framework */,
+				A1FD5DE51B7D69E40090C1EB /* Result.framework */,
 				A19D4F951B779E9400BEB08B /* Quick.framework */,
 				A19D4F961B779E9400BEB08B /* Nimble.framework */,
 				A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */,
@@ -304,6 +312,8 @@
 				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Quick.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Nimble.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Result.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/ReactiveCocoa.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -474,6 +484,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Carthage/Build/Mac/",
 					/System/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -495,6 +506,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/Carthage/Build/Mac/",
 					/System/Library/Frameworks,
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

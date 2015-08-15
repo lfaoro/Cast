@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ReactiveCocoa
 import SwiftyJSON
 
 
@@ -62,8 +63,9 @@ public final class GistService: NSObject {
     func updateGist(data: String) throws -> NSURL {
         guard let gistID = gistID else { return try createGist(data) }
         print("Updating the Current Gist: \(gistID)")
-        let (userGistURL, _) = try postRequest(data, isUpdate: true, URL: gistAPIURL)
-        return userGistURL
+//        let (userGistURL, _) = try postRequest(data, isUpdate: true, URL: gistAPIURL)
+//        return userGistURL
+        return NSURL()
     }
     
     func resetGist() -> Void {
@@ -75,12 +77,65 @@ public final class GistService: NSObject {
     
     //MARK:- Helper functions
     func createGist(data: String) throws -> NSURL {
-        let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
-        self.gistID = userGistID
-        return userGistURL
+        var URL: NSURL?
+        
+        postRequest(content: "ciao", isUpdate: false, URL: NSURL(string: "https://api.github.com/gists")!)
+            .on(next: { URL = $0.0; self.gistID = $0.1 })
+            .on(error: print)
+            .on(completed: { print("postRequest completed") })
+            .start()
+//        let (userGistURL, userGistID) = try postRequest(data, isUpdate: false, URL: gistAPIURL)
+//        self.gistID = userGistID
+//        return userGistURL
+        return URL!
     }
     
-    func postRequest(content: String, isUpdate: Bool, URL: NSURL, isPublic: Bool = false, fileName: String = "Casted.swift") throws -> (URL: NSURL, gistID: String) {
+    
+    func postRequest(content content: String, isUpdate: Bool, URL: NSURL,
+        isPublic: Bool = false, fileName: String = "Casted.swift") -> SignalProducer<(URL: NSURL, gistID: String), ConnectionError> {
+            
+            return SignalProducer {sink, disp in
+                
+                let gistID = "123456"
+                let gitHubHTTPBody = [
+                    "description": "Generated with Cast (cast.lfaoro.com)",
+                    "public": isPublic,
+                    "files": [fileName: ["content": content]],
+                ]
+                
+                let request: NSMutableURLRequest
+                if isUpdate {
+                    let updateURL = NSURL(string: URL.path! + gistID)!
+                    request = NSMutableURLRequest(URL: updateURL)
+                    request.HTTPMethod = "PATCH"
+                } else {
+                    request = NSMutableURLRequest(URL: URL)
+                    request.HTTPMethod = "POST"
+                    request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
+                }
+                
+                let session = NSURLSession.sharedSession()
+                let task = session.dataTaskWithRequest(request) { (data, response, error) in
+                    if let data = data {
+                        let jsonData = JSON(data: data)
+                        if let url = jsonData["url"].URL, id = jsonData["id"].string {
+                            sendNext(sink, (url, id))
+                            sendCompleted(sink)
+                        } else {
+                            sendError(sink, ConnectionError.Bad("URL or ID Invalid"))
+                        }
+                    } else {
+                        sendError(sink, ConnectionError.Worse(error!.localizedDescription))
+                    }
+                }
+                task.resume()
+            }
+    }
+/*
+    func postRequest(content: String, isUpdate: Bool, URL: NSURL,
+        isPublic: Bool = false, fileName: String = "Casted.swift")
+        throws -> (URL: NSURL, gistID: String) {
+            
         var userGistURL: NSURL!
         var userGistID: String!
         let gitHubHTTPBody = [
@@ -125,4 +180,5 @@ public final class GistService: NSObject {
         }
         return (userGistURL, userGistID)
     }
+*/
 }
