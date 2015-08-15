@@ -27,6 +27,7 @@
 		A15784B31B77D299003C94A0 /* GistServiceSpec2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */; };
 		A15EB9721B7F4B2400673D02 /* GistService RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15EB9711B7F4B2400673D02 /* GistService RAC.swift */; };
 		A15EB9731B7F4B3600673D02 /* GistService RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15EB9711B7F4B2400673D02 /* GistService RAC.swift */; };
+		A17EA4801B7F8EDE0080CF8B /* GistService RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistService RxSwift.swift */; };
 		A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8DA8B1B6E7AE0001284F3 /* Options.swift */; };
 		A1FD5DE61B7D69E40090C1EB /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1FD5DE41B7D69E40090C1EB /* ReactiveCocoa.framework */; };
 		A1FD5DE71B7D69E40090C1EB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1FD5DE51B7D69E40090C1EB /* Result.framework */; };
@@ -65,6 +66,7 @@
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A15784B01B77A79C003C94A0 /* GistServiceSpec2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistServiceSpec2.swift; sourceTree = "<group>"; };
 		A15EB9711B7F4B2400673D02 /* GistService RAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GistService RAC.swift"; sourceTree = "<group>"; };
+		A17EA47F1B7F8EDE0080CF8B /* GistService RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GistService RxSwift.swift"; sourceTree = "<group>"; };
 		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
 		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 		A11025BC1B75792F00720866 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A17EA47F1B7F8EDE0080CF8B /* GistService RxSwift.swift */,
 				A15EB9711B7F4B2400673D02 /* GistService RAC.swift */,
 				A11025BD1B75794F00720866 /* GistService.swift */,
 				A11025BF1B75796300720866 /* ImgurService.swift */,
@@ -352,6 +355,7 @@
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */,
 				A15EB9721B7F4B2400673D02 /* GistService RAC.swift in Sources */,
+				A17EA4801B7F8EDE0080CF8B /* GistService RxSwift.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
 				A1D8DA8C1B6E7AE0001284F3 /* Options.swift in Sources */,

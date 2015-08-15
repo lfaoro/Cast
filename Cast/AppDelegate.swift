@@ -37,7 +37,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
-    menuSendersAction.pasteboard = PasteboardController()
     configureStatusBarItem(statusBarItem, target: menuSendersAction)
     webAPI = WebAPIs()
     userNotification = UserNotifications()

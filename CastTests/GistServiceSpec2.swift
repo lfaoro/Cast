@@ -7,12 +7,12 @@ class GistServiceTests: QuickSpec {
     
     override func spec() {
         
-        describe("GistService class") {
+        describe("GistService") {
             
-            context("Testing Public API") {
+            context("Testing Public API: success") {
                 
                 var gistService: GistService!
-                var gistURL: NSURL?
+                var gistURL: String?
                 var gistID: String?
                 
                 beforeEach {
@@ -41,8 +41,29 @@ class GistServiceTests: QuickSpec {
                 }
             }
             
-            context("Upload was unsuccessful") {
+            context("Testing Public API: failures") {
+                var gistService: GistService!
+                var gistURL: String?
+                var gistID: String?
+                
+                beforeEach {
+                    gistService = GistService(apiURL: "http://api.fakeHost.com/gists")
+                }
+                
+                it(".setGist()") {
+                    gistService.setGist(content: "test Data")
+                        .on(next: {
+                            gistURL = $0.0
+                            gistID = $0.1
+                        })
+                        .start()
+                    
+                    expect(gistURL).toEventually(beNil())
+                    expect(gistID).toEventually(beNil())
+                }
+                
             }
         }
+        
     }
 }
