@@ -4,14 +4,13 @@ import RxSwift
 import RxCocoa
 
 enum ConnectionError: ErrorType {
-    case Bad(String)
-    case Worse(String)
+    case InvalidData
+    case NoResponse(String)
     case Terrible(String)
 }
 
 /**
 - TODO: Add OAuth2 towards GitHub as a protocol
-- TODO: Make it RAC
 - TODO: Store gistID in NSUserDefaults
 */
 public final class GistService {
@@ -39,10 +38,9 @@ public final class GistService {
     
     //MARK:- Public API
     public func resetGist() -> Bool {
-        //    userDefaults.removeObjectForKey("gistID")
         self.gistID = nil
         
-        return !gistUpdate()
+        return self.gistID == nil
     }
     
     public func setGist(content content: String,
@@ -66,14 +64,29 @@ public final class GistService {
                 request.HTTPBody = try! JSON(gitHubHTTPBody).rawData()
             }
             
+            return create { observer in
+                let session = NSURLSession.sharedSession()
+                let task = session.dataTaskWithRequest(request) { (data, response, error) in
+                    if let data = data {
+                        let jsonData = JSON(data: data)
+                        if let url = jsonData["html_url"].string, id = jsonData["id"].string {
+                            sendNext(observer, (url, id))
+                            sendCompleted(observer)
+                        } else {
+                            sendError(observer, ConnectionError.InvalidData)
+                        }
+                    } else {
+                        sendError(observer, ConnectionError.NoResponse(error!.localizedDescription))
+                    }
+                }
+                
+                task.resume()
+                
+                return AnonymousDisposable {
+                    task.cancel()
+                }
+
+            }
             
-    }
-    
-    
-    //MARK:- Helper functions
-    
-    func gistUpdate() -> Bool {
-        guard let _ = self.gistID else { return false }
-        return true
     }
 }

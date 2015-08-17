@@ -56,6 +56,7 @@
 		A1325D721B641619004B81CB /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		A13E07631B8223BE006DD0A6 /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 		A14BE0AD1B7D3CC200CD6AAC /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -110,6 +111,7 @@
 				A17EA47F1B7F8EDE0080CF8B /* GistService RxSwift.swift */,
 				A15EB9711B7F4B2400673D02 /* GistService RAC.swift */,
 				A11025BD1B75794F00720866 /* GistService.swift */,
+				A13E07631B8223BE006DD0A6 /* tests.swift */,
 				A11025BF1B75796300720866 /* ImgurService.swift */,
 				A14BE0AD1B7D3CC200CD6AAC /* OAuthService.swift */,
 				A13145F71B5AA6C700AA4406 /* Services.plist */,
