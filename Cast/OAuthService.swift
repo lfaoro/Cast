@@ -83,10 +83,10 @@ class OAuthService: NSObject {
                         sendNext(sink, token)
                         sendCompleted(sink)
                     } else {
-                        sendError(sink, ConnectionError.Worse("No Token :((("))
+                        sendError(sink, ConnectionError.InvalidData("No Token :((("))
                     }
                 } else {
-                    sendError(sink, ConnectionError.Bad(error!.localizedDescription))
+                    sendError(sink, ConnectionError.NoResponse(error!.localizedDescription))
                 }
                 }.resume()
         }
