@@ -32,7 +32,7 @@ enum ConnectionError: ErrorType {
 
 /**
 - TODO: Add OAuth2 towards GitHub as a protocol
-- TODO: Make it RAC
+- TODO: Make it RxSwift
 - TODO: Store gistID in NSUserDefaults
 */
 public final class GistService: NSObject {

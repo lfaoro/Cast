@@ -3,6 +3,8 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 import Cocoa
+import RxSwift
+import RxCocoa
 
 final class MenuSendersAction: NSObject {
     //---------------------------------------------------------------------------
@@ -13,7 +15,6 @@ final class MenuSendersAction: NSObject {
             let data = try pasteboard.extractData()
             switch data {
             case .Text(let stringData):
-                print(stringData)
                 content = stringData
             default: app.userNotification.pushNotification(error: "The pasteboard is Empty or Unreadable")
             }
@@ -24,11 +25,18 @@ final class MenuSendersAction: NSObject {
         }
         
         app.gistService.setGist(content: content!)
-            .on(next: {
-                app.userNotification.pushNotification(openURL: $0.URL)
+            .debug("setGist")
+            .retry(3)
+            .takeUntil(self.rx_deallocated)
+            .subscribe({ data in
+                app.userNotification.pushNotification(openURL: data.URL)
+                }, error: { (error: ErrorType) in
+                    print(error)
+                }, completed: { _ in
+                    print("finally")
             })
-            .on(error: print)
-            .start()
+        
+        
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
