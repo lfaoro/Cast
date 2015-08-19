@@ -10,7 +10,7 @@ final class MenuSendersAction: NSObject {
     //---------------------------------------------------------------------------
     func shareClipboardContentsAction(sender: NSMenuItem) {
         let pasteboard = PasteboardController()
-        var content: String?
+        var content: String = ""
         do {
             let data = try pasteboard.extractData()
             switch data {
@@ -24,19 +24,19 @@ final class MenuSendersAction: NSObject {
             app.userNotification.pushNotification(error: "\(error)")
         }
         
-        app.gistService.setGist(content: content!)
-            .debug("setGist")
+        app.gistService.setGist(content: content)
+            .debug("testing setGist")
             .retry(3)
-            .takeUntil(self.rx_deallocated)
-            .subscribe({ data in
-                app.userNotification.pushNotification(openURL: data.URL)
-                }, error: { (error: ErrorType) in
-                    print(error)
-                }, completed: { _ in
-                    print("finally")
-            })
-        
-        
+            .subscribe { event in
+                switch event {
+                case .Next(let url):
+                    app.userNotification.pushNotification(openURL: url.absoluteString)
+                case .Completed:
+                    print("completed")
+                case .Error(let error):
+                    app.userNotification.pushNotification(error: String(error))
+                }
+        }
     }
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {

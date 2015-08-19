@@ -100,6 +100,23 @@
 		F333C2EC1B5AF35400F1D8D9 /* RxTextViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2EB1B5AF35400F1D8D9 /* RxTextViewDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A1B1E7421B833E9B002C8558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1B1E73D1B833E9B002C8558 /* RxSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8A56AD71AD7424700B4673B;
+			remoteInfo = "RxSwift-iOS";
+		};
+		A1B1E7441B833E9B002C8558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1B1E73D1B833E9B002C8558 /* RxSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88BB8711B07E5ED0064D411;
+			remoteInfo = "RxSwift-OSX";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		075F12FC1B4DD075000D7861 /* RxActionSheetDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RxActionSheetDelegateProxy.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		075F12FD1B4DD075000D7861 /* RxAlertViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RxAlertViewDelegateProxy.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -110,6 +127,7 @@
 		075F13071B4DD100000D7861 /* UISwitch+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UISwitch+Rx.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		493693661B173C8F006FA450 /* UISlider+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UISlider+Rx.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		653C8BF31B114EB600983087 /* UIControl+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIControl+Rx.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A1B1E73D1B833E9B002C8558 /* RxSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RxSwift.xcodeproj; path = ../../../../../RxSwift/RxSwift/RxSwift.xcodeproj; sourceTree = "<group>"; };
 		C8003BA61B51AB760002F09F /* _RXSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RXSwizzling.h; sourceTree = "<group>"; };
 		C8003BA71B51AB760002F09F /* _RXSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RXSwizzling.m; sourceTree = "<group>"; };
 		C80A4E2E1B517F4E00C24BD5 /* _RXKVOObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RXKVOObserver.h; sourceTree = "<group>"; };
@@ -191,6 +209,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1B1E73E1B833E9B002C8558 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1B1E7431B833E9B002C8558 /* RxSwift.framework */,
+				A1B1E7451B833E9B002C8558 /* RxSwift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C8092BBC1AF504AD008D9A2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +229,7 @@
 		C81553D41A98AB4A00C63152 = {
 			isa = PBXGroup;
 			children = (
+				A1B1E73D1B833E9B002C8558 /* RxSwift.xcodeproj */,
 				C8092BBC1AF504AD008D9A2C /* Frameworks */,
 				C81553E01A98AB4A00C63152 /* RxCocoa */,
 				C81553DF1A98AB4A00C63152 /* Products */,
@@ -468,6 +496,12 @@
 			mainGroup = C81553D41A98AB4A00C63152;
 			productRefGroup = C81553DF1A98AB4A00C63152 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A1B1E73E1B833E9B002C8558 /* Products */;
+					ProjectRef = A1B1E73D1B833E9B002C8558 /* RxSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C81553DD1A98AB4A00C63152 /* RxCocoa-iOS */,
@@ -475,6 +509,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A1B1E7431B833E9B002C8558 /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = A1B1E7421B833E9B002C8558 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A1B1E7451B833E9B002C8558 /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = A1B1E7441B833E9B002C8558 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C81553DC1A98AB4A00C63152 /* Resources */ = {
