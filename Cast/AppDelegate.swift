@@ -27,22 +27,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var webAPI: WebAPIs!
   var userNotification: UserNotifications!
   var options: Options!
+  var gistService: GistService!
 
   
   func applicationWillFinishLaunching(notification: NSNotification) {
-    //MARK: Registering App for URL events (used for OAuth callback)
   }
   
   func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
     
     statusBarItem = createStatusBar()
     menuSendersAction = MenuSendersAction()
-    menuSendersAction.pasteboard = PasteboardController()
     configureStatusBarItem(statusBarItem, target: menuSendersAction)
     webAPI = WebAPIs()
     userNotification = UserNotifications()
     options = Cast.Options()
-    
+    gistService = GistService()
   }
 
   

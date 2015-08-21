@@ -1,1 +1,3 @@
 github "SwiftyJSON/SwiftyJSON" "xcode7"
+github "ReactiveCocoa/ReactiveCocoa" "swift2"
+github "lfaoro/RxSwiftTest" "master"

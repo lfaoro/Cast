@@ -23,6 +23,8 @@ extending the system's Pasteboard functinality
 - [x] Uploads data automatically
 - [x] Creates shortened download link
 - [x] Download link readily available in clipboard
+- [x] Seamless OAuth2 authentication to GitHub.com (no password)
+- [x] Seamless OAuth2 authentication to Imgur.com (no password)
 - [ ] Up to 20 Recent upload links
 - [ ] Multiple uploads in one operation
 - [ ] iCloud Sync

@@ -101,7 +101,7 @@ SWIFT_CLASS("_TtC5Quick8Callsite")
 @property (nonatomic, readonly, copy) NSString * __nonnull file;
 
 /// The line number on which an example is defined.
-@property (nonatomic, readonly) NSInteger line;
+@property (nonatomic, readonly) NSUInteger line;
 @end
 
 @class Example;

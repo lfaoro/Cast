@@ -39,7 +39,7 @@ public final class GistService: NSObject, NSURLSessionTaskDelegate {
   //    }
   
   
-  init() {
+  override init() {
     self.userDefaults = NSUserDefaults.standardUserDefaults()
     self.gistAPIURL = "https://api.github.com/gists"
     self.session = NSURLSession.sharedSession()

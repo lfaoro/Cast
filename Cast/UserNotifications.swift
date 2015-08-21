@@ -10,7 +10,7 @@ import Cocoa
 final class UserNotifications: NSObject {
   //---------------------------------------------------------------------------
   var notificationCenter: NSUserNotificationCenter!
-  var didActivateNotificationURL: String?
+  var didActivateNotificationURL: NSURL?
   var timer: NSTimer?
   //---------------------------------------------------------------------------
   override init() {
@@ -30,7 +30,7 @@ final class UserNotifications: NSObject {
   }
   //---------------------------------------------------------------------------
   func pushNotification(openURL url: String) {
-    didActivateNotificationURL = url
+    didActivateNotificationURL = NSURL(string: url)!
     let notification = self.createNotification("Casted to gist.GitHub.com", subtitle: url)
     notificationCenter.deliverNotification(notification)
     startUserNotificationTimer() //IRC: calling from here doesn't work
@@ -70,7 +70,7 @@ extension UserNotifications: NSUserNotificationCenterDelegate {
   func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
     print("notification pressed")
     if let url = didActivateNotificationURL {
-      NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
+      NSWorkspace.sharedWorkspace().openURL(url)
     } else {
       center.removeAllDeliveredNotifications()
     }
