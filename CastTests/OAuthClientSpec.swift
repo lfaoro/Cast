@@ -16,8 +16,7 @@ import Nimble
 class OAuthClientSpec: QuickSpec {
     override func spec() {
         describe("API") {
-            let oauth = OAuthClient(clientID, clientSecret, authURL, redirectURL, tokenURL)
-            let oauthDefault = OAuthClient(clientID: , clientSecret: , service: .GitHub)
+            let oauth
             
             it("can request authentication") {
                 oauth.authorize()

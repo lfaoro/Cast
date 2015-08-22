@@ -68,7 +68,7 @@ public final class GistClient {
             ]
             
             var request: NSMutableURLRequest
-            if let gistID = self.gistID where (updateGist && userLoggedIn) {
+            if let gistID = self.gistID where (updateGist && isUserLogged) {
                 let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                 request = NSMutableURLRequest(URL: updateURL)
                 request.HTTPMethod = "PATCH"
