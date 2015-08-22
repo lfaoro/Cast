@@ -22,9 +22,10 @@ public final class OAuthClient {
     let authURL: String
     let redirectURL: String
     let tokenURL: String
+    var eventHandler: NSAppleEventManager?
     
     
-    //MARK:- INITIALISATION
+    //MARK:- Initialization
     
     required public init(clientID: String,
         clientSecret: String,
@@ -52,10 +53,13 @@ public final class OAuthClient {
     }
     
     
-    //MARK:- PUBLIC API
+    //MARK:- Public API
     
-    public func authorize() -> Observable<String> {
-        return empty()
+    public func authorize() -> Void {
+        
+        eventHandler = registerEventHandlerForURL(handler: self)
+        
+        oauthRequest()
     }
     
     public func revoke() -> Observable<String> {
@@ -67,7 +71,7 @@ public final class OAuthClient {
     }
     
     
-    //MARK:- HELPER FUNCTIONS
+    //MARK:- Internal Helper Functions
     func oauthRequest() -> Void {
         
         let oauthQuery = [
@@ -98,14 +102,38 @@ public final class OAuthClient {
         return eventManager
     }
     
+    //Selector of `registerEventHandlerForURL`
     func handleURLEvent(event: NSAppleEventDescriptor) -> Void {
         
         if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue { // thank you mikeash!
             
             if let code = NSURLComponents(string: callback)?.queryItems?[0].value {
-                //                exchangeCodeForAccessToken(code).on(next:).start() // how do I make sure that the token gets in that variable?
+                
+                exchangeCodeForAccessToken(code)
+                    .debug()
+                    .retry(3)
+                    .subscribe { event in
+                        switch event {
+                        case .Next(let value):
+                            print("\(value)")
+                        case .Completed:
+                            print("completed")
+                        case .Error(let error):
+                            print("\(error)")
+                        }
+                }
+                
+            } else {
+                fatalError("Impossible to extract code")
             }
+            
+        } else {
+            fatalError("No callback")
         }
+    }
+    
+    func storeTokenInKeychain {
+        let keychain =
     }
     
     

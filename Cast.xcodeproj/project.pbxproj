@@ -19,6 +19,7 @@
 		A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Globals.swift */; };
 		A13A602D1B887561009C08D7 /* GistClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13A602C1B887561009C08D7 /* GistClientSpec.swift */; };
 		A13A602E1B887647009C08D7 /* GistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */; };
+		A1478E331B88E813004889DA /* OAuthClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156D5451B84E4D800579FCC /* OAuthClientSpec.swift */; };
 		A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */; };
 		A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* PasteboardController.swift */; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
@@ -376,6 +377,7 @@
 				A19285271B88AEFC00587ACB /* OAuthClient.swift in Sources */,
 				A13A602D1B887561009C08D7 /* GistClientSpec.swift in Sources */,
 				A13A602E1B887647009C08D7 /* GistClient.swift in Sources */,
+				A1478E331B88E813004889DA /* OAuthClientSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ public final class GistClient {
     
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
-    private let gistAPIURL: NSURL
+    public let gistAPIURL: NSURL
     private var gistID: String?
     private var isUserLogged: Bool
     
@@ -84,9 +84,9 @@ public final class GistClient {
                     if let data = data {
                         let jsonData = JSON(data: data)
                         if let gistURL = jsonData["html_url"].URL, gistID = jsonData["id"].string {
-                            self.gistID = gistID
                             
-                            just(gistURL)
+                            self.gistID = gistID
+
                             sendNext(observer, gistURL)
                             sendCompleted(observer)
                         } else {
