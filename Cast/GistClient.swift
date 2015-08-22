@@ -17,19 +17,19 @@ You may create new gists as anonymous but you may modify a gist only if you're l
 - TODO: Add OAuth2 towards GitHub as a protocol conformance
 - TODO: Store gistID in NSUserDefaults
 */
-public final class GistService {
+public final class GistClient {
     
     //MARK:- Properties
-    static let defaultURL = NSURL(string: "https://api.github.com/gists")!
+    private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
     private let gistAPIURL: NSURL
     private var gistID: String?
-    private var userLoggedIn: Bool
+    private var isUserLogged: Bool
     
     
     //MARK:- Initialisation
     public init(baseURL: NSURL = defaultURL) {
         self.gistAPIURL = baseURL
-        self.userLoggedIn = false
+        self.isUserLogged = false
     }
     
     /**

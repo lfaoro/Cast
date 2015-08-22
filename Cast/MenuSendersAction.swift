@@ -24,8 +24,8 @@ final class MenuSendersAction: NSObject {
             app.userNotification.pushNotification(error: "\(error)")
         }
         
-        app.gistService.setGist(content: content)
-            .debug("testing setGist")
+        app.gistClient.setGist(content: content)
+            .debug("setGist:")
             .retry(3)
             .subscribe { event in
                 switch event {
