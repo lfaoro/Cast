@@ -2,9 +2,12 @@
 import Cocoa
 import RxCocoa
 import RxSwift
+import RxBlocking
 import SwiftyJSON
 import Quick
 import Nimble
+
+@testable import Cast
 
 class GistClientSpec: QuickSpec {
     override func spec() {
@@ -13,23 +16,23 @@ class GistClientSpec: QuickSpec {
             
             context("API") {
                 var gistClient: GistClient!
-                var link: NSURL?
-                
                 
                 beforeEach {
                     gistClient = GistClient()
                 }
                 
+                it(""){
+                    
+                    let x = just(1)
+                    
+                    expect(x.last.get()) == 1
+                }
+                
                 it("can create gists") {
                     
-                    gistClient.setGist(content: "testing Content")
-                        .retry(3)
-                        .subscribeNext({ event in
-                            link = event
-                        })
+                   let signal = gistClient.setGist(content: "testing Content")
                     
-                    expect(link).toEventuallyNot(beNil())
-                    expect(link?.host).to(equal("gist.github.com"))
+                    expect(signal.last.get()?.host) == "gist.github.com"
                 }
                 
                 it("can be initialized with a different URL") {
