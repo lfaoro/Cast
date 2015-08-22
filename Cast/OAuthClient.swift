@@ -11,12 +11,13 @@ import RxCocoa
 import RxSwift
 
 import SwiftyJSON
+import KeychainAccess
 
 public enum OAuthService: String {
     case GitHub = ""
 }
 
-public final class OAuthClient {
+public class OAuthClient: NSObject {
     let clientID: String
     let clientSecret: String
     let authURL: String
@@ -62,12 +63,18 @@ public final class OAuthClient {
         oauthRequest()
     }
     
-    public func revoke() -> Observable<String> {
-        return empty()
+    public func revoke() -> Void {
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+        
+        keychain["token"] = nil
     }
     
-    public func getToken() -> String {
-        return ""
+    public func getToken() -> String? {
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+       
+        guard let token = keychain["token"] else {return nil}
+        
+        return token
     }
     
     
@@ -114,8 +121,9 @@ public final class OAuthClient {
                     .retry(3)
                     .subscribe { event in
                         switch event {
-                        case .Next(let value):
-                            print("\(value)")
+                        case .Next(let token):
+                            let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+                            keychain["token"] = token
                         case .Completed:
                             print("completed")
                         case .Error(let error):
@@ -130,10 +138,6 @@ public final class OAuthClient {
         } else {
             fatalError("No callback")
         }
-    }
-    
-    func storeTokenInKeychain {
-        let keychain =
     }
     
     

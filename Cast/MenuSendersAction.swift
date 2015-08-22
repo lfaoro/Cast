@@ -38,6 +38,11 @@ final class MenuSendersAction: NSObject {
                 }
         }
     }
+    
+    func loginToGithub(sender: NSMenuItem) {
+        app.gistClient.oauth.authorize()
+    }
+    
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
         let url = NSURL(string: sender.representedObject as! String)

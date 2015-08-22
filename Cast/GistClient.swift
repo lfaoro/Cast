@@ -3,8 +3,8 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
-enum ConnectionError: ErrorType {
-    case InvalidData(String), NoResponse(String)
+public enum ConnectionError: ErrorType {
+    case InvalidData(String), NoResponse(String), NotAuthenticated(String)
 }
 
 /**
@@ -17,19 +17,32 @@ You may create new gists as anonymous but you may modify a gist only if you're l
 - TODO: Add OAuth2 towards GitHub as a protocol conformance
 - TODO: Store gistID in NSUserDefaults
 */
-public final class GistClient {
+public class GistClient {
     
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
     public let gistAPIURL: NSURL
     private var gistID: String?
-    private var isUserLogged: Bool
+    private var userToken: String?
+    var oauth: OAuthClient
     
     
     //MARK:- Initialisation
     public init(baseURL: NSURL = defaultURL) {
         self.gistAPIURL = baseURL
-        self.isUserLogged = false
+        
+        self.oauth = OAuthClient(
+            clientID: "ef09cfdbba0dfd807592",
+            clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
+            service: OAuthService.GitHub
+        )
+        
+        if let token = self.oauth.getToken() {
+            self.userToken = token
+            
+            precondition(self.userToken != nil)
+        }
+        
     }
     
     /**
@@ -61,39 +74,48 @@ public final class GistClient {
         isPublic: Bool = false, fileName: String = "Casted.swift") // defaults
         -> Observable<NSURL> {
             
-            let githubHTTPBody = [
-                "description": "Generated with Cast (cast.lfaoro.com)",
-                "public": isPublic,
-                "files": [fileName: ["content": content]],
-            ]
-            
-            var request: NSMutableURLRequest
-            if let gistID = self.gistID where (updateGist && isUserLogged) {
-                let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
-                request = NSMutableURLRequest(URL: updateURL)
-                request.HTTPMethod = "PATCH"
-            } else {
-                request = NSMutableURLRequest(URL: self.gistAPIURL)
-                request.HTTPMethod = "POST"
-                request.HTTPBody = try! JSON(githubHTTPBody).rawData()
-            }
-            
-            return create { observer in
+            return create { stream in
+                
+                let githubHTTPBody = [
+                    "description": "Generated with Cast (cast.lfaoro.com)",
+                    "public": isPublic,
+                    "files": [fileName: ["content": content]],
+                ]
+                
+                var request: NSMutableURLRequest
+                if let gistID = self.gistID where updateGist && self.userToken != nil {
+                    let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
+                    request = NSMutableURLRequest(URL: updateURL)
+                    request.HTTPBody = try! JSON(githubHTTPBody).rawData()
+                    request.HTTPMethod = "PATCH"
+                } else {
+                    request = NSMutableURLRequest(URL: self.gistAPIURL)
+                    request.HTTPMethod = "POST"
+                    request.HTTPBody = try! JSON(githubHTTPBody).rawData()
+                }
+                
+                if let token = self.userToken {
+                    request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+                } else {
+                    //                    sendError(stream, ConnectionError.NotAuthenticated("GitHub authentication missing"))
+                }
+                
                 let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in
-                    if let data = data {
+                    if let data = data, response = response as? NSHTTPURLResponse {
+                        precondition((200..<300) ~= response.statusCode)
                         let jsonData = JSON(data: data)
                         if let gistURL = jsonData["html_url"].URL, gistID = jsonData["id"].string {
                             
                             self.gistID = gistID
-
-                            sendNext(observer, gistURL)
-                            sendCompleted(observer)
+                            
+                            sendNext(stream, gistURL)
+                            sendCompleted(stream)
                         } else {
-                            sendError(observer, ConnectionError.InvalidData("Unable to read data received from \(self.gistAPIURL)"))
+                            sendError(stream, ConnectionError.InvalidData("Unable to read data received from \(self.gistAPIURL)"))
                         }
                     } else {
-                        sendError(observer, ConnectionError.NoResponse(error!.localizedDescription))
+                        sendError(stream, ConnectionError.NoResponse(error!.localizedDescription))
                     }
                 }
                 
