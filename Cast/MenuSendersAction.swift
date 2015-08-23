@@ -32,7 +32,8 @@ final class MenuSendersAction: NSObject {
                 case .Next(let url):
                     app.userNotification.pushNotification(openURL: url.absoluteString)
                 case .Completed:
-                    print("completed")
+                    // Updating menu to display logout button
+                    app.statusBarItem.menu = createMenu(self)
                 case .Error(let error):
                     app.userNotification.pushNotification(error: String(error))
                 }
@@ -41,6 +42,13 @@ final class MenuSendersAction: NSObject {
     
     func loginToGithub(sender: NSMenuItem) {
         app.gistClient.oauth.authorize()
+        
+        // Need to know when authorized to update the Menu with Logout button
+        // Maybe NSNotification?
+    }
+    
+    func logoutFromGithub(sender: NSMenuItem) {
+        OAuthClient.revoke()
     }
     
     //---------------------------------------------------------------------------
