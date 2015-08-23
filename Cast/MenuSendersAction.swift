@@ -43,6 +43,10 @@ final class MenuSendersAction: NSObject {
         app.gistClient.oauth.authorize()
     }
     
+    func logoutFromGithub(sender: NSMenuItem) {
+        OAuthClient.revoke()
+    }
+    
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
         let url = NSURL(string: sender.representedObject as! String)

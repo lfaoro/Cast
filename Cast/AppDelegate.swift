@@ -73,7 +73,13 @@ func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersActi
 func createMenu(target: MenuSendersAction) -> NSMenu {
     let menu = NSMenu(title: "Cast Menu")
     menu.addItemWithTitle("Share", action: "shareClipboardContentsAction:", keyEquivalent: "S")?.target = target
-    menu.addItemWithTitle("Login to GitHub", action: "loginToGithub:", keyEquivalent: "")?.target = target
+    
+    if OAuthClient.getToken() != nil {
+        menu.addItemWithTitle("Logout from GitHub", action: "logoutFromGithub:", keyEquivalent: "")?.target = target
+    } else {
+        menu.addItemWithTitle("Login to GitHub", action: "loginToGithub:", keyEquivalent: "")?.target = target
+    }
+    
     menu.addItem(NSMenuItem.separatorItem())
     //---------------------------------------------------------------------------
     let recentUploadsItem = NSMenuItem(title: "Recent Uploads", action: "terminate:", keyEquivalent: "")
