@@ -62,6 +62,7 @@
 		A13A602C1B887561009C08D7 /* GistClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistClientSpec.swift; sourceTree = "<group>"; };
 		A1478E361B88FC44004889DA /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/Mac/KeychainAccess.framework; sourceTree = SOURCE_ROOT; };
 		A1478E381B89103B004889DA /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/Mac/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
+		A14AAAE51B89AB8D00942013 /* Cast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cast.entitlements; sourceTree = "<group>"; };
 		A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClient.swift; sourceTree = "<group>"; };
 		A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = SOURCE_ROOT; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -186,6 +187,7 @@
 				EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */,
 				A150495D1B693DD8009BF6A9 /* README.md */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
+				A14AAAE51B89AB8D00942013 /* Cast.entitlements */,
 				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
@@ -270,6 +272,11 @@
 					A13145DF1B5AA34E00AA4406 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = H9XB8B9RVW;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					A19D4F831B77957F00BEB08B = {
 						CreatedOnToolsVersion = 7.0;
@@ -494,8 +501,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Leonardo Faoro (LR3U6L9685)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -516,8 +524,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Leonardo Faoro (LR3U6L9685)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
