@@ -21,7 +21,6 @@ public class GistClient {
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
     public let gistAPIURL: NSURL
-    private var userToken: String?
     var oauth: OAuthClient
     var gistID: String? {
         get {
@@ -44,11 +43,6 @@ public class GistClient {
             clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
             service: OAuthService.GitHub
         )
-        
-        if let token = OAuthClient.getToken() {
-            self.userToken = token
-        }
-        
     }
     
     /**
@@ -89,7 +83,7 @@ public class GistClient {
                 ]
                 
                 var request: NSMutableURLRequest
-                if let gistID = self.gistID where updateGist && self.userToken != nil {
+                if let gistID = self.gistID where updateGist && (OAuthClient.getToken() != nil) {
                     let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                     request = NSMutableURLRequest(URL: updateURL)
                     request.HTTPMethod = "PATCH"
@@ -100,7 +94,7 @@ public class GistClient {
                 request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                 request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
                 
-                if let token = self.userToken {
+                if let token = OAuthClient.getToken() {
                     request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
                 }
                 
@@ -108,14 +102,19 @@ public class GistClient {
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in
                     if let data = data, response = response as? NSHTTPURLResponse {
                         
-                        if (200..<300) ~= response.statusCode {
+                        if !((200..<300) ~= response.statusCode) {
                             sendError(stream, ConnectionError.StatusCode(response.statusCode))
+                            print(response)
                         }
                         
                         let jsonData = JSON(data: data)
                         if let gistURL = jsonData["html_url"].URL, gistID = jsonData["id"].string {
                             
-                            self.gistID = gistID
+                            if OAuthClient.getToken() != nil {
+                                self.gistID = gistID
+                            } else {
+                                self.gistID = nil
+                            }
                             
                             sendNext(stream, gistURL)
                             sendCompleted(stream)

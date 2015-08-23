@@ -64,13 +64,13 @@ public class OAuthClient: NSObject {
     }
     
     public class func revoke() -> Void {
-        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token") //, accessGroup: "com.lfaoro.cast")
         
         keychain["token"] = nil
     }
     
     public class func getToken() -> String? {
-        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token") //, accessGroup: "com.lfaoro.cast")
        
         guard let token = keychain["token"] else {return nil}
         
