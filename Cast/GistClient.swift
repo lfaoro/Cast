@@ -14,7 +14,6 @@ An instance of GistService allows you login via OAuth with your GitHub account o
 
 You may create new gists as anonymous but you may modify a gist only if you're logged into the service.
 
-- TODO: Add OAuth2 towards GitHub as a protocol conformance
 - TODO: Store gistID in NSUserDefaults
 */
 public class GistClient {
@@ -22,9 +21,18 @@ public class GistClient {
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
     public let gistAPIURL: NSURL
-    private var gistID: String?
     private var userToken: String?
     var oauth: OAuthClient
+    var gistID: String? {
+        get {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            return userDefaults.stringForKey("gistID")
+        }
+        set (value) {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(value, forKey: "gistID")
+        }
+    }
     
     
     //MARK:- Initialisation
