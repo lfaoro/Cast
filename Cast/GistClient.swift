@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 public enum ConnectionError: ErrorType {
-    case InvalidData(String), NoResponse(String), NotAuthenticated(String)
+    case InvalidData(String), NoResponse(String), NotAuthenticated(String), StatusCode(Int)
 }
 
 /**
@@ -84,24 +84,26 @@ public class GistClient {
                 if let gistID = self.gistID where updateGist && self.userToken != nil {
                     let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                     request = NSMutableURLRequest(URL: updateURL)
-                    request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                     request.HTTPMethod = "PATCH"
                 } else {
                     request = NSMutableURLRequest(URL: self.gistAPIURL)
                     request.HTTPMethod = "POST"
-                    request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                 }
+                request.HTTPBody = try! JSON(githubHTTPBody).rawData()
+                request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
                 
                 if let token = self.userToken {
                     request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
-                } else {
-                    //                    sendError(stream, ConnectionError.NotAuthenticated("GitHub authentication missing"))
                 }
                 
                 let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in
                     if let data = data, response = response as? NSHTTPURLResponse {
-                        precondition((200..<300) ~= response.statusCode)
+                        
+                        if (200..<300) ~= response.statusCode {
+                            sendError(stream, ConnectionError.StatusCode(response.statusCode))
+                        }
+                        
                         let jsonData = JSON(data: data)
                         if let gistURL = jsonData["html_url"].URL, gistID = jsonData["id"].string {
                             
@@ -109,6 +111,7 @@ public class GistClient {
                             
                             sendNext(stream, gistURL)
                             sendCompleted(stream)
+                            
                         } else {
                             sendError(stream, ConnectionError.InvalidData("Unable to read data received from \(self.gistAPIURL)"))
                         }
