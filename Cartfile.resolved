@@ -1,6 +1,5 @@
+github "kishikawakatsumi/KeychainAccess" "7879a49b81c553ad9b40cbafda34a881648e2ff3"
 github "Quick/Nimble" "dbfc4ebd53395361c14eb2c9b13f629fc541bba2"
 github "Quick/Quick" "6b8507b28767b6fe54cfdc7112ab554505604c95"
-github "antitypical/Result" "932ac1aabf6d881ead74c4e6911d1271e95d2859"
 github "lfaoro/RxSwiftTest" "e76442f2eb8540e050ffbd4344c0e2637b327779"
-github "SwiftyJSON/SwiftyJSON" "d2455075224731f0449366c71e1a08d10d718e6d"
-github "ReactiveCocoa/ReactiveCocoa" "5cb359c2ac17625ae9f4ce3ac955cc100d666fa6"
+github "SwiftyJSON/SwiftyJSON" "f269523ac572979245baa99c8475eab73caf1e9b"

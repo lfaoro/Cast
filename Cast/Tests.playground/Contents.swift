@@ -1,7 +1,6 @@
 //: Playground - noun: a place where people can play
 
 import Cocoa
-import SwiftyJSON
 import RxSwift
 import RxCocoa
 import XCPlayground

@@ -20,81 +20,82 @@ let app = NSApp.delegate as! AppDelegate
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-  
-  var statusBarItem: NSStatusItem!
-  var menuSendersAction: MenuSendersAction!
-  var webAPI: WebAPIs!
-  var userNotification: UserNotifications!
-  var options: Options!
-  var gistService: GistService!
-
-  
-  func applicationWillFinishLaunching(notification: NSNotification) {
-  }
-  
-  func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
     
-    statusBarItem = createStatusBar()
-    menuSendersAction = MenuSendersAction()
-    configureStatusBarItem(statusBarItem, target: menuSendersAction)
-    webAPI = WebAPIs()
-    userNotification = UserNotifications()
-    options = Cast.Options()
-    gistService = GistService()
-  }
-
-  
-  func updateMenu() -> () {
     
-    statusBarItem.menu?.update()
+    var statusBarItem: NSStatusItem!
+    var menuSendersAction: MenuSendersAction!
+    var webAPI: WebAPIs!
+    var userNotification: UserNotifications!
+    var options: Options!
+    var gistClient: GistClient!
     
-  }
-
-
+    
+    func applicationWillFinishLaunching(notification: NSNotification) {
+    }
+    
+    func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
+        
+        statusBarItem = createStatusBar()
+        menuSendersAction = MenuSendersAction()
+        configureStatusBarItem(statusBarItem, target: menuSendersAction)
+        webAPI = WebAPIs()
+        userNotification = UserNotifications()
+        options = Cast.Options()
+        gistClient = GistClient()
+    }
+    
+    
+    func updateMenu() -> () {
+        
+        statusBarItem.menu?.update()
+        
+    }
+    
+    
 }
 
 //MARK:- Globals
 //---------------------------------------------------------------------------
 func createStatusBar() -> NSStatusItem {
-  return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 }
 //---------------------------------------------------------------------------
 func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersAction) -> () {
-  statusBarItem.button?.title = "Cast"
-  let image = NSImage(named: "StatusBarIcon")
-  image?.template = true
-  statusBarItem.button?.image = image
-  statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
-  statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
-  statusBarItem.menu = createMenu(target)
+    statusBarItem.button?.title = "Cast"
+    let image = NSImage(named: "StatusBarIcon")
+    image?.template = true
+    statusBarItem.button?.image = image
+    statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
+    statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
+    statusBarItem.menu = createMenu(target)
 }
 //---------------------------------------------------------------------------
 func createMenu(target: MenuSendersAction) -> NSMenu {
-  let menu = NSMenu(title: "Cast Menu")
-  menu.addItemWithTitle("Share", action: "shareClipboardContentsAction:", keyEquivalent: "S")?.target = target
-  menu.addItem(NSMenuItem.separatorItem())
-  //---------------------------------------------------------------------------
-  let recentUploadsItem = NSMenuItem(title: "Recent Uploads", action: "terminate:", keyEquivalent: "")
-  let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
-  if !recentUploads.isEmpty {
-    for (title,link) in recentUploads {
-      let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
-      // Allows me to use a value from this context in the func called by the selector
-      menuItem.representedObject = link
-      menuItem.target = target
-      recentUploadsSubmenu.addItem(menuItem)
+    let menu = NSMenu(title: "Cast Menu")
+    menu.addItemWithTitle("Share", action: "shareClipboardContentsAction:", keyEquivalent: "S")?.target = target
+    menu.addItemWithTitle("Login to GitHub", action: "loginToGithub:", keyEquivalent: "")?.target = target
+    menu.addItem(NSMenuItem.separatorItem())
+    //---------------------------------------------------------------------------
+    let recentUploadsItem = NSMenuItem(title: "Recent Uploads", action: "terminate:", keyEquivalent: "")
+    let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
+    if !recentUploads.isEmpty {
+        for (title,link) in recentUploads {
+            let menuItem = NSMenuItem(title: title, action: "recentUploadsAction:", keyEquivalent: "")
+            // Allows me to use a value from this context in the func called by the selector
+            menuItem.representedObject = link
+            menuItem.target = target
+            recentUploadsSubmenu.addItem(menuItem)
+        }
     }
-  }
-  recentUploadsSubmenu.addItem(NSMenuItem.separatorItem())
-  recentUploadsSubmenu.addItemWithTitle("Clear Recents", action: "clearItemsAction:", keyEquivalent: "")?.target = target
-  recentUploadsItem.submenu = recentUploadsSubmenu
-  //---------------------------------------------------------------------------
-  menu.addItem(recentUploadsItem)
-  menu.addItemWithTitle("Start at Login", action: "startAtLoginAction:", keyEquivalent: "")?.target = target
-  menu.addItemWithTitle("Options", action: "openOptionsWindow:", keyEquivalent: "")?.target = target
-  menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
-  //---------------------------------------------------------------------------
-  return menu
+    recentUploadsSubmenu.addItem(NSMenuItem.separatorItem())
+    recentUploadsSubmenu.addItemWithTitle("Clear Recents", action: "clearItemsAction:", keyEquivalent: "")?.target = target
+    recentUploadsItem.submenu = recentUploadsSubmenu
+    //---------------------------------------------------------------------------
+    menu.addItem(recentUploadsItem)
+    menu.addItemWithTitle("Start at Login", action: "startAtLoginAction:", keyEquivalent: "")?.target = target
+    menu.addItemWithTitle("Options", action: "openOptionsWindow:", keyEquivalent: "")?.target = target
+    menu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "Q")
+    //---------------------------------------------------------------------------
+    return menu
 }
 

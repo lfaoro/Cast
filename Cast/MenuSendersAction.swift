@@ -24,8 +24,8 @@ final class MenuSendersAction: NSObject {
             app.userNotification.pushNotification(error: "\(error)")
         }
         
-        app.gistService.setGist(content: content)
-            .debug("testing setGist")
+        app.gistClient.setGist(content: content)
+            .debug("setGist:")
             .retry(3)
             .subscribe { event in
                 switch event {
@@ -38,6 +38,11 @@ final class MenuSendersAction: NSObject {
                 }
         }
     }
+    
+    func loginToGithub(sender: NSMenuItem) {
+        app.gistClient.oauth.authorize()
+    }
+    
     //---------------------------------------------------------------------------
     func recentUploadsAction(sender: NSMenuItem) {
         let url = NSURL(string: sender.representedObject as! String)
