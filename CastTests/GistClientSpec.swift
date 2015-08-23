@@ -21,18 +21,11 @@ class GistClientSpec: QuickSpec {
                     gistClient = GistClient()
                 }
                 
-                it(""){
+                it("can create/update gists") {
                     
-                    let x = just(1)
+                   let stream = gistClient.setGist(content: "testing Content")
                     
-                    expect(x.last.get()) == 1
-                }
-                
-                it("can create gists") {
-                    
-                   let signal = gistClient.setGist(content: "testing Content")
-                    
-                    expect(signal.last.get()?.host) == "gist.github.com"
+                    expect(stream.last.get()?.host) == "gist.github.com"
                 }
                 
                 it("can be initialized with a different URL") {
