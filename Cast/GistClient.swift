@@ -13,8 +13,6 @@ GistService: is a wrapper around the gist.github.com service API.
 An instance of GistService allows you login via OAuth with your GitHub account or remain anonymous.
 
 You may create new gists as anonymous but you may modify a gist only if you're logged into the service.
-
-- TODO: Store gistID in NSUserDefaults
 */
 public class GistClient {
     
@@ -24,8 +22,12 @@ public class GistClient {
     var oauth: OAuthClient
     var gistID: String? {
         get {
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            return userDefaults.stringForKey("gistID")
+            if OAuthClient.getToken() != nil {
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                return userDefaults.stringForKey("gistID")
+            } else {
+                return nil
+            }
         }
         set (value) {
             let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -83,20 +85,21 @@ public class GistClient {
                 ]
                 
                 var request: NSMutableURLRequest
-                if let gistID = self.gistID where updateGist && (OAuthClient.getToken() != nil) {
+                if let gistID = self.gistID where updateGist {
                     let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                     request = NSMutableURLRequest(URL: updateURL)
                     request.HTTPMethod = "PATCH"
+                    
+                    if let token = OAuthClient.getToken() {
+                        request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+                    }
+                    
                 } else {
                     request = NSMutableURLRequest(URL: self.gistAPIURL)
                     request.HTTPMethod = "POST"
                 }
                 request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                 request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
-                
-                if let token = OAuthClient.getToken() {
-                    request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
-                }
                 
                 let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -110,11 +113,7 @@ public class GistClient {
                         let jsonData = JSON(data: data)
                         if let gistURL = jsonData["html_url"].URL, gistID = jsonData["id"].string {
                             
-                            if OAuthClient.getToken() != nil {
-                                self.gistID = gistID
-                            } else {
-                                self.gistID = nil
-                            }
+                            self.gistID = gistID
                             
                             sendNext(stream, gistURL)
                             sendCompleted(stream)
