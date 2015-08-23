@@ -21,25 +21,18 @@ class GistClientSpec: QuickSpec {
                     gistClient = GistClient()
                 }
                 
-                it(""){
+                it("can update/create gists") {
                     
-                    let x = just(1)
+                   let stream = gistClient.setGist(content: "testing Content")
                     
-                    expect(x.last.get()) == 1
+                    expect(stream.last.get()?.host) == "gist.github.com"
                 }
                 
                 it("can create gists") {
                     
-                   let signal = gistClient.setGist(content: "testing Content")
+                    let stream = gistClient.setGist(content: "testing Content", updateGist: false)
                     
-                    expect(signal.last.get()?.host) == "gist.github.com"
-                }
-                
-                it("can be initialized with a different URL") {
-                    
-                    gistClient = GistClient(baseURLString: "https://api.github.com/gists")
-                    
-                    expect(gistClient.gistAPIURL.relativeString).to(equal("https://api.github.com/gists"))
+                    expect(stream.last.get()?.host) == "gist.github.com"
                 }
             }
             
@@ -48,21 +41,37 @@ class GistClientSpec: QuickSpec {
                 var gistError: ErrorType?
                 
                 beforeEach {
-                    gistClient = GistClient(baseURLString: "@\\:pop")
+                    gistError = nil
+                    gistClient = nil
                 }
                 
                 it("can fail on initialization") {
                     
+                    gistClient = GistClient(baseURLString: "@\\:pop")
                     
                     expect(gistClient).to(beNil())
                 }
                 
                 it("can fail during the connection") {
                     
+                    gistClient = GistClient(baseURLString: "http://dummyConnection.xyz")
+                    
                     gistClient?.setGist(content: "test content")
                         .subscribeError({ (error: ErrorType) in
                         gistError = error
                     })
+                    
+                    expect(gistError).toEventuallyNot(beNil())
+                }
+                
+                it("can error on a Bad response") {
+                    
+                    gistClient = GistClient(baseURLString: "https://api.github.com/gists/err")
+                    
+                    gistClient?.setGist(content: "test content")
+                        .subscribeError({ (error: ErrorType) in
+                            gistError = error
+                        })
                     
                     expect(gistError).toEventuallyNot(beNil())
                 }

@@ -21,13 +21,25 @@ let app = NSApp.delegate as! AppDelegate
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    
+    var oauth: OAuthClient
     var statusBarItem: NSStatusItem!
     var menuSendersAction: MenuSendersAction!
     var webAPI: WebAPIs!
     var userNotification: UserNotifications!
     var options: Options!
     var gistClient: GistClient!
+    
+    
+    override init() {
+
+        self.oauth = OAuthClient(
+            clientID: "ef09cfdbba0dfd807592",
+            clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
+            service: .GitHub
+            )!
+        
+        super.init()
+    }
     
     
     func applicationWillFinishLaunching(notification: NSNotification) {

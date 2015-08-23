@@ -18,9 +18,8 @@ public class GistClient {
     
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
-    public let gistAPIURL: NSURL
-    let oauth: OAuthClient
-    var gistID: String? {
+    private let gistAPIURL: NSURL
+    private var gistID: String? {
         get {
             let userDefaults = NSUserDefaults.standardUserDefaults()
             if OAuthClient.getToken() != nil {
@@ -42,12 +41,6 @@ public class GistClient {
     //MARK:- Initialisation
     public init(baseURL: NSURL = defaultURL) {
         self.gistAPIURL = baseURL
-        
-        self.oauth = OAuthClient(
-            clientID: "ef09cfdbba0dfd807592",
-            clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
-            service: .GitHub
-            )!
     }
     
     /**
