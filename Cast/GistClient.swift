@@ -22,15 +22,19 @@ public class GistClient {
     let oauth: OAuthClient
     var gistID: String? {
         get {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
             if OAuthClient.getToken() != nil {
-                let userDefaults = NSUserDefaults.standardUserDefaults()
                 return userDefaults.stringForKey("gistID")
             } else {
+                userDefaults.removeObjectForKey("gistID")
                 return nil
             }
         }
         set (value) {
-            value
+            if OAuthClient.getToken() != nil {
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                userDefaults.setObject(value, forKey: "gistID")
+            }
         }
     }
     
@@ -88,17 +92,15 @@ public class GistClient {
                     let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                     request = NSMutableURLRequest(URL: updateURL)
                     request.HTTPMethod = "PATCH"
-                    
-                    if let token = OAuthClient.getToken() {
-                        request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
-                    }
-                    
                 } else {
                     request = NSMutableURLRequest(URL: self.gistAPIURL)
                     request.HTTPMethod = "POST"
                 }
                 request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                 request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+                if let token = OAuthClient.getToken() {
+                    request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+                }
                 
                 let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in
