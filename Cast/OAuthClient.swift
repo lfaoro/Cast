@@ -13,8 +13,8 @@ import RxSwift
 import SwiftyJSON
 import KeychainAccess
 
-public enum OAuthService: String {
-    case GitHub = ""
+public enum OAuthServiceConfiguration {
+    case GitHub
 }
 
 public class OAuthClient: NSObject {
@@ -41,7 +41,7 @@ public class OAuthClient: NSObject {
             self.tokenURL = tokenURL
     }
     
-    convenience public init(clientID: String, clientSecret: String, service: OAuthService) {
+    convenience public init?(clientID: String, clientSecret: String, service: OAuthServiceConfiguration) {
         // get info from service and call super.init
         self.init(
             clientID: clientID,
