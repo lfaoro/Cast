@@ -208,8 +208,8 @@
 		A19D4F851B77957F00BEB08B /* CastTests */ = {
 			isa = PBXGroup;
 			children = (
-				A156D5451B84E4D800579FCC /* OAuthClientSpec.swift */,
 				A13A602C1B887561009C08D7 /* GistClientSpec.swift */,
+				A156D5451B84E4D800579FCC /* OAuthClientSpec.swift */,
 				A19D4F861B77957F00BEB08B /* CastTests.swift */,
 				A19D4F881B77957F00BEB08B /* Info.plist */,
 			);

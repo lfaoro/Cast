@@ -18,8 +18,6 @@ final class MenuSendersAction: NSObject {
                 content = stringData
             default: app.userNotification.pushNotification(error: "The pasteboard is Empty or Unreadable")
             }
-        } catch CastErrors.EmptyPasteboardError {
-            app.userNotification.pushNotification(error: "The pasteboard is Empty or Unreadable")
         } catch {
             app.userNotification.pushNotification(error: "\(error)")
         }
@@ -33,7 +31,6 @@ final class MenuSendersAction: NSObject {
                 case .Next(let url):
                     app.userNotification.pushNotification(openURL: url.absoluteString)
                 case .Completed:
-                    // Updating menu to display logout button
                     app.statusBarItem.menu = createMenu(self)
                 case .Error(let error):
                     app.userNotification.pushNotification(error: String(error))
@@ -42,10 +39,11 @@ final class MenuSendersAction: NSObject {
     }
     
     func loginToGithub(sender: NSMenuItem) {
-        app.gistClient.oauth.authorize()
+        app.oauth.authorize()
         
         // Need to know when authorized to update the Menu with Logout button
         // Maybe NSNotification?
+        // Maybe move the Login inside the options window
     }
     
     func logoutFromGithub(sender: NSMenuItem) {
@@ -82,7 +80,7 @@ final class MenuSendersAction: NSObject {
         }
     }
     //---------------------------------------------------------------------------
-    func openOptionsWindow(sender: NSMenuItem) { //TODO: Implement
+    func openOptionsWindow(sender: NSMenuItem) {
         app.options.displayOptionsWindow()
     }
 }
