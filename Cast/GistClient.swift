@@ -37,10 +37,8 @@ public class GistClient {
             service: OAuthService.GitHub
         )
         
-        if let token = self.oauth.getToken() {
+        if let token = OAuthClient.getToken() {
             self.userToken = token
-            
-            precondition(self.userToken != nil)
         }
         
     }
