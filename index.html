@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="-cast--share-anything-the-easy-way" class="anchor" href="#-cast--share-anything-the-easy-way" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png" alt="Cast logo"> Cast | share anything, the easy way</h1>
+<a id="-cast--share-data-securely-the-easy-way" class="anchor" href="#-cast--share-data-securely-the-easy-way" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png" alt="Cast logo"> Cast | share data, securely, the easy way</h1>
 
 <p><a href="https://github.com/lfaoro/Cast/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
 <a href="https://github.com/lfaoro/Cast/releases"><img src="https://img.shields.io/badge/release-BETA-red.svg" alt="release"></a>
@@ -31,40 +31,55 @@
 
 <p>Cast is an agent that lives in your system's
 <a href="https://support.apple.com/en-mt/HT201956">Status Menu</a>.
-Its purpose is to help you share any type of information quickly and easily with a drag'n'drop
-operation or a keyboard shortcut.</p>
+Its purpose is to help you share any type of information quickly and easily with a  keyboard shortcut, a 1-click or drag'n'drop
+operation.</p>
 
 <p>Cast will seamlessly figure out the type of information you wish to share and
 automatically choose the appropriate service for you. You may customize the
-service you wish to use through Cast &gt; Options window.</p>
+service you wish to use from a selection of available services.</p>
 
 <p>Cast can queue up multiple streams of information and share them all at once 
-extending the system's Pasteboard functinality </p>
+extending the system's Pasteboard functionality </p>
 
 <h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="features-roadmap-for-v10" class="anchor" href="#features-roadmap-for-v10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features roadmap for v1.0</h2>
 
 <ul>
 <li>[x] Uploads data automatically</li>
-<li>[x] Creates shortened download link</li>
-<li>[x] Download link readily available in clipboard</li>
-<li>[ ] Up to 20 Recent upload links</li>
-<li>[ ] Pasteboard queueing</li>
-<li>[ ] Multiple uploads in one operation</li>
-<li>[ ] iCloud Sync</li>
-<li>[x] Uploads raw text</li>
-<li>[ ] Uploads images</li>
-<li>[ ] Uploads folders</li>
-<li>[ ] Automatically ZIPs folders</li>
+<li>[x] Creates shortened download link using <a href="https://bitly.com/">bit.ly</a>
+</li>
+<li>[x] The shortened link is automatically moved inside your Pasteboard (ready to paste)</li>
+<li>[x] Notification alerts containing links or errors</li>
+<li>[x] Ability to click on the Notification and open the link</li>
+<li>[x] Seamless OAuth2 Web-Flow authentication to GitHub.com (no password)</li>
+<li>[x] GitHub's access Token securely stored inside your <a href="https://en.wikipedia.org/wiki/Keychain_(software)">Keychain</a>
+</li>
+<li>[x] Uploads raw text to the gist service creating a new gist</li>
+<li>[x] Uploads raw text to the gist service updating current gist (incremental/revisions)</li>
+<li>[ ] Up to 20 recent upload links</li>
+<li>[ ] Recent upload links synced via iCloud across all your Macs</li>
+<li>[ ] Configure the app through the Options menu</li>
+</ul>
+
+<h2>
+<a id="features-roadmap-for-future-versions-20" class="anchor" href="#features-roadmap-for-future-versions-20" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features roadmap for future versions 2.0+</h2>
+
+<ul>
+<li>[ ] Seamless OAuth2 Web-Flow authentication to Imgur.com (no password)</li>
+<li>[ ] Uploads images to imgur</li>
+<li>[ ] Uploads folders to iCloud Disk</li>
+<li>[ ] Automatically ZIPs folders before upload</li>
+<li>[ ] Multiple uploads in one operation functionality</li>
+<li>[ ] Pasteboard queue functionality</li>
+<li>[ ] Incremental Pasteboard functionality</li>
 </ul>
 
 <h2>
 <a id="supported-services" class="anchor" href="#supported-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported Services</h2>
 
-<p><em>Cast supports the following sharing services and weâ€™re working on
-supporting more</em></p>
+<p><em>As of release 1.0 Cast will support the following sharing services:</em></p>
 
-<p><strong>Text data</strong> either copied to your clipboard or contained in a file</p>
+<p><strong>Text data</strong> extracted from your pasteboard</p>
 
 <ul>
 <li>[x] gist.github.com</li>
@@ -73,7 +88,7 @@ supporting more</em></p>
 <li>[ ] swiftstub.com</li>
 </ul>
 
-<p><strong>Image data</strong> either copied to your clipboard or contained in a file  </p>
+<p><strong>Image data</strong> extracted from your pasteboard</p>
 
 <ul>
 <li>[ ] imgur.com</li>
@@ -88,11 +103,17 @@ supporting more</em></p>
 <li>[ ] dropbox.com</li>
 </ul>
 
+<p><strong>URL Shorteners</strong></p>
+
+<ul>
+<li>[x] bit.ly</li>
+</ul>
+
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
-<li>Mac OS X 10.9+</li>
+<li>OS X 10.9+</li>
 <li>Xcode 7</li>
 </ul>
 
@@ -108,15 +129,27 @@ supporting more</em></p>
 </li>
 <li>If you <strong>have a feature request</strong>, <a href="https://github.com/lfaoro/Cast/issues">open an issue</a>
 </li>
-<li>If you <strong>want to contribute</strong>, check the <a href="https://github.com/lfaoro/Cast/blob/master/SystemMap.md">system map</a>
-</li>
+<li>If you'd <strong>like to contribute</strong>, check the <a href="https://github.com/lfaoro/Cast/blob/master/SystemMap.md">system map</a> and look for TODO: statements in the source files.</li>
 </ul>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<blockquote>
+<p>Cast is owned and maintained by <a href="http://cv.lfaoro.com">Leonardo Faoro</a> and his mentor and friend <a href="https://www.linkedin.com/in/chrispschreiner">Chris Patrick Schreiner</a>.</p>
+
+<p>We all stand on the shoulders of giants across many open source communities. We’d like to thank the communities and projects that established our inspiration.</p>
+</blockquote>
+
+<h2>
+<a id="security-disclosure" class="anchor" href="#security-disclosure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security Disclosure</h2>
+
+<p>If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to <a href="mailto:security@lfaoro.com">security@lfaoro.com</a>. Please do not post it to a public issue tracker.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>Cast is released under the 
-<a href="LICENSE.md">MIT License</a></p>
+<p>Cast is released under the <a href="LICENSE.md">MIT License</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/lfaoro/Cast">Cast</a> is maintained by <a href="https://github.com/lfaoro">lfaoro</a>.</span>
