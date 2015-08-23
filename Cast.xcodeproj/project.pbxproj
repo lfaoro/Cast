@@ -19,13 +19,13 @@
 		A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Globals.swift */; };
 		A13A602D1B887561009C08D7 /* GistClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13A602C1B887561009C08D7 /* GistClientSpec.swift */; };
 		A1478E371B88FC44004889DA /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1478E361B88FC44004889DA /* KeychainAccess.framework */; };
-		A1478E391B89103B004889DA /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1478E381B89103B004889DA /* RxBlocking.framework */; };
 		A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14C8BBD1B6F22F900EDBBAA /* SwiftyJSON.framework */; };
 		A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* PasteboardController.swift */; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
+		A16430431B89A14900C2A590 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1478E381B89103B004889DA /* RxBlocking.framework */; };
 		A16ACC671B852090008C0B0F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16ACC651B852090008C0B0F /* RxCocoa.framework */; };
 		A16ACC681B852090008C0B0F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16ACC661B852090008C0B0F /* RxSwift.framework */; };
 		A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */; };
@@ -94,7 +94,6 @@
 			files = (
 				A1478E371B88FC44004889DA /* KeychainAccess.framework in Frameworks */,
 				A16ACC671B852090008C0B0F /* RxCocoa.framework in Frameworks */,
-				A1478E391B89103B004889DA /* RxBlocking.framework in Frameworks */,
 				A16ACC681B852090008C0B0F /* RxSwift.framework in Frameworks */,
 				A1FD5DE71B7D69E40090C1EB /* Result.framework in Frameworks */,
 				A14C8BBE1B6F22F900EDBBAA /* SwiftyJSON.framework in Frameworks */,
@@ -108,6 +107,7 @@
 			files = (
 				A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */,
 				A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */,
+				A16430431B89A14900C2A590 /* RxBlocking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
