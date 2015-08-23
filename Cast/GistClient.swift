@@ -30,8 +30,7 @@ public class GistClient {
             }
         }
         set (value) {
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setObject(value, forKey: "gistID")
+            value
         }
     }
     
@@ -44,7 +43,7 @@ public class GistClient {
             clientID: "ef09cfdbba0dfd807592",
             clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
             service: .GitHub
-        )!
+            )!
     }
     
     /**

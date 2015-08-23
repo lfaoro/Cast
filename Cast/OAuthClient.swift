@@ -63,18 +63,16 @@ public class OAuthClient: NSObject {
         oauthRequest()
     }
     
-    public class func revoke() -> Void {
-        let keychain = Keychain(service: "com.lfaoro.cast.github-token") //, accessGroup: "com.lfaoro.cast")
-        
-        keychain["token"] = nil
+    public class func revoke() -> NSError? {
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+
+        return keychain.remove("token")
     }
     
     public class func getToken() -> String? {
-        let keychain = Keychain(service: "com.lfaoro.cast.github-token") //, accessGroup: "com.lfaoro.cast")
-       
-        guard let token = keychain["token"] else {return nil}
+        let keychain = Keychain(service: "com.lfaoro.cast.github-token")
         
-        return token
+        return keychain.get("token")
     }
     
     
@@ -82,7 +80,7 @@ public class OAuthClient: NSObject {
     func oauthRequest() -> Void {
         
         let oauthQuery = [
-            NSURLQueryItem(name: "client_id", value: "ef09cfdbba0dfd807592"),
+            NSURLQueryItem(name: "client_id", value: clientID),
             NSURLQueryItem(name: "redirect_uri", value: "cast://oauth"),
             NSURLQueryItem(name: "scope", value: "gist")
             //      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
@@ -144,8 +142,8 @@ public class OAuthClient: NSObject {
     func exchangeCodeForAccessToken(code: String) -> Observable<String> {
         
         let oauthQuery = [
-            NSURLQueryItem(name: "client_id", value: "ef09cfdbba0dfd807592"),
-            NSURLQueryItem(name: "client_secret", value: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7"),
+            NSURLQueryItem(name: "client_id", value: clientID),
+            NSURLQueryItem(name: "client_secret", value: clientSecret),
             NSURLQueryItem(name: "code", value: code),
             NSURLQueryItem(name: "redirect_uri", value: "cast://oauth"),
             //      NSURLQueryItem(name: "state", value: "\(NSUUID().UUIDString)"),
