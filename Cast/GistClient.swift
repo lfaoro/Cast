@@ -19,19 +19,22 @@ public class GistClient {
     //MARK:- Properties
     private static let defaultURL = NSURL(string: "https://api.github.com/gists")!
     public let gistAPIURL: NSURL
-    var oauth: OAuthClient
+    let oauth: OAuthClient
     var gistID: String? {
         get {
+            let userDefaults = NSUserDefaults.standardUserDefaults()
             if OAuthClient.getToken() != nil {
-                let userDefaults = NSUserDefaults.standardUserDefaults()
                 return userDefaults.stringForKey("gistID")
             } else {
+                userDefaults.removeObjectForKey("gistID")
                 return nil
             }
         }
         set (value) {
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setObject(value, forKey: "gistID")
+            if OAuthClient.getToken() != nil {
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                userDefaults.setObject(value, forKey: "gistID")
+            }
         }
     }
     
@@ -43,8 +46,8 @@ public class GistClient {
         self.oauth = OAuthClient(
             clientID: "ef09cfdbba0dfd807592",
             clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
-            service: OAuthService.GitHub
-        )
+            service: .GitHub
+            )!
     }
     
     /**
@@ -89,17 +92,15 @@ public class GistClient {
                     let updateURL = self.gistAPIURL.URLByAppendingPathComponent(gistID)
                     request = NSMutableURLRequest(URL: updateURL)
                     request.HTTPMethod = "PATCH"
-                    
-                    if let token = OAuthClient.getToken() {
-                        request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
-                    }
-                    
                 } else {
                     request = NSMutableURLRequest(URL: self.gistAPIURL)
                     request.HTTPMethod = "POST"
                 }
                 request.HTTPBody = try! JSON(githubHTTPBody).rawData()
                 request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+                if let token = OAuthClient.getToken() {
+                    request.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+                }
                 
                 let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithRequest(request) { (data, response, error) in

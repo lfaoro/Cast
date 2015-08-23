@@ -25,8 +25,9 @@ final class MenuSendersAction: NSObject {
         }
         
         app.gistClient.setGist(content: content)
-            .debug("setGist:")
+            .debug("setGist")
             .retry(3)
+            .flatMap { BitlyClient.shortenURL($0) }
             .subscribe { event in
                 switch event {
                 case .Next(let url):
@@ -48,7 +49,11 @@ final class MenuSendersAction: NSObject {
     }
     
     func logoutFromGithub(sender: NSMenuItem) {
-        OAuthClient.revoke()
+        let error = OAuthClient.revoke()
+        
+        if let error = error {
+            app.userNotification.pushNotification(error: error.localizedDescription)
+        }
     }
     
     //---------------------------------------------------------------------------
