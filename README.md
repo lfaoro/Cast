@@ -1,4 +1,4 @@
-# ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share anything, the easy way
+# ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, securely, the easy way
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![release](https://img.shields.io/badge/release-BETA-red.svg)](https://github.com/lfaoro/Cast/releases)
@@ -9,44 +9,50 @@
 
 Cast is an agent that lives in your system's
 [Status Menu](https://support.apple.com/en-mt/HT201956).
-Its purpose is to help you share any type of information quickly and easily with a drag'n'drop
-operation or a keyboard shortcut.
+Its purpose is to help you share any type of information quickly and easily with a  keyboard shortcut, a 1-click or drag'n'drop
+operation.
 
 Cast will seamlessly figure out the type of information you wish to share and
 automatically choose the appropriate service for you. You may customize the
-service you wish to use through Cast > Options window.
+service you wish to use from a selection of available services.
 
 Cast can queue up multiple streams of information and share them all at once 
-extending the system's Pasteboard functinality 
+extending the system's Pasteboard functionality 
 
-## Features
+## Features roadmap for v1.0
 - [x] Uploads data automatically
-- [x] Creates shortened download link
-- [x] Download link readily available in clipboard
-- [x] Seamless OAuth2 authentication to GitHub.com (no password)
-- [x] Seamless OAuth2 authentication to Imgur.com (no password)
-- [ ] Up to 20 Recent upload links
-- [ ] Multiple uploads in one operation
-- [ ] iCloud Sync
-- [x] Uploads raw text
-- [ ] Uploads images
-- [ ] Uploads folders
-- [ ] Automatically ZIPs folders
-- [ ] Pasteboard queueing Mode
-- [ ] Incremental Pasteboard Mode
-- [ ] Gist refining Mode
+- [x] Creates shortened download link using [bit.ly](https://bitly.com/)
+- [x] The shortened link is automatically moved inside your Pasteboard (ready to paste)
+- [x] Notification alerts containing links or errors
+- [x] Ability to click on the Notification and open the link
+- [x] Seamless OAuth2 Web-Flow authentication to GitHub.com (no password)
+- [x] GitHub's access Token securely stored inside your [Keychain](https://en.wikipedia.org/wiki/Keychain_(software))
+- [x] Uploads raw text to the gist service creating a new gist
+- [x] Uploads raw text to the gist service updating current gist (incremental/revisions)
+- [ ] Up to 20 recent upload links
+- [ ] Recent upload links synced via iCloud across all your Macs
+- [ ] Configure the app through the Options menu
+
+## Features roadmap for future versions 2.0+
+
+- [ ] Seamless OAuth2 Web-Flow authentication to Imgur.com (no password)
+- [ ] Uploads images to imgur
+- [ ] Uploads folders to iCloud Disk
+- [ ] Automatically ZIPs folders before upload
+- [ ] Multiple uploads in one operation functionality
+- [ ] Pasteboard queue functionality
+- [ ] Incremental Pasteboard functionality
 
 ## Supported Services 
-*Cast supports the following sharing services and we're working on
-supporting more*
+*As of release 1.0 Cast will support the following sharing services:*
 
-**Text data** inside your clipboard
+**Text data** extracted from your pasteboard
 - [x] gist.github.com
 - [ ] pastebin.com
 - [ ] dpaste.com
 - [ ] swiftstub.com
 
-**Image data** inside your clipboard
+**Image data** extracted from your pasteboard
 - [ ] imgur.com
 - [ ] flickr.com
 
@@ -59,7 +65,7 @@ supporting more*
 - [x] bit.ly
 
 ## Requirements
-- Mac OS X 10.9+
+- OS X 10.9+
 - Xcode 7
 
 ## Communication
