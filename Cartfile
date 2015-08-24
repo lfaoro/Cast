@@ -1,3 +1,4 @@
-github "lfaoro/RxSwiftTest" "master"
+#github "lfaoro/RxSwiftTest" "master"
+git "https://github.com/ReactiveX/RxSwift" "rxswift-2.0"
 github "SwiftyJSON/SwiftyJSON" "xcode7"
 github "kishikawakatsumi/KeychainAccess" "swift-2.0"
