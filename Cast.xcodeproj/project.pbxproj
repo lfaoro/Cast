@@ -73,8 +73,6 @@
 		A16ACC651B852090008C0B0F /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/Mac/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		A16ACC661B852090008C0B0F /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/Mac/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistClient.swift; sourceTree = "<group>"; };
-		A18818731B76802D00FC6E7E /* GistService.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GistService.playground; sourceTree = "<group>"; };
-		A18818741B773D2B00FC6E7E /* Tests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Tests.playground; sourceTree = "<group>"; };
 		A198EC3A1B89E7F300E9D718 /* BitlyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitlyClient.swift; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D4F861B77957F00BEB08B /* CastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTests.swift; sourceTree = "<group>"; };
@@ -189,8 +187,6 @@
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
-				A18818731B76802D00FC6E7E /* GistService.playground */,
-				A18818741B773D2B00FC6E7E /* Tests.playground */,
 			);
 			name = Assets;
 			path = Cast;
