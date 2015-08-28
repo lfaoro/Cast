@@ -113,7 +113,7 @@ public class OAuthClient: NSObject {
         if let callback = event.descriptorForKeyword(AEEventClass(keyDirectObject))?.stringValue { // thank you mikeash!
             
             if let code = NSURLComponents(string: callback)?.queryItems?[0].value {
-                
+
                 exchangeCodeForAccessToken(code)
                     .debug()
                     .retry(3)
@@ -123,9 +123,9 @@ public class OAuthClient: NSObject {
                             let keychain = Keychain(service: "com.lfaoro.cast.github-token")
                             keychain["token"] = token
                         case .Completed:
-                            print("completed")
+                            Swift.print("completed")
                         case .Error(let error):
-                            print("\(error)")
+                            Swift.print("\(error)")
                         }
                 }
                 

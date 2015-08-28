@@ -26,6 +26,18 @@ public enum PasteboardData {
     }
   }
 }
+
+/*
+
+get the pasteboard
+parse it for NSString.self data
+return the result
+
+make a function 
+
+*/
+
+
 //---------------------------------------------------------------------------
 /// Pasteboard: an object that holds one or more objects of any type
 final class PasteboardController: NSObject {
@@ -47,10 +59,8 @@ final class PasteboardController: NSObject {
   //---------------------------------------------------------------------------
   //FIXME: Find a better implementation
   func extractData() throws -> PasteboardData {
-    print(__FUNCTION__)
     if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?.flatMap({ PasteboardData(anyData: $0) })
       where !pasteboardItems.isEmpty {
-        print(pasteboardItems[0])
         return pasteboardItems[0]
     }
     throw CastErrors.EmptyPasteboardError
@@ -58,14 +68,11 @@ final class PasteboardController: NSObject {
   //---------------------------------------------------------------------------
   //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly
   func copyToClipboard(objects: [AnyObject]) {
-    print(__FUNCTION__)
     pasteboard.clearContents()
     let extractedStrings = objects.flatMap({ String($0) })
     if extractedStrings.isEmpty { fatalError("no data") }
     if pasteboard.writeObjects(extractedStrings) {
-      print("success")
       for text in extractedStrings {
-        print(text)
         dispatch_async(dispatch_get_main_queue()) {
           app.userNotification.pushNotification(openURL: text)
         }
