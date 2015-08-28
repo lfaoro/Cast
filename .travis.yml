@@ -1,13 +1,13 @@
 language: objective-c
+osx_image: xcode7
 before_install:
  - brew update
  - brew install carthage
 branches:
  only:
- - master
+ - develop
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
-osx_image: beta-xcode7
 
 script:
 - carthage bootstrap
