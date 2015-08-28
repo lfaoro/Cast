@@ -5,8 +5,5 @@ before_install:
  - brew upgrade xctool
  - brew install carthage
  - carthage bootstrap --verbose
-branches:
- only:
- - develop
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
