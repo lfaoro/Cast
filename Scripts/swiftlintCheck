@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if type swiftlint >/dev/null; then
+  /usr/local/bin/swiftlint
+else
+  echo "SwiftLint not installed, try to fetch it"
+
+  if type brew >/dev/null; then
+    brew update
+    brew install swiftlint
+    /usr/local/bin/swiftlint
+  else
+    echo "brew not installed, visit www.brew.sh"
+  fi
+
+fi

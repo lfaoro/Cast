@@ -358,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". Scripts/tags";
+			shellScript = Scripts/tags;
 		};
 		A17A19DC1B919C9E005CB0A5 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -372,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd Cast\n/usr/local/bin/swiftlint";
+			shellScript = Scripts/swiftlintCheck;
 		};
 /* End PBXShellScriptBuildPhase section */
 
