@@ -85,20 +85,23 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?.target = target
 
+	let gitHubLoginItem = NSMenuItem()
+	gitHubLoginItem.target = target
+	gitHubLoginItem.keyEquivalent = "L"
 	if OAuthClient.getToken() != nil {
-		menu.addItemWithTitle("Logout from GitHub",
-			action: "logoutFromGithub:",
-			keyEquivalent: "")?.target = target
+		gitHubLoginItem.title = "Logout from GitHub"
+		gitHubLoginItem.action = "logoutFromGithub:"
 	} else {
-		menu.addItemWithTitle("Login to GitHub",
-			action: "loginToGithub:",
-			keyEquivalent: "")?.target = target
+		gitHubLoginItem.title = "Login to GitHub"
+		gitHubLoginItem.action = "loginToGithub:"
 	}
 
+	menu.addItem(gitHubLoginItem)
 	menu.addItem(NSMenuItem.separatorItem())
 
 	//---------------------------------------------------------------------------
 	///- todo: externalise in separate function
+	///- todo: implement recent gists
 	let recentUploadsItem = NSMenuItem(title: "Recent Uploads",
 		action: "terminate:",
 		keyEquivalent: "")
@@ -125,9 +128,9 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItemWithTitle("Start at Login",
 		action: "startAtLoginAction:",
 		keyEquivalent: "")?.target = target
-	menu.addItemWithTitle("Options",
-		action: "openOptionsWindow:",
-		keyEquivalent: "")?.target = target
+	//	menu.addItemWithTitle("Options",
+	//		action: "openOptionsWindow:",
+	//		keyEquivalent: "")?.target = target
 	menu.addItemWithTitle("Quit",
 		action: "terminate:",
 		keyEquivalent: "Q")

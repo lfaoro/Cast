@@ -40,10 +40,6 @@ final class MenuSendersAction: NSObject {
 
 	func loginToGithub(sender: NSMenuItem) {
 		app.oauth.authorize()
-
-		// Need to know when authorized to update the Menu with Logout button
-		// Maybe NSNotification?
-		// Maybe move the Login inside the options window
 	}
 
 	func logoutFromGithub(sender: NSMenuItem) {
@@ -51,6 +47,8 @@ final class MenuSendersAction: NSObject {
 
 		if let error = error {
 			app.userNotification.pushNotification(error: error.localizedDescription)
+		} else {
+			app.statusBarItem.menu = createMenu(self)
 		}
 	}
 

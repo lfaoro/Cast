@@ -40,6 +40,8 @@ make a function
 
 //---------------------------------------------------------------------------
 /// Pasteboard: an object that holds one or more objects of any type
+///- todo: refactor PasteboardController
+///- todo: find better name for pasteboardcontroller
 final class PasteboardController: NSObject {
   let pasteboard = NSPasteboard.generalPasteboard()
   let classes: [AnyClass] = [

@@ -13,7 +13,8 @@ import RxSwift
 import SwiftyJSON
 import KeychainAccess
 
-public enum OAuthServiceConfiguration {
+///- todo: find a way to return multiple configurations from the same enumCase
+public enum OAuthClientConfig {
 	case GitHub
 }
 
@@ -43,7 +44,7 @@ public class OAuthClient: NSObject {
 	convenience public init?(
 		clientID: String,
 		clientSecret: String,
-		service: OAuthServiceConfiguration) {
+		service: OAuthClientConfig) {
 			// get info from service and call super.init
 			self.init(
 				clientID: clientID,
@@ -127,6 +128,7 @@ public class OAuthClient: NSObject {
 							keychain["token"] = token
 						case .Completed:
 							Swift.print("completed")
+							app.statusBarItem.menu = createMenu(app.menuSendersAction)
 						case .Error(let error):
 							Swift.print("\(error)")
 						}
