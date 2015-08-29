@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -rfv ~/Library/Developer/Xcode/DerivedData
+rm -rfv ~/Library/Caches/*carthage*

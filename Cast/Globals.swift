@@ -18,3 +18,13 @@ public func extractExcerptFromString(string: String, length: Int) -> String {
         return string
     }
 }
+
+/**
+- todo: refactor PasteboardController
+- todo: find better name for pasteboardcontroller
+- todo: remove options menu
+- todo: implement recent gists
+- todo: find a way to add a global hotkey for sharing gists
+- todo: research about auto-update
+*/
+public func todo() {}
