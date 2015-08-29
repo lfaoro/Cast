@@ -1,5 +1,5 @@
-github "kishikawakatsumi/KeychainAccess" "561e03d38cb17227051b6dccad1fcc33599fa509"
-github "Quick/Nimble" "e84623d953d811f74a2afcda4fa0c8121e7dad7d"
+github "kishikawakatsumi/KeychainAccess" "f2245201d4e275cee8d758aeece95d24a0aebf29"
+github "Quick/Nimble" "930aab083cd4e2054faca10431929202dc807a07"
 github "Quick/Quick" "b6e311acc3dc79835969defa52d865f1e9eb3515"
-git "https://github.com/ReactiveX/RxSwift" "6ee66a1ce143aca1ed06bab539842dcdb6bd527b"
+github "lfaoro/RxSwift" "23dacf919a09affd40d0175cfe59ea13d46c7acc"
 github "SwiftyJSON/SwiftyJSON" "f269523ac572979245baa99c8475eab73caf1e9b"

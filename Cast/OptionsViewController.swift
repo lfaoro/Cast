@@ -9,12 +9,11 @@ import Cocoa
 
 /*
 Options organization:
-//TODO: Auto sign-in using browser not windows
 - General
   - Display notifications on/off
   - Start Cast on system startup on/off
   - Auto-share screenshots *not implemented*
-- Services 
+- Services
   Text services
     gist.GitHub.com
     - Authenticate with GitHub via OAuth2 Web-Flow
@@ -39,4 +38,3 @@ class OptionsViewController: NSViewController {
   }
   //---------------------------------------------------------------------------
 }
-

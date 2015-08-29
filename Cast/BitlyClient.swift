@@ -12,12 +12,13 @@ import RxCocoa
 import SwiftyJSON
 
 public class BitlyClient {
-    
+
     public class func shortenURL(URL: NSURL) -> Observable<NSURL> {
         let bitlyAPIurl = "https://api-ssl.bitly.com"
-        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL.relativeString!
+        let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
+            "&longUrl=" + URL.relativeString!
         let url = NSURL(string: bitlyAPIshorten)!
-        
+
         return create { stream in
             let session = NSURLSession.sharedSession()
             session.dataTaskWithURL(url) { (data, response, error) in
@@ -36,7 +37,7 @@ public class BitlyClient {
                     sendError(stream, ConnectionError.NoResponse((error!.localizedDescription)))
                 }
                 }.resume()
-            
+
             return NopDisposable.instance
         }
     }

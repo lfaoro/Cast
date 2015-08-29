@@ -17,7 +17,7 @@ public enum PasteboardData {
   case Reference(NSURL)
   case Number(NSNumber)
   case Error(String)
-  
+
   public init?(anyData: AnyObject) {
     switch anyData {
     case let stringData as String: self = PasteboardData.Text(stringData)
@@ -33,13 +33,15 @@ get the pasteboard
 parse it for NSString.self data
 return the result
 
-make a function 
+make a function
 
 */
 
 
 //---------------------------------------------------------------------------
 /// Pasteboard: an object that holds one or more objects of any type
+///- todo: refactor PasteboardController
+///- todo: find better name for pasteboardcontroller
 final class PasteboardController: NSObject {
   let pasteboard = NSPasteboard.generalPasteboard()
   let classes: [AnyClass] = [
@@ -57,16 +59,14 @@ final class PasteboardController: NSObject {
     NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
   ]
   //---------------------------------------------------------------------------
-  //FIXME: Find a better implementation
   func extractData() throws -> PasteboardData {
-    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?.flatMap({ PasteboardData(anyData: $0) })
-      where !pasteboardItems.isEmpty {
+    if let pasteboardItems = pasteboard.readObjectsForClasses(classes, options: nil)?
+			.flatMap({ PasteboardData(anyData: $0) }) where !pasteboardItems.isEmpty {
         return pasteboardItems[0]
     }
     throw CastErrors.EmptyPasteboardError
   }
   //---------------------------------------------------------------------------
-  //FIXME: Figure out a way to understand which class is AnyObject and cast accordingly
   func copyToClipboard(objects: [AnyObject]) {
     pasteboard.clearContents()
     let extractedStrings = objects.flatMap({ String($0) })

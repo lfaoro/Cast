@@ -16,7 +16,7 @@ final class Options: NSObject {
     optionsWC = NSStoryboard(name: "Main", bundle: NSBundle.mainBundle())
       .instantiateControllerWithIdentifier("optionsWC") as? NSWindowController
     optionsWC?.window?.makeKeyAndOrderFront(NSApp)
-    
+
     let servicesPlist = NSBundle.mainBundle().pathForResource("Services", ofType: "plist")!
     let services = JSON(NSDictionary(contentsOfFile: servicesPlist)!)
     print(services["Gist"]["URL"].string!)
