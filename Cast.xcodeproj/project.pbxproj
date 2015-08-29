@@ -234,6 +234,7 @@
 				A150495F1B6940D9009BF6A9 /* Carthage Script */,
 				A15049661B6978A5009BF6A9 /* Tags Script */,
 				A17A19D21B9104F6005CB0A5 /* CopyFiles */,
+				A17A19DC1B919C9E005CB0A5 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -358,6 +359,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ". Scripts/tags";
+		};
+		A17A19DC1B919C9E005CB0A5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd Cast\n/usr/local/bin/swiftlint";
 		};
 /* End PBXShellScriptBuildPhase section */
 
