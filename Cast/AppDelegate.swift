@@ -122,9 +122,9 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	//	menu.addItem(recentUploadsItem)
 	//---------------------------------------------------------------------------
 
-	menu.addItemWithTitle("Start at Login",
-		action: "startAtLoginAction:",
-		keyEquivalent: "")?.target = target
+	//	menu.addItemWithTitle("Start at Login",
+	//		action: "startAtLoginAction:",
+	//		keyEquivalent: "")?.target = target
 	//	menu.addItemWithTitle("Options",
 	//		action: "openOptionsWindow:",
 	//		keyEquivalent: "")?.target = target
