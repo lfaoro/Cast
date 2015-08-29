@@ -23,10 +23,10 @@
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
-		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19D81B910523005CB0A5 /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19D91B910523005CB0A5 /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */; };
 		A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */; };
 		A198EC3B1B89E7F300E9D718 /* BitlyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* BitlyClient.swift */; };
@@ -44,17 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A17A19D21B9104F6005CB0A5 /* CopyFiles */ = {
+		A17A19D21B9104F6005CB0A5 /* Copy Files - Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in CopyFiles */,
-				A17A19D81B910523005CB0A5 /* RxCocoa.framework in CopyFiles */,
-				A17A19D91B910523005CB0A5 /* RxSwift.framework in CopyFiles */,
-				A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in CopyFiles */,
+				A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */,
+				A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */,
+				A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */,
+				A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */,
 			);
+			name = "Copy Files - Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -231,10 +232,10 @@
 				A13145DC1B5AA34E00AA4406 /* Sources */,
 				A13145DD1B5AA34E00AA4406 /* Frameworks */,
 				A13145DE1B5AA34E00AA4406 /* Resources */,
+				A17A19D21B9104F6005CB0A5 /* Copy Files - Frameworks */,
 				A150495F1B6940D9009BF6A9 /* Carthage Script */,
+				A17A19DC1B919C9E005CB0A5 /* SwiftLint Script */,
 				A15049661B6978A5009BF6A9 /* Tags Script */,
-				A17A19D21B9104F6005CB0A5 /* CopyFiles */,
-				A17A19DC1B919C9E005CB0A5 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -278,6 +279,9 @@
 						DevelopmentTeam = H9XB8B9RVW;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
 								enabled = 1;
 							};
 						};
@@ -360,14 +364,14 @@
 			shellPath = /bin/sh;
 			shellScript = Scripts/tags;
 		};
-		A17A19DC1B919C9E005CB0A5 /* SwiftLint */ = {
+		A17A19DC1B919C9E005CB0A5 /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = "SwiftLint Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
