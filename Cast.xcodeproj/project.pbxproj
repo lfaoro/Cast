@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC9D901B6586DE002F35FA /* Dragging.swift */; };
 		A11025C01B75796300720866 /* ImgurClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11025BF1B75796300720866 /* ImgurClient.swift */; };
+		A11FFDF01B92539000CA6C5F /* PasteboardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FFDEF1B92539000CA6C5F /* PasteboardClient.swift */; settings = {ASSET_TAGS = (); }; };
 		A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E31B5AA34E00AA4406 /* AppDelegate.swift */; };
 		A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */; };
 		A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A13145E71B5AA34E00AA4406 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		83BC9D901B6586DE002F35FA /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
 		A11025BF1B75796300720866 /* ImgurClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurClient.swift; sourceTree = "<group>"; };
+		A11FFDEF1B92539000CA6C5F /* PasteboardClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardClient.swift; sourceTree = "<group>"; };
 		A13145E01B5AA34E00AA4406 /* Cast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13145E31B5AA34E00AA4406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A13145E51B5AA34E00AA4406 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = Cast/OptionsViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				A15049671B6979E5009BF6A9 /* UserNotifications.swift */,
 				A1D8DA8B1B6E7AE0001284F3 /* Options.swift */,
 				A13961B31B5BF4C400E9CB98 /* Globals.swift */,
+				A11FFDEF1B92539000CA6C5F /* PasteboardClient.swift */,
 				A11025BC1B75792F00720866 /* Services */,
 			);
 			path = Cast;
@@ -394,6 +397,7 @@
 				A1325D731B641619004B81CB /* WebAPIs.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */,
+				A11FFDF01B92539000CA6C5F /* PasteboardClient.swift in Sources */,
 				A198EC3B1B89E7F300E9D718 /* BitlyClient.swift in Sources */,
 				A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
