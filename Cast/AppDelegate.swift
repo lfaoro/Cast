@@ -6,11 +6,7 @@
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
 // Cast: verb. throw (something) forcefully in a specified direction.
-/*
-This app has been developed using 2 principles I've learnt from Chris Patrick Schreiner (@sushito)
-- DRY = Don't Repeat Yourself
-- YAGNI = You Ain't Gonna Need It
-*/
+
 import Cocoa
 import SwiftyJSON
 
@@ -122,9 +118,10 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		action: "clearItemsAction:",
 		keyEquivalent: "")?.target = target
 	recentUploadsItem.submenu = recentUploadsSubmenu
+
+	//	menu.addItem(recentUploadsItem)
 	//---------------------------------------------------------------------------
 
-	menu.addItem(recentUploadsItem)
 	menu.addItemWithTitle("Start at Login",
 		action: "startAtLoginAction:",
 		keyEquivalent: "")?.target = target
@@ -134,6 +131,6 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItemWithTitle("Quit",
 		action: "terminate:",
 		keyEquivalent: "Q")
-	
+
 	return menu
 }
