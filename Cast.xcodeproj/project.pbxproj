@@ -98,7 +98,6 @@
 		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
 		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		A1D8DA8B1B6E7AE0001284F3 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = SYSTEMmap.md; sourceTree = SOURCE_ROOT; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -192,7 +191,6 @@
 		A13145F51B5AA65B00AA4406 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				EB87C1D21B7246BD00B988B0 /* SYSTEMmap.md */,
 				A150495D1B693DD8009BF6A9 /* README.md */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
 				A14AAAE51B89AB8D00942013 /* Cast.entitlements */,
