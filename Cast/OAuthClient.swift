@@ -129,6 +129,8 @@ public class OAuthClient: NSObject {
 						case .Completed:
 							Swift.print("completed")
 							app.statusBarItem.menu = createMenu(app.menuSendersAction)
+							app.userNotification.pushNotification(error: "GitHub Authentication",
+								description: "Successfully authenticated!")
 						case .Error(let error):
 							Swift.print("\(error)")
 						}

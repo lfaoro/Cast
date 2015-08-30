@@ -18,6 +18,7 @@ enum PBItem {
 
 class PasteboardClient {
 
+
 	class func putInPasteboard(items items: [String]) -> Bool {
 		let pb = NSPasteboard.generalPasteboard()
 

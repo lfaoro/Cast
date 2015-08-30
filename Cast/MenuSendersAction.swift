@@ -8,6 +8,7 @@ import RxCocoa
 
 final class MenuSendersAction: NSObject {
 
+
 	func shareClipboardContentsAction(sender: NSMenuItem) {
 
 		let _ = PasteboardClient.getPasteboardItems()
@@ -23,6 +24,7 @@ final class MenuSendersAction: NSObject {
 						.flatMap { URLManipulation.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
+
 							case .Next(let URL):
 								if let URL = URL {
 									PasteboardClient.putInPasteboard(items: [URL])
@@ -30,8 +32,10 @@ final class MenuSendersAction: NSObject {
 								} else {
 									app.userNotification.pushNotification(error: "Unable to Shorten URL")
 								}
+
 							case .Completed:
 								app.statusBarItem.menu = createMenu(self)
+
 							case .Error(let error):
 								app.userNotification.pushNotification(error: String(error))
 							}
@@ -57,6 +61,8 @@ final class MenuSendersAction: NSObject {
 			app.userNotification.pushNotification(error: error.localizedDescription)
 		} else {
 			app.statusBarItem.menu = createMenu(self)
+			app.userNotification.pushNotification(error: "GitHub Authentication",
+				description: "Successfully deauthenticated from GitHub!")
 		}
 	}
 
