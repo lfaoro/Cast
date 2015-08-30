@@ -10,7 +10,7 @@ final class MenuSendersAction: NSObject {
 
 	func shareClipboardContentsAction(sender: NSMenuItem) {
 
-		let _ = getPasteboardItems()
+		let _ = PasteboardClient.getPasteboardItems()
 			.debug("getPasteboardItems")
 			.subscribe(next: { value in
 
@@ -25,12 +25,12 @@ final class MenuSendersAction: NSObject {
 							switch event {
 							case .Next(let URL):
 								if let URL = URL {
+									PasteboardClient.putInPasteboard(items: [URL])
 									app.userNotification.pushNotification(openURL: URL)
 								} else {
 									app.userNotification.pushNotification(error: "Unable to Shorten URL")
 								}
 							case .Completed:
-								//TODO: CopyToClipboard
 								app.statusBarItem.menu = createMenu(self)
 							case .Error(let error):
 								app.userNotification.pushNotification(error: String(error))
