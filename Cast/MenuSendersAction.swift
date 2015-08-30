@@ -20,12 +20,17 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { BitlyClient.shortenURL($0) }
+						.flatMap { URLManipulation.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
-							case .Next(let url):
-								app.userNotification.pushNotification(openURL: url.absoluteString)
+							case .Next(let URL):
+								if let URL = URL {
+									app.userNotification.pushNotification(openURL: URL)
+								} else {
+									app.userNotification.pushNotification(error: "Unable to Shorten URL")
+								}
 							case .Completed:
+								//TODO: CopyToClipboard
 								app.statusBarItem.menu = createMenu(self)
 							case .Error(let error):
 								app.userNotification.pushNotification(error: String(error))

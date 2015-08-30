@@ -11,9 +11,22 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 
-public class BitlyClient {
 
-    public class func shortenURL(URL: NSURL) -> Observable<NSURL> {
+///- todo: Implement unathenticated shortening service: http://is.gd/apishorteningreference.php
+public class URLManipulation {
+
+	public class func shorten(URL URL: NSURL) -> Observable<String?> {
+		let session = NSURLSession.sharedSession()
+		let shorten = NSURL(string: "https://is.gd/create.php?format=json&url=" + URL.absoluteString)!
+
+		return session.rx_JSON(shorten)
+			.debug()
+			.retry(3)
+			.map { $0["shorturl"] as? String }
+	}
+	
+
+    public class func shortenWithBitly(URL: NSURL) -> Observable<NSURL> {
         let bitlyAPIurl = "https://api-ssl.bitly.com"
         let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
             "&longUrl=" + URL.relativeString!
