@@ -24,6 +24,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var options: Options!
 	var gistClient: GistClient!
 
+	var loginWindow: NSWindowController!
+
 
 	override init() {
 
@@ -41,6 +43,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
+
+		loginWindow = LoginWindowController(windowNibName: "LoginWindowController")
+		loginWindow.showWindow(nil)
+		print(loginWindow.window)
 
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
@@ -70,6 +76,8 @@ func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersActi
 	statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
 	statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
 	statusBarItem.menu = createMenu(target)
+
+	print(statusBarItem.button?.window?.frame)
 }
 
 func createMenu(target: MenuSendersAction) -> NSMenu {
