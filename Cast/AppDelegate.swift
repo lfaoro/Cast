@@ -20,7 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var oauth: OAuthClient
 	var statusBarItem: NSStatusItem!
 	var menuSendersAction: MenuSendersAction!
-	var webAPI: WebAPIs!
 	var userNotification: UserNotifications!
 	var options: Options!
 	var gistClient: GistClient!
@@ -46,7 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
-		webAPI = WebAPIs()
 		userNotification = UserNotifications()
 		options = Cast.Options()
 		gistClient = GistClient()

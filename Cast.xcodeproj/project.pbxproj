@@ -16,10 +16,8 @@
 		A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A13145E91B5AA34E00AA4406 /* Main.storyboard */; };
 		A13145F81B5AA6C700AA4406 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* Services.plist */; };
 		A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */; };
-		A1325D731B641619004B81CB /* WebAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1325D721B641619004B81CB /* WebAPIs.swift */; };
 		A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13961B31B5BF4C400E9CB98 /* Globals.swift */; };
 		A146BA061B90D68E003B4EA3 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A146B9FF1B90D218003B4EA3 /* RxBlocking.framework */; };
-		A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049621B694FA8009BF6A9 /* PasteboardController.swift */; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
@@ -73,7 +71,6 @@
 		A13145EC1B5AA34E00AA4406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A13145F71B5AA6C700AA4406 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSendersAction.swift; sourceTree = "<group>"; };
-		A1325D721B641619004B81CB /* WebAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIs.swift; sourceTree = "<group>"; };
 		A13961B31B5BF4C400E9CB98 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		A13961B51B5C605200E9CB98 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		A13A602C1B887561009C08D7 /* GistClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistClientSpec.swift; sourceTree = "<group>"; };
@@ -81,7 +78,6 @@
 		A14AAAE51B89AB8D00942013 /* Cast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cast.entitlements; sourceTree = "<group>"; };
 		A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClient.swift; sourceTree = "<group>"; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		A15049621B694FA8009BF6A9 /* PasteboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardController.swift; sourceTree = "<group>"; };
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A156D5451B84E4D800579FCC /* OAuthClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClientSpec.swift; sourceTree = "<group>"; };
@@ -160,8 +156,6 @@
 			children = (
 				A13145E31B5AA34E00AA4406 /* AppDelegate.swift */,
 				A13145F91B5AA70700AA4406 /* MenuSendersAction.swift */,
-				A1325D721B641619004B81CB /* WebAPIs.swift */,
-				A15049621B694FA8009BF6A9 /* PasteboardController.swift */,
 				A15049671B6979E5009BF6A9 /* UserNotifications.swift */,
 				A1D8DA8B1B6E7AE0001284F3 /* Options.swift */,
 				A13961B31B5BF4C400E9CB98 /* Globals.swift */,
@@ -388,11 +382,9 @@
 			files = (
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 				A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */,
-				A15049631B694FA8009BF6A9 /* PasteboardController.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
 				A11025C01B75796300720866 /* ImgurClient.swift in Sources */,
 				A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */,
-				A1325D731B641619004B81CB /* WebAPIs.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A13145E61B5AA34E00AA4406 /* OptionsViewController.swift in Sources */,
 				A11FFDF01B92539000CA6C5F /* PasteboardClient.swift in Sources */,
