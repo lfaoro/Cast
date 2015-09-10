@@ -85,3 +85,7 @@ If you believe you have identified a security vulnerability with Cast, you shoul
 
 ## License
 Cast is released under the [MIT License](<LICENSE.md>)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lfaoro/cast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
