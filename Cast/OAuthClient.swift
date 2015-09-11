@@ -1,11 +1,3 @@
-//
-//  OAuth.swift
-//  Cast
-//
-//  Created by Leonardo on 13/08/2015.
-//  Copyright © 2015 Leonardo Faoro. All rights reserved.
-//
-
 import Cocoa
 import RxCocoa
 import RxSwift
@@ -27,7 +19,8 @@ public class OAuthClient: NSObject {
 	var eventHandler: NSAppleEventManager?
 
 
-	//MARK:- Initialization
+	//MARK: - Initialization
+
 	required public init(clientID: String,
 		clientSecret: String,
 		authURL: String,
@@ -57,7 +50,7 @@ public class OAuthClient: NSObject {
 	}
 
 
-	//MARK:- Public API
+	//MARK:- Public
 
 	public func authorize() -> Void {
 
@@ -68,6 +61,9 @@ public class OAuthClient: NSObject {
 
 	public class func revoke() -> NSError? {
 		let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+		let revokeURL = NSURL(string: "https://github.com/settings/connections/applications/" + "ef09cfdbba0dfd807592")!
+
+		NSWorkspace.sharedWorkspace().openURL(revokeURL)
 
 		return keychain.remove("token")
 	}
@@ -79,7 +75,7 @@ public class OAuthClient: NSObject {
 	}
 
 
-	//MARK:- Internal Helper Functions
+	//MARK:- Internal
 	func oauthRequest() -> Void {
 
 		let oauthQuery = [
@@ -129,6 +125,8 @@ public class OAuthClient: NSObject {
 						case .Completed:
 							Swift.print("completed")
 							app.statusBarItem.menu = createMenu(app.menuSendersAction)
+							app.userNotification.pushNotification(error: "GitHub Authentication",
+								description: "Successfully authenticated!")
 						case .Error(let error):
 							Swift.print("\(error)")
 						}

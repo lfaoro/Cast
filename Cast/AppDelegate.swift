@@ -17,12 +17,11 @@ let app = (NSApp.delegate as? AppDelegate)!
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+	var timer: NSTimer?
 	var oauth: OAuthClient
 	var statusBarItem: NSStatusItem!
 	var menuSendersAction: MenuSendersAction!
-	var webAPI: WebAPIs!
 	var userNotification: UserNotifications!
-	var options: Options!
 	var gistClient: GistClient!
 
 
@@ -46,9 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
-		webAPI = WebAPIs()
 		userNotification = UserNotifications()
-		options = Cast.Options()
 		gistClient = GistClient()
 	}
 
@@ -72,14 +69,20 @@ func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersActi
 	statusBarItem.button?.alternateImage = NSImage(named: "LFStatusBarAlternateIcon")
 	statusBarItem.button?.registerForDraggedTypes(pasteboardTypes)
 	statusBarItem.menu = createMenu(target)
+
+	print(statusBarItem.button?.window?.frame)
 }
 
 func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	let menu = NSMenu(title: "Cast Menu")
-	menu.addItemWithTitle("Share",
+	menu.addItemWithTitle("Share Pasteboard Contents",
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?.target = target
+
+	menu.addItemWithTitle("Shorten URL with Hive",
+		action: "shortenURLAction:",
+		keyEquivalent: "T")?.target = target
 
 	let gitHubLoginItem = NSMenuItem()
 	gitHubLoginItem.target = target
@@ -91,8 +94,8 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.title = "Login to GitHub"
 		gitHubLoginItem.action = "loginToGithub:"
 	}
-
 	menu.addItem(gitHubLoginItem)
+
 	menu.addItem(NSMenuItem.separatorItem())
 
 	//---------------------------------------------------------------------------
@@ -101,25 +104,27 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	let recentUploadsItem = NSMenuItem(title: "Recent Uploads",
 		action: "terminate:",
 		keyEquivalent: "")
+
 	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
-	if !recentUploads.isEmpty {
-		for (title,link) in recentUploads {
-			let menuItem = NSMenuItem(title: title,
-				action: "recentUploadsAction:",
-				keyEquivalent: "")
-			// Allows me to use a value from this context in the func called by the selector
-			menuItem.representedObject = link
-			menuItem.target = target
-			recentUploadsSubmenu.addItem(menuItem)
-		}
+	for (title, link) in recentURLS  {
+		let menuItem = NSMenuItem(title: title,
+			action: "recentUploadsAction:",
+			keyEquivalent: "")
+		// Allows me to use a value from this context in the func called by the selector
+		menuItem.representedObject = NSURL(string: link)
+		menuItem.target = target
+		recentUploadsSubmenu.addItem(menuItem)
 	}
 	recentUploadsSubmenu.addItem(NSMenuItem.separatorItem())
 	recentUploadsSubmenu.addItemWithTitle("Clear Recents",
 		action: "clearItemsAction:",
 		keyEquivalent: "")?.target = target
+
 	recentUploadsItem.submenu = recentUploadsSubmenu
 
-	//	menu.addItem(recentUploadsItem)
+	if recentURLS.count > 0 {
+		menu.addItem(recentUploadsItem)
+	}
 	//---------------------------------------------------------------------------
 
 	//	menu.addItemWithTitle("Start at Login",
@@ -133,4 +138,29 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		keyEquivalent: "Q")
 
 	return menu
+}
+
+// TODO: Find a place for Recent URLs DB
+var recentURLS: [String: String] {
+get {
+	let userDefaults = NSUserDefaults.standardUserDefaults()
+
+	guard let dic = userDefaults.dictionaryForKey("recentURLS") as? [String: String] else
+	{ return ["Cast": "http://cast.lfaoro.com"] }
+
+	return dic
+}
+
+set (value) {
+	let userDefaults = NSUserDefaults.standardUserDefaults()
+	userDefaults.setObject(value, forKey: "recentURLS")
+	app.statusBarItem.menu = createMenu(app.menuSendersAction)
+}
+}
+
+func keepRecent(URL url: NSURL) {
+	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
+
+	recentURLS[description] = url.relativeString!
+	
 }

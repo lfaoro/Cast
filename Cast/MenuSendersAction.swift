@@ -7,35 +7,85 @@ import RxSwift
 import RxCocoa
 
 final class MenuSendersAction: NSObject {
-	//---------------------------------------------------------------------------
-	func shareClipboardContentsAction(sender: NSMenuItem) {
-		let pasteboard = PasteboardController()
-		var content: String = ""
-		do {
-			let data = try pasteboard.extractData()
-			switch data {
-			case .Text(let stringData):
-				content = stringData
-			default: app.userNotification.pushNotification(error: "The pasteboard is Empty or Unreadable")
-			}
-		} catch {
-			app.userNotification.pushNotification(error: "\(error)")
-		}
 
-		app.gistClient.setGist(content: content)
-			.debug("setGist")
-			.retry(3)
-			.flatMap { BitlyClient.shortenURL($0) }
-			.subscribe { event in
-				switch event {
-				case .Next(let url):
-					app.userNotification.pushNotification(openURL: url.absoluteString)
-				case .Completed:
-					app.statusBarItem.menu = createMenu(self)
-				case .Error(let error):
-					app.userNotification.pushNotification(error: String(error))
+
+	func shareClipboardContentsAction(sender: NSMenuItem) {
+
+		let _ = PasteboardClient.getPasteboardItems()
+			.debug("getPasteboardItems")
+			.subscribe(next: { value in
+
+				switch value {
+
+				case .Text(let item):
+					app.gistClient.setGist(content: item)
+						.debug("setGist")
+						.retry(3)
+						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.subscribe { event in
+							switch event {
+
+							case .Next(let URL):
+								if let URL = URL {
+									PasteboardClient.putInPasteboard(items: [URL])
+									app.userNotification.pushNotification(openURL: URL)
+								} else {
+									app.userNotification.pushNotification(error: "Unable to Shorten URL")
+								}
+
+							case .Completed:
+								app.statusBarItem.menu = createMenu(self)
+
+							case .Error(let error):
+								app.userNotification.pushNotification(error: String(error))
+							}
+					}
+
+				case .File(let file):
+					print(file.path!)
+
+				default: break
+
 				}
-		}
+			})
+	}
+
+	func shortenURLAction(sender: NSMenuItem) {
+
+		let _ = PasteboardClient.getPasteboardItems()
+			.debug("getPasteboardItems")
+			.retry(3)
+			.subscribe(next: { value in
+				switch value {
+
+				case .Text(let item):
+
+					if let url = NSURL(string: item) {
+
+						ShortenClient.shortenWithHive(URL: url)
+							.debug("shortenWithHive")
+							.subscribe { event in
+								switch event {
+								case .Next(let URL):
+									PasteboardClient.putInPasteboard(items: [URL!])
+									app.userNotification.pushNotification(openURL: URL!)
+								case .Completed:
+									print("completed")
+								case .Error(let error):
+									print("\(error)")
+								}
+						}
+
+					} else {
+						fallthrough
+					}
+
+				default:
+					app.userNotification.pushNotification(error: "Not a valid URL")
+				}
+			})
+
+
 	}
 
 	func loginToGithub(sender: NSMenuItem) {
@@ -43,33 +93,32 @@ final class MenuSendersAction: NSObject {
 	}
 
 	func logoutFromGithub(sender: NSMenuItem) {
-		let error = OAuthClient.revoke()
 
-		if let error = error {
+		if let error = OAuthClient.revoke() {
 			app.userNotification.pushNotification(error: error.localizedDescription)
 		} else {
-			app.statusBarItem.menu = createMenu(self)
+			app.statusBarItem.menu = createMenu(app.menuSendersAction)
+			app.userNotification.pushNotification(error: "GitHub Authentication",
+				description: "API key revoked internally")
 		}
 	}
 
-	//---------------------------------------------------------------------------
 	func recentUploadsAction(sender: NSMenuItem) {
-		let url = NSURL(string: (sender.representedObject as? String)!)
-		if let url = url {
+		if let url = sender.representedObject as? NSURL {
 			NSWorkspace.sharedWorkspace().openURL(url)
 		} else {
 			fatalError("No link in recent uploads")
 		}
 	}
-	//---------------------------------------------------------------------------
+
 	func clearItemsAction(sender: NSMenuItem) {
-		if recentUploads.count > 0 {
-			recentUploads.removeAll()
-			Swift.print(recentUploads)
-			app.updateMenu()
+		if recentURLS.count > 0 {
+			recentURLS.removeAll()
+			Swift.print(recentURLS)
+			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 		}
 	}
-	//---------------------------------------------------------------------------
+
 	func startAtLoginAction(sender: NSMenuItem) {
 		if sender.state == 0 {
 			sender.state = 1
@@ -77,8 +126,8 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-	//---------------------------------------------------------------------------
+	
 	func openOptionsWindow(sender: NSMenuItem) {
-		app.options.displayOptionsWindow()
+		
 	}
 }
