@@ -7,6 +7,10 @@ import SwiftyJSON
 public class ShortenClient {
 
 
+
+
+	// MARK: - Public
+
 	public class func shortenWithIsGd(URL URL: NSURL) -> Observable<String?> {
 		let session = NSURLSession.sharedSession()
 		let shorten = NSURL(string: "https://is.gd/create.php?format=json&url=" + URL.absoluteString)!
@@ -18,8 +22,11 @@ public class ShortenClient {
 	}
 
 	public class func shortenWithHive(URL URL: NSURL) -> Observable<String?> {
+
+		keepRecent(URL: URL)
+
 		let hiveAPIURL = "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
-						 "&description=cast.lfaoro.com&type=DIRECT"
+		"&description=cast.lfaoro.com&type=DIRECT"
 
 		let session = NSURLSession.sharedSession()
 		let shorten = NSURL(string: hiveAPIURL)!
@@ -58,4 +65,10 @@ public class ShortenClient {
 			return NopDisposable.instance
 		}
 	}
+
+
+	// MARK: - Private
+
+
+	
 }

@@ -11,7 +11,6 @@ final class UserNotifications: NSObject {
 	//---------------------------------------------------------------------------
 	var notificationCenter: NSUserNotificationCenter!
 	var didActivateNotificationURL: NSURL?
-	var timer: NSTimer?
 	//---------------------------------------------------------------------------
 	override init() {
 		super.init()
@@ -49,7 +48,7 @@ final class UserNotifications: NSObject {
 	//---------------------------------------------------------------------------
 	private func startUserNotificationTimer() {
 		print(__FUNCTION__)
-		self.timer = NSTimer
+		app.timer = NSTimer
 			.scheduledTimerWithTimeInterval(
 				10.0,
 				target: self,

@@ -97,15 +97,14 @@ final class MenuSendersAction: NSObject {
 		if let error = OAuthClient.revoke() {
 			app.userNotification.pushNotification(error: error.localizedDescription)
 		} else {
-			app.statusBarItem.menu = createMenu(self)
+			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 			app.userNotification.pushNotification(error: "GitHub Authentication",
-				description: "Successfully deauthenticated from GitHub!")
+				description: "API key revoked internally")
 		}
 	}
 
 	func recentUploadsAction(sender: NSMenuItem) {
-		let url = NSURL(string: (sender.representedObject as? String)!)
-		if let url = url {
+		if let url = sender.representedObject as? NSURL {
 			NSWorkspace.sharedWorkspace().openURL(url)
 		} else {
 			fatalError("No link in recent uploads")
@@ -113,10 +112,10 @@ final class MenuSendersAction: NSObject {
 	}
 
 	func clearItemsAction(sender: NSMenuItem) {
-		if recentUploads.count > 0 {
-			recentUploads.removeAll()
-			Swift.print(recentUploads)
-			app.updateMenu()
+		if recentURLS.count > 0 {
+			recentURLS.removeAll()
+			Swift.print(recentURLS)
+			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 		}
 	}
 
@@ -127,8 +126,8 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-
+	
 	func openOptionsWindow(sender: NSMenuItem) {
-		app.options.displayOptionsWindow()
+		
 	}
 }

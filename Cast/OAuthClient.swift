@@ -1,11 +1,3 @@
-//
-//  OAuth.swift
-//  Cast
-//
-//  Created by Leonardo on 13/08/2015.
-//  Copyright © 2015 Leonardo Faoro. All rights reserved.
-//
-
 import Cocoa
 import RxCocoa
 import RxSwift
@@ -27,7 +19,8 @@ public class OAuthClient: NSObject {
 	var eventHandler: NSAppleEventManager?
 
 
-	//MARK:- Initialization
+	//MARK: - Initialization
+
 	required public init(clientID: String,
 		clientSecret: String,
 		authURL: String,
@@ -57,7 +50,7 @@ public class OAuthClient: NSObject {
 	}
 
 
-	//MARK:- Public API
+	//MARK:- Public
 
 	public func authorize() -> Void {
 
@@ -68,11 +61,9 @@ public class OAuthClient: NSObject {
 
 	public class func revoke() -> NSError? {
 		let keychain = Keychain(service: "com.lfaoro.cast.github-token")
+		let revokeURL = NSURL(string: "https://github.com/settings/connections/applications/" + "ef09cfdbba0dfd807592")!
 
-		let request = NSURLRequest(
-			URL: NSURL(string: "https://github.com/settings/connections/21627609")!)
-		app.loginWindow.loginWebView.loadRequest(request)
-		app.loginWindow.showWindow(nil)
+		NSWorkspace.sharedWorkspace().openURL(revokeURL)
 
 		return keychain.remove("token")
 	}
@@ -84,7 +75,7 @@ public class OAuthClient: NSObject {
 	}
 
 
-	//MARK:- Internal Helper Functions
+	//MARK:- Internal
 	func oauthRequest() -> Void {
 
 		let oauthQuery = [
@@ -102,10 +93,8 @@ public class OAuthClient: NSObject {
 
 		// Register for callback from GitHub
 		//        eventManager = registerEventHandlerForURL(handler: self)
-		let request = NSURLRequest(URL: oauthComponents.URL!)
-		app.loginWindow.loginWebView.loadRequest(request)
-		app.loginWindow.showWindow(nil)
-//		NSWorkspace.sharedWorkspace().openURL(oauthComponents.URL!)
+
+		NSWorkspace.sharedWorkspace().openURL(oauthComponents.URL!)
 	}
 
 	func registerEventHandlerForURL(handler object: AnyObject) -> NSAppleEventManager {
@@ -135,13 +124,11 @@ public class OAuthClient: NSObject {
 							keychain["token"] = token
 						case .Completed:
 							Swift.print("completed")
-							app.loginWindow.window?.close()
 							app.statusBarItem.menu = createMenu(app.menuSendersAction)
 							app.userNotification.pushNotification(error: "GitHub Authentication",
 								description: "Successfully authenticated!")
 						case .Error(let error):
 							Swift.print("\(error)")
-							app.loginWindow.window?.close()
 						}
 				}
 
