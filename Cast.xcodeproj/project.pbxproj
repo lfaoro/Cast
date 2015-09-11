@@ -27,8 +27,7 @@
 		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */; };
 		A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */; };
-		A198EC3B1B89E7F300E9D718 /* URLManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* URLManipulation.swift */; };
-		A1A9FAF71B9389D9005CEEC1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145EC1B5AA34E00AA4406 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		A198EC3B1B89E7F300E9D718 /* ShortenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */; };
 		A1A9FAF81B9389E0005CEEC1 /* Cast.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = A14AAAE51B89AB8D00942013 /* Cast.entitlements */; settings = {ASSET_TAGS = (); }; };
 		A1A9FAFB1B938CB2005CEEC1 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9FAF91B938CB2005CEEC1 /* LoginWindowController.swift */; settings = {ASSET_TAGS = (); }; };
 		A1A9FAFC1B938CB2005CEEC1 /* LoginWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A9FAFA1B938CB2005CEEC1 /* LoginWindowController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -88,7 +87,7 @@
 		A17A19D51B910523005CB0A5 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
 		A17A19D61B910523005CB0A5 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/Mac/KeychainAccess.framework; sourceTree = "<group>"; };
 		A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistClient.swift; sourceTree = "<group>"; };
-		A198EC3A1B89E7F300E9D718 /* URLManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManipulation.swift; sourceTree = "<group>"; };
+		A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortenClient.swift; sourceTree = "<group>"; };
 		A19D4F841B77957F00BEB08B /* CastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D4F861B77957F00BEB08B /* CastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTests.swift; sourceTree = "<group>"; };
 		A19D4F881B77957F00BEB08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,7 +127,7 @@
 				A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */,
 				A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */,
 				A11025BF1B75796300720866 /* ImgurClient.swift */,
-				A198EC3A1B89E7F300E9D718 /* URLManipulation.swift */,
+				A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */,
 				A13145F71B5AA6C700AA4406 /* Services.plist */,
 			);
 			name = Services;
@@ -279,10 +278,10 @@
 						DevelopmentTeam = H9XB8B9RVW;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -320,7 +319,6 @@
 				A13145F81B5AA6C700AA4406 /* Services.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
 				A1A9FAFC1B938CB2005CEEC1 /* LoginWindowController.xib in Resources */,
-				A1A9FAF71B9389D9005CEEC1 /* Info.plist in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +393,7 @@
 				A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
 				A11FFDF01B92539000CA6C5F /* PasteboardClient.swift in Sources */,
-				A198EC3B1B89E7F300E9D718 /* URLManipulation.swift in Sources */,
+				A198EC3B1B89E7F300E9D718 /* ShortenClient.swift in Sources */,
 				A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */,
 				83BC9D911B6586DE002F35FA /* Dragging.swift in Sources */,
 				A13145FA1B5AA70700AA4406 /* MenuSendersAction.swift in Sources */,
@@ -471,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -510,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -520,9 +518,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: Leonardo Faoro (H9XB8B9RVW)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -543,9 +540,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: Leonardo Faoro (H9XB8B9RVW)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (

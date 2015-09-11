@@ -16,8 +16,8 @@ Cast will seamlessly figure out the type of information you wish to share and
 automatically choose the appropriate service for you. You may customize the
 service you wish to use from a selection of available services.
 
-Cast can queue up multiple streams of information and share them all at once 
-extending the system's Pasteboard functionality 
+Cast can queue up multiple streams of information and share them all at once
+extending the system's Pasteboard functionality
 
 ## Features available in v1.0
 - [x] Uploads data automatically
@@ -42,8 +42,9 @@ extending the system's Pasteboard functionality
 - [ ] Multiple uploads in one operation functionality
 - [ ] Pasteboard queue functionality
 - [ ] Incremental Pasteboard functionality
+- [ ] Send Pasteboard contents as email without opening Mail.app
 
-## Supported Services 
+## Supported Services
 *As of release 1.0 Cast will support the following sharing services:*
 
 **Text data** extracted from your pasteboard
@@ -56,12 +57,13 @@ extending the system's Pasteboard functionality
 - [ ] imgur.com
 - [ ] flickr.com
 
-**Folders** which will be automatically zipped for you before uploading 
+**Folders** which will be automatically zipped for you before uploading
 - [ ] icloud
 - [ ] wetransfer.com
 - [ ] dropbox.com
 
 **URL Shorteners**
+- [x] [hive](www.hive.am)
 - [x] bit.ly
 - [x] is.gd
 

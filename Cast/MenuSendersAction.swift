@@ -21,7 +21,7 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { URLManipulation.shorten(URL: $0) }
+						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -50,14 +50,51 @@ final class MenuSendersAction: NSObject {
 			})
 	}
 
+	func shortenURLAction(sender: NSMenuItem) {
+
+		let _ = PasteboardClient.getPasteboardItems()
+			.debug("getPasteboardItems")
+			.retry(3)
+			.subscribe(next: { value in
+				switch value {
+
+				case .Text(let item):
+
+					if let url = NSURL(string: item) {
+
+						ShortenClient.shortenWithHive(URL: url)
+							.debug("shortenWithHive")
+							.subscribe { event in
+								switch event {
+								case .Next(let URL):
+									PasteboardClient.putInPasteboard(items: [URL!])
+									app.userNotification.pushNotification(openURL: URL!)
+								case .Completed:
+									print("completed")
+								case .Error(let error):
+									print("\(error)")
+								}
+						}
+
+					} else {
+						fallthrough
+					}
+
+				default:
+					app.userNotification.pushNotification(error: "Not a valid URL")
+				}
+			})
+
+
+	}
+
 	func loginToGithub(sender: NSMenuItem) {
 		app.oauth.authorize()
 	}
 
 	func logoutFromGithub(sender: NSMenuItem) {
-		let error = OAuthClient.revoke()
 
-		if let error = error {
+		if let error = OAuthClient.revoke() {
 			app.userNotification.pushNotification(error: error.localizedDescription)
 		} else {
 			app.statusBarItem.menu = createMenu(self)

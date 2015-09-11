@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var options: Options!
 	var gistClient: GistClient!
 
-	var loginWindow: NSWindowController!
+	var loginWindow: LoginWindowController!
 
 
 	override init() {
@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
 		loginWindow = LoginWindowController(windowNibName: "LoginWindowController")
-		loginWindow.showWindow(nil)
+		loginWindow.window?.close()
 		print(loginWindow.window)
 
 		statusBarItem = createStatusBar()
@@ -87,6 +87,10 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?.target = target
 
+	menu.addItemWithTitle("Shorten URL with Hive",
+		action: "shortenURLAction:",
+		keyEquivalent: "T")?.target = target
+
 	let gitHubLoginItem = NSMenuItem()
 	gitHubLoginItem.target = target
 	gitHubLoginItem.keyEquivalent = "L"
@@ -97,8 +101,8 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.title = "Login to GitHub"
 		gitHubLoginItem.action = "loginToGithub:"
 	}
-
 	menu.addItem(gitHubLoginItem)
+
 	menu.addItem(NSMenuItem.separatorItem())
 
 	//---------------------------------------------------------------------------

@@ -1,21 +1,13 @@
-//
-//  BitlyClient.swift
-//  Cast
-//
-//  Created by Leonardo on 23/08/2015.
-//  Copyright © 2015 Leonardo Faoro. All rights reserved.
-//
-
 import Cocoa
 import RxSwift
 import RxCocoa
 import SwiftyJSON
 
 
-public class URLManipulation {
+public class ShortenClient {
 
 
-	public class func shorten(URL URL: NSURL) -> Observable<String?> {
+	public class func shortenWithIsGd(URL URL: NSURL) -> Observable<String?> {
 		let session = NSURLSession.sharedSession()
 		let shorten = NSURL(string: "https://is.gd/create.php?format=json&url=" + URL.absoluteString)!
 
@@ -25,6 +17,18 @@ public class URLManipulation {
 			.map { $0["shorturl"] as? String }
 	}
 
+	public class func shortenWithHive(URL URL: NSURL) -> Observable<String?> {
+		let hiveAPIURL = "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
+						 "&description=cast.lfaoro.com&type=DIRECT"
+
+		let session = NSURLSession.sharedSession()
+		let shorten = NSURL(string: hiveAPIURL)!
+
+		return session.rx_JSON(shorten)
+			.debug("shorten Hive")
+			.retry(3)
+			.map { $0["short"] as? String }
+	}
 
 	public class func shortenWithBitly(URL: NSURL) -> Observable<NSURL> {
 		let bitlyAPIurl = "https://api-ssl.bitly.com"

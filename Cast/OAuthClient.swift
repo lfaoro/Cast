@@ -69,6 +69,11 @@ public class OAuthClient: NSObject {
 	public class func revoke() -> NSError? {
 		let keychain = Keychain(service: "com.lfaoro.cast.github-token")
 
+		let request = NSURLRequest(
+			URL: NSURL(string: "https://github.com/settings/connections/21627609")!)
+		app.loginWindow.loginWebView.loadRequest(request)
+		app.loginWindow.showWindow(nil)
+
 		return keychain.remove("token")
 	}
 
@@ -97,8 +102,10 @@ public class OAuthClient: NSObject {
 
 		// Register for callback from GitHub
 		//        eventManager = registerEventHandlerForURL(handler: self)
-
-		NSWorkspace.sharedWorkspace().openURL(oauthComponents.URL!)
+		let request = NSURLRequest(URL: oauthComponents.URL!)
+		app.loginWindow.loginWebView.loadRequest(request)
+		app.loginWindow.showWindow(nil)
+//		NSWorkspace.sharedWorkspace().openURL(oauthComponents.URL!)
 	}
 
 	func registerEventHandlerForURL(handler object: AnyObject) -> NSAppleEventManager {
@@ -128,11 +135,13 @@ public class OAuthClient: NSObject {
 							keychain["token"] = token
 						case .Completed:
 							Swift.print("completed")
+							app.loginWindow.window?.close()
 							app.statusBarItem.menu = createMenu(app.menuSendersAction)
 							app.userNotification.pushNotification(error: "GitHub Authentication",
 								description: "Successfully authenticated!")
 						case .Error(let error):
 							Swift.print("\(error)")
+							app.loginWindow.window?.close()
 						}
 				}
 
