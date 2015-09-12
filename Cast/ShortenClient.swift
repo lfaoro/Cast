@@ -7,8 +7,6 @@ import SwiftyJSON
 public class ShortenClient {
 
 
-
-
 	// MARK: - Public
 
 	public class func shortenWithIsGd(URL URL: NSURL) -> Observable<String?> {
@@ -32,7 +30,6 @@ public class ShortenClient {
 		let shorten = NSURL(string: hiveAPIURL)!
 
 		return session.rx_JSON(shorten)
-			.debug("shorten Hive")
 			.retry(3)
 			.map { $0["short"] as? String }
 	}
@@ -65,10 +62,6 @@ public class ShortenClient {
 			return NopDisposable.instance
 		}
 	}
-
-
-	// MARK: - Private
-
-
+	
 	
 }

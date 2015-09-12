@@ -59,7 +59,7 @@ final class UserNotifications: NSObject {
 	//---------------------------------------------------------------------------
 	func removeUserNotifcationsAction(timer: NSTimer) {
 		print(__FUNCTION__)
-		self.notificationCenter.removeAllDeliveredNotifications()
+		notificationCenter.removeAllDeliveredNotifications()
 		timer.invalidate()
 	}
 	//---------------------------------------------------------------------------
