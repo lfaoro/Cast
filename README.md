@@ -1,4 +1,4 @@
-# ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, securely, the easy way
+# ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, quick & easy
 
 [![release](https://img.shields.io/badge/release-v1.0-green.svg)](https://github.com/lfaoro/Cast/releases)
 [![platform](https://img.shields.io/badge/platform-OS%20X%2010.10+-lightgrey.svg)](https://www.apple.com/osx/)
@@ -9,34 +9,34 @@
 
 Cast is an agent that lives in your system's
 [Status Menu](https://support.apple.com/en-mt/HT201956).
-Its purpose is to help you share information quick & easy with a *keyboard shortcut*, a *drag'n'drop*
-operation or in *2-clicks*.
+Its purpose is to help you share information quick & easy.
 
-Cast will seamlessly figure out the type of information you wish to share and
-automatically choose the appropriate service for you. You may customize the
-service you wish to use from a selection of available services.
+Cast will seamlessly figure out the type of information you wish to share and automatically choose the appropriate service for you. You may customize the sharing service you wish to use from a selection of available services.
 
-Cast can queue up multiple streams of information and share them all at once
-extending the system's Pasteboard functionality
+Cast will also help you shorten URLs very quickly using your preferred URL shortening service.
+
+~~Cast can queue up multiple streams of information and share them all at once extending the system's Pasteboard functionality~~
 
 ## Features available in v1.0
 - [x] Uploads data automatically
 - [x] Creates shortened download link
 - [x] The shortened link is automatically moved inside your Pasteboard (ready to paste)
-- [x] System Notification alerts containing links or errors
+- [x] System Notification alerts displaying links or errors
 - [x] Ability to click on the Notification and open the link
 - [x] Seamless OAuth2 Web-Flow authentication to GitHub.com (no password)
 - [x] GitHub's access Token securely stored inside your [Keychain](https://en.wikipedia.org/wiki/Keychain_(software))
 - [x] Uploads raw text to the gist service creating a new gist
 - [x] Uploads raw text to the gist service updating current gist (incremental/revisions)
-- [x] Up to 20 recent upload links
+- [x] Shortens any URL and prepares the shortened link in your Pasteboard (ready to paste)
+- [x] Keeps a list of your latest uploads and URL shorts
+- [x] Clicking a recent upload from the list, open it in your default browser
 - [ ] Recent upload links synced via iCloud across all your Macs
 - [ ] Configure the app through the Options menu
 
 ## Features roadmap for v2.0
 
-- [ ] Seamless OAuth2 Web-Flow authentication to Imgur.com (no password)
-- [ ] Uploads images to imgur
+- [ ] Seamless OAuth2 Web-Flow authentication to imgur.com (no password)
+- [ ] Uploads images to imgur.com
 - [ ] Uploads folders to iCloud Disk
 - [ ] Automatically ZIPs folders before upload
 - [ ] Multiple uploads in one operation functionality
@@ -45,7 +45,7 @@ extending the system's Pasteboard functionality
 - [ ] Send Pasteboard contents as email without opening Mail.app
 
 ## Supported Services
-*As of release 1.0 Cast will support the following sharing services:*
+*As of release 1.0 Cast supports the following sharing services:*
 
 **Text data** extracted from your pasteboard
 - [x] [gist.github.com](http://gist.github.com)
@@ -57,7 +57,7 @@ extending the system's Pasteboard functionality
 - [ ] [imgur.com](http://imgur.com)
 - [ ] [flickr.com](http://flickr.com)
 
-**Folders** which will be automatically zipped for you before uploading
+**Folders and Files** which will be automatically zipped for you before uploading
 - [ ] [iCloud Drive](http://www.apple.com/icloud/icloud-drive/)
 - [ ] wetransfer.com
 - [ ] dropbox.com
@@ -88,7 +88,3 @@ If you believe you have identified a security vulnerability with Cast, you shoul
 
 ## License
 Cast is released under the [MIT License](<LICENSE.md>)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lfaoro/cast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
