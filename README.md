@@ -28,7 +28,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - [x] Uploads raw text to the gist service creating a new gist
 - [x] Uploads raw text to the gist service updating current gist (incremental/revisions)
 - [x] Shortens any URL and prepares the shortened link in your Pasteboard (ready to paste)
-- [x] Keeps a list of your latest uploads and URL shorts
+- [x] Keeps a History of all your uploads and URL shorts
 - [x] Clicking a recent upload from the list, open it in your default browser
 - [ ] Recent upload links synced via iCloud across all your Macs
 - [ ] Configure the app through the Options menu
@@ -71,6 +71,27 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - OS X 10.10 Yosemite or newer
 - Xcode 7
 - Swift 2.0
+- [Carthage][128c6379]
+- [SwiftLint][9afd067e] (used in a Run Script Phase)
+
+  [128c6379]: https://github.com/Carthage/Carthage#installing-carthage "Install Carthage"
+  [9afd067e]: https://github.com/realm/SwiftLint#installation "Install SwiftLint"
+
+## Contributing
+
+> We use [gitflow][0d3b04ed], please fork and push your enhancements to the `develop` branch
+
+```Bash
+git checkout develop
+carthage bootstrap
+open Cast.xcodeproj
+```
+Please, pick an [Issue][c2a6348a] and submit a pull request.
+Thank you very much for any contribution!
+
+  [c2a6348a]: https://github.com/lfaoro/Cast/issues "Push to `develop` please"
+  [0d3b04ed]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow "Gitflow Workflow"
+
 
 ## Communication
 - If you **need help**, [send me a tweet](<https://twitter.com/leonarth>)
@@ -81,7 +102,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 ## Credits
 
-> We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that establish our inspiration.
+> We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that every day establish our inspiration.
 
 ## Security Disclosure
 If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to security@lfaoro.com. Please do not post it to a public issue tracker.
