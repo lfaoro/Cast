@@ -22,47 +22,46 @@
       <h1>
 <a id="-cast--share-data-securely-the-easy-way" class="anchor" href="#-cast--share-data-securely-the-easy-way" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png" alt="Cast logo"> Cast | share data, securely, the easy way</h1>
 
-<p><a href="https://github.com/lfaoro/Cast/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
-<a href="https://github.com/lfaoro/Cast/releases"><img src="https://img.shields.io/badge/release-BETA-red.svg" alt="release"></a>
-<a href="https://www.apple.com/osx/"><img src="https://img.shields.io/badge/platform-Mac%20OS%20X%2010.9%2B-lightgrey.svg" alt="platform"></a>
+<p><a href="https://github.com/lfaoro/Cast/releases"><img src="https://img.shields.io/badge/release-v1.0-green.svg" alt="release"></a>
+<a href="https://www.apple.com/osx/"><img src="https://img.shields.io/badge/platform-OS%20X%2010.10+-lightgrey.svg" alt="platform"></a>
+<a href="https://github.com/lfaoro/Cast/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="license"></a>
 <a href="https://twitter.com/leonarth"><img src="https://img.shields.io/badge/twitter-%40leonarth-blue.svg" alt="twitter"></a></p>
 
 <p><em>// Cast: verb. throw (something) forcefully in a specified direction.</em></p>
 
 <p>Cast is an agent that lives in your system's
 <a href="https://support.apple.com/en-mt/HT201956">Status Menu</a>.
-Its purpose is to help you share any type of information quickly and easily with a  keyboard shortcut, a 1-click or drag'n'drop
-operation.</p>
+Its purpose is to help you share information quick &amp; easy with a <em>keyboard shortcut</em>, a <em>drag'n'drop</em>
+operation or in <em>2-clicks</em>.</p>
 
 <p>Cast will seamlessly figure out the type of information you wish to share and
 automatically choose the appropriate service for you. You may customize the
 service you wish to use from a selection of available services.</p>
 
-<p>Cast can queue up multiple streams of information and share them all at once 
-extending the system's Pasteboard functionality </p>
+<p>Cast can queue up multiple streams of information and share them all at once
+extending the system's Pasteboard functionality</p>
 
 <h2>
-<a id="features-roadmap-for-v10" class="anchor" href="#features-roadmap-for-v10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features roadmap for v1.0</h2>
+<a id="features-available-in-v10" class="anchor" href="#features-available-in-v10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features available in v1.0</h2>
 
 <ul>
 <li>[x] Uploads data automatically</li>
-<li>[x] Creates shortened download link using <a href="https://bitly.com/">bit.ly</a>
-</li>
+<li>[x] Creates shortened download link</li>
 <li>[x] The shortened link is automatically moved inside your Pasteboard (ready to paste)</li>
-<li>[x] Notification alerts containing links or errors</li>
+<li>[x] System Notification alerts containing links or errors</li>
 <li>[x] Ability to click on the Notification and open the link</li>
 <li>[x] Seamless OAuth2 Web-Flow authentication to GitHub.com (no password)</li>
 <li>[x] GitHub's access Token securely stored inside your <a href="https://en.wikipedia.org/wiki/Keychain_(software)">Keychain</a>
 </li>
 <li>[x] Uploads raw text to the gist service creating a new gist</li>
 <li>[x] Uploads raw text to the gist service updating current gist (incremental/revisions)</li>
-<li>[ ] Up to 20 recent upload links</li>
+<li>[x] Up to 20 recent upload links</li>
 <li>[ ] Recent upload links synced via iCloud across all your Macs</li>
 <li>[ ] Configure the app through the Options menu</li>
 </ul>
 
 <h2>
-<a id="features-roadmap-for-future-versions-20" class="anchor" href="#features-roadmap-for-future-versions-20" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features roadmap for future versions 2.0+</h2>
+<a id="features-roadmap-for-v20" class="anchor" href="#features-roadmap-for-v20" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features roadmap for v2.0</h2>
 
 <ul>
 <li>[ ] Seamless OAuth2 Web-Flow authentication to Imgur.com (no password)</li>
@@ -72,6 +71,7 @@ extending the system's Pasteboard functionality </p>
 <li>[ ] Multiple uploads in one operation functionality</li>
 <li>[ ] Pasteboard queue functionality</li>
 <li>[ ] Incremental Pasteboard functionality</li>
+<li>[ ] Send Pasteboard contents as email without opening Mail.app</li>
 </ul>
 
 <h2>
@@ -82,23 +82,29 @@ extending the system's Pasteboard functionality </p>
 <p><strong>Text data</strong> extracted from your pasteboard</p>
 
 <ul>
-<li>[x] gist.github.com</li>
-<li>[ ] pastebin.com</li>
-<li>[ ] dpaste.com</li>
-<li>[ ] swiftstub.com</li>
+<li>[x] <a href="http://gist.github.com">gist.github.com</a>
+</li>
+<li>[ ] <del>pastebin.com</del> (too many ads)</li>
+<li>[ ] <a href="http://dpaste.com">dpaste.com</a>
+</li>
+<li>[ ] <a href="http://swiftstub.com">swiftstub.com</a>
+</li>
 </ul>
 
 <p><strong>Image data</strong> extracted from your pasteboard</p>
 
 <ul>
-<li>[ ] imgur.com</li>
-<li>[ ] flickr.com</li>
+<li>[ ] <a href="http://imgur.com">imgur.com</a>
+</li>
+<li>[ ] <a href="http://flickr.com">flickr.com</a>
+</li>
 </ul>
 
-<p><strong>Folders</strong> which will be automatically zipped for you before uploading </p>
+<p><strong>Folders</strong> which will be automatically zipped for you before uploading</p>
 
 <ul>
-<li>[ ] icloud</li>
+<li>[ ] <a href="http://www.apple.com/icloud/icloud-drive/">iCloud Drive</a>
+</li>
 <li>[ ] wetransfer.com</li>
 <li>[ ] dropbox.com</li>
 </ul>
@@ -106,15 +112,19 @@ extending the system's Pasteboard functionality </p>
 <p><strong>URL Shorteners</strong></p>
 
 <ul>
+<li>[x] <a href="www.hive.am">hive.am</a>
+</li>
 <li>[x] bit.ly</li>
+<li>[x] is.gd</li>
 </ul>
 
 <h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<a id="development-requirements" class="anchor" href="#development-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development Requirements</h2>
 
 <ul>
-<li>OS X 10.9+</li>
+<li>OS X 10.10 Yosemite or newer</li>
 <li>Xcode 7</li>
+<li>Swift 2.0</li>
 </ul>
 
 <h2>
@@ -129,16 +139,14 @@ extending the system's Pasteboard functionality </p>
 </li>
 <li>If you <strong>have a feature request</strong>, <a href="https://github.com/lfaoro/Cast/issues">open an issue</a>
 </li>
-<li>If you'd <strong>like to contribute</strong>, check the <a href="https://github.com/lfaoro/Cast/blob/master/SystemMap.md">system map</a> and look for TODO: statements in the source files.</li>
+<li>If you'd <strong>like to contribute</strong> compile Cast and look at the <code>Issue Navigator</code> (⌘+4) a script will outline all the <code>//TODO:</code> statements present in the source files.</li>
 </ul>
 
 <h2>
 <a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
 
 <blockquote>
-<p>Cast is owned and maintained by <a href="http://cv.lfaoro.com">Leonardo Faoro</a> and his mentor and friend <a href="https://www.linkedin.com/in/chrispschreiner">Chris Patrick Schreiner</a>.</p>
-
-<p>We all stand on the shoulders of giants across many open source communities. We’d like to thank the communities and projects that established our inspiration.</p>
+<p>We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that establish our inspiration.</p>
 </blockquote>
 
 <h2>
@@ -150,6 +158,8 @@ extending the system's Pasteboard functionality </p>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Cast is released under the <a href="LICENSE.md">MIT License</a></p>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/lfaoro/cast/trend.png" alt="Bitdeli Badge"></a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/lfaoro/Cast">Cast</a> is maintained by <a href="https://github.com/lfaoro">lfaoro</a>.</span>
