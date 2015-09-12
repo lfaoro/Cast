@@ -68,7 +68,7 @@ final class MenuSendersAction: NSObject {
 								switch event {
 								case .Next(let URL):
 									PasteboardClient.putInPasteboard(items: [URL!])
-									app.userNotification.pushNotification(openURL: URL!)
+									app.userNotification.pushNotification(openURL: URL!, title: "Shortened with Hive.am")
 								case .Completed:
 									print("completed")
 								case .Error(let error):
