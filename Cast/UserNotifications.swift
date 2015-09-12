@@ -28,9 +28,9 @@ final class UserNotifications: NSObject {
 		return notification
 	}
 	//---------------------------------------------------------------------------
-	func pushNotification(openURL url: String) {
+	func pushNotification(openURL url: String, title: String = "Casted to gist.GitHub.com") {
 		didActivateNotificationURL = NSURL(string: url)!
-		let notification = self.createNotification("Casted to gist.GitHub.com", subtitle: url)
+		let notification = self.createNotification(title, subtitle: url)
 		notificationCenter.deliverNotification(notification)
 		startUserNotificationTimer() //IRC: calling from here doesn't work
 	}

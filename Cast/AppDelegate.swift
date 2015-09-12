@@ -76,6 +76,7 @@ func configureStatusBarItem(statusBarItem: NSStatusItem, target: MenuSendersActi
 func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	let menu = NSMenu(title: "Cast Menu")
+
 	menu.addItemWithTitle("Share Pasteboard Contents",
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?.target = target
@@ -84,21 +85,8 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		action: "shortenURLAction:",
 		keyEquivalent: "T")?.target = target
 
-	let gitHubLoginItem = NSMenuItem()
-	gitHubLoginItem.target = target
-	gitHubLoginItem.keyEquivalent = "L"
-	if OAuthClient.getToken() != nil {
-		gitHubLoginItem.title = "Logout from GitHub"
-		gitHubLoginItem.action = "logoutFromGithub:"
-	} else {
-		gitHubLoginItem.title = "Login to GitHub"
-		gitHubLoginItem.action = "loginToGithub:"
-	}
-	menu.addItem(gitHubLoginItem)
-
 	menu.addItem(NSMenuItem.separatorItem())
 
-	//---------------------------------------------------------------------------
 	///- todo: externalise in separate function
 	///- todo: implement recent gists
 	let recentUploadsItem = NSMenuItem(title: "Recent Uploads",
@@ -125,6 +113,22 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	if recentURLS.count > 0 {
 		menu.addItem(recentUploadsItem)
 	}
+
+	menu.addItem(NSMenuItem.separatorItem())
+
+	let gitHubLoginItem = NSMenuItem()
+	gitHubLoginItem.target = target
+	gitHubLoginItem.keyEquivalent = "L"
+	if OAuthClient.getToken() != nil {
+		gitHubLoginItem.title = "Logout from GitHub"
+		gitHubLoginItem.action = "logoutFromGithub:"
+	} else {
+		gitHubLoginItem.title = "Login to GitHub"
+		gitHubLoginItem.action = "loginToGithub:"
+	}
+	menu.addItem(gitHubLoginItem)
+
+	menu.addItem(NSMenuItem.separatorItem())
 	//---------------------------------------------------------------------------
 
 	//	menu.addItemWithTitle("Start at Login",
