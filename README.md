@@ -1,5 +1,6 @@
 # ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, quick & easy
 
+[![build](https://travis-ci.org/lfaoro/Cast.svg)](https://travis-ci.org/lfaoro/Cast)
 [![release](https://img.shields.io/badge/release-v1.0-green.svg?style=flat)](https://github.com/lfaoro/Cast/releases)
 [![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg)](https://www.apple.com/osx/)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
