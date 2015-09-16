@@ -10,3 +10,5 @@ xcode_scheme: Cast
 branches:
   only:
     - develop
+script:
+  xctool -project Cast.xcodeproj -scheme Cast clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
