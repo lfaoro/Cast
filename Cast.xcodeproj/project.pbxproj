@@ -105,7 +105,7 @@
 		A13A602C1B887561009C08D7 /* GistClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GistClientSpec.swift; sourceTree = "<group>"; };
 		A146B9FF1B90D218003B4EA3 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/Mac/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
 		A14B7C431BA39EA700831C8B /* Cast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cast.entitlements; sourceTree = "<group>"; };
-		A14B7C611BA3A34400831C8B /* Cast Release.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Release.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A14B7C611BA3A34400831C8B /* Cast (Mac App Store).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast (Mac App Store).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14B7C621BA3A34400831C8B /* Cast Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Cast Release-Info.plist"; path = "/Users/lfaoro/Dev/Cast/Cast Release-Info.plist"; sourceTree = "<absolute>"; };
 		A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClient.swift; sourceTree = "<group>"; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -124,6 +124,7 @@
 		A19D4F941B779BAD00BEB08B /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
 		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
+		A1B2EB381BA9DCBE003E5E84 /* Cast Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cast Release.entitlements"; sourceTree = "<group>"; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -170,6 +171,7 @@
 		A13145D71B5AA34E00AA4406 = {
 			isa = PBXGroup;
 			children = (
+				A1B2EB381BA9DCBE003E5E84 /* Cast Release.entitlements */,
 				A13145E21B5AA34E00AA4406 /* Cast */,
 				A13145F61B5AA67700AA4406 /* User Interface */,
 				A13145F51B5AA65B00AA4406 /* Assets */,
@@ -184,7 +186,7 @@
 			children = (
 				A13145E01B5AA34E00AA4406 /* Cast.app */,
 				A19D4F841B77957F00BEB08B /* CastTests.xctest */,
-				A14B7C611BA3A34400831C8B /* Cast Release.app */,
+				A14B7C611BA3A34400831C8B /* Cast (Mac App Store).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,9 +280,9 @@
 			productReference = A13145E01B5AA34E00AA4406 /* Cast.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A14B7C441BA3A34400831C8B /* Cast Release */ = {
+		A14B7C441BA3A34400831C8B /* Cast (Mac App Store) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A14B7C5E1BA3A34400831C8B /* Build configuration list for PBXNativeTarget "Cast Release" */;
+			buildConfigurationList = A14B7C5E1BA3A34400831C8B /* Build configuration list for PBXNativeTarget "Cast (Mac App Store)" */;
 			buildPhases = (
 				A14B7C451BA3A34400831C8B /* Sources */,
 				A14B7C511BA3A34400831C8B /* Frameworks */,
@@ -294,9 +296,9 @@
 			);
 			dependencies = (
 			);
-			name = "Cast Release";
+			name = "Cast (Mac App Store)";
 			productName = Cast;
-			productReference = A14B7C611BA3A34400831C8B /* Cast Release.app */;
+			productReference = A14B7C611BA3A34400831C8B /* Cast (Mac App Store).app */;
 			productType = "com.apple.product-type.application";
 		};
 		A19D4F831B77957F00BEB08B /* CastTests */ = {
@@ -332,10 +334,10 @@
 						DevelopmentTeam = H9XB8B9RVW;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -343,10 +345,10 @@
 						DevelopmentTeam = H9XB8B9RVW;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -370,7 +372,7 @@
 			projectRoot = "";
 			targets = (
 				A13145DF1B5AA34E00AA4406 /* Cast */,
-				A14B7C441BA3A34400831C8B /* Cast Release */,
+				A14B7C441BA3A34400831C8B /* Cast (Mac App Store) */,
 				A19D4F831B77957F00BEB08B /* CastTests */,
 			);
 		};
@@ -654,8 +656,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -677,8 +677,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Cast/Cast.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -700,7 +698,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = "Cast Release.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -722,7 +721,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = "Cast Release.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -795,7 +795,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A14B7C5E1BA3A34400831C8B /* Build configuration list for PBXNativeTarget "Cast Release" */ = {
+		A14B7C5E1BA3A34400831C8B /* Build configuration list for PBXNativeTarget "Cast (Mac App Store)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A14B7C5F1BA3A34400831C8B /* Debug */,
