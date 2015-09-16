@@ -1,7 +1,7 @@
 # ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, quick & easy
 
-[![release](https://img.shields.io/badge/release-v1.0-green.svg)](https://github.com/lfaoro/Cast/releases)
-[![platform](https://img.shields.io/badge/platform-OS%20X%2010.10+-lightgrey.svg)](https://www.apple.com/osx/)
+[![release](https://img.shields.io/badge/release-v1.0-green.svg?style=flat)](https://github.com/lfaoro/Cast/releases)
+[![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg)](https://www.apple.com/osx/)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
 
@@ -68,7 +68,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - [x] is.gd
 
 ## Development Requirements
-- OS X 10.10 Yosemite or newer
+- Mac OS X 10.10 | Yosemite or newer
 - Xcode 7
 - Swift 2.0
 - [Carthage][128c6379]
