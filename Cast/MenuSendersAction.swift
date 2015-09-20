@@ -50,6 +50,46 @@ final class MenuSendersAction: NSObject {
 			})
 	}
 
+	func updateGistAction(sender: NSMenuItem) {
+		let _ = PasteboardClient.getPasteboardItems()
+			.debug("getPasteboardItems")
+			.subscribe(next: { value in
+
+				switch value {
+
+				case .Text(let item):
+					app.gistClient.setGist(content: item, updateGist: true)
+						.debug("setGist")
+						.retry(3)
+						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.subscribe { event in
+							switch event {
+
+							case .Next(let URL):
+								if let URL = URL {
+									PasteboardClient.putInPasteboard(items: [URL])
+									app.userNotification.pushNotification(openURL: URL)
+								} else {
+									app.userNotification.pushNotification(error: "Unable to Shorten URL")
+								}
+
+							case .Completed:
+								app.statusBarItem.menu = createMenu(self)
+
+							case .Error(let error):
+								app.userNotification.pushNotification(error: String(error))
+							}
+					}
+
+				case .File(let file):
+					print(file.path!)
+					
+				default: break
+					
+				}
+			})
+	}
+
 	func shortenURLAction(sender: NSMenuItem) {
 
 		let _ = PasteboardClient.getPasteboardItems()
@@ -84,8 +124,6 @@ final class MenuSendersAction: NSObject {
 					app.userNotification.pushNotification(error: "Not a valid URL")
 				}
 			})
-
-
 	}
 
 	func loginToGithub(sender: NSMenuItem) {
