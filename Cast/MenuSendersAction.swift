@@ -4,7 +4,6 @@
 //
 import Cocoa
 import RxSwift
-import RxCocoa
 
 final class MenuSendersAction: NSObject {
 

@@ -8,7 +8,6 @@
 // Cast: verb. throw (something) forcefully in a specified direction.
 
 import Cocoa
-import SwiftyJSON
 
 //---------------------------------------------------------------------------
 let app = (NSApp.delegate as? AppDelegate)!
@@ -56,6 +55,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 //MARK:- Globals
+
+//TODO: Absolutely refactor this, find a way to encapsulate all of the code below.
 
 func createStatusBar() -> NSStatusItem {
 	return NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
