@@ -63,6 +63,19 @@ public class GistClient {
 
 
 	//MARK:- Public API
+
+	/**
+	- returns: `true` if a Gist has already been created otherwise `false`
+	*/
+	public var gistCreated: Bool {
+
+		let userDefaults = NSUserDefaults.standardUserDefaults()
+
+		guard let _ = userDefaults.stringForKey("gistID") else { return false }
+
+		return true
+	}
+
 	/**
 	setGist: creates or updates a gist on the *gist.github.com* service
 	based on the value of `gistID`.
@@ -73,7 +86,7 @@ public class GistClient {
 
 	![RxLogo](http://reactivex.io/assets/Rx_Logo_BW_S.png)
 	*/
-	public func setGist(content content: String, updateGist: Bool = true,
+	public func setGist(content content: String, updateGist: Bool = false,
 		isPublic: Bool = false, fileName: String = "Casted.swift") // defaults
 		-> Observable<NSURL> {
 

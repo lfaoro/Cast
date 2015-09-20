@@ -1,8 +1,14 @@
 language: objective-c
 osx_image: xcode7
 before_install:
- - brew update
- - brew install carthage
- - carthage bootstrap --verbose --platform mac
+  - brew update
+  - brew install carthage
+  - brew install swiftlint
+  - carthage bootstrap --verbose --platform mac
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
+branches:
+  only:
+    - develop
+script:
+  xctool -project Cast.xcodeproj -scheme Cast clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO

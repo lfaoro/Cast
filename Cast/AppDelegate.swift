@@ -42,11 +42,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
+		gistClient = GistClient()
+		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
-		userNotification = UserNotifications()
-		gistClient = GistClient()
 	}
 
 	func updateMenu() -> () {
@@ -79,11 +79,21 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	menu.addItemWithTitle("Share Pasteboard Contents",
 		action: "shareClipboardContentsAction:",
-		keyEquivalent: "S")?.target = target
+		keyEquivalent: "S")?
+		.target = target
+
+	if app.gistClient.gistCreated {
+
+		menu.addItemWithTitle("Update current gist",
+			action: "updateGistAction:",
+			keyEquivalent: "U")?
+			.target = target
+	}
 
 	menu.addItemWithTitle("Shorten URL with Hive",
 		action: "shortenURLAction:",
-		keyEquivalent: "T")?.target = target
+		keyEquivalent: "T")?
+		.target = target
 
 	menu.addItem(NSMenuItem.separatorItem())
 
