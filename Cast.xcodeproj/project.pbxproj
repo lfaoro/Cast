@@ -226,12 +226,12 @@
 			children = (
 				A150495D1B693DD8009BF6A9 /* README.md */,
 				A13145EC1B5AA34E00AA4406 /* Info.plist */,
+				A14B7C621BA3A34400831C8B /* Cast Release-Info.plist */,
 				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
 				A14B7C431BA39EA700831C8B /* Cast.entitlements */,
-				A14B7C621BA3A34400831C8B /* Cast Release-Info.plist */,
 			);
 			name = Assets;
 			path = Cast;
