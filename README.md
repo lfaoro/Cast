@@ -1,7 +1,7 @@
 # ![Cast logo](https://raw.githubusercontent.com/lfaoro/Cast/master/Cast/Assets.xcassets/AppIcon.appiconset/64x64.png) Cast | share data, quick & easy
 
 [![build](https://travis-ci.org/lfaoro/Cast.svg)](https://travis-ci.org/lfaoro/Cast)
-[![release](https://img.shields.io/badge/release-v1.0-green.svg?style=flat)](https://github.com/lfaoro/Cast/releases)
+[![release](https://img.shields.io/badge/release-v1.1-green.svg?style=flat)](https://tr.im/CastMacAppStore)
 [![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg)](https://www.apple.com/osx/)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
@@ -16,11 +16,15 @@ Cast will seamlessly figure out the type of information you wish to share and au
 
 Cast will also help you shorten URLs very quickly using your preferred URL shortening service.
 
-~~Cast can queue up multiple streams of information and share them all at once extending the system's Pasteboard functionality~~
+
+[![Download on the Mac App Store][MacAppStoreLogo]][MacAppStoreLink]
+
+[MacAppStoreLogo]: /MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+[MacAppStoreLink]: https://tr.im/CastMacAppStore
 
 ## Features available in v1.0
 - [x] Uploads data automatically
-- [x] Creates shortened download link
+- [x] Creates shortened download links
 - [x] The shortened link is automatically moved inside your Pasteboard (ready to paste)
 - [x] System Notification alerts displaying links or errors
 - [x] Ability to click on the Notification and open the link
@@ -28,9 +32,9 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - [x] GitHub's access Token securely stored inside your [Keychain](https://en.wikipedia.org/wiki/Keychain_(software))
 - [x] Uploads raw text to the gist service creating a new gist
 - [x] Uploads raw text to the gist service updating current gist (incremental/revisions)
-- [x] Shortens any URL and prepares the shortened link in your Pasteboard (ready to paste)
+- [x] Shortens any URL and prepares a shortened link in your Pasteboard (ready to paste)
 - [x] Keeps a History of all your uploads and URL shorts
-- [x] Clicking a recent upload from the list, open it in your default browser
+- [x] Clicking a recent upload from the list, opens it in your default browser
 - [ ] Recent upload links synced via iCloud across all your Macs
 - [ ] Configure the app through the Options menu
 
