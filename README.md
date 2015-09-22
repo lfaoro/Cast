@@ -19,7 +19,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 [![Download on the Mac App Store][MacAppStoreLogo]][MacAppStoreLink]
 
-[MacAppStoreLogo]: /MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
 [MacAppStoreLink]: https://tr.im/CastMacAppStore
 
 ## Features available in v1.0
