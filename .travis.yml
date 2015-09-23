@@ -4,7 +4,7 @@ before_install:
   - brew update
   - brew install carthage
   - brew install swiftlint
-  - carthage bootstrap --verbose --platform mac
+  # - carthage bootstrap --verbose --platform mac
 xcode_project: Cast.xcodeproj
 xcode_scheme: Cast
 branches:
