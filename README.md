@@ -19,7 +19,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 [![Download on the Mac App Store][MacAppStoreLogo]][MacAppStoreLink]
 
-[MacAppStoreLogo]: /MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
 [MacAppStoreLink]: https://tr.im/CastMacAppStore
 
 ## Features available in v1.0
@@ -64,11 +64,11 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 **Folders and Files** which will be automatically zipped for you before uploading
 - [ ] [iCloud Drive](http://www.apple.com/icloud/icloud-drive/)
-- [ ] wetransfer.com
-- [ ] dropbox.com
+- [ ] [DropBox](http://dropbox.com)
 
 **URL Shorteners**
 - [x] [hive.am](www.hive.am)
+- [ ] tr.im
 - [x] bit.ly
 - [x] is.gd
 
@@ -84,11 +84,13 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 ## Contributing
 
-> We use [gitflow][0d3b04ed], please fork and push your enhancements to the `develop` branch
+> We use [gitflow][0d3b04ed], please [fork][castFork] and push your enhancements to the `develop` branch
+
+[castFork]: https://github.com/lfaoro/Cast/fork
 
 ```Bash
 git checkout develop
-carthage bootstrap
+carthage bootstrap --platform mac
 open Cast.xcodeproj
 ```
 Please, pick an [Issue][c2a6348a] and submit a pull request.

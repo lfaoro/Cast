@@ -129,13 +129,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A13145DD1B5AA34E00AA4406 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A14B7C511BA3A34400831C8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,12 +257,11 @@
 			buildConfigurationList = A13145EF1B5AA34E00AA4406 /* Build configuration list for PBXNativeTarget "Cast" */;
 			buildPhases = (
 				A13145DC1B5AA34E00AA4406 /* Sources */,
-				A13145DD1B5AA34E00AA4406 /* Frameworks */,
 				A13145DE1B5AA34E00AA4406 /* Resources */,
 				A17A19D21B9104F6005CB0A5 /* Copy Files - Frameworks */,
-				A150495F1B6940D9009BF6A9 /* Carthage Script */,
-				A17A19DC1B919C9E005CB0A5 /* SwiftLint Script */,
+				A1A650301BB08E5800E97172 /* Setup Script */,
 				A15049661B6978A5009BF6A9 /* Tags Script */,
+				A150495F1B6940D9009BF6A9 /* Carthage Script */,
 			);
 			buildRules = (
 			);
@@ -289,8 +281,6 @@
 				A14B7C521BA3A34400831C8B /* Resources */,
 				A14B7C561BA3A34400831C8B /* Copy Files - Frameworks */,
 				A14B7C5B1BA3A34400831C8B /* Carthage Script */,
-				A14B7C5C1BA3A34400831C8B /* SwiftLint Script */,
-				A14B7C5D1BA3A34400831C8B /* Tags Script */,
 			);
 			buildRules = (
 			);
@@ -427,34 +417,6 @@
 			shellPath = /bin/sh;
 			shellScript = "#/usr/local/bin/carthage copy-frameworks";
 		};
-		A14B7C5C1BA3A34400831C8B /* SwiftLint Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#Scripts/swiftlintCheck";
-		};
-		A14B7C5D1BA3A34400831C8B /* Tags Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Tags Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = Scripts/tags;
-		};
 		A150495F1B6940D9009BF6A9 /* Carthage Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -485,21 +447,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = Scripts/tags;
+			shellScript = "${PROJECT_DIR}/scripts/tags";
 		};
-		A17A19DC1B919C9E005CB0A5 /* SwiftLint Script */ = {
+		A1A650301BB08E5800E97172 /* Setup Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "SwiftLint Script";
+			name = "Setup Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#Scripts/swiftlintCheck";
+			shellPath = /bin/zsh;
+			shellScript = "#${PROJECT_DIR}/scripts/setup";
 		};
 /* End PBXShellScriptBuildPhase section */
 

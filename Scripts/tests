@@ -1,0 +1,15 @@
+#!/bin/zsh
+checkXcode() {
+	local required_xcode_version=0700
+  local XCODE_VERSION_ACTUAL=0700
+echo $XCODE_VERSION_ACTUAL - ${required_xcode_version//.}
+echo
+	if [ ${XCODE_VERSION_ACTUAL} -lt ${required_xcode_version//.} ]
+		then
+		echo "\e[1;31m Error: Xcode ${required_xcode_version} or later is required to build ${PRODUCT_NAME} \e[0m"
+		exit 1
+	else
+		echo "\e[1;32m	Good: 'Xcode' version is ${XCODE_VERSION_ACTUAL} \e[0m"
+	fi
+}
+checkXcode
