@@ -11,4 +11,4 @@ branches:
   only:
     - develop
 script:
-  xctool -project Cast.xcodeproj -scheme Cast clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  xctool -project Cast.xcodeproj -scheme Cast (Standard) clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
