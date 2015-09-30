@@ -6,7 +6,7 @@ before_install:
   - brew install swiftlint
   - carthage bootstrap --platform mac
 xcode_project: Cast.xcodeproj
-xcode_scheme: Cast
+xcode_scheme: Cast (Standard)
 branches:
   only:
     - develop

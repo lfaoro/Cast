@@ -93,7 +93,7 @@
 		83BC9D901B6586DE002F35FA /* Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dragging.swift; sourceTree = "<group>"; };
 		A11025BF1B75796300720866 /* ImgurClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurClient.swift; sourceTree = "<group>"; };
 		A11FFDEF1B92539000CA6C5F /* PasteboardClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardClient.swift; sourceTree = "<group>"; };
-		A13145E01B5AA34E00AA4406 /* Cast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A13145E01B5AA34E00AA4406 /* Cast (Standard).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast (Standard).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13145E31B5AA34E00AA4406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A13145E71B5AA34E00AA4406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A13145EA1B5AA34E00AA4406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		A13145E11B5AA34E00AA4406 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A13145E01B5AA34E00AA4406 /* Cast.app */,
+				A13145E01B5AA34E00AA4406 /* Cast (Standard).app */,
 				A19D4F841B77957F00BEB08B /* CastTests.xctest */,
 				A14B7C611BA3A34400831C8B /* Cast (Mac App Store).app */,
 			);
@@ -269,7 +269,7 @@
 			);
 			name = "Cast (Standard)";
 			productName = Cast;
-			productReference = A13145E01B5AA34E00AA4406 /* Cast.app */;
+			productReference = A13145E01B5AA34E00AA4406 /* Cast (Standard).app */;
 			productType = "com.apple.product-type.application";
 		};
 		A14B7C441BA3A34400831C8B /* Cast (Mac App Store) */ = {
