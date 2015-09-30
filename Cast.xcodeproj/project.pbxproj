@@ -252,9 +252,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A13145DF1B5AA34E00AA4406 /* Cast */ = {
+		A13145DF1B5AA34E00AA4406 /* Cast (Standard) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A13145EF1B5AA34E00AA4406 /* Build configuration list for PBXNativeTarget "Cast" */;
+			buildConfigurationList = A13145EF1B5AA34E00AA4406 /* Build configuration list for PBXNativeTarget "Cast (Standard)" */;
 			buildPhases = (
 				A13145DC1B5AA34E00AA4406 /* Sources */,
 				A13145DE1B5AA34E00AA4406 /* Resources */,
@@ -267,7 +267,7 @@
 			);
 			dependencies = (
 			);
-			name = Cast;
+			name = "Cast (Standard)";
 			productName = Cast;
 			productReference = A13145E01B5AA34E00AA4406 /* Cast.app */;
 			productType = "com.apple.product-type.application";
@@ -361,7 +361,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A13145DF1B5AA34E00AA4406 /* Cast */,
+				A13145DF1B5AA34E00AA4406 /* Cast (Standard) */,
 				A14B7C441BA3A34400831C8B /* Cast (Mac App Store) */,
 				A19D4F831B77957F00BEB08B /* CastTests */,
 			);
@@ -514,7 +514,7 @@
 /* Begin PBXTargetDependency section */
 		A19D4F8A1B77957F00BEB08B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A13145DF1B5AA34E00AA4406 /* Cast */;
+			target = A13145DF1B5AA34E00AA4406 /* Cast (Standard) */;
 			targetProxy = A19D4F891B77957F00BEB08B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -651,7 +651,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cast;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -697,7 +697,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cast;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -748,7 +748,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A13145EF1B5AA34E00AA4406 /* Build configuration list for PBXNativeTarget "Cast" */ = {
+		A13145EF1B5AA34E00AA4406 /* Build configuration list for PBXNativeTarget "Cast (Standard)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A13145F01B5AA34E00AA4406 /* Debug */,
