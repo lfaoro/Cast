@@ -19,7 +19,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 [![Download on the Mac App Store][MacAppStoreLogo]][MacAppStoreLink]
 
-[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/AppStore/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
 [MacAppStoreLink]: https://tr.im/CastMacAppStore
 
 ## Features available in v1.0
@@ -110,9 +110,6 @@ Thank you very much for any contribution!
 ## Credits
 
 > We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that every day establish our inspiration.
-
-## Security Disclosure
-If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to security@lfaoro.com. Please do not post it to a public issue tracker.
 
 ## License
 Cast is released under the [MIT License](<LICENSE.md>)
