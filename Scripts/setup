@@ -2,11 +2,10 @@
 echo
 
 # This script will run during an Xcode - Run Script Phase
-echo Xcode: $XCODE_VERSION_ACTUAL
 checkXcode() {
 	required_xcode_version=700
 
-	if [ ${XCODE_VERSION_ACTUAL} -lt ${required_xcode_version//.} ]
+	if [ ${XCODE_VERSION_ACTUAL} -lt ${required_xcode_version} ]
 		then
 		echo "\e[1;31m Error: Xcode ${required_xcode_version} or later is required to build ${PRODUCT_NAME} \e[0m"
 		exit 1
@@ -15,14 +14,17 @@ checkXcode() {
 
 		# Check if we have all frameworks
 		checkFrameworks
+
+		# Check if we have SwiftLint
+		checkSwiftLint
 	fi
 }
 
 checkFrameworks() {
-	read -d '' items < <(ls ${PROJECT_DIR}/Carthage/build/Mac |grep framework$)
-	if [ ${#items[*]} -ge 6 ]
+	items=`ls ${PROJECT_DIR}/Carthage/build/Mac |grep framework$ |wc -l`
+	if [ $items -ge 7 ]
 		then
-		echo "\e[1;32m	Good: all frameworks are present \e[0m"
+		echo "\e[1;32m	Good: All frameworks are present \e[0m"
 	else
 		echo "\e[1;31m	Bad: Frameworks missing, bootstrapping \e[0m"
 		checkCarthage
@@ -35,30 +37,20 @@ checkBrew() {
 
 	if [ -x $brew ]
 		then
-		echo "\e[1;32m	Good: 'brew' is installed in $brew \e[0m"
+		echo "\e[1;32m	Good: 'Homebrew' is installed in $brew \e[0m"
 	else
-		echo "\e[1;31m	Bad: 'brew' is not installed... \e[0m"
+		echo "\e[1;31m	Bad: 'Homebrew' is not installed... \e[0m"
 		echo
-		echo "\e[1;36m	May I install 'brew' for you? \e[0m"
-
-		read response
-		if [ $response = "yes" ] || [ $response = "y" ]
-			then
-
-			ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-			sleep 1
-			checkBrew
-		else
-			echo "\e[1;31m	Unfortunately Setup can not continue... \e[0m"
-
-			exit 1
-		fi
+		echo "\e[1;36m	Installing 'Homebrew' \e[0m"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		sleep 1
+		checkBrew
 	fi
 }
 
 checkCarthage() {
 	local carthage=`where carthage`
-	if [ $? -eq 0 ]
+	if [ -x $carthage ]
 		then
 		echo "\e[1;32m	Good: 'Carthage' is installed in $carthage \e[0m"
 	else
@@ -74,7 +66,7 @@ checkCarthage() {
 
 checkSwiftLint() {
 	local swiftlint=`where swiftlint`
-	if [ $? -eq 0 ]
+	if [ -x $swiftlint ]
 		then
 		echo "\e[1;32m	Good: 'SwiftLint' is installed in $swiftlint \e[0m"
 	else
@@ -89,4 +81,6 @@ checkSwiftLint() {
 }
 
 checkXcode
-checkSwiftLint
+
+echo "\e[1;32m	Good: Procedding to build $PROJECT_NAME... \e[0m"
+exit 0
