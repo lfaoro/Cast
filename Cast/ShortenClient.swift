@@ -62,6 +62,4 @@ public class ShortenClient {
 			return NopDisposable.instance
 		}
 	}
-	
-	
 }

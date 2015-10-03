@@ -260,8 +260,9 @@
 				A13145DE1B5AA34E00AA4406 /* Resources */,
 				A17A19D21B9104F6005CB0A5 /* Copy Files - Frameworks */,
 				A1A650301BB08E5800E97172 /* Setup Script */,
-				A15049661B6978A5009BF6A9 /* Tags Script */,
 				A150495F1B6940D9009BF6A9 /* Carthage Script */,
+				A1A655AE1BBFDFED00E6A11C /* SwiftLint Script */,
+				A15049661B6978A5009BF6A9 /* Tags Script */,
 			);
 			buildRules = (
 			);
@@ -460,8 +461,22 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/zsh;
-			shellScript = "#${PROJECT_DIR}/scripts/setup";
+			shellPath = /bin/bash;
+			shellScript = "${PROJECT_DIR}/scripts/setup";
+		};
+		A1A655AE1BBFDFED00E6A11C /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = swiftlint;
 		};
 /* End PBXShellScriptBuildPhase section */
 

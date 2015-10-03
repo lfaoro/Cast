@@ -1,4 +1,6 @@
-included:
- - Cast
 disabled_rules:
- - function_body_length
+  - function_body_length
+  - todo
+included:
+  - Cast
+excluded:

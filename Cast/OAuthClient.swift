@@ -61,7 +61,9 @@ public class OAuthClient: NSObject {
 
 	public class func revoke() -> NSError? {
 		let keychain = Keychain(service: "com.lfaoro.cast.github-token")
-		let revokeURL = NSURL(string: "https://github.com/settings/connections/applications/" + "ef09cfdbba0dfd807592")!
+		let revokeURL = NSURL(
+			string: "https://github.com/settings/connections/applications/" +
+			"ef09cfdbba0dfd807592")!
 
 		NSWorkspace.sharedWorkspace().openURL(revokeURL)
 

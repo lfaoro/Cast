@@ -82,9 +82,9 @@ final class MenuSendersAction: NSObject {
 
 				case .File(let file):
 					print(file.path!)
-					
+
 				default: break
-					
+
 				}
 			})
 	}
@@ -163,8 +163,8 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-	
+
 	func openOptionsWindow(sender: NSMenuItem) {
-		
+
 	}
 }

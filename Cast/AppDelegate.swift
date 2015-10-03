@@ -177,5 +177,5 @@ func keepRecent(URL url: NSURL) {
 	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
 	recentURLS[description] = url.relativeString!
-	
+
 }

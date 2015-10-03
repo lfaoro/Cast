@@ -64,7 +64,7 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 **Folders and Files** which will be automatically zipped for you before uploading
 - [ ] [iCloud Drive](http://www.apple.com/icloud/icloud-drive/)
-- [ ] [DropBox](http://dropbox.com)
+- [ ] [Dropbox](http://dropbox.com)
 
 **URL Shorteners**
 - [x] [hive.am](www.hive.am)
