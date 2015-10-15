@@ -26,11 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	override init() {
 
-		self.oauth = OAuthClient(
-			clientID: "ef09cfdbba0dfd807592",
-			clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
-			service: .GitHub
-			)!
+		var options: OAuthOptions = OAuthOptions()
+		options.clientID = "ef09cfdbba0dfd807592"
+		options.clientSecret = "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7"
+		self.oauth = OAuthClient(options: options)
 
 		super.init()
 	}
@@ -78,7 +77,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	let menu = NSMenu(title: "Cast Menu")
 
-	menu.addItemWithTitle("Share Pasteboard Contents",
+	menu.addItemWithTitle("Share copied text",
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?
 		.target = target
@@ -91,7 +90,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 			.target = target
 	}
 
-	menu.addItemWithTitle("Shorten URL with Hive",
+	menu.addItemWithTitle("Shorten URL",
 		action: "shortenURLAction:",
 		keyEquivalent: "T")?
 		.target = target
@@ -100,11 +99,11 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	///- todo: externalise in separate function
 	///- todo: implement recent gists
-	let recentUploadsItem = NSMenuItem(title: "Recent Uploads",
+	let recentUploadsItem = NSMenuItem(title: "Recent Actions",
 		action: "terminate:",
 		keyEquivalent: "")
 
-	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
+	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Actions Menu")
 	for (title, link) in recentURLS  {
 		let menuItem = NSMenuItem(title: title,
 			action: "recentUploadsAction:",

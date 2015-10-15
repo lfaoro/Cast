@@ -20,7 +20,7 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.flatMap { ShortenClient.shortenWithIsGd(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -60,7 +60,7 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item, updateGist: true)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.flatMap { ShortenClient.shortenWithIsGd(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -101,13 +101,13 @@ final class MenuSendersAction: NSObject {
 
 					if let url = NSURL(string: item) {
 
-						ShortenClient.shortenWithHive(URL: url)
+						ShortenClient.shortenWithIsGd(URL: url)
 							.debug("shortenWithHive")
 							.subscribe { event in
 								switch event {
 								case .Next(let URL):
 									PasteboardClient.putInPasteboard(items: [URL!])
-									app.userNotification.pushNotification(openURL: URL!, title: "Shortened with Hive.am")
+									app.userNotification.pushNotification(openURL: URL!, title: "Shortened with Is.Gd")
 								case .Completed:
 									print("completed")
 								case .Error(let error):
@@ -163,8 +163,8 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-
+	
 	func openOptionsWindow(sender: NSMenuItem) {
-
+		
 	}
 }
