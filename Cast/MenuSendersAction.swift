@@ -163,8 +163,8 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-	
+
 	func openOptionsWindow(sender: NSMenuItem) {
-		
+
 	}
 }

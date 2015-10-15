@@ -28,7 +28,7 @@ public class OAuthClient: NSObject {
 		self.oauthRequest()
 	}
 
-	/// Remove the access token from the Key chain 
+	/// Remove the access token from the Key chain
 	/// and send the user to the revoke token web page
 	public class func revoke() -> NSError? {
 		let keychain = Keychain(service: "com.lfaoro.cast.github-token")
