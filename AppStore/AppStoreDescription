@@ -1,0 +1,26 @@
+Cast is an agent that lives in your system's Status Menu. Its purpose is to help you share information quick & easy.
+Cast seamlessly integrates with GitHub.com and allows you to create and edit gists on the fly.
+Cast is also a great URL shortener.
+
++ Drag & Drop
+Drop a text selection or text file on the Cast atomic icon available in your Status Menu and Cast will upload it for you automagically and supply a conveniently shortened link directly in your Pasteboard (⌘+V).
+
++ Recent Actions
+You may access a history of all your links from the Recent Actions drop-down menu available clicking the Cast atomic icon in the Status Menu.
+
++ Notifications
+Every time you perform a Share or Shorten action a convenient Notification is displayed with details about your action, directly from the notification you may open and check your shortened link.
+
+Coming Soon:
+- Multiple Services Support
+You may choose different service providers from the Options panel and in case we don't yet support your favorite service, send us an support request: https://github.com/lfaoro/Cast/issues/new
+
+- Custom Hotkey
+You may define a hotkey to use for Sharing and one for Shortening in the Options panel.
+The default hotkeys are: Share (CMD+SHIFT+C) - Short (CMD+ALT+C)
+
+- Recent Uploads synced with iCloud
+You may choose to Sync all your Recent Actions with iCloud using your Apple ID
+
+- Image sharing
+- Screenshots auto-upload
