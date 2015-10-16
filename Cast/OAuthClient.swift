@@ -115,14 +115,19 @@ public class OAuthClient: NSObject {
 
 /// OAuth2 flow parameters
 public struct OAuthOptions {
+
 	/// Required. The client ID you received from GitHub when you registered.
 	public var clientID: String = ""
+
 	/// Required. The client secret you received from GitHub when you registered.
 	public var clientSecret: String = ""
+
 	/// Redirect users to request GitHub access
 	public var authURL: String = "https://github.com/login/oauth/authorize/"
+
 	/// The URL in your app where users will be sent after authorization.
 	public var redirectURL: String = "cast://oauth"
+
 	/// Exchange authURL: code for an access token
 	public var tokenURL: String = "https://github.com/login/oauth/access_token"
 }

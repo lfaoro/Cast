@@ -1,10 +1,8 @@
 //
-//  AppDelegate.swift
-//  Cast
-//
 //  Created by Leonardo on 18/07/2015.
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
+
 // Cast: verb. throw (something) forcefully in a specified direction.
 
 import Cocoa
@@ -36,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 	func applicationWillFinishLaunching(notification: NSNotification) {
+		// Nothing to see here, move along.
 	}
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
@@ -52,6 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		statusBarItem.menu?.update()
 	}
 }
+
 
 //MARK:- Globals
 
