@@ -151,9 +151,9 @@ final class MenuSendersAction: NSObject {
 	}
 
 	func clearItemsAction(sender: NSMenuItem) {
-		if recentURLS.count > 0 {
-			recentURLS.removeAll()
-			Swift.print(recentURLS)
+		if app.prefs.recentActions!.count > 0 {
+			app.prefs.recentActions!.removeAll()
+			Swift.print(app.prefs.recentActions!)
 			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 		}
 	}

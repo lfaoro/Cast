@@ -13,6 +13,8 @@ public class ShortenClient {
 		let session = NSURLSession.sharedSession()
 		let shorten = NSURL(string: "https://is.gd/create.php?format=json&url=" + URL.absoluteString)!
 
+		keepRecent(URL: URL)
+
 		return session.rx_JSON(shorten)
 			.debug("shorten")
 			.retry(3)
@@ -21,7 +23,7 @@ public class ShortenClient {
 
 	public class func shortenWithHive(URL URL: NSURL) -> Observable<String?> {
 
-		keepRecent(URL: URL)
+
 
 		let hiveAPIURL = "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
 		"&description=cast.lfaoro.com&type=DIRECT"

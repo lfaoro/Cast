@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var menuSendersAction: MenuSendersAction!
 	var userNotification: UserNotifications!
 	var gistClient: GistClient!
+	var prefs: PreferenceManager!
 
 
 	override init() {
@@ -39,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
+		prefs = PreferenceManager()
 		gistClient = GistClient()
 		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
@@ -104,7 +106,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		keyEquivalent: "")
 
 	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Actions Menu")
-	for (title, link) in recentURLS  {
+	for (title, link) in app.prefs.recentActions! {
 		let menuItem = NSMenuItem(title: title,
 			action: "recentUploadsAction:",
 			keyEquivalent: "")
@@ -120,7 +122,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	recentUploadsItem.submenu = recentUploadsSubmenu
 
-	if recentURLS.count > 0 {
+	if app.prefs.recentActions!.count > 0 {
 		menu.addItem(recentUploadsItem)
 	}
 
@@ -154,27 +156,10 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	return menu
 }
 
-// TODO: Find a place for Recent URLs DB
-var recentURLS: [String: String] {
-get {
-	let userDefaults = NSUserDefaults.standardUserDefaults()
-
-	guard let dic = userDefaults.dictionaryForKey("recentURLS") as? [String: String] else
-	{ return ["Cast": "http://cast.lfaoro.com"] }
-
-	return dic
-}
-
-set (value) {
-	let userDefaults = NSUserDefaults.standardUserDefaults()
-	userDefaults.setObject(value, forKey: "recentURLS")
-	app.statusBarItem.menu = createMenu(app.menuSendersAction)
-}
-}
 
 func keepRecent(URL url: NSURL) {
 	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
-	recentURLS[description] = url.relativeString!
+	app.prefs.recentActions![description] = url.relativeString!
 
 }

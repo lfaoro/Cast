@@ -39,6 +39,8 @@
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
+		A17428911BD15E8600966DFB /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17428901BD15E8600966DFB /* PreferenceManager.swift */; settings = {ASSET_TAGS = (); }; };
+		A17428921BD15E8C00966DFB /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17428901BD15E8600966DFB /* PreferenceManager.swift */; settings = {ASSET_TAGS = (); }; };
 		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -112,6 +114,7 @@
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A15049671B6979E5009BF6A9 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		A156D5451B84E4D800579FCC /* OAuthClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClientSpec.swift; sourceTree = "<group>"; };
+		A17428901BD15E8600966DFB /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = ../Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		A17A19D41B910523005CB0A5 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/Mac/RxCocoa.framework; sourceTree = "<group>"; };
 		A17A19D51B910523005CB0A5 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 				A15049671B6979E5009BF6A9 /* UserNotifications.swift */,
 				A13961B31B5BF4C400E9CB98 /* Globals.swift */,
 				A11025BC1B75792F00720866 /* Services */,
+				A17428901BD15E8600966DFB /* PreferenceManager.swift */,
 			);
 			path = Cast;
 			sourceTree = "<group>";
@@ -485,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A17428911BD15E8600966DFB /* PreferenceManager.swift in Sources */,
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 				A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
@@ -503,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A17428921BD15E8C00966DFB /* PreferenceManager.swift in Sources */,
 				A14B7C461BA3A34400831C8B /* AppDelegate.swift in Sources */,
 				A14B7C471BA3A34400831C8B /* OAuthClient.swift in Sources */,
 				A14B7C481BA3A34400831C8B /* Secrets.swift in Sources */,
