@@ -10,6 +10,9 @@ import RxSwift
 final class MenuSendersAction: NSObject {
 
 
+	let shortenClient = ShortenClient()
+
+
 	func shareClipboardContentsAction(sender: NSMenuItem) {
 
 		let _ = PasteboardClient.getPasteboardItems()
@@ -22,7 +25,7 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithIsGd(URL: $0) }
+						.flatMap { self.shortenClient.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -62,7 +65,7 @@ final class MenuSendersAction: NSObject {
 					app.gistClient.setGist(content: item, updateGist: true)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithIsGd(URL: $0) }
+						.flatMap { self.shortenClient.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -95,30 +98,25 @@ final class MenuSendersAction: NSObject {
 
 		let _ = PasteboardClient.getPasteboardItems()
 			.debug("getPasteboardItems")
-			.retry(3)
 			.subscribe(next: { value in
 				switch value {
-
 				case .Text(let item):
+					guard let url = NSURL(string: item) else { fallthrough }
+					self.shortenClient.shorten(URL: url)
+						.subscribe { event in
+							switch event {
+							case .Next(let shortenedURL):
+								guard let URL = shortenedURL else { fallthrough }
+								PasteboardClient.putInPasteboard(items: [URL])
+								app.userNotification.pushNotification(openURL: URL,
+									title: "Shortened with \(app.prefs.shortenService!)")
 
-					if let url = NSURL(string: item) {
+							case .Completed:
+								print("completed")
 
-						ShortenClient.shortenWithIsGd(URL: url)
-							.debug("shortenWithHive")
-							.subscribe { event in
-								switch event {
-								case .Next(let URL):
-									PasteboardClient.putInPasteboard(items: [URL!])
-									app.userNotification.pushNotification(openURL: URL!, title: "Shortened with Is.Gd")
-								case .Completed:
-									print("completed")
-								case .Error(let error):
-									print("\(error)")
-								}
-						}
-
-					} else {
-						fallthrough
+							case .Error(let error):
+								print("\(error)")
+							}
 					}
 
 				default:
@@ -166,7 +164,8 @@ final class MenuSendersAction: NSObject {
 		}
 	}
 
-	func openOptionsWindow(sender: NSMenuItem) {
-
+	func optionsAction(sender: NSMenuItem) {
+		NSApp.activateIgnoringOtherApps(true)
+		app.optionsWindowController.showWindow(nil)
 	}
 }

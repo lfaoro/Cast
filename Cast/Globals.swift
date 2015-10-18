@@ -6,10 +6,6 @@
 
 import Cocoa
 
-public var recentUploads: [String:String] = [
-	"TestTitle1":"https://apple.com/",
-	"TestTitle2":"https://github.com"
-]
 public let pasteboardTypes = [NSFilenamesPboardType]
 
 public func extractExcerptFromString(string: String, length: Int) -> String {
@@ -20,8 +16,4 @@ public func extractExcerptFromString(string: String, length: Int) -> String {
     }
 }
 
-/**
-- todo: find a way to add a global hotkey for sharing gists
-- todo: research about auto-update
-*/
 public func todo() {}

@@ -48,6 +48,10 @@
 		A17EA4801B7F8EDE0080CF8B /* GistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EA47F1B7F8EDE0080CF8B /* GistClient.swift */; };
 		A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */; };
 		A198EC3B1B89E7F300E9D718 /* ShortenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */; };
+		A1F6CCC11BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		A1F6CCC21BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */; settings = {ASSET_TAGS = (); }; };
+		A1F6CCC31BD2DD7200BDBE21 /* OptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */; settings = {ASSET_TAGS = (); }; };
+		A1F6CCC41BD2DD7200BDBE21 /* OptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +112,6 @@
 		A146B9FF1B90D218003B4EA3 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/Mac/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
 		A14B7C431BA39EA700831C8B /* Cast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cast.entitlements; sourceTree = "<group>"; };
 		A14B7C611BA3A34400831C8B /* Cast (Mac App Store).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast (Mac App Store).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A14B7C621BA3A34400831C8B /* Cast Release-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Cast Release-Info.plist"; path = "/Users/lfaoro/Dev/Cast/Cast Release-Info.plist"; sourceTree = "<absolute>"; };
 		A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClient.swift; sourceTree = "<group>"; };
 		A150495D1B693DD8009BF6A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		A15049641B69767A009BF6A9 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -127,7 +130,9 @@
 		A19D4F941B779BAD00BEB08B /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
 		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
-		A1B2EB381BA9DCBE003E5E84 /* Cast Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cast Release.entitlements"; sourceTree = "<group>"; };
+		A1B2EB381BA9DCBE003E5E84 /* Cast AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cast AppStore.entitlements"; sourceTree = SOURCE_ROOT; };
+		A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsWindowController.swift; path = Cast/OptionsWindowController.swift; sourceTree = "<group>"; };
+		A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsWindow.xib; path = Cast/OptionsWindow.xib; sourceTree = "<group>"; };
 		EBE9DF5E1B68E38B00D11407 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -167,7 +172,6 @@
 		A13145D71B5AA34E00AA4406 = {
 			isa = PBXGroup;
 			children = (
-				A1B2EB381BA9DCBE003E5E84 /* Cast Release.entitlements */,
 				A13145E21B5AA34E00AA4406 /* Cast */,
 				A13145F61B5AA67700AA4406 /* User Interface */,
 				A13145F51B5AA65B00AA4406 /* Assets */,
@@ -221,14 +225,14 @@
 		A13145F51B5AA65B00AA4406 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A150495D1B693DD8009BF6A9 /* README.md */,
-				A13145EC1B5AA34E00AA4406 /* Info.plist */,
-				A14B7C621BA3A34400831C8B /* Cast Release-Info.plist */,
-				A13961B51B5C605200E9CB98 /* .gitignore */,
 				A13145E71B5AA34E00AA4406 /* Assets.xcassets */,
+				A13145EC1B5AA34E00AA4406 /* Info.plist */,
+				A14B7C431BA39EA700831C8B /* Cast.entitlements */,
+				A1B2EB381BA9DCBE003E5E84 /* Cast AppStore.entitlements */,
+				A150495D1B693DD8009BF6A9 /* README.md */,
+				A13961B51B5C605200E9CB98 /* .gitignore */,
 				83BC9D901B6586DE002F35FA /* Dragging.swift */,
 				A15049641B69767A009BF6A9 /* Secrets.swift */,
-				A14B7C431BA39EA700831C8B /* Cast.entitlements */,
 			);
 			name = Assets;
 			path = Cast;
@@ -238,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				A13145E91B5AA34E00AA4406 /* Main.storyboard */,
+				A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */,
+				A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 			files = (
 				A13145F81B5AA6C700AA4406 /* Services.plist in Resources */,
 				A13145E81B5AA34E00AA4406 /* Assets.xcassets in Resources */,
+				A1F6CCC31BD2DD7200BDBE21 /* OptionsWindow.xib in Resources */,
 				A13145EB1B5AA34E00AA4406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +397,7 @@
 			files = (
 				A14B7C531BA3A34400831C8B /* Services.plist in Resources */,
 				A14B7C541BA3A34400831C8B /* Assets.xcassets in Resources */,
+				A1F6CCC41BD2DD7200BDBE21 /* OptionsWindow.xib in Resources */,
 				A14B7C551BA3A34400831C8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +501,7 @@
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 				A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
+				A1F6CCC11BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */,
 				A11025C01B75796300720866 /* ImgurClient.swift in Sources */,
 				A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */,
 				A13961B41B5BF4C400E9CB98 /* Globals.swift in Sources */,
@@ -512,6 +521,7 @@
 				A14B7C461BA3A34400831C8B /* AppDelegate.swift in Sources */,
 				A14B7C471BA3A34400831C8B /* OAuthClient.swift in Sources */,
 				A14B7C481BA3A34400831C8B /* Secrets.swift in Sources */,
+				A1F6CCC21BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */,
 				A14B7C491BA3A34400831C8B /* ImgurClient.swift in Sources */,
 				A14B7C4A1BA3A34400831C8B /* UserNotifications.swift in Sources */,
 				A14B7C4B1BA3A34400831C8B /* Globals.swift in Sources */,
@@ -682,7 +692,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Cast Release.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Cast AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -691,7 +701,7 @@
 					"$(SRCROOT)/Carthage/Build/Mac/",
 					/System/Library/Frameworks,
 				);
-				INFOPLIST_FILE = "Cast Release-Info.plist";
+				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -705,7 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Cast Release.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Cast AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -714,7 +724,7 @@
 					"$(SRCROOT)/Carthage/Build/Mac/",
 					/System/Library/Frameworks,
 				);
-				INFOPLIST_FILE = "Cast Release-Info.plist";
+				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";

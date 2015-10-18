@@ -2,7 +2,7 @@
 
 [![build](https://travis-ci.org/lfaoro/Cast.svg)](https://travis-ci.org/lfaoro/Cast)
 [![release](https://img.shields.io/badge/release-v1.1-green.svg?style=flat)](https://tr.im/CastMacAppStore)
-[![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg)](https://www.apple.com/osx/)
+[![platform](https://img.shields.io/badge/platform-OS%20X-lightgrey.svg)](https://www.apple.com/osx/)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
 

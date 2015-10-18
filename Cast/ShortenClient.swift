@@ -6,9 +6,57 @@ import SwiftyJSON
 
 public class ShortenClient {
 
+	var shortenURL: NSURL?
+	var responseKey: String?
+
 
 	// MARK: - Public
 
+	public func shorten(URL URL: NSURL) -> Observable<String?> {
+		guard let shortenURLPref = app.prefs.shortenService else {
+			return failWith(ConnectionError.InvalidData("shortenURLPref"))
+		}
+
+		keepRecent(URL: URL)
+
+		switch shortenURLPref {
+		case "Is.Gd":
+			shortenURL = NSURL(string: "https://is.gd/create.php?format=json&url=" +
+				URL.absoluteString)!
+			responseKey = "shorturl"
+
+		case "Hive":
+			self.shortenURL = NSURL(string: "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
+				"&description=cast.lfaoro.com&type=DIRECT")!
+			responseKey = "short"
+
+		case "Bitly":
+			let bitlyAPIurl = "https://api-ssl.bitly.com"
+			let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
+				"&longUrl=" + URL.relativeString!
+			shortenURL = NSURL(string: bitlyAPIshorten)!
+
+		default: shortenURL = nil
+		}
+
+		let session = NSURLSession.sharedSession()
+		return session.rx_JSON(shortenURL!)
+			.debug("Shortening with: \(shortenURLPref)")
+			.retry(3)
+			.map {
+
+				if shortenURLPref != "Bitly" {
+					return $0[self.responseKey!] as? String
+				} else {
+					guard let data = $0["data"] as? NSDictionary, url = data["url"] as? String else {
+						return nil }
+					return url
+				}
+		}
+	}
+
+
+	@available(*, deprecated=1.2, renamed="shorten")
 	public class func shortenWithIsGd(URL URL: NSURL) -> Observable<String?> {
 		let session = NSURLSession.sharedSession()
 		let shorten = NSURL(string: "https://is.gd/create.php?format=json&url=" + URL.absoluteString)!
@@ -21,6 +69,7 @@ public class ShortenClient {
 			.map { $0["shorturl"] as? String }
 	}
 
+	@available(*, deprecated=1.2, renamed="shorten")
 	public class func shortenWithHive(URL URL: NSURL) -> Observable<String?> {
 
 
@@ -36,6 +85,7 @@ public class ShortenClient {
 			.map { $0["short"] as? String }
 	}
 
+	@available(*, deprecated=1.2, renamed="shorten")
 	public class func shortenWithBitly(URL: NSURL) -> Observable<NSURL> {
 		let bitlyAPIurl = "https://api-ssl.bitly.com"
 		let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
