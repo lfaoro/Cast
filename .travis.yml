@@ -4,11 +4,11 @@ before_install:
   - brew update
   - brew install carthage
   - brew install swiftlint
-  - carthage bootstrap --verbose --platform mac
+  - carthage bootstrap --platform mac
 xcode_project: Cast.xcodeproj
-xcode_scheme: Cast
+xcode_scheme: Cast (Standard)
 branches:
   only:
     - develop
 script:
-  xctool -project Cast.xcodeproj -scheme Cast clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  xctool -project Cast.xcodeproj -scheme "Cast (Standard)" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO

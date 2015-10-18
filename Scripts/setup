@@ -1,0 +1,83 @@
+#!/bin/zsh
+echo "\e[0m"
+
+# This script will run during an Xcode - Run Script Phase
+checkXcode() {
+	required_xcode_version=700
+
+	if [[ ${XCODE_VERSION_ACTUAL} -lt ${required_xcode_version} ]]; then
+		echo "\e[1;31m Error: Xcode ${required_xcode_version} or later is required to build ${PRODUCT_NAME} \e[0m"
+		exit 2
+	else
+		echo "\e[1;32m	Good: 'Xcode' version is ${XCODE_VERSION_ACTUAL} \e[0m"
+
+		# Check if we have all frameworks
+		checkFrameworks
+
+		# Check if we have SwiftLint
+		checkSwiftLint
+	fi
+}
+
+checkFrameworks() {
+	items=`ls ${PROJECT_DIR}/Carthage/build/Mac |grep framework$ |wc -l`
+	if [ $items -ge 7 ]; then
+		echo "\e[1;32m	Good: All frameworks are present \e[0m"
+	else
+		echo "\e[1;31m	Bad: Frameworks missing, bootstrapping \e[0m"
+		checkCarthage
+		`carthage bootstrap ${PROJECT_DIR} --platform mac`
+	fi
+}
+
+checkBrew() {
+	local brew=`whereis brew`
+
+	if [ -x $brew ]; then
+		echo "\e[1;32m	Good: 'Homebrew' is installed in $brew \e[0m"
+	else
+		echo "\e[1;31m	Bad: 'Homebrew' is not installed... \e[0m"
+		echo
+		echo "\e[1;36m	Installing 'Homebrew' \e[0m"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		sleep 1
+		checkBrew
+	fi
+}
+
+checkCarthage() {
+	local carthage=`whereis carthage`
+	if [ -x $carthage ]; then
+		echo "\e[1;32m	Good: 'Carthage' is installed in $carthage \e[0m"
+	else
+		checkBrew
+		echo "\e[1;36m	updating 'brew'... \e[0m"
+		brew update >>/dev/null
+		echo "\e[1;36m	Fix: installing 'Carthage' \e[0m"
+		brew install carthage
+		sleep 1
+		brew link carthage
+		checkCarthage
+	fi
+}
+
+checkSwiftLint() {
+	local swiftlint=`whereis swiftlint`
+	if [ -x $swiftlint ]; then
+		echo "\e[1;32m	Good: 'SwiftLint' is installed \e[0m"
+	else
+		checkBrew
+		echo "\e[1;36m	updating 'brew'... \e[0m"
+		brew update >>/dev/null
+		echo "\e[1;36m	Fix: installing 'SwiftLint' \e[0m"
+		brew install swiftlint
+		sleep 1
+		brew link swiftlint
+		checkSwiftLint
+	fi
+}
+
+checkXcode
+
+echo "\e[1;32m	Good: Procedding to build $PROJECT_NAME... \e[0m"
+exit 0

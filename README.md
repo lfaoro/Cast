@@ -2,7 +2,7 @@
 
 [![build](https://travis-ci.org/lfaoro/Cast.svg)](https://travis-ci.org/lfaoro/Cast)
 [![release](https://img.shields.io/badge/release-v1.1-green.svg?style=flat)](https://tr.im/CastMacAppStore)
-[![platform](https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg)](https://www.apple.com/osx/)
+[![platform](https://img.shields.io/badge/platform-OS%20X-lightgrey.svg)](https://www.apple.com/osx/)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/lfaoro/Cast/blob/master/LICENSE.md)
 [![twitter](https://img.shields.io/badge/twitter-%40leonarth-blue.svg)](https://twitter.com/leonarth)
 
@@ -19,7 +19,8 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 [![Download on the Mac App Store][MacAppStoreLogo]][MacAppStoreLink]
 
-[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+[MacAppStoreLogo]: https://raw.githubusercontent.com/lfaoro/Cast/master/AppStore/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg
+
 [MacAppStoreLink]: https://tr.im/CastMacAppStore
 
 ## Features available in v1.0
@@ -35,8 +36,8 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - [x] Shortens any URL and prepares a shortened link in your Pasteboard (ready to paste)
 - [x] Keeps a History of all your uploads and URL shorts
 - [x] Clicking a recent upload from the list, opens it in your default browser
+- [x] Configure the app through the Options menu
 - [ ] Recent upload links synced via iCloud across all your Macs
-- [ ] Configure the app through the Options menu
 
 ## Features roadmap for v2.0
 
@@ -64,11 +65,11 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 **Folders and Files** which will be automatically zipped for you before uploading
 - [ ] [iCloud Drive](http://www.apple.com/icloud/icloud-drive/)
-- [ ] wetransfer.com
-- [ ] dropbox.com
+- [ ] [Dropbox](http://dropbox.com)
 
 **URL Shorteners**
 - [x] [hive.am](www.hive.am)
+- [ ] tr.im
 - [x] bit.ly
 - [x] is.gd
 
@@ -84,11 +85,13 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 
 ## Contributing
 
-> We use [gitflow][0d3b04ed], please fork and push your enhancements to the `develop` branch
+> We use [gitflow][0d3b04ed], please [fork][castFork] and push your enhancements to the `develop` branch
+
+[castFork]: https://github.com/lfaoro/Cast/fork
 
 ```Bash
 git checkout develop
-carthage bootstrap
+carthage bootstrap --platform mac
 open Cast.xcodeproj
 ```
 Please, pick an [Issue][c2a6348a] and submit a pull request.
@@ -108,9 +111,6 @@ Thank you very much for any contribution!
 ## Credits
 
 > We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that every day establish our inspiration.
-
-## Security Disclosure
-If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to security@lfaoro.com. Please do not post it to a public issue tracker.
 
 ## License
 Cast is released under the [MIT License](<LICENSE.md>)

@@ -1,10 +1,8 @@
 //
-//  AppDelegate.swift
-//  Cast
-//
 //  Created by Leonardo on 18/07/2015.
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
+
 // Cast: verb. throw (something) forcefully in a specified direction.
 
 import Cocoa
@@ -22,30 +20,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var menuSendersAction: MenuSendersAction!
 	var userNotification: UserNotifications!
 	var gistClient: GistClient!
+	var prefs: PreferenceManager!
+	var optionsWindowController: OptionsWindowController!
 
 
 	override init() {
 
-		self.oauth = OAuthClient(
-			clientID: "ef09cfdbba0dfd807592",
-			clientSecret: "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7",
-			service: .GitHub
-			)!
+		var options: OAuthOptions = OAuthOptions()
+		options.clientID = "ef09cfdbba0dfd807592"
+		options.clientSecret = "ce7541f7a3d34c2ff5b20207a3036ce2ad811cc7"
+		self.oauth = OAuthClient(options: options)
 
 		super.init()
 	}
 
 
 	func applicationWillFinishLaunching(notification: NSNotification) {
+		// Nothing to see here, move along.
 	}
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
+		prefs = PreferenceManager()
 		gistClient = GistClient()
 		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
+
+		optionsWindowController = OptionsWindowController()
 	}
 
 	func updateMenu() -> () {
@@ -53,6 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		statusBarItem.menu?.update()
 	}
 }
+
 
 //MARK:- Globals
 
@@ -78,7 +82,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	let menu = NSMenu(title: "Cast Menu")
 
-	menu.addItemWithTitle("Share Pasteboard Contents",
+	menu.addItemWithTitle("Share copied text",
 		action: "shareClipboardContentsAction:",
 		keyEquivalent: "S")?
 		.target = target
@@ -91,7 +95,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 			.target = target
 	}
 
-	menu.addItemWithTitle("Shorten URL with Hive",
+	menu.addItemWithTitle("Shorten URL",
 		action: "shortenURLAction:",
 		keyEquivalent: "T")?
 		.target = target
@@ -99,13 +103,12 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItem(NSMenuItem.separatorItem())
 
 	///- todo: externalise in separate function
-	///- todo: implement recent gists
-	let recentUploadsItem = NSMenuItem(title: "Recent Uploads",
+	let recentUploadsItem = NSMenuItem(title: "Recent Actions",
 		action: "terminate:",
 		keyEquivalent: "")
 
-	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Uploads Menu")
-	for (title, link) in recentURLS  {
+	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Actions Menu")
+	for (title, link) in app.prefs.recentActions! {
 		let menuItem = NSMenuItem(title: title,
 			action: "recentUploadsAction:",
 			keyEquivalent: "")
@@ -121,11 +124,11 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	recentUploadsItem.submenu = recentUploadsSubmenu
 
-	if recentURLS.count > 0 {
+	if app.prefs.recentActions!.count > 0 {
 		menu.addItem(recentUploadsItem)
 	}
 
-	menu.addItem(NSMenuItem.separatorItem())
+//	menu.addItem(NSMenuItem.separatorItem())
 
 	let gitHubLoginItem = NSMenuItem()
 	gitHubLoginItem.target = target
@@ -137,7 +140,11 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.title = "Login to GitHub"
 		gitHubLoginItem.action = "loginToGithub:"
 	}
-	menu.addItem(gitHubLoginItem)
+//	menu.addItem(gitHubLoginItem)
+
+	menu.addItem(NSMenuItem.separatorItem())
+	menu.addItemWithTitle("Options", action: "optionsAction:", keyEquivalent: "O")?
+		.target = target
 
 	menu.addItem(NSMenuItem.separatorItem())
 	//---------------------------------------------------------------------------
@@ -155,27 +162,10 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	return menu
 }
 
-// TODO: Find a place for Recent URLs DB
-var recentURLS: [String: String] {
-get {
-	let userDefaults = NSUserDefaults.standardUserDefaults()
-
-	guard let dic = userDefaults.dictionaryForKey("recentURLS") as? [String: String] else
-	{ return ["Cast": "http://cast.lfaoro.com"] }
-
-	return dic
-}
-
-set (value) {
-	let userDefaults = NSUserDefaults.standardUserDefaults()
-	userDefaults.setObject(value, forKey: "recentURLS")
-	app.statusBarItem.menu = createMenu(app.menuSendersAction)
-}
-}
 
 func keepRecent(URL url: NSURL) {
 	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
-	recentURLS[description] = url.relativeString!
-	
+	app.prefs.recentActions![description] = url.relativeString!
+
 }

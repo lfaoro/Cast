@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="OptionsWindowController" customModule="Cast" customModuleProvider="target">
+            <connections>
+                <outlet property="loginButton" destination="KMY-an-eIk" id="yn0-Iz-HHd"/>
+                <outlet property="window" destination="9ry-9A-XBO" id="nFN-56-NcH"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Cast Options" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="alertPanel" frameAutosaveName="" id="9ry-9A-XBO">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="614" y="574" width="706" height="291"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="v7p-ti-y6v">
+                <rect key="frame" x="0.0" y="0.0" width="706" height="291"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tabView focusRingType="none" fixedFrame="YES" drawsBackground="NO" allowsTruncatedLabels="NO" initialItem="8bc-LS-Q1Z" translatesAutoresizingMaskIntoConstraints="NO" id="i3y-HL-9Q8">
+                        <rect key="frame" x="13" y="10" width="680" height="255"/>
+                        <animations/>
+                        <font key="font" metaFont="system"/>
+                        <tabViewItems>
+                            <tabViewItem label="Services" identifier="2" id="8bc-LS-Q1Z">
+                                <view key="view" ambiguous="YES" id="a6m-lU-JhA">
+                                    <rect key="frame" x="10" y="33" width="660" height="209"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGj-eu-sGD">
+                                            <rect key="frame" x="15" y="163" width="617" height="17"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gists are a great way to share your work. You can share single files, parts of files, or full applications. " id="wpJ-ZS-xym">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6m0-Sc-k3B">
+                                            <rect key="frame" x="15" y="132" width="296" height="24"/>
+                                            <animations/>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="SaL-gh-hmb">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment label="GitHub" selected="YES"/>
+                                                    <segment label="Pastebin" enabled="NO" tag="1"/>
+                                                    <segment label="NoPaste" enabled="NO"/>
+                                                    <segment label="TinyPaste" enabled="NO"/>
+                                                </segments>
+                                            </segmentedCell>
+                                        </segmentedControl>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xby-8D-u7U">
+                                            <rect key="frame" x="15" y="60" width="521" height="17"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL shortening are to beautify a link, track clicks, or disguise the underlying address." id="DWY-0k-d9s">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-an-eIk">
+                                            <rect key="frame" x="575" y="127" width="74" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p45-tR-crM">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="loginButtonAction:" target="-2" id="YvJ-vg-oC3"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-Yg-WrR">
+                                            <rect key="frame" x="461" y="127" width="114" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Secret Gists" alternateTitle="Public" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" sound="Purr" inset="2" id="fBX-Ee-gqA">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="secretGistButtonAction:" target="-2" id="ubC-i3-pmd"/>
+                                                <binding destination="3sE-94-RU2" name="enabled" keyPath="values.secretGistsAvailable" id="9y6-h4-W6L"/>
+                                            </connections>
+                                        </button>
+                                        <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
+                                            <rect key="frame" x="15" y="29" width="233" height="24"/>
+                                            <animations/>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="g5k-Bl-XkO">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment label="Is.Gd" selected="YES"/>
+                                                    <segment label="Hive.am" tag="1"/>
+                                                    <segment label="Bit.ly"/>
+                                                    <segment label="Su.Pr" enabled="NO"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>
+                                                </connections>
+                                            </segmentedCell>
+                                            <connections>
+                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.shortenService" id="rxm-4j-DkK"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <animations/>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Credits" identifier="4" id="VkU-43-voS">
+                                <view key="view" id="baI-l6-6B5">
+                                    <rect key="frame" x="10" y="33" width="660" height="209"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZp-x4-bQk">
+                                            <rect key="frame" x="175" y="97" width="195" height="29"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Made with ❤️ by " id="x1C-9c-xS9">
+                                                <font key="font" metaFont="system" size="24"/>
+                                                <color key="textColor" red="0.15373500000000001" green="0.158026" blue="0.134656" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec7-9T-JSw">
+                                            <rect key="frame" x="363" y="101" width="118" height="19"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="recessed" title="@leonarth" alternateTitle="Follow @leonarth on Twitter" bezelStyle="recessed" alignment="center" borderStyle="border" sound="Tink" inset="2" id="8ZH-3r-gFJ">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="systemBold" size="21"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="openTwitterProfile:" target="-2" id="Red-Tr-g1Q"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                </view>
+                            </tabViewItem>
+                        </tabViewItems>
+                    </tabView>
+                </subviews>
+                <animations/>
+            </view>
+            <point key="canvasLocation" x="496" y="306.5"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="3sE-94-RU2"/>
+    </objects>
+    <resources>
+        <sound name="Purr"/>
+        <sound name="Tink"/>
+    </resources>
+</document>

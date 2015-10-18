@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A13145DF1B5AA34E00AA4406"
                BuildableName = "Cast.app"
-               BlueprintName = "Cast"
+               BlueprintName = "Cast (Standard)"
                ReferencedContainer = "container:Cast.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A13145DF1B5AA34E00AA4406"
             BuildableName = "Cast.app"
-            BlueprintName = "Cast"
+            BlueprintName = "Cast (Standard)"
             ReferencedContainer = "container:Cast.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -86,7 +86,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A13145DF1B5AA34E00AA4406"
             BuildableName = "Cast.app"
-            BlueprintName = "Cast"
+            BlueprintName = "Cast (Standard)"
             ReferencedContainer = "container:Cast.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -109,7 +109,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A13145DF1B5AA34E00AA4406"
             BuildableName = "Cast.app"
-            BlueprintName = "Cast"
+            BlueprintName = "Cast (Standard)"
             ReferencedContainer = "container:Cast.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

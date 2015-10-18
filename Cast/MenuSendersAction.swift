@@ -2,10 +2,15 @@
 //  Created by Leonardo on 18/07/2015.
 //  Copyright © 2015 Leonardo Faoro. All rights reserved.
 //
+
+
 import Cocoa
 import RxSwift
 
 final class MenuSendersAction: NSObject {
+
+
+	let shortenClient = ShortenClient()
 
 
 	func shareClipboardContentsAction(sender: NSMenuItem) {
@@ -17,10 +22,10 @@ final class MenuSendersAction: NSObject {
 				switch value {
 
 				case .Text(let item):
-					app.gistClient.setGist(content: item)
+					app.gistClient.setGist(content: item, isPublic: app.prefs.gistIsPublic!)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.flatMap { self.shortenClient.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -57,10 +62,12 @@ final class MenuSendersAction: NSObject {
 				switch value {
 
 				case .Text(let item):
-					app.gistClient.setGist(content: item, updateGist: true)
+					app.gistClient.setGist(content: item,
+						updateGist: true,
+						isPublic: app.prefs.gistIsPublic!)
 						.debug("setGist")
 						.retry(3)
-						.flatMap { ShortenClient.shortenWithHive(URL: $0) }
+						.flatMap { self.shortenClient.shorten(URL: $0) }
 						.subscribe { event in
 							switch event {
 
@@ -82,9 +89,9 @@ final class MenuSendersAction: NSObject {
 
 				case .File(let file):
 					print(file.path!)
-					
+
 				default: break
-					
+
 				}
 			})
 	}
@@ -93,30 +100,25 @@ final class MenuSendersAction: NSObject {
 
 		let _ = PasteboardClient.getPasteboardItems()
 			.debug("getPasteboardItems")
-			.retry(3)
 			.subscribe(next: { value in
 				switch value {
-
 				case .Text(let item):
+					guard let url = NSURL(string: item) else { fallthrough }
+					self.shortenClient.shorten(URL: url)
+						.subscribe { event in
+							switch event {
+							case .Next(let shortenedURL):
+								guard let URL = shortenedURL else { fallthrough }
+								PasteboardClient.putInPasteboard(items: [URL])
+								app.userNotification.pushNotification(openURL: URL,
+									title: "Shortened with \(app.prefs.shortenService!)")
 
-					if let url = NSURL(string: item) {
+							case .Completed:
+								print("completed")
 
-						ShortenClient.shortenWithHive(URL: url)
-							.debug("shortenWithHive")
-							.subscribe { event in
-								switch event {
-								case .Next(let URL):
-									PasteboardClient.putInPasteboard(items: [URL!])
-									app.userNotification.pushNotification(openURL: URL!, title: "Shortened with Hive.am")
-								case .Completed:
-									print("completed")
-								case .Error(let error):
-									print("\(error)")
-								}
-						}
-
-					} else {
-						fallthrough
+							case .Error(let error):
+								print("\(error)")
+							}
 					}
 
 				default:
@@ -149,9 +151,9 @@ final class MenuSendersAction: NSObject {
 	}
 
 	func clearItemsAction(sender: NSMenuItem) {
-		if recentURLS.count > 0 {
-			recentURLS.removeAll()
-			Swift.print(recentURLS)
+		if app.prefs.recentActions!.count > 0 {
+			app.prefs.recentActions!.removeAll()
+			Swift.print(app.prefs.recentActions!)
 			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 		}
 	}
@@ -163,8 +165,9 @@ final class MenuSendersAction: NSObject {
 			sender.state = 0
 		}
 	}
-	
-	func openOptionsWindow(sender: NSMenuItem) {
-		
+
+	func optionsAction(sender: NSMenuItem) {
+		NSApp.activateIgnoringOtherApps(true)
+		app.optionsWindowController.showWindow(nil)
 	}
 }
