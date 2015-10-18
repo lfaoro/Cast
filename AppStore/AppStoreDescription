@@ -1,16 +1,12 @@
 - Improved code base
 - Added the ethical and AdFree `is.gd` URL shortener
 - Added `su.pr` StumbleUpon's URL shortener
-- New feature: Drag & Drop
 - New feature: Options menu
 - New feature: Configurable services
 
 Cast is an agent that lives in your system's Status Menu. Its purpose is to help you share information quick & easy.
 Cast seamlessly integrates with GitHub.com and allows you to create and edit gists on the fly.
 Cast is also a great URL shortener.
-
-+ Drag & Drop
-Drop a text selection or text file on the Cast atomic icon available in your Status Menu and Cast will upload it for you automagically and supply a conveniently shortened link directly in your Pasteboard (⌘+V).
 
 + Recent Actions
 You may access a history of all your links from the Recent Actions drop-down menu available clicking the Cast atomic icon in the Status Menu.
@@ -23,6 +19,9 @@ You may choose different service providers from the Options panel and in case we
 
 
 Coming Soon:
+
+- Drag & Drop
+Drop a text selection or text file on the Cast atomic icon available in your Status Menu and Cast will upload it for you automagically and supply a conveniently shortened link directly in your Pasteboard (⌘+V).
 
 - Custom Hotkey
 You may define a hotkey to use for Sharing and one for Shortening in the Options panel.
