@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var userNotification: UserNotifications!
 	var gistClient: GistClient!
 	var prefs: PreferenceManager!
+	var optionsWindowController: OptionsWindowController!
 
 
 	override init() {
@@ -46,6 +47,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
+
+		optionsWindowController = OptionsWindowController()
+		app.optionsWindowController.showWindow(nil)
 	}
 
 	func updateMenu() -> () {
@@ -100,7 +104,6 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItem(NSMenuItem.separatorItem())
 
 	///- todo: externalise in separate function
-	///- todo: implement recent gists
 	let recentUploadsItem = NSMenuItem(title: "Recent Actions",
 		action: "terminate:",
 		keyEquivalent: "")
@@ -139,6 +142,10 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.action = "loginToGithub:"
 	}
 	menu.addItem(gitHubLoginItem)
+
+	menu.addItem(NSMenuItem.separatorItem())
+	menu.addItemWithTitle("Options", action: "optionsAction:", keyEquivalent: "O")?
+		.target = target
 
 	menu.addItem(NSMenuItem.separatorItem())
 	//---------------------------------------------------------------------------

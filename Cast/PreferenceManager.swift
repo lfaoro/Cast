@@ -10,6 +10,7 @@ private let gistServiceKey = "gistService"
 private let imageServiceKey = "imageService"
 private let shortenServiceKey = "shortenService"
 private let recentActionsKey = "recentActions"
+private let secretGistsAvailableKey = "secretGistsAvailable"
 
 class PreferenceManager {
 	private let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -27,6 +28,7 @@ class PreferenceManager {
 			imageServiceKey: "imgur",
 			shortenServiceKey: "is.gd",
 			recentActionsKey: ["Cast": "http://cast.lfaoro.com"],
+			secretGistsAvailableKey: true,
 		]
 
 		userDefaults.registerDefaults(standardDefaults)
@@ -35,15 +37,30 @@ class PreferenceManager {
 
 	// MARK: - Defaults properties abstraction
 
+	// MARK: Gist Options
 	var gistService: String? {
 		get {
 			return userDefaults.objectForKey(gistServiceKey) as? String
 		}
 		set {
 			userDefaults.setObject(newValue, forKey: gistServiceKey)
+			switch newValue! {
+			case "GitHub": secretGistsAvailable = true
+			default: secretGistsAvailable = false
+			}
 		}
 	}
 
+	var secretGistsAvailable: Bool? {
+		get {
+			return userDefaults.objectForKey(secretGistsAvailableKey) as? Bool
+		}
+		set {
+			userDefaults.setObject(newValue, forKey: secretGistsAvailableKey)
+		}
+	}
+
+	// MARK: Image options
 	var imageService: String? {
 		get {
 			return userDefaults.objectForKey(imageServiceKey) as? String
@@ -53,6 +70,10 @@ class PreferenceManager {
 		}
 	}
 
+
+	// MARK: Shortening Options
+
+	// Binded from OptionsWindow > Segmented control
 	var shortenService: String? {
 		get {
 			return userDefaults.objectForKey(shortenServiceKey) as? String
