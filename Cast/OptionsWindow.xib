@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="OptionsWindowController" customModule="Cast" customModuleProvider="target">
             <connections>
                 <outlet property="loginButton" destination="KMY-an-eIk" id="yn0-Iz-HHd"/>
+                <outlet property="window" destination="9ry-9A-XBO" id="nFN-56-NcH"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -52,24 +53,6 @@
                                                 </segments>
                                             </segmentedCell>
                                         </segmentedControl>
-                                        <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
-                                            <rect key="frame" x="15" y="29" width="153" height="24"/>
-                                            <animations/>
-                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="g5k-Bl-XkO">
-                                                <font key="font" metaFont="system"/>
-                                                <segments>
-                                                    <segment label="Is.Gd" selected="YES"/>
-                                                    <segment label="Hive" tag="1"/>
-                                                    <segment label="Bitly"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>
-                                                </connections>
-                                            </segmentedCell>
-                                            <connections>
-                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.shortenService" id="rxm-4j-DkK"/>
-                                            </connections>
-                                        </segmentedControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xby-8D-u7U">
                                             <rect key="frame" x="15" y="60" width="521" height="17"/>
                                             <animations/>
@@ -102,6 +85,25 @@
                                                 <binding destination="3sE-94-RU2" name="enabled" keyPath="values.secretGistsAvailable" id="9y6-h4-W6L"/>
                                             </connections>
                                         </button>
+                                        <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
+                                            <rect key="frame" x="15" y="29" width="233" height="24"/>
+                                            <animations/>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="g5k-Bl-XkO">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment label="Is.Gd" selected="YES"/>
+                                                    <segment label="Hive.am" tag="1"/>
+                                                    <segment label="Bit.ly"/>
+                                                    <segment label="Su.Pr" enabled="NO"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>
+                                                </connections>
+                                            </segmentedCell>
+                                            <connections>
+                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.shortenService" id="rxm-4j-DkK"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </subviews>
                                     <animations/>
                                 </view>
@@ -112,14 +114,25 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZp-x4-bQk">
-                                            <rect key="frame" x="134" y="87" width="393" height="36"/>
+                                            <rect key="frame" x="175" y="97" width="195" height="29"/>
                                             <animations/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Made with ❤️ by Leonardo Faoro" id="x1C-9c-xS9">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Made with ❤️ by " id="x1C-9c-xS9">
                                                 <font key="font" metaFont="system" size="24"/>
                                                 <color key="textColor" red="0.15373500000000001" green="0.158026" blue="0.134656" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec7-9T-JSw">
+                                            <rect key="frame" x="363" y="101" width="118" height="19"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="recessed" title="@leonarth" alternateTitle="Follow @leonarth on Twitter" bezelStyle="recessed" alignment="center" borderStyle="border" sound="Tink" inset="2" id="8ZH-3r-gFJ">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="systemBold" size="21"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="openTwitterProfile:" target="-2" id="Red-Tr-g1Q"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                 </view>
@@ -135,5 +148,6 @@
     </objects>
     <resources>
         <sound name="Purr"/>
+        <sound name="Tink"/>
     </resources>
 </document>

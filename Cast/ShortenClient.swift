@@ -25,16 +25,20 @@ public class ShortenClient {
 				URL.absoluteString)!
 			responseKey = "shorturl"
 
-		case "Hive":
-			self.shortenURL = NSURL(string: "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
+		case "Hive.am":
+			shortenURL = NSURL(string: "https://hive.am/api?api=spublic&url=\(URL.absoluteString)" +
 				"&description=cast.lfaoro.com&type=DIRECT")!
 			responseKey = "short"
 
-		case "Bitly":
+		case "Bit.ly":
 			let bitlyAPIurl = "https://api-ssl.bitly.com"
 			let bitlyAPIshorten = bitlyAPIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
 				"&longUrl=" + URL.relativeString!
 			shortenURL = NSURL(string: bitlyAPIshorten)!
+
+		case "Su.Pr":
+			shortenURL = NSURL(string: "http://su.pr/api/shorten?longUrl=\(URL.absoluteString)")!
+			responseKey = "shortUrl"
 
 		default: shortenURL = nil
 		}

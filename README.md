@@ -35,8 +35,8 @@ Cast will also help you shorten URLs very quickly using your preferred URL short
 - [x] Shortens any URL and prepares a shortened link in your Pasteboard (ready to paste)
 - [x] Keeps a History of all your uploads and URL shorts
 - [x] Clicking a recent upload from the list, opens it in your default browser
+- [x] Configure the app through the Options menu
 - [ ] Recent upload links synced via iCloud across all your Macs
-- [ ] Configure the app through the Options menu
 
 ## Features roadmap for v2.0
 

@@ -49,7 +49,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		configureStatusBarItem(statusBarItem, target: menuSendersAction)
 
 		optionsWindowController = OptionsWindowController()
-		app.optionsWindowController.showWindow(nil)
 	}
 
 	func updateMenu() -> () {

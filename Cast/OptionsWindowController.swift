@@ -70,5 +70,11 @@ class OptionsWindowController: NSWindowController {
 
 
 	}
+
+	@IBAction func openTwitterProfile(sender: NSButton) {
+
+		NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://twitter.com/leonarth")!)
+	}
+
 }
 

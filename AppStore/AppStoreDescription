@@ -1,3 +1,10 @@
+- Improved code base
+- Added the ethical and AdFree `is.gd` URL shortener
+- Added `su.pr` StumbleUpon's URL shortener
+- New feature: Drag & Drop
+- New feature: Options menu
+- New feature: Configurable services
+
 Cast is an agent that lives in your system's Status Menu. Its purpose is to help you share information quick & easy.
 Cast seamlessly integrates with GitHub.com and allows you to create and edit gists on the fly.
 Cast is also a great URL shortener.
@@ -11,9 +18,11 @@ You may access a history of all your links from the Recent Actions drop-down men
 + Notifications
 Every time you perform a Share or Shorten action a convenient Notification is displayed with details about your action, directly from the notification you may open and check your shortened link.
 
-Coming Soon:
-- Multiple Services Support
++ Multiple Services Support
 You may choose different service providers from the Options panel and in case we don't yet support your favorite service, send us an support request: https://github.com/lfaoro/Cast/issues/new
+
+
+Coming Soon:
 
 - Custom Hotkey
 You may define a hotkey to use for Sharing and one for Shortening in the Options panel.
