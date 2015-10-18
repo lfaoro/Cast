@@ -22,7 +22,7 @@ final class MenuSendersAction: NSObject {
 				switch value {
 
 				case .Text(let item):
-					app.gistClient.setGist(content: item)
+					app.gistClient.setGist(content: item, isPublic: app.prefs.gistIsPublic!)
 						.debug("setGist")
 						.retry(3)
 						.flatMap { self.shortenClient.shorten(URL: $0) }
@@ -62,7 +62,9 @@ final class MenuSendersAction: NSObject {
 				switch value {
 
 				case .Text(let item):
-					app.gistClient.setGist(content: item, updateGist: true)
+					app.gistClient.setGist(content: item,
+						updateGist: true,
+						isPublic: app.prefs.gistIsPublic!)
 						.debug("setGist")
 						.retry(3)
 						.flatMap { self.shortenClient.shorten(URL: $0) }

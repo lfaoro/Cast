@@ -21,6 +21,8 @@ An instance of GistClient allows you login via OAuth with your GitHub account or
 You may create new gists as anonymous
 but you may modify a gist only if you're logged into the service.
 */
+
+
 public class GistClient {
 
 	//MARK:- Properties
@@ -28,7 +30,6 @@ public class GistClient {
 	private let gistAPIURL: NSURL
 
 	private var gistID: String? {
-
 		get {
 			let userDefaults = NSUserDefaults.standardUserDefaults()
 			if OAuthClient.getToken() != nil {
@@ -38,11 +39,10 @@ public class GistClient {
 				return nil
 			}
 		}
-
-		set (value) {
+		set {
 			if OAuthClient.getToken() != nil {
 				let userDefaults = NSUserDefaults.standardUserDefaults()
-				userDefaults.setObject(value, forKey: "gistID")
+				userDefaults.setObject(newValue, forKey: "gistID")
 			}
 		}
 	}

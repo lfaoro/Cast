@@ -11,6 +11,7 @@ private let imageServiceKey = "imageService"
 private let shortenServiceKey = "shortenService"
 private let recentActionsKey = "recentActions"
 private let secretGistsAvailableKey = "secretGistsAvailable"
+private let gistIsPublicKey = "gistIsPublic"
 
 class PreferenceManager {
 	private let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -26,9 +27,10 @@ class PreferenceManager {
 		let standardDefaults = [
 			gistServiceKey: "GitHub",
 			imageServiceKey: "imgur",
-			shortenServiceKey: "is.gd",
+			shortenServiceKey: "Is.Gd",
 			recentActionsKey: ["Cast": "http://cast.lfaoro.com"],
 			secretGistsAvailableKey: true,
+			gistIsPublicKey: false,
 		]
 
 		userDefaults.registerDefaults(standardDefaults)
@@ -59,6 +61,16 @@ class PreferenceManager {
 			userDefaults.setObject(newValue, forKey: secretGistsAvailableKey)
 		}
 	}
+
+	var gistIsPublic: Bool? {
+		get {
+			return userDefaults.objectForKey(gistIsPublicKey) as? Bool
+		}
+		set {
+			userDefaults.setObject(newValue, forKey: gistIsPublicKey)
+		}
+	}
+
 
 	// MARK: Image options
 	var imageService: String? {

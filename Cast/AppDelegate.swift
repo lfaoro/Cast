@@ -129,7 +129,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		menu.addItem(recentUploadsItem)
 	}
 
-	menu.addItem(NSMenuItem.separatorItem())
+//	menu.addItem(NSMenuItem.separatorItem())
 
 	let gitHubLoginItem = NSMenuItem()
 	gitHubLoginItem.target = target
@@ -141,7 +141,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.title = "Login to GitHub"
 		gitHubLoginItem.action = "loginToGithub:"
 	}
-	menu.addItem(gitHubLoginItem)
+//	menu.addItem(gitHubLoginItem)
 
 	menu.addItem(NSMenuItem.separatorItem())
 	menu.addItemWithTitle("Options", action: "optionsAction:", keyEquivalent: "O")?
