@@ -51,7 +51,7 @@
 	<key>PasteBin</key>
 	<dict>
 		<key>ClassName</key>
-		<string>SDPPasteBinInterface</string>
+		<string>PasteBinInterface</string>
 		<key>Properties</key>
 		<dict>
 			<key>API Key</key>

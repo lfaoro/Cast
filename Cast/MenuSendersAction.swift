@@ -10,41 +10,27 @@ import RxSwift
 final class MenuSendersAction: NSObject {
 
 
-	let shortenClient = ShortenClient()
+	let shortenClient: ShortenClient
+	var gistOptions: GistOptions
+	let gist: GistClient
+
+
+	override init() {
+		self.shortenClient = ShortenClient()
+		self.gistOptions = GistOptions()
+		self.gist = GistClient(options: gistOptions)
+	}
 
 
 	func shareClipboardContentsAction(sender: NSMenuItem) {
-
 		let _ = PasteboardClient.getPasteboardItems()
 			.debug("getPasteboardItems")
 			.subscribe(next: { value in
 
 				switch value {
-
-				case .Text(let item):
-					app.gistClient.setGist(content: item, isPublic: app.prefs.gistIsPublic!)
-						.debug("setGist")
-						.retry(3)
-						.flatMap { self.shortenClient.shorten(URL: $0) }
-						.subscribe { event in
-							switch event {
-
-							case .Next(let URL):
-								if let URL = URL {
-									PasteboardClient.putInPasteboard(items: [URL])
-									app.userNotification.pushNotification(openURL: URL)
-								} else {
-									app.userNotification.pushNotification(error: "Unable to Shorten URL")
-								}
-
-							case .Completed:
-								app.statusBarItem.menu = createMenu(self)
-
-							case .Error(let error):
-								app.userNotification.pushNotification(error: String(error))
-							}
-					}
-
+				case .Text(let pbContents):
+					self.gist.createGist(pbContents)
+					self.gistOptions.updateGist = false
 				case .File(let file):
 					print(file.path!)
 
@@ -55,46 +41,10 @@ final class MenuSendersAction: NSObject {
 	}
 
 	func updateGistAction(sender: NSMenuItem) {
-		let _ = PasteboardClient.getPasteboardItems()
-			.debug("getPasteboardItems")
-			.subscribe(next: { value in
-
-				switch value {
-
-				case .Text(let item):
-					app.gistClient.setGist(content: item,
-						updateGist: true,
-						isPublic: app.prefs.gistIsPublic!)
-						.debug("setGist")
-						.retry(3)
-						.flatMap { self.shortenClient.shorten(URL: $0) }
-						.subscribe { event in
-							switch event {
-
-							case .Next(let URL):
-								if let URL = URL {
-									PasteboardClient.putInPasteboard(items: [URL])
-									app.userNotification.pushNotification(openURL: URL)
-								} else {
-									app.userNotification.pushNotification(error: "Unable to Shorten URL")
-								}
-
-							case .Completed:
-								app.statusBarItem.menu = createMenu(self)
-
-							case .Error(let error):
-								app.userNotification.pushNotification(error: String(error))
-							}
-					}
-
-				case .File(let file):
-					print(file.path!)
-
-				default: break
-
-				}
-			})
+		self.gistOptions.updateGist = true
+		shareClipboardContentsAction(sender)
 	}
+
 
 	func shortenURLAction(sender: NSMenuItem) {
 

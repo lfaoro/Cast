@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var statusBarItem: NSStatusItem!
 	var menuSendersAction: MenuSendersAction!
 	var userNotification: UserNotifications!
-	var gistClient: GistClient!
 	var prefs: PreferenceManager!
 	var optionsWindowController: OptionsWindowController!
 
@@ -42,7 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
 		prefs = PreferenceManager()
-		gistClient = GistClient()
+//		let gistOptions = GistOptions()
+//		gistClient = GistService(options: gistOptions)
 		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
@@ -87,9 +87,9 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		keyEquivalent: "S")?
 		.target = target
 
-	if app.gistClient.gistCreated {
-
-		menu.addItemWithTitle("Update current gist",
+	let gistOptions = GistOptions()
+	if gistOptions.gistID != nil {
+		menu.addItemWithTitle("Update latest gist",
 			action: "updateGistAction:",
 			keyEquivalent: "U")?
 			.target = target

@@ -5,7 +5,7 @@
 
 import Cocoa
 
-// Keys in a variable to avoid mistakes
+// NSUserDefaults Keys in a variable to avoid mistakes
 private let gistServiceKey = "gistService"
 private let imageServiceKey = "imageService"
 private let shortenServiceKey = "shortenService"
@@ -46,10 +46,6 @@ class PreferenceManager {
 		}
 		set {
 			userDefaults.setObject(newValue, forKey: gistServiceKey)
-			switch newValue! {
-			case "GitHub": secretGistsAvailable = true
-			default: secretGistsAvailable = false
-			}
 		}
 	}
 

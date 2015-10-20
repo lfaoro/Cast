@@ -47,11 +47,15 @@
                                                 <font key="font" metaFont="system"/>
                                                 <segments>
                                                     <segment label="GitHub" selected="YES"/>
-                                                    <segment label="Pastebin" enabled="NO" tag="1"/>
+                                                    <segment label="PasteBin" tag="1"/>
                                                     <segment label="NoPaste" enabled="NO"/>
                                                     <segment label="TinyPaste" enabled="NO"/>
                                                 </segments>
                                             </segmentedCell>
+                                            <connections>
+                                                <action selector="gistServiceControl:" target="-2" id="NQP-NC-sZ6"/>
+                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.gistService" id="IMx-VN-LVf"/>
+                                            </connections>
                                         </segmentedControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xby-8D-u7U">
                                             <rect key="frame" x="15" y="60" width="521" height="17"/>
@@ -94,7 +98,7 @@
                                                     <segment label="Is.Gd" selected="YES"/>
                                                     <segment label="Hive.am" tag="1"/>
                                                     <segment label="Bit.ly"/>
-                                                    <segment label="Su.Pr" enabled="NO"/>
+                                                    <segment label="Su.Pr"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>

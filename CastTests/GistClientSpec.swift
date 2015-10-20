@@ -9,16 +9,16 @@ import Nimble
 
 @testable import Cast
 
-class GistClientSpec: QuickSpec {
+class GistSpec: QuickSpec {
     override func spec() {
         
-        describe("GistClient") {
+        describe("Gist") {
             
             context("API") {
-                var gistClient: GistClient!
+                var gistClient: Gist!
                 
                 beforeEach {
-                    gistClient = GistClient()
+                    gistClient = Gist()
                 }
                 
                 it("can update/create gists") {
@@ -37,7 +37,7 @@ class GistClientSpec: QuickSpec {
             }
             
             context("Failures") {
-                var gistClient: GistClient?
+                var gistClient: Gist?
                 var gistError: ErrorType?
                 
                 beforeEach {
@@ -47,14 +47,14 @@ class GistClientSpec: QuickSpec {
                 
                 it("can fail on initialization") {
                     
-                    gistClient = GistClient(baseURLString: "@\\:pop")
+                    gistClient = Gist(baseURLString: "@\\:pop")
                     
                     expect(gistClient).to(beNil())
                 }
                 
                 it("can fail during the connection") {
                     
-                    gistClient = GistClient(baseURLString: "http://dummyConnection.xyz")
+                    gistClient = Gist(baseURLString: "http://dummyConnection.xyz")
                     
                     gistClient?.setGist(content: "test content")
                         .subscribeError({ (error: ErrorType) in
@@ -66,7 +66,7 @@ class GistClientSpec: QuickSpec {
                 
                 it("can error on a Bad response") {
                     
-                    gistClient = GistClient(baseURLString: "https://api.github.com/gists/err")
+                    gistClient = Gist(baseURLString: "https://api.github.com/gists/err")
                     
                     gistClient?.setGist(content: "test content")
                         .subscribeError({ (error: ErrorType) in

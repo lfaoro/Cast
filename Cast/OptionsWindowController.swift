@@ -67,7 +67,16 @@ class OptionsWindowController: NSWindowController {
 
 		let pref = PreferenceManager()
 		print(pref.shortenService)
+		print(pref.gistService)
+	}
 
+	@IBAction func gistServiceControl(sender: NSSegmentedControl) {
+		print(__FUNCTION__)
+
+		switch sender.labelForSegment(sender.selectedSegment)! {
+		case "GitHub": app.prefs.secretGistsAvailable = true
+		default: app.prefs.secretGistsAvailable = false
+		}
 
 	}
 
@@ -77,4 +86,3 @@ class OptionsWindowController: NSWindowController {
 	}
 
 }
-
