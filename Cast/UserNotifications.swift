@@ -49,7 +49,7 @@ final class UserNotifications: NSObject {
 		print(__FUNCTION__)
 		app.timer = NSTimer
 			.scheduledTimerWithTimeInterval(
-				10.0,
+				5.0,
 				target: self,
 				selector: "removeUserNotifcationsAction:",
 				userInfo: nil,
