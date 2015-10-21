@@ -90,7 +90,7 @@
                                             </connections>
                                         </button>
                                         <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
-                                            <rect key="frame" x="15" y="29" width="233" height="24"/>
+                                            <rect key="frame" x="15" y="29" width="280" height="24"/>
                                             <animations/>
                                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="g5k-Bl-XkO">
                                                 <font key="font" metaFont="system"/>
@@ -99,6 +99,7 @@
                                                     <segment label="Hive.am" tag="1"/>
                                                     <segment label="Bit.ly"/>
                                                     <segment label="Su.Pr"/>
+                                                    <segment label="v.gd"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>
