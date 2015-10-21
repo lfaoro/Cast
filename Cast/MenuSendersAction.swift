@@ -31,10 +31,17 @@ final class MenuSendersAction: NSObject {
 				case .Text(let pbContents):
 					self.gist.createGist(pbContents)
 					self.gistOptions.updateGist = false
-				case .File(let file):
-					print(file.path!)
 
-				default: break
+				case .Image(_):
+					app.userNotification
+					.pushNotification(error: "Not yet Supported :(",
+						description: "Image support is on the way, hold tight!")
+
+				case .File(let file):
+					app.userNotification
+					.pushNotification(error: "Not yet Supported :(",
+						description: "File sharing support is on the way, hold tight!")
+					print(file.path!)
 
 				}
 			})
@@ -63,11 +70,14 @@ final class MenuSendersAction: NSObject {
 								app.userNotification.pushNotification(openURL: URL,
 									title: "Shortened with \(app.prefs.shortenService!)")
 
+							case .Error:
+								app.userNotification.pushNotification(
+									error: "Unable to shorten URL",
+									description: "\(url.standardizedURL!)"
+								)
+
 							case .Completed:
 								print("completed")
-
-							case .Error(let error):
-								print("\(error)")
 							}
 					}
 
