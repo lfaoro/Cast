@@ -12,7 +12,6 @@ enum PBError: ErrorType {
 	case UnreadableData
 }
 
-
 enum PBItem {
 	case Text(String) //to Gist
 	case Image(NSImage) //to Imgur
@@ -20,55 +19,54 @@ enum PBItem {
 }
 
 
-class PasteboardClient {
+func putInPasteboard(items items: [String]) -> Bool {
+	let pb = NSPasteboard.generalPasteboard()
 
+	pb.clearContents()
 
-	class func putInPasteboard(items items: [String]) -> Bool {
-		let pb = NSPasteboard.generalPasteboard()
+	return pb.writeObjects(items)
+}
 
-		pb.clearContents()
+func getPasteboardItems() -> Observable<PBItem> {
+	let pasteBoard = NSPasteboard.generalPasteboard()
+	let classes: [AnyClass] = [NSURL.self, NSString.self, NSAttributedString.self, NSImage.self]
+	let options: [String:AnyObject] = [:]
+	let copiedItems = pasteBoard.readObjectsForClasses(classes, options: options)
 
-		return pb.writeObjects(items)
-	}
+	return create {
+		stream in
+		if let items = copiedItems {
 
-	class func getPasteboardItems() -> Observable<PBItem> {
-		let pb = NSPasteboard.generalPasteboard()
-
-		let classes: [AnyClass] = [NSURL.self,NSString.self,NSAttributedString.self,NSImage.self]
-		let options: [String: AnyObject] = [ :
-			//            NSPasteboardURLReadingFileURLsOnlyKey: NSNumber(bool: true),
-			//            NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes(),
-		]
-
-		let copiedItems = pb.readObjectsForClasses(classes, options: options)
-
-		return create { stream in
-			if let items = copiedItems {
-
-				for item in items {
-					if let image = item as? NSImage {
-						sendNext(stream, .Image(image))
-					}
-
-					if let text = item as? NSString {
-						sendNext(stream, .Text(String(text)))
-					}
-
-					if let attrText = item as? NSAttributedString {
-						sendNext(stream, .Text(attrText.string))
-					}
-
-					if let file = item as? NSURL {
-						sendNext(stream, .File(file))
-					}
-				}
-
-				sendCompleted(stream)
+			for item in items {
+				switchOnItem(stream, item: item)
 			}
-
-			sendError(stream, PBError.UnreadableData)
-
-			return NopDisposable.instance
+			sendCompleted(stream)
+			// Question: SHOULD THERE BE A RETURN HERE?
 		}
+
+		sendError(stream, PBError.UnreadableData)
+
+		return NopDisposable.instance
 	}
 }
+
+func switchOnItem(stream: ObserverOf<PBItem>, item: AnyObject) {
+	switch item {
+	case let image as NSImage:
+		sendNext(stream, .Image(image))
+
+	case let text as NSString:
+		sendNext(stream, .Text(String(text)))
+
+	case let attrText as NSAttributedString:
+		sendNext(stream, .Text(attrText.string))
+
+	case let file as NSURL:
+		sendNext(stream, .File(file))
+
+	default: //blow up
+		preconditionFailure()
+	}
+	
+}
+

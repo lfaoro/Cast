@@ -7,17 +7,17 @@
 import Cocoa
 
 final class UserNotifications: NSObject {
-	//---------------------------------------------------------------------------
+
 	var notificationCenter: NSUserNotificationCenter!
 	var didActivateNotificationURL: NSURL?
-	//---------------------------------------------------------------------------
+
 	override init() {
 		super.init()
 		notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
 		notificationCenter.delegate = self
 	}
-	//---------------------------------------------------------------------------
-	private func createNotification(title: String, subtitle: String) -> NSUserNotification {
+
+	func createNotification(title: String, subtitle: String) -> NSUserNotification {
 		let notification = NSUserNotification()
 		notification.title = title
 		notification.subtitle = subtitle
@@ -26,26 +26,26 @@ final class UserNotifications: NSObject {
 		notification.soundName = NSUserNotificationDefaultSoundName
 		return notification
 	}
-	//---------------------------------------------------------------------------
+
 	func pushNotification(openURL url: String, title: String = "Casted to gist.GitHub.com") {
 		didActivateNotificationURL = NSURL(string: url)!
 		let notification = self.createNotification(title, subtitle: url)
 		notificationCenter.deliverNotification(notification)
 		startUserNotificationTimer() //IRC: calling from here doesn't work
 	}
-	//---------------------------------------------------------------------------
+
 	func pushNotification(error error: String,
 		description: String = "An error occured, please try again.") {
-		let notification = NSUserNotification()
-		notification.title = error
-		notification.informativeText = description
-		notification.soundName = NSUserNotificationDefaultSoundName
-		notification.hasActionButton = false
-		notificationCenter.deliverNotification(notification)
-		startUserNotificationTimer()
+			let notification = NSUserNotification()
+			notification.title = error
+			notification.informativeText = description
+			notification.soundName = NSUserNotificationDefaultSoundName
+			notification.hasActionButton = false
+			notificationCenter.deliverNotification(notification)
+			startUserNotificationTimer()
 	}
-	//---------------------------------------------------------------------------
-	private func startUserNotificationTimer() {
+
+	func startUserNotificationTimer() {
 		print(__FUNCTION__)
 		app.timer = NSTimer
 			.scheduledTimerWithTimeInterval(
@@ -55,30 +55,31 @@ final class UserNotifications: NSObject {
 				userInfo: nil,
 				repeats: false)
 	}
-	//---------------------------------------------------------------------------
+
 	func removeUserNotifcationsAction(timer: NSTimer) {
 		print(__FUNCTION__)
 		notificationCenter.removeAllDeliveredNotifications()
 		timer.invalidate()
 	}
-	//---------------------------------------------------------------------------
+
 }
-//MARK:- NSUserNotificationCenterDelegate
+
+
 extension UserNotifications: NSUserNotificationCenterDelegate {
-	//---------------------------------------------------------------------------
+
 	func userNotificationCenter(center: NSUserNotificationCenter,
 		didActivateNotification notification: NSUserNotification) {
-		print("notification pressed")
-		if let url = didActivateNotificationURL {
-			NSWorkspace.sharedWorkspace().openURL(url)
-		} else {
-			center.removeAllDeliveredNotifications()
-		}
-	} // executes an action whenever the notification is pressed
-	//---------------------------------------------------------------------------
+			print("notification pressed")
+			if let url = didActivateNotificationURL {
+				NSWorkspace.sharedWorkspace().openURL(url)
+			} else {
+				center.removeAllDeliveredNotifications()
+			}
+	}
+
 	func userNotificationCenter(center: NSUserNotificationCenter,
 		shouldPresentNotification notification: NSUserNotification) -> Bool {
-		return true
-	} // forces the notification to display even when app is active app
-	//---------------------------------------------------------------------------
+			return true
+	}
+	
 }

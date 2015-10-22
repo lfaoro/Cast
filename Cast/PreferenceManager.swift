@@ -100,5 +100,5 @@ class PreferenceManager {
 			app.statusBarItem.menu = createMenu(app.menuSendersAction)
 		}
 	}
-
+	
 }

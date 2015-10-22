@@ -41,8 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
 		prefs = PreferenceManager()
-//		let gistOptions = GistOptions()
-//		gistClient = GistService(options: gistOptions)
+		//		let gistOptions = GistOptions()
+		//		gistClient = GistService(options: gistOptions)
 		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
@@ -128,7 +128,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		menu.addItem(recentUploadsItem)
 	}
 
-//	menu.addItem(NSMenuItem.separatorItem())
+	//	menu.addItem(NSMenuItem.separatorItem())
 
 	let gitHubLoginItem = NSMenuItem()
 	gitHubLoginItem.target = target
@@ -140,7 +140,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		gitHubLoginItem.title = "Login to GitHub"
 		gitHubLoginItem.action = "loginToGithub:"
 	}
-//	menu.addItem(gitHubLoginItem)
+	//	menu.addItem(gitHubLoginItem)
 
 	menu.addItem(NSMenuItem.separatorItem())
 	menu.addItemWithTitle("Options", action: "optionsAction:", keyEquivalent: "O")?
@@ -158,14 +158,6 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItemWithTitle("Quit",
 		action: "terminate:",
 		keyEquivalent: "Q")
-
+	
 	return menu
-}
-
-
-func keepRecent(URL url: NSURL) {
-	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
-
-	app.prefs.recentActions![description] = url.relativeString!
-
 }

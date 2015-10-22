@@ -4,77 +4,86 @@ import RxCocoa
 import SwiftyJSON
 
 
-public class ShortenClient {
+func keepRecent(URL url: NSURL) {
+    let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
+    app.prefs.recentActions![description] = url.relativeString!
+}
 
+class ShortenClient {
+    var shortenURL: NSURL?
+    var responseKey: String?
 
-	var shortenURL: NSURL?
-	var responseKey: String?
+    func doShortenURL(service shortenService: String, url URL: NSURL) -> NSURL? {
+        let shortenRequest: String
 
+        switch shortenService {
+        case "Is.Gd":
+            let APIURL = "https://is.gd/create.php?format=json&url="
+            shortenRequest = APIURL + URL.relativeString!
 
-	public func shorten(URL URL: NSURL) -> Observable<String?> {
-		guard let shortenService = app.prefs.shortenService else {
-			return failWith(ConnectionError.InvalidData("shortenService"))
-		}
+            shortenURL = NSURL(string: shortenRequest)!
+            responseKey = "shorturl"
 
-		keepRecent(URL: URL)
+        case "v.gd":
+            let APIURL = "https://v.gd/create.php?format=json&url="
+            shortenRequest = APIURL + URL.relativeString!
 
-		switch shortenService {
-		case "Is.Gd":
-			let APIURL = "https://is.gd/create.php?format=json&url="
-			let shortenRequest = APIURL + URL.relativeString!
+            shortenURL = NSURL(string: shortenRequest)!
+            responseKey = "shorturl"
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shorturl"
+        case "Hive.am":
+            let APIURL = "https://hive.am/api?api=spublic&url="
+            shortenRequest = APIURL + URL.relativeString!
 
-		case "v.gd":
-			let APIURL = "https://v.gd/create.php?format=json&url="
-			let shortenRequest = APIURL + URL.relativeString!
+            shortenURL = NSURL(string: shortenRequest)!
+            responseKey = "short"
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shorturl"
+        case "Bit.ly":
+            let APIurl = "https://api-ssl.bitly.com"
+            shortenRequest = APIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL.relativeString!
 
-		case "Hive.am":
-			let APIURL = "https://hive.am/api?api=spublic&url="
-			let shortenRequest = APIURL + URL.relativeString!
+            shortenURL = NSURL(string: shortenRequest)!
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "short"
+        case "Su.Pr":
+            let APIURL = "http://su.pr/api/shorten?longUrl="
+            let shortenRequest = APIURL + URL.relativeString!
 
-		case "Bit.ly":
-			let APIurl = "https://api-ssl.bitly.com"
-			let shortenRequest = APIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token +
-				"&longUrl=" + URL.relativeString!
+            shortenURL = NSURL(string: shortenRequest)!
+            responseKey = "shortUrl"
 
-			shortenURL = NSURL(string: shortenRequest)!
+        default: shortenURL = nil
+        }
 
-		case "Su.Pr":
-			let APIURL = "http://su.pr/api/shorten?longUrl="
-			let shortenRequest = APIURL + URL.relativeString!
+        return shortenURL
+    }
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shortUrl"
+    func shorten(URL URL: NSURL) -> Observable<String?> {
+        guard let shortenService = app.prefs.shortenService else {
+            return failWith(ConnectionError.InvalidData("shortenService"))
+        }
 
-		default: shortenURL = nil
-		}
+        keepRecent(URL: URL)
+        if let shortenURL = doShortenURL(service: shortenService, url: URL) {
+            let session = NSURLSession.sharedSession()
+            return session.rx_JSON(shortenURL)
+            .debug("Shortening with: \(shortenService)")
+            .retry(3)
+            .map {
+                switch shortenService {
+                case "Bit.ly":
+                    guard let data = $0["data"] as? NSDictionary, url = data["url"] as? String
+                    else {
+                        return nil
+                    }
 
-		let session = NSURLSession.sharedSession()
-		return session.rx_JSON(shortenURL!)
-			.debug("Shortening with: \(shortenService)")
-			.retry(3)
-			.map {
+                    return url
 
-				switch shortenService {
-				case "Bit.ly":
-					guard let
-						data = $0["data"] as? NSDictionary,
-						url = data["url"] as? String
-						else { return nil }
-
-					return url
-
-				default:
-					return $0[self.responseKey!] as? String
-				}
-		}
-	}
+                default:
+                    return $0[self.responseKey!] as? String
+                }
+            }
+        } else {
+            return failWith(ConnectionError.InvalidData("shortenService"))
+        }
+    }
 }

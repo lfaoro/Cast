@@ -9,11 +9,11 @@ import Cocoa
 public let pasteboardTypes = [NSFilenamesPboardType]
 
 public func extractExcerptFromString(string: String, length: Int) -> String {
-    if string.endIndex > string.startIndex.advancedBy(length) {
-        return string.substringWithRange(string.startIndex...(string.startIndex.advancedBy(length)))
-    } else {
-        return string
-    }
+	if string.endIndex > string.startIndex.advancedBy(length) {
+		return string.substringWithRange(string.startIndex...(string.startIndex.advancedBy(length)))
+	} else {
+		return string
+	}
 }
 
 public func todo() {}

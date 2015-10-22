@@ -23,7 +23,7 @@ final class MenuSendersAction: NSObject {
 
 
 	func shareClipboardContentsAction(sender: NSMenuItem) {
-		let _ = PasteboardClient.getPasteboardItems()
+		let _ = getPasteboardItems()
 			.debug("getPasteboardItems")
 			.subscribe(next: { value in
 
@@ -34,13 +34,13 @@ final class MenuSendersAction: NSObject {
 
 				case .Image(_):
 					app.userNotification
-					.pushNotification(error: "Not yet Supported :(",
-						description: "Image support is on the way, hold tight!")
+						.pushNotification(error: "Not yet Supported :(",
+							description: "Image support is on the way, hold tight!")
 
 				case .File(let file):
 					app.userNotification
-					.pushNotification(error: "Not yet Supported :(",
-						description: "File sharing support is on the way, hold tight!")
+						.pushNotification(error: "Not yet Supported :(",
+							description: "File sharing support is on the way, hold tight!")
 					print(file.path!)
 
 				}
@@ -55,7 +55,7 @@ final class MenuSendersAction: NSObject {
 
 	func shortenURLAction(sender: NSMenuItem) {
 
-		let _ = PasteboardClient.getPasteboardItems()
+		let _ = getPasteboardItems()
 			.debug("getPasteboardItems")
 			.subscribe(next: { value in
 				switch value {
@@ -66,7 +66,7 @@ final class MenuSendersAction: NSObject {
 							switch event {
 							case .Next(let shortenedURL):
 								guard let URL = shortenedURL else { fallthrough }
-								PasteboardClient.putInPasteboard(items: [URL])
+								putInPasteboard(items: [URL])
 								app.userNotification.pushNotification(openURL: URL,
 									title: "Shortened with \(app.prefs.shortenService!)")
 
