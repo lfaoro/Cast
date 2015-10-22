@@ -7,15 +7,18 @@
 import Cocoa
 import RxSwift
 
+
 enum PBError: ErrorType {
 	case UnreadableData
 }
+
 
 enum PBItem {
 	case Text(String) //to Gist
 	case Image(NSImage) //to Imgur
 	case File(NSURL) //to Dropbox/iCloud
 }
+
 
 class PasteboardClient {
 

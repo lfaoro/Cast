@@ -65,7 +65,9 @@ public class ShortenClient {
 
 				switch shortenService {
 				case "Bit.ly":
-					guard let data = $0["data"] as? NSDictionary, url = data["url"] as? String
+					guard let
+						data = $0["data"] as? NSDictionary,
+						url = data["url"] as? String
 						else { return nil }
 
 					return url

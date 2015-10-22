@@ -37,9 +37,8 @@ class PreferenceManager {
 	}
 
 
-	// MARK: - Defaults properties abstraction
+	// MARK: - Gist Options
 
-	// MARK: Gist Options
 	var gistService: String? {
 		get {
 			return userDefaults.objectForKey(gistServiceKey) as? String
@@ -68,7 +67,8 @@ class PreferenceManager {
 	}
 
 
-	// MARK: Image options
+	// MARK: - Image options
+
 	var imageService: String? {
 		get {
 			return userDefaults.objectForKey(imageServiceKey) as? String
@@ -79,7 +79,7 @@ class PreferenceManager {
 	}
 
 
-	// MARK: Shortening Options
+	// MARK: - Shortening Options
 
 	// Binded from OptionsWindow > Segmented control
 	var shortenService: String? {

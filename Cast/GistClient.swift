@@ -9,18 +9,12 @@ import RxSwift
 import RxCocoa
 
 
-public enum ConnectionError: ErrorType {
-	case InvalidData(String), NoResponse(String), NotAuthenticated(String), StatusCode(Int)
-}
-
-
 public enum GistService {
 	case GitHub, PasteBin
 }
 
 
 public class GistOptions {
-
 
 	private let githubAPI = NSURL(string: "https://api.github.com/gists")!
 	private let pastebinAPI = NSURL(string: "https://api.pastebin.com/gists")!
