@@ -3,15 +3,24 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 
-class RecentAction: NSObject {
-	var desc: String!
-	var url: NSURL!
+
+class RecentAction: NSObject, NSCoding {
+	var desc: String
+	var url: NSURL
 
 	init(description: String, URL: NSURL) {
-		super.init()
-
 		self.desc = description
 		self.url = URL
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		self.desc = aDecoder.decodeObjectForKey("description") as! String
+		self.url = aDecoder.decodeObjectForKey("url") as! NSURL
+	}
+
+	func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(desc, forKey: "description")
+		aCoder.encodeObject(url, forKey: "url")
 	}
 }
 
