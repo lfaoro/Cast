@@ -24,7 +24,7 @@
 
 <p><a href="https://travis-ci.org/lfaoro/Cast"><img src="https://travis-ci.org/lfaoro/Cast.svg" alt="build"></a>
 <a href="https://tr.im/CastMacAppStore"><img src="https://img.shields.io/badge/release-v1.1-green.svg?style=flat" alt="release"></a>
-<a href="https://www.apple.com/osx/"><img src="https://img.shields.io/badge/platform-Mac%20OS%20X%2010.10-lightgrey.svg" alt="platform"></a>
+<a href="https://www.apple.com/osx/"><img src="https://img.shields.io/badge/platform-OS%20X-lightgrey.svg" alt="platform"></a>
 <a href="https://github.com/lfaoro/Cast/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="license"></a>
 <a href="https://twitter.com/leonarth"><img src="https://img.shields.io/badge/twitter-%40leonarth-blue.svg" alt="twitter"></a></p>
 
@@ -38,7 +38,7 @@ Its purpose is to help you share information quick &amp; easy.</p>
 
 <p>Cast will also help you shorten URLs very quickly using your preferred URL shortening service.</p>
 
-<p><a href="https://tr.im/CastMacAppStore"><img src="https://raw.githubusercontent.com/lfaoro/Cast/master/MacAppStoreBadge/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg" alt="Download on the Mac App Store"></a></p>
+<p><a href="https://tr.im/CastMacAppStore"><img src="https://raw.githubusercontent.com/lfaoro/Cast/master/AppStore/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.jpg" alt="Download on the Mac App Store"></a></p>
 
 <h2>
 <a id="features-available-in-v10" class="anchor" href="#features-available-in-v10" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features available in v1.0</h2>
@@ -57,8 +57,8 @@ Its purpose is to help you share information quick &amp; easy.</p>
 <li>[x] Shortens any URL and prepares a shortened link in your Pasteboard (ready to paste)</li>
 <li>[x] Keeps a History of all your uploads and URL shorts</li>
 <li>[x] Clicking a recent upload from the list, opens it in your default browser</li>
+<li>[x] Configure the app through the Options menu</li>
 <li>[ ] Recent upload links synced via iCloud across all your Macs</li>
-<li>[ ] Configure the app through the Options menu</li>
 </ul>
 
 <h2>
@@ -106,8 +106,8 @@ Its purpose is to help you share information quick &amp; easy.</p>
 <ul>
 <li>[ ] <a href="http://www.apple.com/icloud/icloud-drive/">iCloud Drive</a>
 </li>
-<li>[ ] wetransfer.com</li>
-<li>[ ] dropbox.com</li>
+<li>[ ] <a href="http://dropbox.com">Dropbox</a>
+</li>
 </ul>
 
 <p><strong>URL Shorteners</strong></p>
@@ -115,6 +115,7 @@ Its purpose is to help you share information quick &amp; easy.</p>
 <ul>
 <li>[x] <a href="www.hive.am">hive.am</a>
 </li>
+<li>[ ] tr.im</li>
 <li>[x] bit.ly</li>
 <li>[x] is.gd</li>
 </ul>
@@ -135,11 +136,11 @@ Its purpose is to help you share information quick &amp; easy.</p>
 <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <blockquote>
-<p>We use <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" title="Gitflow Workflow">gitflow</a>, please fork and push your enhancements to the <code>develop</code> branch</p>
+<p>We use <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" title="Gitflow Workflow">gitflow</a>, please <a href="https://github.com/lfaoro/Cast/fork">fork</a> and push your enhancements to the <code>develop</code> branch</p>
 </blockquote>
 
 <div class="highlight highlight-source-shell"><pre>git checkout develop
-carthage bootstrap
+carthage bootstrap --platform mac
 open Cast.xcodeproj</pre></div>
 
 <p>Please, pick an <a href="https://github.com/lfaoro/Cast/issues" title="Push to `develop` please">Issue</a> and submit a pull request.
@@ -166,11 +167,6 @@ Thank you very much for any contribution!</p>
 <blockquote>
 <p>We all stand on the shoulders of giants across many open source communities. I’d like to thank the communities and projects that every day establish our inspiration.</p>
 </blockquote>
-
-<h2>
-<a id="security-disclosure" class="anchor" href="#security-disclosure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security Disclosure</h2>
-
-<p>If you believe you have identified a security vulnerability with Cast, you should report it as soon as possible via email to <a href="mailto:security@lfaoro.com">security@lfaoro.com</a>. Please do not post it to a public issue tracker.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
