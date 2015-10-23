@@ -81,5 +81,5 @@ extension UserNotifications: NSUserNotificationCenterDelegate {
 		shouldPresentNotification notification: NSUserNotification) -> Bool {
 			return true
 	}
-	
+
 }

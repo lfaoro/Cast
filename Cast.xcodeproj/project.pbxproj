@@ -42,14 +42,14 @@
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
-		A17428911BD15E8600966DFB /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17428901BD15E8600966DFB /* PreferenceManager.swift */; };
-		A17428921BD15E8C00966DFB /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17428901BD15E8600966DFB /* PreferenceManager.swift */; };
 		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */; };
 		A198EC3B1B89E7F300E9D718 /* ShortenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */; };
+		A1A540111BD98042008E4C6C /* PreferenceManagerv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A540101BD98042008E4C6C /* PreferenceManagerv2.swift */; };
+		A1A540121BD98042008E4C6C /* PreferenceManagerv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A540101BD98042008E4C6C /* PreferenceManagerv2.swift */; };
 		A1F6CCC11BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */; };
 		A1F6CCC21BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */; };
 		A1F6CCC31BD2DD7200BDBE21 /* OptionsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */; };
@@ -134,6 +134,7 @@
 		A19D4F941B779BAD00BEB08B /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		A19D4F951B779E9400BEB08B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
 		A19D4F961B779E9400BEB08B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
+		A1A540101BD98042008E4C6C /* PreferenceManagerv2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManagerv2.swift; sourceTree = "<group>"; };
 		A1B2EB381BA9DCBE003E5E84 /* Cast AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Cast AppStore.entitlements"; sourceTree = SOURCE_ROOT; };
 		A1F6CCBF1BD2DD7200BDBE21 /* OptionsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsWindowController.swift; path = Cast/OptionsWindowController.swift; sourceTree = "<group>"; };
 		A1F6CCC01BD2DD7200BDBE21 /* OptionsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsWindow.xib; path = Cast/OptionsWindow.xib; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 				A13961B31B5BF4C400E9CB98 /* Globals.swift */,
 				A11025BC1B75792F00720866 /* Services */,
 				A17428901BD15E8600966DFB /* PreferenceManager.swift */,
+				A1A540101BD98042008E4C6C /* PreferenceManagerv2.swift */,
 				A1125A271BD8120E00D85FB1 /* Errors.swift */,
 			);
 			path = Cast;
@@ -494,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = swiftlint;
+			shellScript = "#swiftlint";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -503,12 +505,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17428911BD15E8600966DFB /* PreferenceManager.swift in Sources */,
 				A13145E41B5AA34E00AA4406 /* AppDelegate.swift in Sources */,
 				A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */,
 				A11509011BD590690063AF4E /* GistClient.swift in Sources */,
 				A15049651B69767A009BF6A9 /* Secrets.swift in Sources */,
 				A1F6CCC11BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */,
+				A1A540111BD98042008E4C6C /* PreferenceManagerv2.swift in Sources */,
 				A1125A281BD8120E00D85FB1 /* Errors.swift in Sources */,
 				A11025C01B75796300720866 /* ImgurClient.swift in Sources */,
 				A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */,
@@ -524,12 +526,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17428921BD15E8C00966DFB /* PreferenceManager.swift in Sources */,
 				A14B7C461BA3A34400831C8B /* AppDelegate.swift in Sources */,
 				A14B7C471BA3A34400831C8B /* OAuthClient.swift in Sources */,
 				A11509001BD58F080063AF4E /* GistClient.swift in Sources */,
 				A14B7C481BA3A34400831C8B /* Secrets.swift in Sources */,
 				A1F6CCC21BD2DD7200BDBE21 /* OptionsWindowController.swift in Sources */,
+				A1A540121BD98042008E4C6C /* PreferenceManagerv2.swift in Sources */,
 				A1125A291BD8120E00D85FB1 /* Errors.swift in Sources */,
 				A14B7C491BA3A34400831C8B /* ImgurClient.swift in Sources */,
 				A14B7C4A1BA3A34400831C8B /* UserNotifications.swift in Sources */,

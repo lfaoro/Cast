@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var statusBarItem: NSStatusItem!
 	var menuSendersAction: MenuSendersAction!
 	var userNotification: UserNotifications!
-	var prefs: PreferenceManager!
 	var optionsWindowController: OptionsWindowController!
 
 
@@ -40,9 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) -> Void {
 
-		prefs = PreferenceManager()
-		//		let gistOptions = GistOptions()
-		//		gistClient = GistService(options: gistOptions)
 		userNotification = UserNotifications()
 		statusBarItem = createStatusBar()
 		menuSendersAction = MenuSendersAction()
@@ -108,12 +104,13 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		keyEquivalent: "")
 
 	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Actions Menu")
-	for (title, link) in app.prefs.recentActions! {
-		let menuItem = NSMenuItem(title: title,
+	let recentActions = userDefaults[.RecentActions] as! [RecentAction]
+	for each in recentActions {
+		let menuItem = NSMenuItem(title: each.description,
 			action: "recentUploadsAction:",
 			keyEquivalent: "")
 		// Allows me to use a value from this context in the func called by the selector
-		menuItem.representedObject = NSURL(string: link)
+		menuItem.representedObject = NSURL(string: each.URL.relativeString!)
 		menuItem.target = target
 		recentUploadsSubmenu.addItem(menuItem)
 	}
@@ -124,7 +121,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 
 	recentUploadsItem.submenu = recentUploadsSubmenu
 
-	if app.prefs.recentActions!.count > 0 {
+	if recentActions.count > 0 {
 		menu.addItem(recentUploadsItem)
 	}
 

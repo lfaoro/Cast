@@ -67,6 +67,5 @@ func switchOnItem(stream: ObserverOf<PBItem>, item: AnyObject) {
 	default: //blow up
 		preconditionFailure()
 	}
-	
-}
 
+}

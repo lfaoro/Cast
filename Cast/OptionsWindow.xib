@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="OptionsWindowController" customModule="Cast" customModuleProvider="target">
             <connections>
                 <outlet property="loginButton" destination="KMY-an-eIk" id="yn0-Iz-HHd"/>
+                <outlet property="secretGistButton" destination="zaK-Yg-WrR" id="DVi-6V-erI"/>
                 <outlet property="window" destination="9ry-9A-XBO" id="nFN-56-NcH"/>
             </connections>
         </customObject>
@@ -28,11 +29,11 @@
                         <tabViewItems>
                             <tabViewItem label="Services" identifier="2" id="8bc-LS-Q1Z">
                                 <view key="view" ambiguous="YES" id="a6m-lU-JhA">
-                                    <rect key="frame" x="10" y="33" width="154" height="0.0"/>
+                                    <rect key="frame" x="10" y="33" width="660" height="209"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGj-eu-sGD">
-                                            <rect key="frame" x="15" y="-46" width="617" height="17"/>
+                                            <rect key="frame" x="15" y="163" width="617" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gists are a great way to share your work. You can share single files, parts of files, or full applications. " id="wpJ-ZS-xym">
                                                 <font key="font" metaFont="system"/>
@@ -41,7 +42,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6m0-Sc-k3B">
-                                            <rect key="frame" x="15" y="-77" width="296" height="24"/>
+                                            <rect key="frame" x="15" y="132" width="296" height="24"/>
                                             <animations/>
                                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="SaL-gh-hmb">
                                                 <font key="font" metaFont="system"/>
@@ -58,7 +59,7 @@
                                             </connections>
                                         </segmentedControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xby-8D-u7U">
-                                            <rect key="frame" x="15" y="-149" width="521" height="17"/>
+                                            <rect key="frame" x="15" y="60" width="521" height="17"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL shortening are to beautify a link, track clicks, or disguise the underlying address." id="DWY-0k-d9s">
                                                 <font key="font" metaFont="system"/>
@@ -67,7 +68,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-an-eIk">
-                                            <rect key="frame" x="575" y="-82" width="74" height="32"/>
+                                            <rect key="frame" x="575" y="127" width="74" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p45-tR-crM">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -78,7 +79,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-Yg-WrR">
-                                            <rect key="frame" x="461" y="-82" width="114" height="32"/>
+                                            <rect key="frame" x="461" y="127" width="114" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Secret Gists" alternateTitle="Public" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" sound="Purr" inset="2" id="fBX-Ee-gqA">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -86,11 +87,10 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="secretGistButtonAction:" target="-2" id="ubC-i3-pmd"/>
-                                                <binding destination="3sE-94-RU2" name="enabled" keyPath="values.secretGistsAvailable" id="9y6-h4-W6L"/>
                                             </connections>
                                         </button>
                                         <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
-                                            <rect key="frame" x="15" y="-180" width="344" height="24"/>
+                                            <rect key="frame" x="15" y="29" width="291" height="24"/>
                                             <animations/>
                                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="g5k-Bl-XkO">
                                                 <font key="font" metaFont="system"/>
@@ -98,15 +98,11 @@
                                                     <segment label="Is.gd" image="is.gd" selected="YES"/>
                                                     <segment label="Hive.am" image="hive.am" tag="1"/>
                                                     <segment label="Bit.ly" image="bit.ly"/>
-                                                    <segment label="Su.Pr"/>
-                                                    <segment label="v.gd"/>
+                                                    <segment label="V.gd"/>
                                                 </segments>
-                                                <connections>
-                                                    <action selector="urlShorteningOptionsControl:" target="-2" id="sQt-eS-Hgw"/>
-                                                </connections>
                                             </segmentedCell>
                                             <connections>
-                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.shortenService" id="rxm-4j-DkK"/>
+                                                <action selector="urlShortenerSegmentedControlAction:" target="-1" id="6f9-Xd-CSc"/>
                                             </connections>
                                         </segmentedControl>
                                     </subviews>

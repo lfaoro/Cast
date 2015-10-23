@@ -68,7 +68,7 @@ final class MenuSendersAction: NSObject {
 								guard let URL = shortenedURL else { fallthrough }
 								putInPasteboard(items: [URL])
 								app.userNotification.pushNotification(openURL: URL,
-									title: "Shortened with \(app.prefs.shortenService!)")
+									title: "Shortened with \(userDefaults[.RecentActions])")
 
 							case .Error:
 								app.userNotification.pushNotification(
@@ -110,13 +110,13 @@ final class MenuSendersAction: NSObject {
 		}
 	}
 
-	func clearItemsAction(sender: NSMenuItem) {
-		if app.prefs.recentActions!.count > 0 {
-			app.prefs.recentActions!.removeAll()
-			Swift.print(app.prefs.recentActions!)
-			app.statusBarItem.menu = createMenu(app.menuSendersAction)
-		}
-	}
+//	func clearItemsAction(sender: NSMenuItem) {
+//		if app.prefs.recentActions!.count > 0 {
+//			app.prefs.recentActions!.removeAll()
+//			Swift.print(app.prefs.recentActions!)
+//			app.statusBarItem.menu = createMenu(app.menuSendersAction)
+//		}
+//	}
 
 	func startAtLoginAction(sender: NSMenuItem) {
 		if sender.state == 0 {

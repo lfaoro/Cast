@@ -12,6 +12,7 @@ class OptionsWindowController: NSWindowController {
 	}
 
 	@IBOutlet weak var loginButton: NSButton!
+	@IBOutlet weak var secretGistButton: NSButton!
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -22,16 +23,7 @@ class OptionsWindowController: NSWindowController {
 
 	@IBAction func secretGistButtonAction(sender: NSButton) {
 
-		switch sender.state {
-
-		case NSOnState:
-			app.prefs.gistIsPublic = false
-
-		case NSOffState:
-			app.prefs.gistIsPublic = true
-
-		default: return
-		}
+		userDefaults[.GistIsPublic] = sender.state == NSOnState
 	}
 
 	@IBAction func loginButtonAction(sender: NSButton) {
@@ -63,19 +55,22 @@ class OptionsWindowController: NSWindowController {
 		}
 	}
 
-	@IBAction func urlShorteningOptionsControl(sender: NSSegmentedCell) {
-
-		let pref = PreferenceManager()
-		print(pref.shortenService)
-		print(pref.gistService)
+	@IBAction func urlShortenerSegmentedControlAction(sender: NSSegmentedCell) {
+		print(__FUNCTION__)
+		
+		userDefaults[.Shorten] = sender.selectedSegment
 	}
 
 	@IBAction func gistServiceControl(sender: NSSegmentedControl) {
 		print(__FUNCTION__)
 
-		switch sender.labelForSegment(sender.selectedSegment)! {
-		case "GitHub": app.prefs.secretGistsAvailable = true
-		default: app.prefs.secretGistsAvailable = false
+		enum GistSegments: Int {
+			case GitHub = 0, PasteBin, NoPaste, TinyPaste
+		}
+
+		switch GistSegments(rawValue: sender.selectedSegment)! {
+		case .GitHub, .PasteBin: secretGistButton.enabled = true
+		default: secretGistButton.enabled = false
 		}
 
 	}
@@ -84,5 +79,5 @@ class OptionsWindowController: NSWindowController {
 
 		NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://twitter.com/leonarth")!)
 	}
-
+	
 }
