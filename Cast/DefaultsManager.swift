@@ -18,11 +18,26 @@ enum ServiceKey: String {
 }
 
 struct UserDefaults {
-
 	let userDefaults = NSUserDefaults.standardUserDefaults()
 
 	init() {
+		registerDefaults()
+	}
 
+	subscript (key: ServiceKey) -> AnyObject {
+		get {
+			guard let value = userDefaults.objectForKey(key.rawValue) else {
+				fatalError("You forgot to provide a default value for all ServiceKey cases")
+			}
+			return value
+		}
+		set {
+			userDefaults.setObject(newValue, forKey: key.rawValue)
+		}
+	}
+
+	/// Default values to provide in absense of user provided defaults
+	func registerDefaults() {
 		let registeredDefaults: [String: AnyObject] = [
 			ServiceKey.Gist.rawValue: GistService.GitHub.rawValue,
 			ServiceKey.GistIsPublic.rawValue: false,
@@ -32,17 +47,5 @@ struct UserDefaults {
 		]
 
 		userDefaults.registerDefaults(registeredDefaults)
-	}
-
-	subscript (category: ServiceKey) -> AnyObject {
-		get {
-			guard let value = userDefaults.objectForKey(category.rawValue) else {
-				fatalError("You forgot to provide a default value for all ServiceKey cases")
-			}
-			return value
-		}
-		set {
-			userDefaults.setObject(newValue, forKey: category.rawValue)
-		}
 	}
 }
