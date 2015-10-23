@@ -22,11 +22,16 @@ struct UserDefaults {
 	let userDefaults = NSUserDefaults.standardUserDefaults()
 
 	init() {
-		self[.Gist] = GistService.GitHub.rawValue
-		self[.GistIsPublic] = false
-		self[.Shorten] = ShortenService.Isgd.rawValue
-		self[.Image] = "Imgur"
-		self[.RecentActions] = []
+
+		let registeredDefaults: [String: AnyObject] = [
+			ServiceKey.Gist.rawValue: GistService.GitHub.rawValue,
+			ServiceKey.GistIsPublic.rawValue: false,
+			ServiceKey.Shorten.rawValue: ShortenService.Isgd.rawValue,
+			ServiceKey.Image.rawValue: "Imgur",
+			ServiceKey.RecentActions.rawValue: [],
+		]
+
+		userDefaults.registerDefaults(registeredDefaults)
 	}
 
 	subscript (category: ServiceKey) -> AnyObject {

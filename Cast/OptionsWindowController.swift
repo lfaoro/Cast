@@ -21,9 +21,10 @@ class OptionsWindowController: NSWindowController {
 
 	}
 
+	/// Binded to userDefaults[.GistIsPublic]
 	@IBAction func secretGistButtonAction(sender: NSButton) {
 
-		userDefaults[.GistIsPublic] = sender.state == NSOnState
+//		userDefaults[.GistIsPublic] = sender.state == NSOnState
 	}
 
 	@IBAction func loginButtonAction(sender: NSButton) {
@@ -55,9 +56,9 @@ class OptionsWindowController: NSWindowController {
 		}
 	}
 
+	/// Binded to userDefaults[.Shorten]
 	@IBAction func urlShortenerSegmentedControlAction(sender: NSSegmentedCell) {
 
-		userDefaults[.Shorten] = sender.selectedSegment
 	}
 
 	@IBAction func gistServiceSegmentedControlAction(sender: NSSegmentedControl) {

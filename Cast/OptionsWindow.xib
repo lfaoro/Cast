@@ -86,6 +86,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="secretGistButtonAction:" target="-2" id="ubC-i3-pmd"/>
+                                                <binding destination="3sE-94-RU2" name="value" keyPath="values.GistIsPublic" id="tBv-RO-4bD"/>
                                             </connections>
                                         </button>
                                         <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAj-zk-07S">
@@ -102,6 +103,7 @@
                                             </segmentedCell>
                                             <connections>
                                                 <action selector="urlShortenerSegmentedControlAction:" target="-1" id="6f9-Xd-CSc"/>
+                                                <binding destination="3sE-94-RU2" name="selectedIndex" keyPath="values.Shorten" id="HLh-Xp-e2U"/>
                                             </connections>
                                         </segmentedControl>
                                     </subviews>

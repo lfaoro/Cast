@@ -19,7 +19,9 @@ public class GistOptions {
 	private let pastebinAPI = NSURL(string: "https://api.pastebin.com/gists")!
 
 	public var gistService: GistService = .GitHub
-	public var publicGist: Bool = false
+	public var publicGist: Bool {
+		return userDefaults[.GistIsPublic] as! Bool
+	}
 	public var fileName: String = "Casted.swift"
 	public var description: String = "Generated with Cast (cast.lfaoro.com)"
 
@@ -116,7 +118,7 @@ public class GistClient {
 
 			let HTTPBody = [
 				"description": self.options.description,
-				"public": self.options.publicGist,
+				"public": !self.options.publicGist,
 				"files": [self.options.fileName: ["content": content]],
 			]
 
