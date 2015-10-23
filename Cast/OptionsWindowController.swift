@@ -56,21 +56,17 @@ class OptionsWindowController: NSWindowController {
 	}
 
 	@IBAction func urlShortenerSegmentedControlAction(sender: NSSegmentedCell) {
-		print(__FUNCTION__)
-		
+
 		userDefaults[.Shorten] = sender.selectedSegment
 	}
 
-	@IBAction func gistServiceControl(sender: NSSegmentedControl) {
-		print(__FUNCTION__)
+	@IBAction func gistServiceSegmentedControlAction(sender: NSSegmentedControl) {
 
-		enum GistSegments: Int {
-			case GitHub = 0, PasteBin, NoPaste, TinyPaste
-		}
-
-		switch GistSegments(rawValue: sender.selectedSegment)! {
-		case .GitHub, .PasteBin: secretGistButton.enabled = true
-		default: secretGistButton.enabled = false
+		switch GistService(rawValue: sender.selectedSegment)! {
+		case .GitHub:
+			secretGistButton.enabled = true
+		default:
+			secretGistButton.enabled = false
 		}
 
 	}
@@ -79,5 +75,5 @@ class OptionsWindowController: NSWindowController {
 
 		NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://twitter.com/leonarth")!)
 	}
-	
+
 }

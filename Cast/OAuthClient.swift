@@ -175,7 +175,7 @@ extension OAuthClient {
 			} else {
 				fatalError("Impossible to extract code")
 			}
-			
+
 		} else {
 			fatalError("No callback")
 		}

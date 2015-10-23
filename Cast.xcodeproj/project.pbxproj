@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,18 +34,18 @@
 		A14B7C531BA3A34400831C8B /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13145F71B5AA6C700AA4406 /* Services.plist */; };
 		A14B7C541BA3A34400831C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A13145E71B5AA34E00AA4406 /* Assets.xcassets */; };
 		A14B7C551BA3A34400831C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A13145E91B5AA34E00AA4406 /* Main.storyboard */; };
-		A14B7C571BA3A34400831C8B /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A14B7C581BA3A34400831C8B /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A14B7C591BA3A34400831C8B /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A14B7C5A1BA3A34400831C8B /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A14B7C571BA3A34400831C8B /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A14B7C581BA3A34400831C8B /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A14B7C591BA3A34400831C8B /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A14B7C5A1BA3A34400831C8B /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A15049651B69767A009BF6A9 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049641B69767A009BF6A9 /* Secrets.swift */; };
 		A15049681B6979E5009BF6A9 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15049671B6979E5009BF6A9 /* UserNotifications.swift */; };
 		A15784AD1B77A426003C94A0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F951B779E9400BEB08B /* Quick.framework */; };
 		A15784AE1B77A42A003C94A0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19D4F961B779E9400BEB08B /* Nimble.framework */; };
-		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A17A19D71B910523005CB0A5 /* SwiftyJSON.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D31B910523005CB0A5 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A17A19D81B910523005CB0A5 /* RxCocoa.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D41B910523005CB0A5 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A17A19D91B910523005CB0A5 /* RxSwift.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D51B910523005CB0A5 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A17A19DA1B910523005CB0A5 /* KeychainAccess.framework in Copy Files - Frameworks */ = {isa = PBXBuildFile; fileRef = A17A19D61B910523005CB0A5 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A19285261B88AEED00587ACB /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14BE0AD1B7D3CC200CD6AAC /* OAuthClient.swift */; };
 		A198EC3B1B89E7F300E9D718 /* ShortenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A198EC3A1B89E7F300E9D718 /* ShortenClient.swift */; };
 		A1A540111BD98042008E4C6C /* PreferenceManagerv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A540101BD98042008E4C6C /* PreferenceManagerv2.swift */; };
@@ -334,6 +334,7 @@
 		A13145D81B5AA34E00AA4406 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LF;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Leonardo Faoro";
@@ -368,7 +369,7 @@
 				};
 			};
 			buildConfigurationList = A13145DB1B5AA34E00AA4406 /* Build configuration list for PBXProject "Cast" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -496,7 +497,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#swiftlint";
+			shellScript = swiftlint;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -670,7 +671,7 @@
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -681,6 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -691,7 +693,7 @@
 				INFOPLIST_FILE = Cast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfaoro.Cast;
 				PRODUCT_NAME = Cast;
 				PROVISIONING_PROFILE = "";

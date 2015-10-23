@@ -45,6 +45,7 @@ public class GistOptions {
 				return githubAPI
 			case .PasteBin:
 				return pastebinAPI
+			default: fatalError("\(__FUNCTION__)")
 			}
 		}
 	}

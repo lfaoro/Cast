@@ -5,17 +5,17 @@ import SwiftyJSON
 
 class RecentAction: NSObject {
 	var desc: String!
-	var URL: NSURL!
+	var url: NSURL!
 
 	init(description: String, URL: NSURL) {
 		super.init()
 
 		self.desc = description
-		self.URL = URL
+		self.url = URL
 	}
 }
 
-func keepRecent(URL url: NSURL) {
+func saveRecentAction(URL url: NSURL) {
 	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
 	var recentActions: [RecentAction] = userDefaults[.RecentActions] as! [RecentAction]
@@ -60,7 +60,8 @@ class ShortenClient {
 
 		case .Bitly:
 			let APIurl = "https://api-ssl.bitly.com"
-			shortenRequest = APIurl + "/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL.relativeString!
+			shortenRequest = APIurl + "/v3/shorten?access_token=" +
+				bitlyOAuth2Token + "&longUrl=" + URL.relativeString!
 
 			shortenURL = NSURL(string: shortenRequest)!
 

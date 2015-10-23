@@ -54,8 +54,7 @@
                                                 </segments>
                                             </segmentedCell>
                                             <connections>
-                                                <action selector="gistServiceControl:" target="-2" id="NQP-NC-sZ6"/>
-                                                <binding destination="3sE-94-RU2" name="selectedLabel" keyPath="values.gistService" id="IMx-VN-LVf"/>
+                                                <action selector="gistServiceSegmentedControlAction:" target="-2" id="5FA-Wg-o0t"/>
                                             </connections>
                                         </segmentedControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xby-8D-u7U">

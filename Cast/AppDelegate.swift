@@ -110,7 +110,7 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 			action: "recentUploadsAction:",
 			keyEquivalent: "")
 		// Allows me to use a value from this context in the func called by the selector
-		menuItem.representedObject = NSURL(string: each.URL.relativeString!)
+		menuItem.representedObject = NSURL(string: each.url.relativeString!)
 		menuItem.target = target
 		recentUploadsSubmenu.addItem(menuItem)
 	}
@@ -155,6 +155,6 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 	menu.addItemWithTitle("Quit",
 		action: "terminate:",
 		keyEquivalent: "Q")
-	
+
 	return menu
 }
