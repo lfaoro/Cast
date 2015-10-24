@@ -5,112 +5,85 @@ import SwiftyJSON
 
 
 class RecentAction: NSObject, NSCoding {
-	var desc: String
-	var url: NSURL
+    var desc: String
+    var url: NSURL
 
-	init(description: String, URL: NSURL) {
-		self.desc = description
-		self.url = URL
-	}
+    init(description: String, URL: NSURL) {
+        self.desc = description
+        self.url = URL
+    }
 
-	required init?(coder aDecoder: NSCoder) {
-		self.desc = aDecoder.decodeObjectForKey("description") as! String
-		self.url = aDecoder.decodeObjectForKey("url") as! NSURL
-	}
+    required init?(coder aDecoder: NSCoder) {
+        self.desc = aDecoder.decodeObjectForKey("description") as! String
+        self.url = aDecoder.decodeObjectForKey("url") as! NSURL
+    }
 
-	func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(desc, forKey: "description")
-		aCoder.encodeObject(url, forKey: "url")
-	}
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(desc, forKey: "description")
+        aCoder.encodeObject(url, forKey: "url")
+    }
 }
 
 func saveRecentAction(URL url: NSURL) {
-	let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
+    let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
-	var recentActions: [RecentAction] = userDefaults[.RecentActions] as! [RecentAction]
-	recentActions.append(RecentAction(description: description, URL: url))
-	userDefaults[.RecentActions] = recentActions
-
+    var recentActions: [RecentAction] = userDefaults[.RecentActions] as! [RecentAction]
+    recentActions.append(RecentAction(description: description, URL: url))
+    userDefaults[.RecentActions] = recentActions
 }
 
 
-public enum ShortenService: Int {
-	case Isgd = 0, Hive, Bitly, Supr, Vgd
+enum ShortenService: Int {
+    case Isgd = 0
+    case Hive
+    case Bitly
+    case Supr
+    case Vgd
+
+    func makeURL(url URL: NSURL) -> (url:String, responseKey:String?) {
+        switch self {
+        case .Isgd:
+            return (url: "https://is.gd/create.php?format=json&url=" + URL.relativeString!, responseKey: "shorturl")
+
+        case .Vgd:
+            return (url: "https://v.gd/create.php?format=json&url=" + URL.relativeString!, responseKey: "shorturl")
+
+        case .Hive:
+            return (url: "https://hive.am/api?api=spublic&url=" + URL.relativeString!, responseKey: "short")
+
+        case .Bitly:
+            return (url: "https://api-ssl.bitly.com/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL.relativeString!, responseKey: nil)
+
+        case .Supr:
+            return (url: "http://su.pr/api/shorten?longUrl=" + URL.relativeString!, responseKey: "shortUrl")
+        }
+    }
 }
 
-class ShortenClient {
-	var responseKey: String?
 
-	func doShortenURL(service shortenService: ShortenService, url URL: NSURL) -> NSURL {
-		var shortenURL: NSURL
-		let shortenRequest: String
+func shorten(withUrl url: NSURL) -> Observable<String?> {
+    //TODO: Fix it => keepRecent(URL: URL)
 
-		switch shortenService {
-		case .Isgd:
-			let APIURL = "https://is.gd/create.php?format=json&url="
-			shortenRequest = APIURL + URL.relativeString!
+    let session = NSURLSession.sharedSession()
+    let service = ShortenService(rawValue: userDefaults[.Shorten] as! Int)! //TODO: Fix me
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shorturl"
+    let ( _url, responseKey) = service.makeURL(url: url)
 
-		case .Vgd:
-			let APIURL = "https://v.gd/create.php?format=json&url="
-			shortenRequest = APIURL + URL.relativeString!
+    return session.rx_JSON(NSURL(string: _url)!) //TODO: Fix me (!)
+    .debug("Shortening with: \(service)")
+    .retry(3)
+    .map {
+        switch service {
+        case .Bitly:
+            guard let data = $0["data"] as? NSDictionary, url = data["url"] as? String else {
+                return nil
+            }
 
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shorturl"
+            return url
 
-		case .Hive:
-			let APIURL = "https://hive.am/api?api=spublic&url="
-			shortenRequest = APIURL + URL.relativeString!
-
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "short"
-
-		case .Bitly:
-			let APIurl = "https://api-ssl.bitly.com"
-			shortenRequest = APIurl + "/v3/shorten?access_token=" +
-				bitlyOAuth2Token + "&longUrl=" + URL.relativeString!
-
-			shortenURL = NSURL(string: shortenRequest)!
-
-		case .Supr:
-			let APIURL = "http://su.pr/api/shorten?longUrl="
-			let shortenRequest = APIURL + URL.relativeString!
-
-			shortenURL = NSURL(string: shortenRequest)!
-			responseKey = "shortUrl"
-
-//		default: fatalError("ShortenURL Impossible for value \(shortenService)")
-		}
-
-		return shortenURL
-	}
-
-	func shorten(URL URL: NSURL) -> Observable<String?> {
-//		keepRecent(URL: URL) TODO: Fix it
-
-		let service = ShortenService(rawValue: userDefaults[.Shorten] as! Int)!
-
-		let shortenURL = doShortenURL(service: service, url: URL)
-
-		let session = NSURLSession.sharedSession()
-		return session.rx_JSON(shortenURL)
-			.debug("Shortening with: \(service)")
-			.retry(3)
-			.map {
-				switch service {
-				case .Bitly:
-					guard let data = $0["data"] as? NSDictionary, url = data["url"] as? String
-						else {
-							return nil
-					}
-
-					return url
-
-				default:
-					return $0[self.responseKey!] as? String
-				}
-		}
-	}
+        default:
+            return $0[responseKey!] as? String
+        }
+    }
 }
+
