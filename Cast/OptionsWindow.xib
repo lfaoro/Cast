@@ -97,7 +97,7 @@
                                                 <font key="font" metaFont="system"/>
                                                 <segments>
                                                     <segment label="GitHub" image="github" selected="YES"/>
-                                                    <segment label="PasteBin" tag="1"/>
+                                                    <segment label="PasteBin" enabled="NO" tag="1"/>
                                                     <segment label="NoPaste" enabled="NO"/>
                                                     <segment label="TinyPaste" enabled="NO"/>
                                                 </segments>
