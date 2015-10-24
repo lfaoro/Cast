@@ -9,14 +9,11 @@ import RxSwift
 
 final class MenuSendersAction: NSObject {
 
-
-	let shortenClient: ShortenClient
 	var gistOptions: GistOptions
 	let gist: GistClient
 
 
 	override init() {
-		self.shortenClient = ShortenClient()
 		self.gistOptions = GistOptions()
 		self.gist = GistClient(options: gistOptions)
 	}
@@ -61,7 +58,7 @@ final class MenuSendersAction: NSObject {
 				switch value {
 				case .Text(let item):
 					guard let url = NSURL(string: item) else { fallthrough }
-					self.shortenClient.shorten(URL: url)
+					shorten(withUrl: url)
 						.subscribe { event in
 							switch event {
 							case .Next(let shortenedURL):

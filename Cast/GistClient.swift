@@ -82,13 +82,11 @@ public class GistClient {
 
 
 	public func createGist(content: String) -> ErrorType? {
-		let shortenClient = ShortenClient()
-
 		self.setGist(content: content)
 			.debug("setGist")
 			.retry(3)
 			.flatMap {
-				shortenClient.shorten(URL: $0)
+				shorten(withUrl: $0)
 			}
 			.subscribe {
 				event in
