@@ -71,7 +71,7 @@ func shorten(withUrl url: NSURL) -> Observable<String?> {
     //TODO: Fix it => keepRecent(URL: URL)
 
     let session = NSURLSession.sharedSession()
-    let service = ShortenService(rawValue: userDefaults[.Shorten] as! Int)! //TODO: Fix me
+    let service = ShortenService(rawValue: userDefaults[.ShortenService] as! Int)! //TODO: Fix me
 
     let ( _url, responseKey) = service.makeURL(url: url)
 

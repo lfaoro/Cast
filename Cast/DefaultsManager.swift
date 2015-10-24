@@ -10,9 +10,9 @@ import Cocoa
 var userDefaults = UserDefaults()
 
 enum ServiceKey: String {
-	case Gist
+	case GistService
 	case GistIsPublic
-	case Shorten
+	case ShortenService
 	case Image
 	case RecentActions
 }
@@ -39,9 +39,9 @@ struct UserDefaults {
 	/// Default values to provide in absense of user provided defaults
 	func registerDefaults() {
 		let registeredDefaults: [String: AnyObject] = [
-			ServiceKey.Gist.rawValue: GistService.GitHub.rawValue,
+			ServiceKey.GistService.rawValue: GistService.GitHub.rawValue,
 			ServiceKey.GistIsPublic.rawValue: false,
-			ServiceKey.Shorten.rawValue: ShortenService.Isgd.rawValue,
+			ServiceKey.ShortenService.rawValue: ShortenService.Isgd.rawValue,
 			ServiceKey.Image.rawValue: "Imgur",
 			ServiceKey.RecentActions.rawValue: [],
 		]

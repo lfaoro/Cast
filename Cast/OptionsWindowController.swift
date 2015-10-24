@@ -56,7 +56,7 @@ class OptionsWindowController: NSWindowController {
 		}
 	}
 
-	/// Binded to userDefaults[.Shorten]
+	/// Binded to userDefaults[.ShortenService]
 	@IBAction func urlShortenerSegmentedControlAction(sender: NSSegmentedCell) {
 
 	}
