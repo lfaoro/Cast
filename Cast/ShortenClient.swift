@@ -40,22 +40,28 @@ enum ShortenService: Int {
     case Supr
     case Vgd
 
-    func makeURL(url URL: NSURL) -> (url:String, responseKey:String?) {
+    func makeURL(url URL: NSURL) -> (url: String, responseKey: String?) {
         switch self {
         case .Isgd:
-            return (url: "https://is.gd/create.php?format=json&url=" + URL.relativeString!, responseKey: "shorturl")
+            return (url: "https://is.gd/create.php?format=json&url=" + URL.relativeString!,
+				responseKey: "shorturl")
 
         case .Vgd:
-            return (url: "https://v.gd/create.php?format=json&url=" + URL.relativeString!, responseKey: "shorturl")
+            return (url: "https://v.gd/create.php?format=json&url=" + URL.relativeString!,
+				responseKey: "shorturl")
 
         case .Hive:
-            return (url: "https://hive.am/api?api=spublic&url=" + URL.relativeString!, responseKey: "short")
+            return (url: "https://hive.am/api?api=spublic&url=" + URL.relativeString!,
+				responseKey: "short")
 
         case .Bitly:
-            return (url: "https://api-ssl.bitly.com/v3/shorten?access_token=" + bitlyOAuth2Token + "&longUrl=" + URL.relativeString!, responseKey: nil)
+            return (url: "https://api-ssl.bitly.com/v3/shorten?access_token=" +
+				bitlyOAuth2Token + "&longUrl=" + URL.relativeString!,
+				responseKey: nil)
 
         case .Supr:
-            return (url: "http://su.pr/api/shorten?longUrl=" + URL.relativeString!, responseKey: "shortUrl")
+            return (url: "http://su.pr/api/shorten?longUrl=" + URL.relativeString!,
+				responseKey: "shortUrl")
         }
     }
 }
@@ -86,4 +92,3 @@ func shorten(withUrl url: NSURL) -> Observable<String?> {
         }
     }
 }
-
