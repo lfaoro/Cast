@@ -27,9 +27,10 @@ class RecentAction: NSObject, NSCoding {
 func saveRecentAction(URL url: NSURL) {
     let description = String("\(url.host!)\(url.path!)".characters.prefix(30))
 
-    var recentActions: [RecentAction] = userDefaults[.RecentActions] as! [RecentAction]
-    recentActions.append(RecentAction(description: description, URL: url))
+	var recentActions = userDefaults[.RecentActions] as! [String: String]
+	recentActions[description] = url.absoluteString
     userDefaults[.RecentActions] = recentActions
+	app.statusBarItem.menu = createMenu(app.menuSendersAction)
 }
 
 
@@ -37,7 +38,6 @@ enum ShortenService: Int {
     case Isgd = 0
     case Hive
     case Bitly
-    case Supr
     case Vgd
 
     func makeURL(url URL: NSURL) -> (url: String, responseKey: String?) {
@@ -58,17 +58,13 @@ enum ShortenService: Int {
             return (url: "https://api-ssl.bitly.com/v3/shorten?access_token=" +
 				bitlyOAuth2Token + "&longUrl=" + URL.relativeString!,
 				responseKey: nil)
-
-        case .Supr:
-            return (url: "http://su.pr/api/shorten?longUrl=" + URL.relativeString!,
-				responseKey: "shortUrl")
-        }
+		}
     }
 }
 
 
 func shorten(withUrl url: NSURL) -> Observable<String?> {
-    //TODO: Fix it => keepRecent(URL: URL)
+	saveRecentAction(URL: url)
 
     let session = NSURLSession.sharedSession()
     let service = ShortenService(rawValue: userDefaults[.ShortenService] as! Int)! //TODO: Fix me

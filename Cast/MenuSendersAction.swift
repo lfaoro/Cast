@@ -107,13 +107,14 @@ final class MenuSendersAction: NSObject {
 		}
 	}
 
-//	func clearItemsAction(sender: NSMenuItem) {
-//		if app.prefs.recentActions!.count > 0 {
-//			app.prefs.recentActions!.removeAll()
-//			Swift.print(app.prefs.recentActions!)
-//			app.statusBarItem.menu = createMenu(app.menuSendersAction)
-//		}
-//	}
+	func clearItemsAction(sender: NSMenuItem) {
+		var recentActions = userDefaults[.RecentActions] as! [String: String]
+		if recentActions.count > 0 {
+			recentActions.removeAll()
+			userDefaults[.RecentActions] = [:]
+			app.statusBarItem.menu = createMenu(app.menuSendersAction)
+		}
+	}
 
 	func startAtLoginAction(sender: NSMenuItem) {
 		if sender.state == 0 {

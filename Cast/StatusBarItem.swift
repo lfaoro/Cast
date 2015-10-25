@@ -54,13 +54,13 @@ func createMenu(target: MenuSendersAction) -> NSMenu {
 		keyEquivalent: "")
 
 	let recentUploadsSubmenu = NSMenu(title: "Cast - Recent Actions Menu")
-	let recentActions = userDefaults[.RecentActions] as! [RecentAction]
-	for each in recentActions {
-		let menuItem = NSMenuItem(title: each.description,
+	let recentActions = userDefaults[.RecentActions] as! [String: String]
+	for (title, link) in recentActions {
+		let menuItem = NSMenuItem(title: title,
 			action: "recentUploadsAction:",
 			keyEquivalent: "")
 		// Allows me to use a value from this context in the func called by the selector
-		menuItem.representedObject = NSURL(string: each.url.relativeString!)
+		menuItem.representedObject = NSURL(string: link)
 		menuItem.target = target
 		recentUploadsSubmenu.addItem(menuItem)
 	}
